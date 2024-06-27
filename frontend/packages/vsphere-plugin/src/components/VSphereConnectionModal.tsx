@@ -14,7 +14,7 @@ import {
 } from '@patternfly/react-core';
 import { Formik, useFormikContext } from 'formik';
 import { useTranslation } from 'react-i18next';
-import * as Yup from 'yup';
+import * as yup from 'yup';
 import { HealthState, SubsystemHealth } from '@console/dynamic-plugin-sdk';
 import { useConnectionForm } from '../hooks/use-connection-form';
 import { useConnectionModels } from '../hooks/use-connection-models';
@@ -106,13 +106,14 @@ const VSphereConnectionModalAlert: React.FC<VSphereConnectionModalAlertProps> = 
 const datastoreRegex = /^\/.*?\/datastore\/.+/;
 const folderRegex = /^\/.*?\/vm\/.+/;
 
-const validationSchema = Yup.lazy((values: ConnectionFormFormikValues) =>
-  Yup.object<ConnectionFormFormikValues>({
-    vcenter: Yup.string().required('vCenter is required.'),
-    username: Yup.string().required('Username is required.'),
-    password: Yup.string().required('Password is required.'),
-    datacenter: Yup.string().required('Datacenter is required.'),
-    defaultDatastore: Yup.string()
+const validationSchema = yup.lazy((values: ConnectionFormFormikValues) =>
+  yup.object<ConnectionFormFormikValues>({
+    vcenter: yup.string().required('vCenter is required.'),
+    username: yup.string().required('Username is required.'),
+    password: yup.string().required('Password is required.'),
+    datacenter: yup.string().required('Datacenter is required.'),
+    defaultDatastore: yup
+      .string()
       .required('Default data store is required.')
       .test(
         'Correct prefix',
@@ -125,7 +126,8 @@ const validationSchema = Yup.lazy((values: ConnectionFormFormikValues) =>
         },
       )
       .matches(datastoreRegex, `Must match regex ${datastoreRegex}`),
-    folder: Yup.string()
+    folder: yup
+      .string()
       .required('Virtual Machine Folder is required.')
       .test('Correct prefix', `Must start with /${values.datacenter}/vm/`, (value: string) => {
         if (!value || !values.datacenter) {
@@ -134,7 +136,7 @@ const validationSchema = Yup.lazy((values: ConnectionFormFormikValues) =>
         return value.startsWith(`/${values.datacenter}/vm/`);
       })
       .matches(folderRegex, `Must match regex ${folderRegex}`),
-    vCenterCluster: Yup.string().required('vCenter cluster is required.'),
+    vCenterCluster: yup.string().required('vCenter cluster is required.'),
   }),
 );
 
