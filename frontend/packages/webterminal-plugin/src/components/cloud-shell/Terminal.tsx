@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Terminal as XTerminal, ITerminalOptions, ITerminalAddon } from 'xterm';
-import { FitAddon } from 'xterm-addon-fit';
+import { FitAddon } from '@xterm/addon-fit';
+import { Terminal as XTerminal, ITerminalOptions, ITerminalAddon } from '@xterm/xterm';
 
 import './Terminal.scss';
 
@@ -8,8 +8,6 @@ const terminalOptions: ITerminalOptions = {
   fontFamily: 'monospace',
   fontSize: 16,
   cursorBlink: false,
-  cols: 80,
-  rows: 25,
 };
 
 type TerminalProps = {
@@ -35,6 +33,7 @@ const Terminal = React.forwardRef<ImperativeTerminalType, TerminalProps>(
       const fitAddon = new FitAddon();
       term.open(terminalRef.current);
       term.loadAddon(fitAddon);
+      term.resize(80, 25);
       term.focus();
 
       const resizeObserver: ResizeObserver = new ResizeObserver(() => {

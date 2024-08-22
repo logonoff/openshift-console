@@ -235,9 +235,9 @@
     "url-search-params-polyfill": "2.x",
     "vscode-languageserver-types": "^3.10.0",
     "whatwg-fetch": "2.x",
-    "xterm": "^4.19.0",
-    "xterm-addon-attach": "0.6.0",
-    "xterm-addon-fit": "0.5.0",
+    "@xterm/xterm": "^5.5.x",
+    "@xterm/addon-attach": "0.11.0",
+    "@xterm/addon-fit": "0.10.0",
     "yaml-language-server": "0.13.0",
     "yup": "^0.27.0"
   },

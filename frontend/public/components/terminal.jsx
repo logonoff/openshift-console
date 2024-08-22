@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Terminal as XTerminal } from 'xterm';
-import { FitAddon } from 'xterm-addon-fit';
+import { Terminal as XTerminal } from '@xterm/xterm';
+import { FitAddon } from '@xterm/addon-fit';
 import { withTranslation } from 'react-i18next';
 import { CompressIcon } from '@patternfly/react-icons/dist/esm/icons/compress-icon';
 import { Button } from '@patternfly/react-core';
@@ -160,7 +160,5 @@ Terminal.defaultProps = {
     fontFamily: 'monospace',
     fontSize: 16,
     cursorBlink: false,
-    cols: 80,
-    rows: 25,
   },
 };
