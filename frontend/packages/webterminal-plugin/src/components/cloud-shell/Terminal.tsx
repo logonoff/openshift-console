@@ -79,7 +79,7 @@ const Terminal = React.forwardRef<ImperativeTerminalType, TerminalProps>(
         if (!terminal.current) return;
         terminal.current.reset();
         terminal.current.clear();
-        terminal.current.setOption('disableStdin', false);
+        terminal.current.options.disableStdin = false;
       },
       onDataReceived: (data) => {
         terminal.current && terminal.current.write(data);
@@ -87,7 +87,7 @@ const Terminal = React.forwardRef<ImperativeTerminalType, TerminalProps>(
       onConnectionClosed: (msg) => {
         if (!terminal.current) return;
         terminal.current.write(`\x1b[31m${msg || 'disconnected'}\x1b[m\r\n`);
-        terminal.current.setOption('disableStdin', true);
+        terminal.current.options.disableStdin = true;
       },
       loadAttachAddon: (addOn: ITerminalAddon) => {
         if (!terminal.current) return;

@@ -32,7 +32,7 @@ class Terminal_ extends React.Component {
     }
     terminal.reset();
     terminal.clear();
-    terminal.setOption('disableStdin', false);
+    terminal.options.disableStdin = false;
   }
 
   focus() {
@@ -67,7 +67,7 @@ class Terminal_ extends React.Component {
     this.setFullscreen(false);
     terminal.write(`\x1b[31m${reason || 'disconnected'}\x1b[m\r\n`);
     terminal.cursorHidden = true;
-    terminal.setOption('disableStdin', true);
+    terminal.options.disableStdin = true;
     terminal.refresh(0, terminal.rows - 1);
   }
 
