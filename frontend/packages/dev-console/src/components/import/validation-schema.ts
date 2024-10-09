@@ -223,8 +223,11 @@ export const limitsValidationSchema = (t: TFunction) =>
           },
           message: t('devconsole~CPU request must be less than or equal to limit.'),
         }),
-      requestUnit: yup.string(t('devconsole~Unit must be millicores or cores.')).ensure(),
-      limitUnit: yup.string(t('devconsole~Unit must be millicores or cores.')).ensure(),
+      requestUnit: yup
+        .string()
+        .required(t('devconsole~Unit must be millicores or cores.'))
+        .ensure(),
+      limitUnit: yup.string().required(t('devconsole~Unit must be millicores or cores.')).ensure(),
       limit: yup
         .number()
         .transform((limit) => (_.isNaN(limit) ? undefined : limit))
@@ -261,7 +264,7 @@ export const limitsValidationSchema = (t: TFunction) =>
           },
           message: t('devconsole~Memory request must be less than or equal to limit.'),
         }),
-      requestUnit: yup.string(t('devconsole~Unit must be Mi or Gi.')),
+      requestUnit: yup.string().required(t('devconsole~Unit must be Mi or Gi.')),
       limit: yup
         .number()
         .transform((limit) => (_.isNaN(limit) ? undefined : limit))
@@ -279,7 +282,7 @@ export const limitsValidationSchema = (t: TFunction) =>
           },
           message: t('devconsole~Memory limit must be greater than or equal to request.'),
         }),
-      limitUnit: yup.string(t('devconsole~Unit must be Mi or Gi.')),
+      limitUnit: yup.string().required(t('devconsole~Unit must be Mi or Gi.')),
     }),
   });
 

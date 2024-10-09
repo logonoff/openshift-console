@@ -63,10 +63,15 @@ const areRequiredWhenExpressionsAdded = (when: WhenExpression[] = []) => {
  */
 const findResource = (
   formValues: PipelineBuilderFormYamlValues,
-  path: string,
-  resourceName: string,
+  path: string | undefined,
+  resourceName: string | undefined,
   taskType: TaskType,
 ): TektonResource | false => {
+  if (!path || !resourceName) {
+    // No path or resource name, so there is no resource to find
+    return false;
+  }
+
   // Since we do not have easy access to the taskRef, walk the path back ot the root
   // eg. path === formData.tasks[0].resources.inputs[0].resource
   const pathParts = path.split('.');
@@ -95,9 +100,9 @@ const findResource = (
  */
 const isResourceTheCorrectType = (
   formValues: PipelineBuilderFormYamlValues,
-  path: string,
+  path: string | undefined,
   resourceValue: string,
-  resourceName: string,
+  resourceName: string | undefined,
   taskType: TaskType,
 ): boolean => {
   const resource = findResource(formValues, path, resourceName, taskType);
@@ -161,9 +166,14 @@ const hasRequiredResources = (
  */
 const findWorkspace = (
   formValues: PipelineBuilderFormYamlValues,
-  path: string,
-  workspaceName: string,
+  path: string | undefined,
+  workspaceName: string | undefined,
 ): TektonWorkspace | false => {
+  // If we don't have a path or workspace name, we can't find the workspace
+  if (!path || !workspaceName) {
+    return false;
+  }
+
   // Search the taskPath which is parent of the given path.
   // If an path like formData.finallyTasks[0].workspaces[0].workspace is given
   // it returns the path formData.finallyTasks[0]
@@ -258,7 +268,9 @@ const resourceDefinition = (formValues: PipelineBuilderFormYamlValues, taskType:
         .test(
           'are-resources-available',
           i18n.t('pipelines-plugin~No resources available. Add pipeline resources.'),
-          function () {
+          () => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore: Object is possibly 'null'.
             const resource = findResource(formValues, this.path, this.parent.name, taskType);
             return !resource || resource.optional || resources?.length > 0;
           },
@@ -266,21 +278,29 @@ const resourceDefinition = (formValues: PipelineBuilderFormYamlValues, taskType:
         .test(
           'is-resources-of-type-available',
           i18n.t('pipelines-plugin~No resources available. Add pipeline resources.'),
-          function () {
+          () => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore: Object is possibly 'null'.
             const resource = findResource(formValues, this.path, this.parent.name, taskType);
             return (
               !resource ||
               resource.optional ||
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore: Object is possibly 'null'.
               hasResourcesOfTheSameType(formValues, this.path, this.parent.name, taskType)
             );
           },
         )
-        .test('is-resource-is-required', i18n.t('pipelines-plugin~Required'), function (
-          resourceValue?: string,
-        ) {
-          const resource = findResource(formValues, this.path, this.parent.name, taskType);
-          return !resource || resource.optional || resourceValue;
-        })
+        .test(
+          'is-resource-is-required',
+          i18n.t('pipelines-plugin~Required'),
+          async (resourceValue?: string) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore: Object is possibly 'null'.
+            const resource = findResource(formValues, this.path, this.parent.name, taskType);
+            return (!resource || resource.optional || resourceValue) as boolean;
+          },
+        )
         .test(
           'is-resource-link-broken',
           i18n.t('pipelines-plugin~Resource name has changed; reselect.'),
@@ -290,14 +310,20 @@ const resourceDefinition = (formValues: PipelineBuilderFormYamlValues, taskType:
         .test(
           'is-resource-type-valid',
           i18n.t('pipelines-plugin~Resource type has changed; reselect.'),
-          function (resourceValue?: string) {
-            if (!resourceValue) {
+          (resourceValue?: string) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore: Object is possibly 'null'.
+            if (!resourceValue || !this.path || !this.parent.name) {
               return true;
             }
             return isResourceTheCorrectType(
               formValues,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore: Object is possibly 'null'.
               this.path,
               resourceValue,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore: Object is possibly 'null'.
               this.parent.name,
               taskType,
             );
@@ -387,12 +413,16 @@ const taskValidation = (formValues: PipelineBuilderFormYamlValues, taskType: Tas
               name: yup.string().required(i18n.t('pipelines-plugin~Required')),
               workspace: yup
                 .string()
-                .test('is-workspace-is-required', i18n.t('pipelines-plugin~Required'), function (
-                  workspaceValue?: string,
-                ) {
-                  const workspace = findWorkspace(formValues, this.path, this.parent.name);
-                  return !workspace || workspace.optional || workspaceValue;
-                })
+                .test(
+                  'is-workspace-is-required',
+                  i18n.t('pipelines-plugin~Required'),
+                  (workspaceValue?: string) => {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore: Object is possibly 'null'.
+                    const workspace = findWorkspace(formValues, this.path, this.parent.name);
+                    return (!workspace || workspace.optional || workspaceValue) as boolean;
+                  },
+                )
                 .test(
                   'are-workspaces-available',
                   i18n.t('pipelines-plugin~No workspaces available. Add pipeline workspaces.'),
@@ -417,8 +447,10 @@ const taskValidation = (formValues: PipelineBuilderFormYamlValues, taskType: Tas
       .test(
         'taskRef-or-taskSpec',
         i18n.t('pipelines-plugin~TaskSpec or TaskRef must be provided.'),
-        function (task: PipelineTask) {
-          return !!task.taskRef || !!task.taskSpec;
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore: Object is possibly 'null'.
+        async (task: PipelineTask) => {
+          return (!!task.taskRef || !!task.taskSpec) as boolean;
         },
       ),
   );
@@ -475,17 +507,20 @@ const pipelineBuilderFormSchema = (formValues: PipelineBuilderFormYamlValues) =>
 };
 
 export const validationSchema = () =>
-  yup.mixed().test({
-    test(formValues: PipelineBuilderFormYamlValues) {
-      const formYamlDefinition = yup.object({
-        editorType: yup.string().oneOf(Object.values(EditorType)),
-        yamlData: yup.string(),
-        formData: yup.mixed().when('editorType', {
-          is: EditorType.Form,
-          then: pipelineBuilderFormSchema(formValues),
-        }),
-      });
+  yup.mixed().test(async (formValues: PipelineBuilderFormYamlValues) => {
+    const formYamlDefinition = yup.object({
+      editorType: yup.string().oneOf(Object.values(EditorType)),
+      yamlData: yup.string(),
+      formData: yup.mixed().when('editorType', {
+        is: EditorType.Form,
+        then: pipelineBuilderFormSchema(formValues),
+      }),
+    });
 
-      return formYamlDefinition.validate(formValues, { abortEarly: false });
-    },
+    return formYamlDefinition
+      .validate(formValues, { abortEarly: false })
+      .then(() => true)
+      .catch((err) => {
+        throw new yup.ValidationError(err.errors, formValues, 'pipelineBuilder');
+      });
   });

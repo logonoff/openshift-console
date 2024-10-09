@@ -31,17 +31,20 @@ export const createHelmChartRepositoryValidationSchema = (t: TFunction) =>
   });
 
 export const validationSchema = (t: TFunction) =>
-  yup.mixed().test({
-    test(formValues: HelmChartRepositoryData) {
-      const formYamlDefinition = yup.object({
-        editorType: yup.string().oneOf(Object.values(EditorType)),
-        yamlData: yup.string(),
-        formData: yup.mixed().when('editorType', {
-          is: EditorType.Form,
-          then: createHelmChartRepositoryValidationSchema(t),
-        }),
-      });
+  yup.mixed().test(async (formValues: HelmChartRepositoryData) => {
+    const formYamlDefinition = yup.object({
+      editorType: yup.string().oneOf(Object.values(EditorType)),
+      yamlData: yup.string(),
+      formData: yup.mixed().when('editorType', {
+        is: EditorType.Form,
+        then: createHelmChartRepositoryValidationSchema(t),
+      }),
+    });
 
-      return formYamlDefinition.validate(formValues, { abortEarly: false });
-    },
+    return formYamlDefinition
+      .validate(formValues, { abortEarly: false })
+      .then(() => true)
+      .catch((err) => {
+        throw new yup.ValidationError(err.errors, formValues, 'helmChartRepository');
+      });
   });

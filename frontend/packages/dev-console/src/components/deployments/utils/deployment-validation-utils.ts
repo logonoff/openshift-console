@@ -128,17 +128,20 @@ export const editDeploymentFormSchema = (formValues: EditDeploymentFormData) =>
   });
 
 export const validationSchema = () =>
-  yup.mixed().test({
-    test(formValues: EditDeploymentData) {
-      const formYamlDefinition = yup.object({
-        editorType: yup.string().oneOf(Object.values(EditorType)),
-        yamlData: yup.string(),
-        formData: yup.mixed().when('editorType', {
-          is: EditorType.Form,
-          then: editDeploymentFormSchema(formValues.formData),
-        }),
-      });
+  yup.mixed().test(async (formValues: EditDeploymentData) => {
+    const formYamlDefinition = yup.object({
+      editorType: yup.string().oneOf(Object.values(EditorType)),
+      yamlData: yup.string(),
+      formData: yup.mixed().when('editorType', {
+        is: EditorType.Form,
+        then: editDeploymentFormSchema(formValues.formData),
+      }),
+    });
 
-      return formYamlDefinition.validate(formValues, { abortEarly: false });
-    },
+    return formYamlDefinition
+      .validate(formValues, { abortEarly: false })
+      .then(() => true)
+      .catch((err) => {
+        throw new yup.ValidationError(err.errors, err.value, err.path);
+      });
   });

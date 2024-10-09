@@ -107,7 +107,7 @@ const datastoreRegex = /^\/.*?\/datastore\/.+/;
 const folderRegex = /^\/.*?\/vm\/.+/;
 
 const validationSchema = yup.lazy((values: ConnectionFormFormikValues) =>
-  yup.object<ConnectionFormFormikValues>({
+  yup.object({
     vcenter: yup.string().required('vCenter is required.'),
     username: yup.string().required('Username is required.'),
     password: yup.string().required('Password is required.'),

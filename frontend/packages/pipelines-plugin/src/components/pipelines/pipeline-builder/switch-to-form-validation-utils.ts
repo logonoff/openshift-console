@@ -14,6 +14,56 @@ const resourceDefinitionYAML = () => {
   );
 };
 
+const tektonTaskSpec = () => {
+  return yup.object({
+    metadata: yup.object(),
+    description: yup.string(),
+    steps: yup.array().of(
+      yup.object({
+        name: yup.string().required(),
+        args: yup.array().of(yup.string()),
+        command: yup.array().of(yup.string()),
+        image: yup.string(),
+        resources: yup.object().shape({}),
+        env: yup.array().of(
+          yup.object({
+            name: yup.string(),
+            value: yup.string(),
+          }),
+        ),
+        script: yup.array().of(yup.string()),
+      }),
+    ),
+    params: yup.array().of(
+      yup.object({
+        default: yup.lazy((val) => (Array.isArray(val) ? yup.array() : yup.string())),
+        description: yup.string(),
+        name: yup.string().required(),
+        type: yup.string().oneOf(['string', 'array']),
+      }),
+    ),
+    resources: yup.object().shape({
+      inputs: resourceDefinitionYAML(),
+      outputs: resourceDefinitionYAML(),
+    }),
+    results: yup.array().of(
+      yup.object({
+        name: yup.string().required(),
+        description: yup.string(),
+      }),
+    ),
+    workspaces: yup.array().of(
+      yup.object({
+        name: yup.string().required(),
+        description: yup.string(),
+        mountPath: yup.string(),
+        readOnly: yup.boolean(),
+        optional: yup.boolean(),
+      }),
+    ),
+  });
+};
+
 export const validRunAfter = (formData: PipelineBuilderFormValues, thisTask: PipelineTask) => {
   return yup.array().of(
     yup
@@ -28,22 +78,14 @@ export const validRunAfter = (formData: PipelineBuilderFormValues, thisTask: Pip
 
 const taskValidationYAMLSchema = (formData: PipelineBuilderFormValues) => {
   return yup.array().of(
-    yup.lazy((taskObject) =>
+    yup.lazy((taskObject: PipelineTask) =>
       yup
         .object({
-          name: nameValidationSchema((tKey) => i18n.t(tKey)),
-          taskRef: yup
-            .object({
-              name: yup.string(),
-              kind: yup.string(),
-            })
-            .default(undefined),
-          taskSpec: yup.object(),
-          runAfter: validRunAfter(formData, taskObject),
+          name: nameValidationSchema((tKey: string) => i18n.t(tKey)),
           params: yup.array().of(
             yup.object({
               name: yup.string().required(),
-              value: yup.lazy((value) => {
+              value: yup.lazy((value: any) => {
                 if (Array.isArray(value)) {
                   return yup.array().of(yup.string());
                 }
@@ -55,6 +97,14 @@ const taskValidationYAMLSchema = (formData: PipelineBuilderFormValues) => {
             inputs: resourceDefinitionYAML(),
             outputs: resourceDefinitionYAML(),
           }),
+          runAfter: validRunAfter(formData, taskObject),
+          taskRef: yup
+            .object({
+              name: yup.string(),
+              kind: yup.string(),
+            })
+            .default(undefined),
+          taskSpec: tektonTaskSpec().default(undefined),
           when: yup.array().of(
             yup.object({
               input: yup.string(),
@@ -62,7 +112,6 @@ const taskValidationYAMLSchema = (formData: PipelineBuilderFormValues) => {
               values: yup.array().of(yup.string()),
             }),
           ),
-
           workspaces: yup.array().of(
             yup.object({
               name: yup.string().required(),
@@ -73,7 +122,7 @@ const taskValidationYAMLSchema = (formData: PipelineBuilderFormValues) => {
         .test(
           'taskRef-or-taskSpec',
           i18n.t('pipelines-plugin~TaskSpec or TaskRef must be provided.'),
-          function (task: PipelineTask) {
+          (task: PipelineTask) => {
             return !!task.taskRef || !!task.taskSpec;
           },
         ),

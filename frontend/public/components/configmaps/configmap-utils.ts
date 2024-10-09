@@ -196,23 +196,26 @@ const formDataSchema = (values: ConfigMapFormInitialValues) =>
   });
 
 export const validationSchema = () =>
-  yup.mixed().test({
-    test(values: ConfigMapFormInitialValues) {
-      const formYamlDefinition = yup.object({
-        editorType: yup
-          .string()
-          .oneOf(Object.values(EditorType))
-          .required(i18next.t('public~Required')),
-        formData: yup.mixed().when('editorType', {
-          is: EditorType.Form,
-          then: formDataSchema(values),
-        }),
-        yamlData: yup.mixed().when('editorType', {
-          is: EditorType.YAML,
-          then: yup.string().required(i18next.t('public~Required')),
-        }),
-      });
+  yup.mixed().test(async (values: ConfigMapFormInitialValues) => {
+    const formYamlDefinition = yup.object({
+      editorType: yup
+        .string()
+        .oneOf(Object.values(EditorType))
+        .required(i18next.t('public~Required')),
+      formData: yup.mixed().when('editorType', {
+        is: EditorType.Form,
+        then: formDataSchema(values),
+      }),
+      yamlData: yup.mixed().when('editorType', {
+        is: EditorType.YAML,
+        then: yup.string().required(i18next.t('public~Required')),
+      }),
+    });
 
-      return formYamlDefinition.validate(values, { abortEarly: false });
-    },
+    return formYamlDefinition
+      .validate(values, { abortEarly: false })
+      .then(() => true)
+      .catch((err) => {
+        throw new yup.ValidationError(err.errors, values, 'configMap');
+      });
   });
