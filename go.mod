@@ -9,8 +9,8 @@ require (
 	github.com/coreos/go-oidc v2.2.1+incompatible
 	github.com/coreos/pkg v0.0.0-20230601102743-20bbbf26f4d8
 	github.com/devfile/api/v2 v2.3.0
-	github.com/devfile/library/v2 v2.2.3-0.20240612082351-45a4cc4d3504
-	github.com/devfile/registry-support/index/generator v0.0.0-20240419194226-cca4c9a81f8d
+	github.com/devfile/library/v2 v2.3.0
+	github.com/devfile/registry-support/index/generator v0.0.0-20241212164131-404201107c4c
 	github.com/devfile/registry-support/registry-library v0.0.0-20240521161747-89fc566cb024
 	github.com/golang/mock v1.6.0
 	github.com/gorilla/securecookie v1.1.2
@@ -72,7 +72,7 @@ require (
 	github.com/distribution/reference v0.5.0 // indirect
 	github.com/docker/cli v25.0.1+incompatible // indirect
 	github.com/docker/distribution v2.8.3+incompatible // indirect
-	github.com/docker/docker v25.0.1+incompatible // indirect
+	github.com/docker/docker v25.0.6+incompatible // indirect
 	github.com/docker/docker-credential-helpers v0.7.0 // indirect
 	github.com/docker/go-connections v0.5.0 // indirect
 	github.com/docker/go-metrics v0.0.1 // indirect

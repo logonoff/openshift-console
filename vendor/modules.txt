@@ -158,7 +158,7 @@ github.com/devfile/api/v2/pkg/utils/overriding
 github.com/devfile/api/v2/pkg/utils/unions
 github.com/devfile/api/v2/pkg/validation
 github.com/devfile/api/v2/pkg/validation/variables
-# github.com/devfile/library/v2 v2.2.3-0.20240612082351-45a4cc4d3504
+# github.com/devfile/library/v2 v2.3.0
 ## explicit; go 1.21
 github.com/devfile/library/v2/pkg/devfile
 github.com/devfile/library/v2/pkg/devfile/generator
@@ -171,14 +171,15 @@ github.com/devfile/library/v2/pkg/devfile/parser/data/v2/2.1.0
 github.com/devfile/library/v2/pkg/devfile/parser/data/v2/2.2.0
 github.com/devfile/library/v2/pkg/devfile/parser/data/v2/2.2.1
 github.com/devfile/library/v2/pkg/devfile/parser/data/v2/2.2.2
+github.com/devfile/library/v2/pkg/devfile/parser/data/v2/2.3.0
 github.com/devfile/library/v2/pkg/devfile/parser/data/v2/common
 github.com/devfile/library/v2/pkg/devfile/parser/errors
 github.com/devfile/library/v2/pkg/devfile/parser/util
 github.com/devfile/library/v2/pkg/devfile/validate
 github.com/devfile/library/v2/pkg/testingutil/filesystem
 github.com/devfile/library/v2/pkg/util
-# github.com/devfile/registry-support/index/generator v0.0.0-20240419194226-cca4c9a81f8d
-## explicit; go 1.19
+# github.com/devfile/registry-support/index/generator v0.0.0-20241212164131-404201107c4c
+## explicit; go 1.21
 github.com/devfile/registry-support/index/generator/schema
 # github.com/devfile/registry-support/registry-library v0.0.0-20240521161747-89fc566cb024
 ## explicit; go 1.19
@@ -207,7 +208,7 @@ github.com/docker/distribution/registry/client/auth/challenge
 github.com/docker/distribution/registry/client/transport
 github.com/docker/distribution/registry/storage/cache
 github.com/docker/distribution/registry/storage/cache/memory
-# github.com/docker/docker v25.0.1+incompatible
+# github.com/docker/docker v25.0.6+incompatible
 ## explicit
 github.com/docker/docker/api/types/filters
 github.com/docker/docker/api/types/registry
