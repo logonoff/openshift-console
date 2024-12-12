@@ -1791,15 +1791,14 @@
   resolved "https://registry.yarnpkg.com/@patternfly/patternfly/-/patternfly-4.224.5.tgz#ad704848ce7754fcd6ffc5dc349f17beb84168ce"
   integrity sha512-io0huj+LCP5FgDZJDaLv1snxktTYs8iCFz/W1VDRneYoebNHLmGfQdF7Yn8bS6PF7qmN6oJKEBlq3AjmmE8vdA==
 
-"@patternfly-4/quickstarts@npm:@patternfly/quickstarts@2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@patternfly/quickstarts/-/quickstarts-2.4.2.tgz#9bc93645ee73e7852e61fcfd1942e0ed461c7ef3"
-  integrity sha512-KRlgWMUtAN+mG331acav+qxDcW80I+IPc32I9FYFPQQ7o/KW6U/Cg5bGBo+OlfF889kjLwOTOylqnfjoIlXbyA==
+"@patternfly-4/quickstarts@npm:@patternfly/quickstarts@2.4.3":
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/@patternfly/quickstarts/-/quickstarts-2.4.3.tgz#5fe102469b8a247f245cdad317d1b3b1bd8f0363"
+  integrity sha512-X5V99QG27JG/ycp/ktQhI+MQcFGH55VO8aZj2eS/cMbNUFobJadjQLvrkdI2OTbi2vPJnpqybKN3oyeMcoeobw==
   dependencies:
     "@patternfly/react-catalog-view-extension" "^4.93.15"
     dompurify "^2.2.6"
     history "^5.0.0"
-    showdown "1.8.6"
 
 "@patternfly-4/react-catalog-view-extension@npm:@patternfly/react-catalog-view-extension@4.96.1":
   version "4.96.1"
