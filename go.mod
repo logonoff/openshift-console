@@ -24,7 +24,7 @@ require (
 	github.com/operator-framework/operator-lifecycle-manager v0.23.1
 	github.com/prometheus/client_golang v1.19.1
 	github.com/prometheus/common v0.55.0
-	github.com/rawagner/graphql-transport-ws v0.0.0-20200817140314-dcfbf0388067
+	github.com/rawagner/graphql-transport-ws v0.0.0-20190611222414-40c048432299
 	github.com/redhat-certification/chart-verifier v0.0.0-20231017212458-4c2fb295f411
 	github.com/stretchr/testify v1.9.0
 	golang.org/x/net v0.26.0
@@ -109,6 +109,7 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/gosuri/uitable v0.0.4 // indirect
+	github.com/graph-gophers/graphql-transport-ws v0.0.2 // indirect
 	github.com/gregjones/httpcache v0.0.0-20180305231024-9cad4c3443a7 // indirect
 	github.com/h2non/filetype v1.1.1 // indirect
 	github.com/h2non/go-is-svg v0.0.0-20160927212452-35e8c4b0612c // indirect

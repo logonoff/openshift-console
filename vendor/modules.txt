@@ -460,6 +460,9 @@ github.com/graph-gophers/graphql-go/relay
 github.com/graph-gophers/graphql-go/trace/noop
 github.com/graph-gophers/graphql-go/trace/tracer
 github.com/graph-gophers/graphql-go/types
+# github.com/graph-gophers/graphql-transport-ws v0.0.2
+## explicit; go 1.15
+github.com/graph-gophers/graphql-transport-ws/graphqlws/internal/connection
 # github.com/gregjones/httpcache v0.0.0-20180305231024-9cad4c3443a7
 ## explicit
 github.com/gregjones/httpcache
@@ -722,10 +725,9 @@ github.com/prometheus/common/model
 github.com/prometheus/procfs
 github.com/prometheus/procfs/internal/fs
 github.com/prometheus/procfs/internal/util
-# github.com/rawagner/graphql-transport-ws v0.0.0-20200817140314-dcfbf0388067
+# github.com/rawagner/graphql-transport-ws v0.0.0-20190611222414-40c048432299
 ## explicit
 github.com/rawagner/graphql-transport-ws/graphqlws
-github.com/rawagner/graphql-transport-ws/graphqlws/internal/connection
 # github.com/redhat-certification/chart-verifier v0.0.0-20231017212458-4c2fb295f411
 ## explicit; go 1.20
 github.com/redhat-certification/chart-verifier/internal/chartverifier

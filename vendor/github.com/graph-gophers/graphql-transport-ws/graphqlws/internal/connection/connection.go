@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -61,17 +62,48 @@ type connection struct {
 	ws           wsConnection
 }
 
-type InitPayload = func(ctx context.Context, payload json.RawMessage) context.Context
+type operationMap struct {
+	ops map[string]func()
+	mtx *sync.RWMutex
+}
+
+func newOperationMap() operationMap {
+	return operationMap{
+		ops: make(map[string]func()),
+		mtx: &sync.RWMutex{},
+	}
+}
+
+func (o *operationMap) add(name string, done func()) {
+	o.mtx.Lock()
+	o.ops[name] = done
+	o.mtx.Unlock()
+}
+
+func (o *operationMap) get(name string) (func(), bool) {
+	o.mtx.RLock()
+	f, ok := o.ops[name]
+	o.mtx.RUnlock()
+	return f, ok
+}
+
+func (o *operationMap) delete(name string) {
+	o.mtx.Lock()
+	delete(o.ops, name)
+	o.mtx.Unlock()
+}
+
+type Option func(conn *connection)
 
 // ReadLimit limits the maximum size of incoming messages
-func ReadLimit(limit int64) func(conn *connection) {
+func ReadLimit(limit int64) Option {
 	return func(conn *connection) {
 		conn.ws.SetReadLimit(limit)
 	}
 }
 
 // WriteTimeout sets a timeout for outgoing messages
-func WriteTimeout(d time.Duration) func(conn *connection) {
+func WriteTimeout(d time.Duration) Option {
 	return func(conn *connection) {
 		conn.writeTimeout = d
 	}
@@ -79,13 +111,13 @@ func WriteTimeout(d time.Duration) func(conn *connection) {
 
 // Connect implements the apollographql subscriptions-transport-ws protocol@v0.9.4
 // https://github.com/apollographql/subscriptions-transport-ws/blob/v0.9.4/PROTOCOL.md
-func Connect(ctx context.Context, ws wsConnection, service GraphQLService, initPayload InitPayload, options ...func(conn *connection)) func() {
+func Connect(ctx context.Context, ws wsConnection, service GraphQLService, options ...Option) func() {
 	conn := &connection{
 		service: service,
 		ws:      ws,
 	}
 
-	defaultOpts := []func(conn *connection){
+	defaultOpts := []Option{
 		ReadLimit(4096),
 		WriteTimeout(time.Second),
 	}
@@ -96,7 +128,7 @@ func Connect(ctx context.Context, ws wsConnection, service GraphQLService, initP
 
 	ctx, cancel := context.WithCancel(ctx)
 	conn.cancel = cancel
-	conn.readLoop(ctx, conn.writeLoop(ctx), initPayload)
+	conn.readLoop(ctx, conn.writeLoop(ctx))
 
 	return cancel
 }
@@ -148,11 +180,82 @@ func (conn *connection) close() {
 	conn.ws.Close()
 }
 
-func (conn *connection) readLoop(ctx context.Context, send sendFunc, initPayload InitPayload) {
+func (conn *connection) addSubscription(ctx context.Context,
+	cancel context.CancelFunc,
+	ops operationMap,
+	message operationMessage,
+	send sendFunc) {
+	defer cancel()
+	var c <-chan interface{}
+	var err error
+	var mp startMessagePayload
+	if err := json.Unmarshal(message.Payload, &mp); err != nil {
+		ep := errPayload(fmt.Errorf("invalid payload for type: %s", message.Type))
+		send(message.ID, typeConnectionError, ep)
+		return
+	}
+
+	var timeout = time.NewTimer(conn.writeTimeout)
+	var setupComplete = make(chan bool)
+	var bail = make(chan bool)
+
+	go func(t <-chan time.Time, kill chan bool) {
+		select {
+		case <-t:
+			// setup timed out
+			ops.delete(message.ID)
+			ep := errPayload(fmt.Errorf("server subscription connect timeout after %s", conn.writeTimeout))
+			send(message.ID, typeError, ep)
+			send(message.ID, typeComplete, nil)
+			kill <- true
+		case <-setupComplete:
+			// setup completed, shut down goroutine
+			return
+		}
+	}(timeout.C, bail)
+
+	c, err = conn.service.Subscribe(ctx, mp.Query, mp.OperationName, mp.Variables)
+	if err != nil {
+		ops.delete(message.ID)
+		send(message.ID, typeError, errPayload(err))
+		send(message.ID, typeComplete, nil)
+		setupComplete <- true
+		return
+	}
+
+	timeout.Stop()
+	setupComplete <- true
+
+	for {
+		select {
+		case <-bail:
+			return
+		case <-ctx.Done():
+			return
+		case payload, more := <-c:
+			if !more {
+				send(message.ID, typeComplete, nil)
+				return
+			}
+
+			jsonPayload, err := json.Marshal(payload)
+			if err != nil {
+				send(message.ID, typeError, errPayload(err))
+				continue
+			}
+			send(message.ID, typeData, jsonPayload)
+		}
+	}
+}
+
+func (conn *connection) readLoop(ctx context.Context, send sendFunc) {
 	defer conn.close()
 
-	opDone := map[string]func(){}
+	opDone := newOperationMap()
+	var header json.RawMessage
+
 	for {
+
 		var msg operationMessage
 		err := conn.ws.ReadJSON(&msg)
 		if err != nil {
@@ -167,62 +270,32 @@ func (conn *connection) readLoop(ctx context.Context, send sendFunc, initPayload
 				send("", typeConnectionError, ep)
 				continue
 			}
-			ctx = initPayload(ctx, msg.Payload)
 			send("", typeConnectionAck, nil)
+			header = msg.Payload
 
 		case typeStart:
-			// TODO: check an operation with the same ID hasn't been started already
 			if msg.ID == "" {
 				ep := errPayload(errors.New("missing ID for start operation"))
 				send("", typeConnectionError, ep)
 				continue
 			}
 
-			var osp startMessagePayload
-			if err := json.Unmarshal(msg.Payload, &osp); err != nil {
-				ep := errPayload(fmt.Errorf("invalid payload for type: %s", msg.Type))
-				send(msg.ID, typeConnectionError, ep)
+			if _, exists := opDone.get(msg.ID); exists {
+				ep := errPayload(errors.New("duplicate message ID for start operation"))
+				send("", typeConnectionError, ep)
 				continue
 			}
 
-			opCtx, cancel := context.WithCancel(ctx)
-			opDone[msg.ID] = cancel
+			opCtx, opCancel := context.WithCancel(ctx)
+			opCtx = context.WithValue(opCtx, "Header", header)
+			opDone.add(msg.ID, opCancel)
 
-			go func() {
-				// TODO: timeout this call, to guard against poor clients
-				c, err := conn.service.Subscribe(opCtx, osp.Query, osp.OperationName, osp.Variables)
-				if err != nil {
-					cancel()
-					delete(opDone, msg.ID)
-					send(msg.ID, typeError, errPayload(err))
-					send(msg.ID, typeComplete, nil)
-					return
-				}
-				defer cancel()
-				for {
-					select {
-					case <-opCtx.Done():
-						return
-					case payload, more := <-c:
-						if !more {
-							send(msg.ID, typeComplete, nil)
-							return
-						}
-
-						jsonPayload, err := json.Marshal(payload)
-						if err != nil {
-							send(msg.ID, typeError, errPayload(err))
-							continue
-						}
-						send(msg.ID, typeData, jsonPayload)
-					}
-				}
-			}()
+			go conn.addSubscription(opCtx, opCancel, opDone, msg, send)
 
 		case typeStop:
-			onDone, ok := opDone[msg.ID]
+			onDone, ok := opDone.get(msg.ID)
 			if ok {
-				delete(opDone, msg.ID)
+				opDone.delete(msg.ID)
 				onDone()
 			}
 			send(msg.ID, typeComplete, nil)
