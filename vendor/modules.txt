@@ -138,7 +138,7 @@ github.com/containerd/log
 # github.com/coreos/go-oidc v2.2.1+incompatible
 ## explicit
 github.com/coreos/go-oidc
-# github.com/coreos/pkg v0.0.0-20230601102743-20bbbf26f4d8
+# github.com/coreos/pkg v0.0.0-20240122114842-bbd7aa9bf6fb
 ## explicit
 github.com/coreos/pkg/flagutil
 github.com/coreos/pkg/health

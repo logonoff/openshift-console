@@ -7,7 +7,7 @@ toolchain go1.22.1
 require (
 	github.com/cloudevents/sdk-go/v2 v2.15.2
 	github.com/coreos/go-oidc v2.2.1+incompatible
-	github.com/coreos/pkg v0.0.0-20230601102743-20bbbf26f4d8
+	github.com/coreos/pkg v0.0.0-20240122114842-bbd7aa9bf6fb
 	github.com/devfile/api/v2 v2.3.0
 	github.com/devfile/library/v2 v2.2.3-0.20240612082351-45a4cc4d3504
 	github.com/devfile/registry-support/index/generator v0.0.0-20240419194226-cca4c9a81f8d
