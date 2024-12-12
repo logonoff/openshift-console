@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "commitMessagePrefix": "NO-JIRA: (deps) ",
+  "addLabels": [
+    "ok-to-test",
+    "qe-approved",
+    "px-approved",
+    "docs-approved"
+  ]
+}
