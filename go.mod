@@ -229,6 +229,6 @@ require (
 )
 
 replace (
-	github.com/openshift/api => github.com/openshift/api v0.0.0-20241108125904-424692fe047e
+	github.com/openshift/api => github.com/openshift/api v0.0.0-20241213110156-c117e1ee5a9c
 	go.opentelemetry.io/contrib => go.opentelemetry.io/contrib v1.12.0
 )
