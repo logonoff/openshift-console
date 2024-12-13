@@ -1,0 +1,55 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/dynamic-demo-plugin"
+    schedule:
+      interval: "daily"
+    labels:
+      - "ok-to-test"
+      - "qe-approved"
+      - "px-approved"
+      - "docs-approved"
+    commit-message:
+      prefix: "NO-JIRA: (deps) "
+
+  - package-ecosystem: "npm"
+    directory: "/frontend"
+    schedule:
+      interval: "daily"
+    labels:
+      - "ok-to-test"
+      - "qe-approved"
+      - "px-approved"
+      - "docs-approved"
+    commit-message:
+      prefix: "NO-JIRA: (deps) "
+
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "ok-to-test"
+      - "qe-approved"
+      - "px-approved"
+      - "docs-approved"
+    commit-message:
+      prefix: "NO-JIRA: (deps) "
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "ok-to-test"
+      - "qe-approved"
+      - "px-approved"
+      - "docs-approved"
+    commit-message:
+      prefix: "NO-JIRA: (deps) "
