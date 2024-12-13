@@ -1,8 +1,7 @@
 module github.com/openshift/console
 
 go 1.22.0
-
-toolchain go1.22.1
+toolchain go1.23.4
 
 require (
 	github.com/cloudevents/sdk-go/v2 v2.15.2
@@ -14,7 +13,7 @@ require (
 	github.com/devfile/registry-support/registry-library v0.0.0-20240521161747-89fc566cb024
 	github.com/golang/mock v1.6.0
 	github.com/gorilla/securecookie v1.1.2
-	github.com/gorilla/sessions v1.2.2
+	github.com/gorilla/sessions v1.4.0
 	github.com/gorilla/websocket v1.5.0
 	github.com/graph-gophers/graphql-go v1.5.0
 	github.com/openshift/api v3.9.0+incompatible
