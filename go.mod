@@ -28,7 +28,7 @@ require (
 	github.com/redhat-certification/chart-verifier v0.0.0-20231017212458-4c2fb295f411
 	github.com/stretchr/testify v1.9.0
 	golang.org/x/net v0.26.0
-	golang.org/x/oauth2 v0.21.0
+	golang.org/x/oauth2 v0.24.0
 	gopkg.in/yaml.v2 v2.4.0
 	gopkg.in/yaml.v3 v3.0.1
 	helm.sh/helm/v3 v3.14.4
