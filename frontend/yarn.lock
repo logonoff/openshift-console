@@ -13528,10 +13528,10 @@ pn@^1.1.0:
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
   integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
 
-point-in-svg-path@1.0.1, point-in-svg-path@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/point-in-svg-path/-/point-in-svg-path-1.0.1.tgz#71c2f40c89ed6c8a212add6577c20df463ae01df"
-  integrity sha512-1bAyu3as3lPPFaqrShYVJxg7czrLFdLuudprTV7FZKREOeQ7ZbTZ4KRHB1QdtwNFnOxWQA14J4aQi6Cr1fOrYg==
+point-in-svg-path@1.0.2, point-in-svg-path@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/point-in-svg-path/-/point-in-svg-path-1.0.2.tgz#e7b25370e96f58a858c34882ffb57d41b7a574bf"
+  integrity sha512-+Smsf7B9e7eRFHIwpN+4rE8inF2APbFWeywPfUgbeh02xdJSkbTz6Pqdt7A36wVCR+CnLbaNkRnBjgOpF5RMVQ==
 
 popper.js@^1.16.0, popper.js@^1.16.1:
   version "1.16.1"

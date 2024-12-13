@@ -186,7 +186,7 @@
     "murmurhash-js": "1.0.x",
     "node-polyfill-webpack-plugin": "^4.0.0",
     "pluralize": "^8.0.0",
-    "point-in-svg-path": "1.0.1",
+    "point-in-svg-path": "1.0.2",
     "popper.js": "^1.16.1",
     "prop-types": "15.7.x",
     "react": "^17.0.1",
