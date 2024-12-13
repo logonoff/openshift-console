@@ -2853,8 +2853,9 @@
     "@types/react" "*"
 
 "@types/react-virtualized@9.x":
-  version "9.18.3"
-  resolved "https://registry.yarnpkg.com/@types/react-virtualized/-/react-virtualized-9.18.3.tgz#777b3c28bd2b972d0a402f2f9d11bacef550be1c"
+  version "9.22.0"
+  resolved "https://registry.yarnpkg.com/@types/react-virtualized/-/react-virtualized-9.22.0.tgz#2ff9b3692fa04a429df24ffc7d181d9f33b3831d"
+  integrity sha512-JL/YCCFZ123za//cj10Apk54F0UGFMrjOE0QHTuXt1KBMFrzLOGv9/x6Uc/pZ0Gaf4o6w61Fostvlw0DwuPXig==
   dependencies:
     "@types/prop-types" "*"
     "@types/react" "*"
