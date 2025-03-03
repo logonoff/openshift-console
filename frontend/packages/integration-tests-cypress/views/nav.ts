@@ -32,6 +32,7 @@ export const nav = {
           case 'developer':
           case 'Dev':
           case 'dev':
+            checkDeveloperPerspective();
             cy.byLegacyTestID('perspective-switcher-toggle')
               .should('be.visible')
               .then(($body) => {
