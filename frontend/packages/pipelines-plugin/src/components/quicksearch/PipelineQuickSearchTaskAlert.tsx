@@ -7,7 +7,9 @@ interface PipelineQuickSearchTaskAlertProps {
   ctaType: string;
 }
 
-const PipelineQuickSearchTaskAlert: React.FC<PipelineQuickSearchTaskAlertProps> = ({ ctaType }) => {
+const PipelineQuickSearchTaskAlert: React.FC<React.PropsWithChildren<
+  PipelineQuickSearchTaskAlertProps
+>> = ({ ctaType }) => {
   const { t } = useTranslation();
   switch (ctaType) {
     case CTALabel.Install:

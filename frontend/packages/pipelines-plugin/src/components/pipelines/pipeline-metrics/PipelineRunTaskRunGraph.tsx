@@ -39,7 +39,7 @@ const LegendContainer = ({ children }: { children?: React.ReactNode }) => {
   );
 };
 
-const PipelineRunTaskRunGraph: React.FC<PipelineMetricsGraphProps> = ({
+const PipelineRunTaskRunGraph: React.FC<React.PropsWithChildren<PipelineMetricsGraphProps>> = ({
   pipeline,
   timespan,
   interval,

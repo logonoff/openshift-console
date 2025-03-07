@@ -20,7 +20,7 @@ const validateConditionsDescriptor = (descriptor: StatusDescriptor, value: any):
   return true;
 };
 
-export const DescriptorConditions: React.FC<ConditionsDescriptorProps> = ({
+export const DescriptorConditions: React.FC<React.PropsWithChildren<ConditionsDescriptorProps>> = ({
   descriptor,
   obj,
   schema,

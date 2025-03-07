@@ -3,14 +3,9 @@ import * as React from 'react';
 import { Tooltip } from '@patternfly/react-core';
 import { BlueInfoCircleIcon } from '@console/shared';
 
-export const SaveAsDefaultCheckbox: React.FC<SaveAsDefaultCheckboxProps> = ({
-  formField,
-  disabled,
-  label,
-  formValues,
-  dispatchFormChange,
-  tooltip,
-}) => {
+export const SaveAsDefaultCheckbox: React.FC<React.PropsWithChildren<
+  SaveAsDefaultCheckboxProps
+>> = ({ formField, disabled, label, formValues, dispatchFormChange, tooltip }) => {
   const saveAsDefaultLabelClass = classNames('checkbox', { 'co-no-bold': disabled });
   return (
     <label className={saveAsDefaultLabelClass} htmlFor={formField}>

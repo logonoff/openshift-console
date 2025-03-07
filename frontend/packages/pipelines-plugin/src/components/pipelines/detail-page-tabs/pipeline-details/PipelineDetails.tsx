@@ -9,7 +9,10 @@ import { PipelineDetailsTabProps } from '../types';
 import { getPipelineTaskLinks } from '../utils';
 import PipelineVisualization from './PipelineVisualization';
 
-const PipelineDetails: React.FC<PipelineDetailsTabProps> = ({ obj: pipeline, customData }) => {
+const PipelineDetails: React.FC<React.PropsWithChildren<PipelineDetailsTabProps>> = ({
+  obj: pipeline,
+  customData,
+}) => {
   const { t } = useTranslation();
   const { taskLinks, finallyTaskLinks } = getPipelineTaskLinks(pipeline);
 

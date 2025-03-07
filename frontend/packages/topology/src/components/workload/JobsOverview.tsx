@@ -13,7 +13,7 @@ import { PodStatus, usePodsWatcher } from '@console/shared';
 const kind: string = 'Job';
 const MAX_JOBS: number = 3;
 
-const JobOverviewItem: React.FC<JobOverviewItemProps> = ({ job }) => {
+const JobOverviewItem: React.FC<React.PropsWithChildren<JobOverviewItemProps>> = ({ job }) => {
   const {
     metadata: { name, namespace },
   } = job;
@@ -47,7 +47,7 @@ type JobOverviewItemProps = {
   job: JobKind;
 };
 
-const JobsOverviewList: React.FC<JobsOverviewListProps> = ({ jobs }) => (
+const JobsOverviewList: React.FC<React.PropsWithChildren<JobsOverviewListProps>> = ({ jobs }) => (
   <ul className="list-group">
     {jobs?.map((job) => (
       <JobOverviewItem key={job.metadata.uid} job={job} />
@@ -57,7 +57,7 @@ const JobsOverviewList: React.FC<JobsOverviewListProps> = ({ jobs }) => (
 
 JobsOverviewList.displayName = 'JobsOverviewList';
 
-export const JobsOverview: React.FC<JobsOverviewProps> = ({
+export const JobsOverview: React.FC<React.PropsWithChildren<JobsOverviewProps>> = ({
   jobs,
   obj,
   allJobsLink,

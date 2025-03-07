@@ -8,7 +8,10 @@ type NodeIPListProps = {
   expand?: boolean;
 };
 
-const NodeIPList: React.FC<NodeIPListProps> = ({ ips, expand = false }) => (
+const NodeIPList: React.FC<React.PropsWithChildren<NodeIPListProps>> = ({
+  ips,
+  expand = false,
+}) => (
   <DetailPropertyList>
     {_.sortBy(ips, ['type']).map(
       ({ type, address }) =>

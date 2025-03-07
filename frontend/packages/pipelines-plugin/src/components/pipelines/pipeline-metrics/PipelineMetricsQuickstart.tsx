@@ -16,10 +16,9 @@ type PipelineMetricsQuickstartProps = {
   metricsLevel?: string;
 };
 
-export const PipelineMetricsQuickstartInfo: React.FC<PipelineMetricsQuickstartInfoProps> = ({
-  onClick,
-  to,
-}) => (
+export const PipelineMetricsQuickstartInfo: React.FC<React.PropsWithChildren<
+  PipelineMetricsQuickstartInfoProps
+>> = ({ onClick, to }) => (
   <Trans ns="pipelines-plugin">
     Administrators can try{' '}
     <Link to={to} onClick={onClick}>
@@ -31,7 +30,9 @@ export const PipelineMetricsQuickstartInfo: React.FC<PipelineMetricsQuickstartIn
   </Trans>
 );
 
-const PipelineMetricsQuickstart: React.FC<PipelineMetricsQuickstartProps> = ({ metricsLevel }) => {
+const PipelineMetricsQuickstart: React.FC<React.PropsWithChildren<
+  PipelineMetricsQuickstartProps
+>> = ({ metricsLevel }) => {
   const { t } = useTranslation();
   const PIPELINE_METRICS_CONFIGURATION_QUICKSTART = 'configure-pipeline-metrics';
   const { pathname, search } = useLocation();

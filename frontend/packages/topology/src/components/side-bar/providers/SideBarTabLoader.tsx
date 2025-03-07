@@ -10,7 +10,10 @@ type SideBarTabLoaderProps = {
   children: (tabs: Tab[], loaded: boolean) => React.ReactElement;
 };
 
-const SideBarTabLoader: React.FC<SideBarTabLoaderProps> = ({ element, children }) => {
+const SideBarTabLoader: React.FC<React.PropsWithChildren<SideBarTabLoaderProps>> = ({
+  element,
+  children,
+}) => {
   const tabExtensions = useDetailsTab();
   const [tabSectionExtensions, tabSectionExtensionsResolved] = useDetailsTabSection();
 

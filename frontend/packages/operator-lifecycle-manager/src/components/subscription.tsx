@@ -116,7 +116,7 @@ export const installPlanForSubscription = (
 ): InstallPlanKind =>
   installPlans.find((ip) => ip?.metadata?.name === subscription?.status?.installPlanRef?.name);
 
-export const SourceMissingStatus: React.FC = () => {
+export const SourceMissingStatus: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <>
@@ -126,7 +126,7 @@ export const SourceMissingStatus: React.FC = () => {
   );
 };
 
-export const SourceUnhealthyStatus: React.FC = () => {
+export const SourceUnhealthyStatus: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <>
@@ -145,9 +145,9 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-export const UpgradeApprovalLink: React.FC<{ subscription: SubscriptionKind }> = ({
-  subscription,
-}) => {
+export const UpgradeApprovalLink: React.FC<React.PropsWithChildren<{
+  subscription: SubscriptionKind;
+}>> = ({ subscription }) => {
   const { t } = useTranslation();
   const to = resourcePathFromModel(
     InstallPlanModel,
@@ -163,9 +163,9 @@ export const UpgradeApprovalLink: React.FC<{ subscription: SubscriptionKind }> =
   );
 };
 
-export const SubscriptionStatus: React.FC<{ subscription: SubscriptionKind }> = ({
-  subscription,
-}) => {
+export const SubscriptionStatus: React.FC<React.PropsWithChildren<{
+  subscription: SubscriptionKind;
+}>> = ({ subscription }) => {
   const { t } = useTranslation();
   switch (subscription?.status?.state) {
     case SubscriptionState.SubscriptionStateUpgradeAvailable:
@@ -222,7 +222,9 @@ const menuActions: KebabAction[] = [
   },
 ];
 
-export const SubscriptionTableRow: React.FC<RowFunctionArgs> = ({ obj }) => {
+export const SubscriptionTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   return (
     <>
@@ -308,7 +310,9 @@ export const SubscriptionsList = requireOperatorGroup((props: SubscriptionsListP
   );
 });
 
-export const SubscriptionsPage: React.FC<SubscriptionsPageProps> = (props) => {
+export const SubscriptionsPage: React.FC<React.PropsWithChildren<SubscriptionsPageProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   return (
     <MultiListPage
@@ -420,7 +424,7 @@ const CatalogSourceStatusIconAndText = ({ healthy }) => {
   }
 };
 
-export const SubscriptionDetails: React.FC<SubscriptionDetailsProps> = ({
+export const SubscriptionDetails: React.FC<React.PropsWithChildren<SubscriptionDetailsProps>> = ({
   clusterServiceVersions = [],
   installPlans = [],
   obj,
@@ -548,7 +552,7 @@ const SubscriptionUpgradeStatus = ({ catalogHealth, subscription }) => {
   );
 };
 
-export const SubscriptionUpdates: React.FC<SubscriptionUpdatesProps> = ({
+export const SubscriptionUpdates: React.FC<React.PropsWithChildren<SubscriptionUpdatesProps>> = ({
   catalogHealth,
   installedCSV,
   installPlan,
@@ -734,7 +738,9 @@ export const SubscriptionUpdates: React.FC<SubscriptionUpdatesProps> = ({
   );
 };
 
-export const SubscriptionDetailsPage: React.FC<SubscriptionDetailsPageProps> = (props) => {
+export const SubscriptionDetailsPage: React.FC<React.PropsWithChildren<
+  SubscriptionDetailsPageProps
+>> = (props) => {
   const params = useParams();
   return (
     <DetailsPage

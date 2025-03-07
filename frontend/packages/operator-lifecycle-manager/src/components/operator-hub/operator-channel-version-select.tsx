@@ -15,12 +15,9 @@ import { PackageManifestKind } from '../../types';
 import { DeprecatedOperatorWarningIcon } from '../deprecated-operator-warnings/deprecated-operator-warnings';
 import { useDeprecatedOperatorWarnings } from '../deprecated-operator-warnings/use-deprecated-operator-warnings';
 
-export const OperatorChannelSelect: React.FC<OperatorChannelSelectProps> = ({
-  packageManifest,
-  selectedUpdateChannel,
-  setUpdateChannel,
-  setUpdateVersion,
-}) => {
+export const OperatorChannelSelect: React.FC<React.PropsWithChildren<
+  OperatorChannelSelectProps
+>> = ({ packageManifest, selectedUpdateChannel, setUpdateChannel, setUpdateVersion }) => {
   const { t } = useTranslation();
   const channels = React.useMemo(() => packageManifest?.status.channels ?? [], [packageManifest]);
   const [isChannelSelectOpen, setIsChannelSelectOpen] = React.useState(false);
@@ -101,7 +98,9 @@ type OperatorChannelSelectProps = {
   setUpdateVersion: (updateVersion: string) => void;
 };
 
-export const OperatorVersionSelect: React.FC<OperatorVersionSelectProps> = ({
+export const OperatorVersionSelect: React.FC<React.PropsWithChildren<
+  OperatorVersionSelectProps
+>> = ({
   packageManifest,
   selectedUpdateChannel,
   updateVersion,

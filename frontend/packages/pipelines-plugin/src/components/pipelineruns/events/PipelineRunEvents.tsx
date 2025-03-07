@@ -8,7 +8,9 @@ type PipelineRunEventsProps = {
   obj: PipelineRunKind;
 };
 
-const PipelineRunEvents: React.FC<PipelineRunEventsProps> = ({ obj: pipelineRun }) => {
+const PipelineRunEvents: React.FC<React.PropsWithChildren<PipelineRunEventsProps>> = ({
+  obj: pipelineRun,
+}) => {
   const { ns: namespace } = useParams();
   return (
     <>

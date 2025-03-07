@@ -16,7 +16,7 @@ type BuildRunItemProps = {
   buildRun: BuildRun;
 };
 
-const BuildRunItem: React.FC<BuildRunItemProps> = ({ buildRun }) => {
+const BuildRunItem: React.FC<React.PropsWithChildren<BuildRunItemProps>> = ({ buildRun }) => {
   const { t } = useTranslation();
   const {
     metadata: { name, namespace, creationTimestamp },

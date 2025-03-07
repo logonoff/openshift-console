@@ -6,7 +6,7 @@ type TrafficLinkProps = {
   element: Edge;
 };
 
-const TrafficLink: React.FC<TrafficLinkProps> = ({ element }) => {
+const TrafficLink: React.FC<React.PropsWithChildren<TrafficLinkProps>> = ({ element }) => {
   const detailsLevel = element.getGraph().getDetailsLevel();
   const { percent } = element.getData();
   return (

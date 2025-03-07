@@ -128,7 +128,10 @@ const tableColumnInfo = [
   { className: Kebab.columnClass, id: '' },
 ];
 
-export const MachineCounts: React.FC<MachineCountsProps> = ({ resourceKind, resource }) => {
+export const MachineCounts: React.FC<React.PropsWithChildren<MachineCountsProps>> = ({
+  resourceKind,
+  resource,
+}) => {
   const editReplicas = (event) => {
     event.preventDefault();
     machineReplicasModal(resourceKind, resource);
@@ -227,11 +230,11 @@ export const MachineCounts: React.FC<MachineCountsProps> = ({ resourceKind, reso
   );
 };
 
-export const MachineTabPage: React.FC<MachineTabPageProps> = ({ obj }) => (
+export const MachineTabPage: React.FC<React.PropsWithChildren<MachineTabPageProps>> = ({ obj }) => (
   <MachinePage namespace={obj.metadata.namespace} showTitle={false} selector={obj.spec.selector} />
 );
 
-const MachineSetDetails: React.FC<MachineSetDetailsProps> = ({ obj }) => {
+const MachineSetDetails: React.FC<React.PropsWithChildren<MachineSetDetailsProps>> = ({ obj }) => {
   const machineRole = getMachineRole(obj);
   const { availabilityZone, region } = getMachineAWSPlacement(obj);
   const instanceType = getMachineSetInstanceType(obj);
@@ -280,7 +283,7 @@ const MachineSetDetails: React.FC<MachineSetDetailsProps> = ({ obj }) => {
   );
 };
 
-export const MachineSetList: React.FC<MachineSetListProps> = (props) => {
+export const MachineSetList: React.FC<React.PropsWithChildren<MachineSetListProps>> = (props) => {
   const { t } = useTranslation();
 
   const [machines] = useK8sWatchResource<MachineKind[]>(MachinesResource);
@@ -362,7 +365,9 @@ export const MachineSetList: React.FC<MachineSetListProps> = (props) => {
   );
 
   // TODO (jon): Anti-pattern. This should be declared outside the MachineSetList component
-  const MachineSetTableRow: React.FC<RowProps<MachineSetKind>> = ({ obj }) => {
+  const MachineSetTableRow: React.FC<React.PropsWithChildren<RowProps<MachineSetKind>>> = ({
+    obj,
+  }) => {
     const { cpu, memory } = capacityResolver(obj);
     const readyReplicas = getReadyReplicas(obj);
     const desiredReplicas = getDesiredReplicas(obj);
@@ -417,7 +422,7 @@ export const MachineSetList: React.FC<MachineSetListProps> = (props) => {
   );
 };
 
-export const MachineSetPage: React.FC<MachineSetPageProps> = ({
+export const MachineSetPage: React.FC<React.PropsWithChildren<MachineSetPageProps>> = ({
   namespace,
   selector,
   showTitle = true,
@@ -462,7 +467,7 @@ export const MachineSetPage: React.FC<MachineSetPageProps> = ({
   );
 };
 
-export const MachineSetDetailsPage: React.FC = (props) => (
+export const MachineSetDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => (
   <DetailsPage
     {...props}
     menuActions={menuActions}

@@ -15,7 +15,7 @@ export type OverviewDetailItemProps = {
   error?: string;
 };
 
-export const OverviewDetailItem: React.FC<OverviewDetailItemProps> = ({
+export const OverviewDetailItem: React.FC<React.PropsWithChildren<OverviewDetailItemProps>> = ({
   title,
   isLoading = false,
   children,

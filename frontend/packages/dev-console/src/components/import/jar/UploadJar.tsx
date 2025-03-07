@@ -28,7 +28,7 @@ type UploadJarProps = {
   contextualSource?: string;
 };
 
-const UploadJar: React.FunctionComponent<UploadJarProps> = ({
+const UploadJar: React.FunctionComponent<React.PropsWithChildren<UploadJarProps>> = ({
   namespace,
   projects,
   builderImage,

@@ -35,7 +35,7 @@ type OperatorResourcesProps = {
   linkForResource?: (obj: K8sResourceKind) => React.ReactElement;
 };
 
-const OperatorResources: React.FC<OperatorResourcesProps> = ({
+const OperatorResources: React.FC<React.PropsWithChildren<OperatorResourcesProps>> = ({
   namespace,
   resources,
   loaded,
@@ -68,7 +68,7 @@ type OperatorResourcesGetterProps = {
   flatten: (resources: { [kind: string]: { data: K8sResourceKind[] } }) => K8sResourceKind[];
 };
 
-const OperatorResourcesGetter: React.FC<OperatorResourcesGetterProps> = ({
+const OperatorResourcesGetter: React.FC<React.PropsWithChildren<OperatorResourcesGetterProps>> = ({
   csv,
   modelReference,
   namespace,
@@ -125,10 +125,9 @@ type TopologyOperatorBackedResourcesProps = {
   csv: ClusterServiceVersionKind;
 };
 
-const TopologyOperatorBackedResources: React.FC<TopologyOperatorBackedResourcesProps> = ({
-  item,
-  csv,
-}) => {
+const TopologyOperatorBackedResources: React.FC<React.PropsWithChildren<
+  TopologyOperatorBackedResourcesProps
+>> = ({ item, csv }) => {
   const { t } = useTranslation();
   const { resource } = item;
   const { namespace } = resource.metadata;

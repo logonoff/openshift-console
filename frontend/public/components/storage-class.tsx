@@ -39,7 +39,9 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const StorageClassDetails: React.FC<StorageClassDetailsProps> = ({ obj }) => {
+const StorageClassDetails: React.FC<React.PropsWithChildren<StorageClassDetailsProps>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   return (
     <>
@@ -69,7 +71,9 @@ const StorageClassDetails: React.FC<StorageClassDetailsProps> = ({ obj }) => {
   );
 };
 
-const StorageClassTableRow: React.FC<RowFunctionArgs<StorageClassResourceKind>> = ({ obj }) => {
+const StorageClassTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<StorageClassResourceKind>
+>> = ({ obj }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -93,7 +97,7 @@ const StorageClassTableRow: React.FC<RowFunctionArgs<StorageClassResourceKind>> 
   );
 };
 
-export const StorageClassList: React.FC = (props) => {
+export const StorageClassList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const StorageClassTableHeader = () => {
     return [
@@ -133,7 +137,9 @@ export const StorageClassList: React.FC = (props) => {
 };
 StorageClassList.displayName = 'StorageClassList';
 
-export const StorageClassPage: React.FC<StorageClassPageProps> = (props) => {
+export const StorageClassPage: React.FC<React.PropsWithChildren<StorageClassPageProps>> = (
+  props,
+) => {
   const createProps = {
     to: '/k8s/cluster/storageclasses/~new/form',
   };
@@ -151,7 +157,7 @@ export const StorageClassPage: React.FC<StorageClassPageProps> = (props) => {
     />
   );
 };
-export const StorageClassDetailsPage: React.FC = (props) => {
+export const StorageClassDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const pages = [navFactory.details(detailsPage(StorageClassDetails)), navFactory.editYaml()];
   return (
     <DetailsPage {...props} kind={StorageClassReference} menuActions={menuActions} pages={pages} />

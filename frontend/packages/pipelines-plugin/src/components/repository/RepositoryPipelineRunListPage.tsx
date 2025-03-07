@@ -13,7 +13,9 @@ export interface RepositoryPipelineRunListPageProps {
   obj: RepositoryKind;
 }
 
-const RepositoryPipelineRunListPage: React.FC<RepositoryPipelineRunListPageProps> = (props) => {
+const RepositoryPipelineRunListPage: React.FC<React.PropsWithChildren<
+  RepositoryPipelineRunListPageProps
+>> = (props) => {
   const { t } = useTranslation();
   const { obj } = props;
   const selector = React.useMemo(() => {

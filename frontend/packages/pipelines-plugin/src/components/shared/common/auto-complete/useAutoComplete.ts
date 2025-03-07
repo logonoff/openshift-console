@@ -142,7 +142,7 @@ const useNodeListener = (
   const [, setFilter] = filterOptions;
 
   const onKeyCallback = React.useCallback(
-    (e) => {
+    (e: any) => {
       const applyFilterAtCursor = () => {
         const filterValue = nodeRef.current.value.substring(
           cursorPosition.current[0],
@@ -175,7 +175,7 @@ const useNodeListener = (
   );
 
   const focusDropdownCallback = React.useCallback(
-    (e) => {
+    (e: any) => {
       if (!isOpen) return;
 
       if (e.code === 'Tab' || e.code === 'ArrowDown') {

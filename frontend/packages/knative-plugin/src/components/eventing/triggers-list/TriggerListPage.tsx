@@ -6,7 +6,9 @@ import { referenceForModel } from '@console/internal/module/k8s';
 import { EventingTriggerModel } from '../../../models';
 import TriggerList from './TriggerList';
 
-const TriggerListPage: React.FC<React.ComponentProps<typeof ListPage>> = (props) => {
+const TriggerListPage: React.FC<React.PropsWithChildren<React.ComponentProps<typeof ListPage>>> = (
+  props,
+) => {
   const { t } = useTranslation();
   return (
     <>

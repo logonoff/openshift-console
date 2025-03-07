@@ -3,7 +3,7 @@ import { Drawer, DrawerContent, DrawerPanelContent, DrawerPanelBody } from '@pat
 
 import NotificationDrawerHeading from './notification-drawer-heading';
 
-const NotificationDrawer: React.FC<NotificationDrawerProps> = ({
+const NotificationDrawer: React.FC<React.PropsWithChildren<NotificationDrawerProps>> = ({
   isExpanded,
   isInline,
   children,

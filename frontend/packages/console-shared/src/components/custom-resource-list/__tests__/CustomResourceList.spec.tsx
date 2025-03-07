@@ -39,7 +39,7 @@ const MockTableHeader = () => {
   ];
 };
 
-const MockTableRow: React.FC<RowFunctionArgs> = ({ obj }) => (
+const MockTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs>> = ({ obj }) => (
   <>
     <TableData className={mockColumnClasses.name}>{obj.name}</TableData>
     <TableData className={mockColumnClasses.version}>{obj.version}</TableData>

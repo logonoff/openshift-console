@@ -13,7 +13,9 @@ import AvailabilityRequirement from './AvailabilityRequirement';
 import { PodDisruptionBudgetKind } from './types';
 import { getPDBResource } from './utils/get-pdb-resources';
 
-export const PodDisruptionBudgetField: React.FC<PodDisruptionBudgetFieldProps> = ({ obj }) => {
+export const PodDisruptionBudgetField: React.FC<React.PropsWithChildren<
+  PodDisruptionBudgetFieldProps
+>> = ({ obj }) => {
   const { t } = useTranslation();
   const [pdbResources] = useK8sWatchResource<PodDisruptionBudgetKind[]>({
     groupVersionKind: {

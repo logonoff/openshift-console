@@ -41,7 +41,9 @@ export const renderPortField = (
   );
 };
 
-export const HTTPRequestTypeForm: React.FC<RequestTypeFormProps> = ({ probeType }) => {
+export const HTTPRequestTypeForm: React.FC<React.PropsWithChildren<RequestTypeFormProps>> = ({
+  probeType,
+}) => {
   const { t } = useTranslation();
   const {
     values: { healthChecks, resources },
@@ -56,7 +58,7 @@ export const HTTPRequestTypeForm: React.FC<RequestTypeFormProps> = ({ probeType 
   const portFieldName = `healthChecks.${probeType}.data.httpGet.port`;
 
   const handleNameValuePairs = React.useCallback(
-    ({ nameValuePairs }) => {
+    ({ nameValuePairs }: any) => {
       const updatedNameValuePairs = _.compact(
         nameValuePairs.map(([name, value]) => {
           if (_.isObject(value)) {
@@ -108,7 +110,9 @@ export const HTTPRequestTypeForm: React.FC<RequestTypeFormProps> = ({ probeType 
   );
 };
 
-export const TCPRequestTypeForm: React.FC<RequestTypeFormProps> = ({ probeType }) => {
+export const TCPRequestTypeForm: React.FC<React.PropsWithChildren<RequestTypeFormProps>> = ({
+  probeType,
+}) => {
   const { t } = useTranslation();
   const {
     values: { resources },
@@ -118,7 +122,9 @@ export const TCPRequestTypeForm: React.FC<RequestTypeFormProps> = ({ probeType }
   return renderPortField(portFieldName, resources, viewOnly, t);
 };
 
-export const CommandRequestTypeForm: React.FC<RequestTypeFormProps> = ({ probeType }) => {
+export const CommandRequestTypeForm: React.FC<React.PropsWithChildren<RequestTypeFormProps>> = ({
+  probeType,
+}) => {
   const { t } = useTranslation();
   const {
     values: { healthChecks },

@@ -12,7 +12,10 @@ export interface ImageSectionProps {
   existingPipeline?: PipelineKind;
 }
 
-const BuilderSection: React.FC<ImageSectionProps> = ({ builderImages, existingPipeline }) => {
+const BuilderSection: React.FC<React.PropsWithChildren<ImageSectionProps>> = ({
+  builderImages,
+  existingPipeline,
+}) => {
   const {
     values: {
       image,

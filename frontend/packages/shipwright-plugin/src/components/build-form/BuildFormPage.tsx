@@ -8,7 +8,7 @@ import { BuildModel } from '../../models';
 import { Build } from '../../types';
 import EditBuild from './EditBuild';
 
-const BuildFormPage: React.FC = () => {
+const BuildFormPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace, name } = useParams();
 

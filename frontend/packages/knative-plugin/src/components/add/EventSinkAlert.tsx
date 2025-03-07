@@ -8,7 +8,7 @@ interface EventSinkAlertProps {
   createSinkAccess: boolean;
 }
 
-const EventSinkAlert: React.FC<EventSinkAlertProps> = ({
+const EventSinkAlert: React.FC<React.PropsWithChildren<EventSinkAlertProps>> = ({
   isValidSink,
   createSinkAccessLoading,
   createSinkAccess,

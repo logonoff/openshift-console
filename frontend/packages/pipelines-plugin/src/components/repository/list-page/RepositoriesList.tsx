@@ -9,7 +9,9 @@ import { PREFERRED_DEV_PIPELINE_PAGE_TAB_USER_SETTING_KEY } from '../../../const
 import { RepositoryModel } from '../../../models';
 import RepositoryList from './ReppositoryList';
 
-const RepositoriesList: React.FC<React.ComponentProps<typeof ListPage>> = (props) => {
+const RepositoriesList: React.FC<React.PropsWithChildren<React.ComponentProps<typeof ListPage>>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const activePerspective = useActivePerspective()[0];
   const [, setPreferredTab, preferredTabLoaded] = useUserSettings<string>(

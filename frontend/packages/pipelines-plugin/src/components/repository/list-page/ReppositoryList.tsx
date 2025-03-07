@@ -12,7 +12,7 @@ export interface RepositoryListProps {
   namespace: string;
 }
 
-const RepositoryList: React.FC<RepositoryListProps> = (props) => {
+const RepositoryList: React.FC<React.PropsWithChildren<RepositoryListProps>> = (props) => {
   const [taskRuns, taskRunsLoaded] = useTaskRuns(props.namespace);
   const [pipelineRuns, pipelineRunsLoaded] = usePipelineRuns(props.namespace);
   return (

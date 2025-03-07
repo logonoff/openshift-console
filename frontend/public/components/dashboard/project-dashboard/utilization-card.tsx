@@ -36,7 +36,7 @@ import {
 
 const networkPopovers = [NetworkInPopover, NetworkOutPopover];
 
-export const UtilizationCard: React.FC = () => {
+export const UtilizationCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { obj } = React.useContext(ProjectDashboardContext);
   const projectName = obj?.metadata?.name;

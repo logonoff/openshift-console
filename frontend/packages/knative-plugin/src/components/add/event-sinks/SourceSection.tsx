@@ -8,7 +8,10 @@ interface SourceSectionProps {
   fullWidth?: boolean;
 }
 
-const SourceSection: React.FC<SourceSectionProps> = ({ namespace, fullWidth }) => {
+const SourceSection: React.FC<React.PropsWithChildren<SourceSectionProps>> = ({
+  namespace,
+  fullWidth,
+}) => {
   const { t } = useTranslation();
   return (
     <FormSection

@@ -9,9 +9,9 @@ type ServiceBindingDetailsTabProps = {
   obj: ServiceBinding;
 };
 
-const ServiceBindingDetailsTab: React.FC<ServiceBindingDetailsTabProps> = ({
-  obj: serviceBinding,
-}) => {
+const ServiceBindingDetailsTab: React.FC<React.PropsWithChildren<
+  ServiceBindingDetailsTabProps
+>> = ({ obj: serviceBinding }) => {
   const { t } = useTranslation();
 
   return (

@@ -12,16 +12,9 @@ import { DeployImageFormProps } from './import-types';
 import { DeploySection } from './section/deploy-section/DeploySection';
 import IconSection from './section/IconSection';
 
-const DeployImageForm: React.FC<FormikProps<FormikValues> & DeployImageFormProps> = ({
-  values,
-  errors,
-  handleSubmit,
-  handleReset,
-  status,
-  isSubmitting,
-  dirty,
-  projects,
-}) => {
+const DeployImageForm: React.FC<React.PropsWithChildren<
+  FormikProps<FormikValues> & DeployImageFormProps
+>> = ({ values, errors, handleSubmit, handleReset, status, isSubmitting, dirty, projects }) => {
   const { t } = useTranslation();
   usePreventDataLossLock(isSubmitting);
 

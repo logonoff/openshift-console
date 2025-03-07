@@ -10,7 +10,10 @@ export const useCreateNamespaceOrProjectModal: UseCreateProjectModal = () => {
   const launcher = useModal();
   const isOpenShift = useFlag(FLAGS.OPENSHIFT);
   const ModalComponent = isOpenShift ? CreateProjectModal : CreateNamespaceModal;
-  return React.useCallback((props) => launcher(ModalComponent, props), [launcher, ModalComponent]);
+  return React.useCallback((props: any) => launcher(ModalComponent, props), [
+    launcher,
+    ModalComponent,
+  ]);
 };
 
 type UseCreateProjectModal = () => (props: CreateProjectModalProps) => void;

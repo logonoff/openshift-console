@@ -8,7 +8,7 @@ interface TaskRunsProps {
   obj: TaskRunKind;
 }
 
-const TaskRuns: React.FC<TaskRunsProps> = ({ obj }) => {
+const TaskRuns: React.FC<React.PropsWithChildren<TaskRunsProps>> = ({ obj }) => {
   const { t } = useTranslation();
   return (
     <>

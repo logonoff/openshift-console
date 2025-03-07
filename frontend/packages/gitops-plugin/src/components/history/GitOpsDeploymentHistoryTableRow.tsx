@@ -6,9 +6,9 @@ import { GitOpsHistoryData } from '../utils/gitops-types';
 import { CommitRevision } from './CommitRevision';
 import { GitOpsDeploymentHistoryTableColumnClasses } from './GitOpsDeploymentHistoryTableColumnClasses';
 
-export const GitOpsDeploymentHistoryTableRow: React.FC<RowFunctionArgs<GitOpsHistoryData>> = (
-  props,
-) => {
+export const GitOpsDeploymentHistoryTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<GitOpsHistoryData>
+>> = (props) => {
   const { obj: data } = props;
   return (
     <>

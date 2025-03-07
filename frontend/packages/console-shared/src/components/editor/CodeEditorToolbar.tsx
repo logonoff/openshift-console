@@ -8,7 +8,7 @@ import { CodeEditorToolbarProps } from '@console/dynamic-plugin-sdk';
 import { ActionType } from '@console/internal/reducers/ols';
 import { useOLSConfig } from '../../hooks/ols-hook';
 
-export const AskOpenShiftLightspeedButton: React.FC = () => {
+export const AskOpenShiftLightspeedButton: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation('console-shared');
   const openOLS = () => action(ActionType.OpenOLS);
   const showLightspeedButton = useOLSConfig();
@@ -28,7 +28,7 @@ export const AskOpenShiftLightspeedButton: React.FC = () => {
   ) : null;
 };
 
-export const CodeEditorToolbar: React.FC<CodeEditorToolbarProps> = ({
+export const CodeEditorToolbar: React.FC<React.PropsWithChildren<CodeEditorToolbarProps>> = ({
   showShortcuts,
   toolbarLinks,
 }) => {
@@ -36,7 +36,6 @@ export const CodeEditorToolbar: React.FC<CodeEditorToolbarProps> = ({
   return (
     <>
       <AskOpenShiftLightspeedButton />
-
       <Flex className="pf-v6-u-ml-xs" alignItems={{ default: 'alignItemsCenter' }}>
         {toolbarLinks &&
           toolbarLinks.map((link, index) => (

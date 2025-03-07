@@ -9,7 +9,7 @@ const DroppableFileInput = (props: any) => (
   />
 );
 
-export const IDPCAFileInput: React.FC<IDPCAFileInputProps> = ({
+export const IDPCAFileInput: React.FC<React.PropsWithChildren<IDPCAFileInputProps>> = ({
   value,
   onChange,
   isRequired = false,

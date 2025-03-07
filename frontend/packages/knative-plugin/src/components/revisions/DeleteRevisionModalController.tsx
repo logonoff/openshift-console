@@ -46,7 +46,13 @@ type ControllerProps = {
   close?: () => void;
 };
 
-const Controller: React.FC<ControllerProps> = ({ loaded, resources, revision, cancel, close }) => {
+const Controller: React.FC<React.PropsWithChildren<ControllerProps>> = ({
+  loaded,
+  resources,
+  revision,
+  cancel,
+  close,
+}) => {
   const { t } = useTranslation();
   if (!loaded) {
     return null;
@@ -177,7 +183,9 @@ type DeleteRevisionModalControllerProps = {
   revision: K8sResourceKind;
 };
 
-const DeleteRevisionModalController: React.FC<DeleteRevisionModalControllerProps> = (props) => {
+const DeleteRevisionModalController: React.FC<React.PropsWithChildren<
+  DeleteRevisionModalControllerProps
+>> = (props) => {
   const {
     metadata: { namespace },
   } = props.revision;

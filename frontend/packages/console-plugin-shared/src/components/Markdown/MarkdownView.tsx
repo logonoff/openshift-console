@@ -91,7 +91,7 @@ type InnerSyncMarkdownProps = Pick<
   isEmpty: boolean;
 };
 
-export const MarkdownView: React.FC<MarkdownProps> = ({
+export const MarkdownView: React.FC<React.PropsWithChildren<MarkdownProps>> = ({
   truncateContent,
   content,
   emptyMsg,
@@ -132,7 +132,7 @@ type RenderExtensionProps = {
   docContext?: Document;
 };
 
-const RenderExtension: React.FC<RenderExtensionProps> = ({
+const RenderExtension: React.FC<React.PropsWithChildren<RenderExtensionProps>> = ({
   renderExtension,
   selector,
   markup,
@@ -161,7 +161,7 @@ const RenderExtension: React.FC<RenderExtensionProps> = ({
   );
 };
 
-const InlineMarkdownView: React.FC<InnerSyncMarkdownProps> = ({
+const InlineMarkdownView: React.FC<React.PropsWithChildren<InnerSyncMarkdownProps>> = ({
   markup,
   isEmpty,
   renderExtension,
@@ -176,7 +176,7 @@ const InlineMarkdownView: React.FC<InnerSyncMarkdownProps> = ({
   );
 };
 
-const IFrameMarkdownView: React.FC<InnerSyncMarkdownProps> = ({
+const IFrameMarkdownView: React.FC<React.PropsWithChildren<InnerSyncMarkdownProps>> = ({
   exactHeight,
   markup,
   isEmpty,

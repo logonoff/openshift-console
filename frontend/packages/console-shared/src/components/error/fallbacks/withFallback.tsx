@@ -2,9 +2,9 @@ import * as React from 'react';
 import ErrorBoundary from '../error-boundary';
 
 type WithFallback = <P = {}>(
-  Component: React.ComponentType<P>,
-  FallbackComponent?: React.ComponentType<any>,
-) => React.ComponentType<P>;
+  Component: React.ComponentType<React.PropsWithChildren<P>>,
+  FallbackComponent?: React.ComponentType<React.PropsWithChildren<any>>,
+) => React.ComponentType<React.PropsWithChildren<P>>;
 
 const withFallback: WithFallback = (WrappedComponent, FallbackComponent) => {
   const Component = (props) => (

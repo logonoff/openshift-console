@@ -26,7 +26,7 @@ import { useMenuActionsWithUserAnnotation } from './triggered-by';
 
 import './PipelineRunDetailsPage.scss';
 
-const PipelineRunDetailsPage: React.FC<DetailsPageProps> = (props) => {
+const PipelineRunDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const { kindObj, namespace, name } = props;
   const { t } = useTranslation();
   const operatorVersion = usePipelineOperatorVersion(namespace);

@@ -19,7 +19,7 @@ const suggestionBoxKeyHandler = {
   Escape: KeyEventModes.HIDE,
 };
 
-const AutocompleteInput: React.FC<AutocompleteInputProps> = (props) => {
+const AutocompleteInput: React.FC<React.PropsWithChildren<AutocompleteInputProps>> = (props) => {
   const [suggestions, setSuggestions] = React.useState<string[]>();
   const { visible, setVisible, ref } = useDocumentListener<HTMLDivElement>(suggestionBoxKeyHandler);
   const {
@@ -108,7 +108,11 @@ type AutocompleteInputProps = {
   labelPath?: string;
 };
 
-const SuggestionLine: React.FC<SuggestionLineProps> = ({ suggestion, onClick, className }) => {
+const SuggestionLine: React.FC<React.PropsWithChildren<SuggestionLineProps>> = ({
+  suggestion,
+  onClick,
+  className,
+}) => {
   return (
     <button className="co-suggestion-line" onClick={() => onClick(suggestion)}>
       <span className={className}>{suggestion}</span>

@@ -19,7 +19,7 @@ import { USER_SETTINGS_KEY } from './constants';
 
 import './getting-started-section.scss';
 
-export const GettingStartedSection: React.FC = () => {
+export const GettingStartedSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const openshiftFlag = useFlag(FLAGS.OPENSHIFT);
 
   const [showState, setShowState, showStateLoaded] = useGettingStartedShowState(USER_SETTINGS_KEY);

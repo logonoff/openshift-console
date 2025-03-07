@@ -6,7 +6,9 @@ type EmptyDirectoriesSectionProps = {
   workspaces: PipelineRunWorkspace[];
 };
 
-const EmptyDirectoriesSection: React.FC<EmptyDirectoriesSectionProps> = ({ workspaces }) => {
+const EmptyDirectoriesSection: React.FC<React.PropsWithChildren<EmptyDirectoriesSectionProps>> = ({
+  workspaces,
+}) => {
   const { t } = useTranslation();
 
   if (!workspaces || workspaces.length === 0) return null;

@@ -22,7 +22,10 @@ type AddPageLayoutProps = {
   hintBlock?: React.ReactNode;
 };
 
-const AddPageLayout: React.FC<AddPageLayoutProps> = ({ title, hintBlock: additionalHint }) => {
+const AddPageLayout: React.FC<React.PropsWithChildren<AddPageLayoutProps>> = ({
+  title,
+  hintBlock: additionalHint,
+}) => {
   const { t } = useTranslation();
   const [activeNamespace] = useActiveNamespace();
   const [viewContainer, setViewContainer] = React.useState<HTMLElement>(null);

@@ -25,7 +25,9 @@ type TimeSeriesChart = {
 
 type DomainType = { x?: DomainTuple; y?: DomainTuple };
 
-export const TimeSeriesChart: React.FC<TimeSeriesChart & ChartProps & ChartLineProps> = ({
+export const TimeSeriesChart: React.FC<React.PropsWithChildren<
+  TimeSeriesChart & ChartProps & ChartLineProps
+>> = ({
   data = null,
   timespan,
   bar = true,

@@ -13,7 +13,9 @@ import {
 import { serverlessTab } from '../../../utils/serverless-tab-utils';
 import SubscriptionDetails from './SubscriptionDetails';
 
-const SubscriptionDetailsPage: React.FC<React.ComponentProps<typeof DetailsPage>> = (props) => {
+const SubscriptionDetailsPage: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof DetailsPage>
+>> = (props) => {
   const { kindObj } = props;
   const params = useParams();
   const location = useLocation();

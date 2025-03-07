@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const FormSectionDivider: React.FC = () => (
+const FormSectionDivider: React.FC<React.PropsWithChildren<unknown>> = () => (
   <hr
     style={{
       margin: 0,

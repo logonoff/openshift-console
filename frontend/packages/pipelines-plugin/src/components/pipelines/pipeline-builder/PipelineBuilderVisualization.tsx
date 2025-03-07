@@ -27,13 +27,9 @@ type PipelineBuilderVisualizationProps = {
   taskResources: PipelineBuilderTaskResources;
 };
 
-const PipelineBuilderVisualization: React.FC<PipelineBuilderVisualizationProps> = ({
-  onTaskSelection,
-  onUpdateTasks,
-  onTaskSearch,
-  taskGroup,
-  taskResources,
-}) => {
+const PipelineBuilderVisualization: React.FC<React.PropsWithChildren<
+  PipelineBuilderVisualizationProps
+>> = ({ onTaskSelection, onUpdateTasks, onTaskSearch, taskGroup, taskResources }) => {
   const { t } = useTranslation();
   const { errors, status } = useFormikContext<PipelineBuilderFormikValues>();
   const nodes = useNodes(

@@ -79,7 +79,7 @@ import { useNotificationAlerts } from '@console/shared/src/hooks/useNotification
 import { useModal, PrometheusRulesResponse } from '@console/dynamic-plugin-sdk/src/lib-core';
 import { useDispatch, useSelector } from 'react-redux';
 
-const AlertErrorState: React.FC<AlertErrorProps> = ({ errorText }) => {
+const AlertErrorState: React.FC<React.PropsWithChildren<AlertErrorProps>> = ({ errorText }) => {
   const { t } = useTranslation();
   return (
     <EmptyState
@@ -95,7 +95,7 @@ const AlertErrorState: React.FC<AlertErrorProps> = ({ errorText }) => {
   );
 };
 
-const AlertEmptyState: React.FC<AlertEmptyProps> = ({ drawerToggle }) => {
+const AlertEmptyState: React.FC<React.PropsWithChildren<AlertEmptyProps>> = ({ drawerToggle }) => {
   const { t } = useTranslation();
   return (
     <EmptyState
@@ -227,7 +227,7 @@ export const refreshNotificationPollers = () => {
   _.invoke(pollers, 'notificationAlerts');
 };
 
-export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({
+export const NotificationDrawer: React.FC<React.PropsWithChildren<NotificationDrawerProps>> = ({
   isDesktop,
   onDrawerChange,
   children,
@@ -321,7 +321,7 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({
   const alertIds = React.useMemo(() => alerts?.map((alert) => alert.rule.name) || [], [alerts]);
   const [alertActionExtensions] = useResolvedExtensions<AlertAction>(
     React.useCallback(
-      (e): e is AlertAction => isAlertAction(e) && alertIds.includes(e.properties.alert),
+      (e: any): e is AlertAction => isAlertAction(e) && alertIds.includes(e.properties.alert),
       [alertIds],
     ),
   );

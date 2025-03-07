@@ -35,11 +35,11 @@ const showServiceLevel = (clusterID: string) =>
   window.SERVER_FLAGS.branding !== 'azure' &&
   window.SERVER_FLAGS.branding !== 'dedicated';
 
-const TrialDaysLeft: React.FC<{
+const TrialDaysLeft: React.FC<React.PropsWithChildren<{
   level: string;
   trialDaysLeft: number | null;
   label?: boolean;
-}> = ({ level, trialDaysLeft, label }) => {
+}>> = ({ level, trialDaysLeft, label }) => {
   const { t } = useTranslation();
 
   if ((level !== 'Eval' && level !== 'None') || (level === 'Eval' && trialDaysLeft === null)) {
@@ -193,16 +193,16 @@ const useGetServiceLevel = (
   };
 };
 
-export const ServiceLevelLoading: React.FC = () => {
+export const ServiceLevelLoading: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return <Skeleton screenreaderText={t('public~Loading')} />;
 };
 
-export const ServiceLevel: React.FC<{
+export const ServiceLevel: React.FC<React.PropsWithChildren<{
   clusterID: string;
   loading: React.ReactNode;
   children: React.ReactNode;
-}> = ({ clusterID, loading, children }) => {
+}>> = ({ clusterID, loading, children }) => {
   const { hasSecretAccess, loadingSecret, loadingServiceLevel } = useGetServiceLevel(clusterID);
 
   if (!showServiceLevel(clusterID)) {
@@ -221,7 +221,10 @@ type ServiceLevelTextProps = {
   clusterID?: string;
   inline?: boolean;
 };
-export const ServiceLevelText: React.FC<ServiceLevelTextProps> = ({ clusterID, inline }) => {
+export const ServiceLevelText: React.FC<React.PropsWithChildren<ServiceLevelTextProps>> = ({
+  clusterID,
+  inline,
+}) => {
   const { t } = useTranslation();
   const { level, daysRemaining } = useGetServiceLevel(clusterID);
   const levelText = (
@@ -273,10 +276,10 @@ export const useShowServiceLevelNotifications = (clusterID: string): boolean => 
   return level && (level === 'Eval' || level === 'None');
 };
 
-export const ServiceLevelNotification: React.FC<{
+export const ServiceLevelNotification: React.FC<React.PropsWithChildren<{
   clusterID?: string;
   toggleNotificationDrawer: () => void;
-}> = ({ clusterID, toggleNotificationDrawer }) => {
+}>> = ({ clusterID, toggleNotificationDrawer }) => {
   const { t } = useTranslation();
   const { level, daysRemaining, trialDateEnd } = useGetServiceLevel(clusterID);
   const showServiceLevelNotification = useShowServiceLevelNotifications(clusterID);

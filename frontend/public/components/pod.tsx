@@ -351,7 +351,7 @@ const getColumns = (showNodes: boolean, t: TFunction): TableColumn<PodKind>[] =>
   },
 ];
 
-const PodTableRow: React.FC<RowProps<PodKind, PodRowData>> = ({
+const PodTableRow: React.FC<React.PropsWithChildren<RowProps<PodKind, PodRowData>>> = ({
   obj: pod,
   rowData: { showNodes },
   activeColumnIDs,
@@ -476,7 +476,10 @@ const PodTableRow: React.FC<RowProps<PodKind, PodRowData>> = ({
 };
 PodTableRow.displayName = 'PodTableRow';
 
-export const ContainerLink: React.FC<ContainerLinkProps> = ({ pod, name }) => (
+export const ContainerLink: React.FC<React.PropsWithChildren<ContainerLinkProps>> = ({
+  pod,
+  name,
+}) => (
   <span className="co-resource-item co-resource-item--inline">
     <ResourceIcon kind="Container" />
     <Link to={`/k8s/ns/${pod.metadata.namespace}/pods/${pod.metadata.name}/containers/${name}`}>
@@ -486,7 +489,9 @@ export const ContainerLink: React.FC<ContainerLinkProps> = ({ pod, name }) => (
 );
 ContainerLink.displayName = 'ContainerLink';
 
-const ContainerRunningSince: React.FC<ContainerRunningSinceProps> = ({ startedAt }) => {
+const ContainerRunningSince: React.FC<React.PropsWithChildren<ContainerRunningSinceProps>> = ({
+  startedAt,
+}) => {
   const { t } = useTranslation();
   return startedAt ? (
     <Trans t={t} ns="public">
@@ -495,7 +500,9 @@ const ContainerRunningSince: React.FC<ContainerRunningSinceProps> = ({ startedAt
   ) : null;
 };
 
-const ContainerTerminatedAt: React.FC<ContainerTerminatedAtProps> = ({ finishedAt }) => {
+const ContainerTerminatedAt: React.FC<React.PropsWithChildren<ContainerTerminatedAtProps>> = ({
+  finishedAt,
+}) => {
   const { t } = useTranslation();
   return finishedAt ? (
     <Trans t={t} ns="public">
@@ -504,17 +511,23 @@ const ContainerTerminatedAt: React.FC<ContainerTerminatedAtProps> = ({ finishedA
   ) : null;
 };
 
-const ContainerTerminatedExitCode: React.FC<ContainerTerminatedExitCodeProps> = ({ exitCode }) => {
+const ContainerTerminatedExitCode: React.FC<React.PropsWithChildren<
+  ContainerTerminatedExitCodeProps
+>> = ({ exitCode }) => {
   const { t } = useTranslation();
   return exitCode ? t('public~with exit code {{exitCode}} ', { exitCode }) : null;
 };
 
-const ContainerTerminatedReason: React.FC<ContainerTerminatedReasonProps> = ({ reason }) => {
+const ContainerTerminatedReason: React.FC<React.PropsWithChildren<
+  ContainerTerminatedReasonProps
+>> = ({ reason }) => {
   const { t } = useTranslation();
   return reason ? t('public~({{reason}})', { reason }) : null;
 };
 
-export const ContainerLastState: React.FC<ContainerLastStateProps> = ({ containerLastState }) => {
+export const ContainerLastState: React.FC<React.PropsWithChildren<ContainerLastStateProps>> = ({
+  containerLastState,
+}) => {
   const { t } = useTranslation();
   if (containerLastState?.waiting) {
     return t('public~Waiting {{reason}}', { reason: containerLastState.waiting?.reason });
@@ -547,7 +560,10 @@ const podContainerClassNames = [
   'col-lg-1 hidden-md hidden-sm hidden-xs',
 ];
 
-export const ContainerRow: React.FC<ContainerRowProps> = ({ pod, container }) => {
+export const ContainerRow: React.FC<React.PropsWithChildren<ContainerRowProps>> = ({
+  pod,
+  container,
+}) => {
   const cstatus = getContainerStatus(pod, container.name);
   const cstate = getContainerState(cstatus);
   const startedAt = _.get(cstate, 'startedAt');
@@ -580,7 +596,7 @@ export const ContainerRow: React.FC<ContainerRowProps> = ({ pod, container }) =>
 };
 ContainerRow.displayName = 'ContainerRow';
 
-export const PodContainerTable: React.FC<PodContainerTableProps> = ({
+export const PodContainerTable: React.FC<React.PropsWithChildren<PodContainerTableProps>> = ({
   heading,
   containers,
   pod,
@@ -615,7 +631,7 @@ const getNetworkName = (result: PrometheusResult) =>
   result?.metric?.network_name || 'unnamed interface';
 
 // TODO update to use QueryBrowser for each graph
-const PodMetrics: React.FC<PodMetricsProps> = ({ obj }) => {
+const PodMetrics: React.FC<React.PropsWithChildren<PodMetricsProps>> = ({ obj }) => {
   const { t } = useTranslation();
   return (
     <Dashboard className="resource-metrics-dashboard">
@@ -708,7 +724,7 @@ const PodMetrics: React.FC<PodMetricsProps> = ({ obj }) => {
   );
 };
 
-const PodStatusPopover: React.FC<PodStatusPopoverProps> = ({
+const PodStatusPopover: React.FC<React.PropsWithChildren<PodStatusPopoverProps>> = ({
   bodyContent,
   headerContent,
   footerContent,
@@ -723,7 +739,7 @@ const PodStatusPopover: React.FC<PodStatusPopoverProps> = ({
   );
 };
 
-export const PodStatus: React.FC<PodStatusProps> = ({ pod }) => {
+export const PodStatus: React.FC<React.PropsWithChildren<PodStatusProps>> = ({ pod }) => {
   const status = podPhase(pod);
   const unschedulableCondition = pod.status?.conditions?.find(
     (condition) => condition.reason === 'Unschedulable' && condition.status === 'False',
@@ -806,7 +822,7 @@ export const PodStatus: React.FC<PodStatusProps> = ({ pod }) => {
   return <Status status={status} />;
 };
 
-export const PodDetailsList: React.FC<PodDetailsListProps> = ({ pod }) => {
+export const PodDetailsList: React.FC<React.PropsWithChildren<PodDetailsListProps>> = ({ pod }) => {
   const { t } = useTranslation();
   const moreThanOnePodIPs = pod.status?.podIPs?.length > 1;
   const moreThanOneHostIPs = pod.status?.hostIPs?.length > 1;
@@ -871,7 +887,9 @@ export const PodDetailsList: React.FC<PodDetailsListProps> = ({ pod }) => {
 };
 PodDetailsList.displayName = 'PodDetailsList';
 
-export const PodResourceSummary: React.FC<PodResourceSummaryProps> = ({ pod }) => (
+export const PodResourceSummary: React.FC<React.PropsWithChildren<PodResourceSummaryProps>> = ({
+  pod,
+}) => (
   <ResourceSummary
     resource={pod}
     showNodeSelector
@@ -880,7 +898,7 @@ export const PodResourceSummary: React.FC<PodResourceSummaryProps> = ({ pod }) =
   />
 );
 
-const Details: React.FC<PodDetailsProps> = ({ obj: pod }) => {
+const Details: React.FC<React.PropsWithChildren<PodDetailsProps>> = ({ obj: pod }) => {
   const limits = {
     cpu: null,
     memory: null,
@@ -960,7 +978,7 @@ const PodEnvironmentComponent = (props) => (
   <EnvironmentPage obj={props.obj} rawEnvData={props.obj.spec} envPath={envPath} readOnly={true} />
 );
 
-export const PodExecLoader: React.FC<PodExecLoaderProps> = ({
+export const PodExecLoader: React.FC<React.PropsWithChildren<PodExecLoaderProps>> = ({
   obj,
   message,
   initialContainer,
@@ -982,7 +1000,7 @@ export const PodExecLoader: React.FC<PodExecLoaderProps> = ({
     </div>
   </div>
 );
-export const PodsDetailsPage: React.FC<PodDetailsPageProps> = (props) => {
+export const PodsDetailsPage: React.FC<React.PropsWithChildren<PodDetailsPageProps>> = (props) => {
   const prometheusIsAvailable = usePrometheusGate();
   const customActionMenu = (kindObj, obj) => {
     const resourceKind = referenceForModel(kindObj);
@@ -1016,7 +1034,11 @@ export const PodsDetailsPage: React.FC<PodDetailsPageProps> = (props) => {
 };
 PodsDetailsPage.displayName = 'PodsDetailsPage';
 
-export const PodList: React.FC<PodListProps> = ({ showNamespaceOverride, showNodes, ...props }) => {
+export const PodList: React.FC<React.PropsWithChildren<PodListProps>> = ({
+  showNamespaceOverride,
+  showNodes,
+  ...props
+}) => {
   const { t } = useTranslation();
   const columns = React.useMemo(() => getColumns(showNodes, t), [showNodes, t]);
   const [activeColumns, userSettingsLoaded] = useActiveColumns({
@@ -1071,7 +1093,7 @@ export const getFilters = (t: TFunction): RowFilter<PodKind>[] => [
   },
 ];
 
-export const PodsPage: React.FC<PodPageProps> = ({
+export const PodsPage: React.FC<React.PropsWithChildren<PodPageProps>> = ({
   canCreate = true,
   namespace,
   showNodes,

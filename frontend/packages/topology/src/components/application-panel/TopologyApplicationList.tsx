@@ -7,9 +7,9 @@ type TopologyApplicationResourceListProps = {
   resources: K8sResourceKind[];
 };
 
-const TopologyApplicationResourceList: React.FC<TopologyApplicationResourceListProps> = ({
-  resources,
-}) => {
+const TopologyApplicationResourceList: React.FC<React.PropsWithChildren<
+  TopologyApplicationResourceListProps
+>> = ({ resources }) => {
   return (
     <ul className="list-group">
       {_.map(resources, (resource) => {

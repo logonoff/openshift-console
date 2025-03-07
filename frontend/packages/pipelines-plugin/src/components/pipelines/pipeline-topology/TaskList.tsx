@@ -7,7 +7,7 @@ import { truncateMiddle } from '@console/internal/components/utils';
 import { BUILDER_NODE_ADD_RADIUS } from './const';
 import RemoveNodeDecorator from './RemoveNodeDecorator';
 
-const TaskList: React.FC<any> = ({
+const TaskList: React.FC<React.PropsWithChildren<any>> = ({
   width,
   height,
   unselectedText,

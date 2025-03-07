@@ -5,9 +5,11 @@ type WithScrollContainerProps = {
   children: (scrollContainer: HTMLElement) => React.ReactElement | null;
 };
 
-export const WithScrollContainer: React.FC<WithScrollContainerProps> = ({ children }) => {
+export const WithScrollContainer: React.FC<React.PropsWithChildren<WithScrollContainerProps>> = ({
+  children,
+}) => {
   const [scrollContainer, setScrollContainer] = React.useState<HTMLElement>();
-  const ref = React.useCallback((node) => {
+  const ref = React.useCallback((node: any) => {
     if (node) {
       setScrollContainer(getParentScrollableElement(node));
     }

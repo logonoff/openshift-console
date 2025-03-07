@@ -87,7 +87,9 @@ const getDebugPod = async (name: string, namespace: string, nodeName: string): P
   };
 };
 
-const NodeTerminalError: React.FC<NodeTerminalErrorProps> = ({ error }) => {
+const NodeTerminalError: React.FC<React.PropsWithChildren<NodeTerminalErrorProps>> = ({
+  error,
+}) => {
   return (
     <div className="co-m-pane__body">
       <Alert variant="danger" isInline title={error} data-test="node-terminal-error" />
@@ -95,7 +97,7 @@ const NodeTerminalError: React.FC<NodeTerminalErrorProps> = ({ error }) => {
   );
 };
 
-const NodeTerminalInner: React.FC<NodeTerminalInnerProps> = ({ obj }) => {
+const NodeTerminalInner: React.FC<React.PropsWithChildren<NodeTerminalInnerProps>> = ({ obj }) => {
   const { t } = useTranslation();
   const message = (
     <Trans t={t} ns="console-app">
@@ -124,7 +126,7 @@ const NodeTerminalInner: React.FC<NodeTerminalInnerProps> = ({ obj }) => {
   }
 };
 
-const NodeTerminal: React.FC<NodeTerminalProps> = ({ obj: node }) => {
+const NodeTerminal: React.FC<React.PropsWithChildren<NodeTerminalProps>> = ({ obj: node }) => {
   const [resources, setResources] = React.useState<FirehoseResource[]>([]);
   const [errorMessage, setErrorMessage] = React.useState('');
   const nodeName = node.metadata.name;

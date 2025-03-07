@@ -5,7 +5,7 @@ import { ShortcutTable, Shortcut } from '@console/shared';
 
 import './RegroupHint.scss';
 
-const RegroupHint: React.FC = () => {
+const RegroupHint: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <div className="odc-regroup-hint">

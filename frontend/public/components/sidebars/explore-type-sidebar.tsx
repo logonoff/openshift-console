@@ -20,7 +20,7 @@ const getRef = (definition: SwaggerDefinition): string => {
   return ref && re.test(ref) ? ref.replace(re, '') : null;
 };
 
-export const ExploreType: React.FC<ExploreTypeProps> = (props) => {
+export const ExploreType: React.FC<React.PropsWithChildren<ExploreTypeProps>> = (props) => {
   // Track the previously selected items to build breadcrumbs. Each history
   // entry contains the name, description, and path to the definition in the
   // OpenAPI document.

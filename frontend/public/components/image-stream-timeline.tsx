@@ -14,7 +14,7 @@ const ImageStreamTagsReference: K8sResourceKindReference = 'ImageStreamTag';
 export const getImageStreamTagName = (imageStreamName: string, tag: string): string =>
   `${imageStreamName}:${tag}`;
 
-const ImageStreamTimelineItem: React.FC<ImageStreamTimelineItemProps> = ({
+const ImageStreamTimelineItem: React.FC<React.PropsWithChildren<ImageStreamTimelineItemProps>> = ({
   tag,
   imageStreamName,
   imageStreamNamespace,
@@ -64,7 +64,7 @@ const isTagVersionLatest = (
   );
 };
 
-export const ImageStreamTimeline: React.FC<ImageStreamTimelineProps> = ({
+export const ImageStreamTimeline: React.FC<React.PropsWithChildren<ImageStreamTimelineProps>> = ({
   imageStreamTags,
   imageStreamName,
   imageStreamNamespace,

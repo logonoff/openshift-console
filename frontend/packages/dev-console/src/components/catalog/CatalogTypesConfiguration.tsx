@@ -34,9 +34,11 @@ type DeveloperCatalogTypesConsoleConfig = K8sResourceKind & {
 
 type ItemProps = { type: string; title: string };
 
-const Item: React.FC<ItemProps> = ({ title }) => <>{title}</>;
+const Item: React.FC<React.PropsWithChildren<ItemProps>> = ({ title }) => <>{title}</>;
 
-const CatalogTypesConfiguration: React.FC<{ readonly: boolean }> = ({ readonly }) => {
+const CatalogTypesConfiguration: React.FC<React.PropsWithChildren<{ readonly: boolean }>> = ({
+  readonly,
+}) => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
 

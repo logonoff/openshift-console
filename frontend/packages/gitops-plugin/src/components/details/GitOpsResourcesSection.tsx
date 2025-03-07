@@ -34,7 +34,7 @@ const getUnhealthyResources = () => (acc: string[], current: GitOpsHealthResourc
 const getNonSyncedResources = () => (acc: string[], current: GitOpsHealthResources): string[] =>
   current.status !== 'Synced' ? [...acc, current.status] : acc;
 
-const GitOpsResourcesSection: React.FC<GitOpsResourcesSectionProps> = ({
+const GitOpsResourcesSection: React.FC<React.PropsWithChildren<GitOpsResourcesSectionProps>> = ({
   services,
   secrets,
   deployments,

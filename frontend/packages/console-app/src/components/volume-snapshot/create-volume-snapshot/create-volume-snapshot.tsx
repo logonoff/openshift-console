@@ -47,7 +47,7 @@ import {
 import { getName, getNamespace, getAnnotations } from '@console/shared';
 import './_create-volume-snapshot.scss';
 
-const LoadingComponent: React.FC = () => (
+const LoadingComponent: React.FC<React.PropsWithChildren<unknown>> = () => (
   <Grid className="skeleton-box">
     <GridItem span={12} className="skeleton-activity" />
     <GridItem span={12} className="skeleton-activity" />
@@ -60,7 +60,9 @@ const LoadingComponent: React.FC = () => (
   </Grid>
 );
 
-const SnapshotClassDropdown: React.FC<SnapshotClassDropdownProps> = (props) => {
+const SnapshotClassDropdown: React.FC<React.PropsWithChildren<SnapshotClassDropdownProps>> = (
+  props,
+) => {
   const { selectedKey, filter } = props;
   const kind = referenceForModel(VolumeSnapshotClassModel);
   const resources = [{ kind }];
@@ -78,7 +80,9 @@ const SnapshotClassDropdown: React.FC<SnapshotClassDropdownProps> = (props) => {
   );
 };
 
-const PVCSummary: React.FC<PVCSummaryProps> = ({ persistentVolumeClaim }) => {
+const PVCSummary: React.FC<React.PropsWithChildren<PVCSummaryProps>> = ({
+  persistentVolumeClaim,
+}) => {
   const { t } = useTranslation();
   const storageClass = persistentVolumeClaim?.spec?.storageClassName;
   const requestedCapacity = persistentVolumeClaim?.spec?.resources?.requests?.storage;
@@ -162,7 +166,7 @@ const CreateSnapshotForm = withHandlePromise<SnapshotResourceProps>((props) => {
   );
   const vscList = React.useMemo(() => vscObj?.items || [], [vscObj]);
   const getDefaultItem = React.useCallback(
-    (snapFilter) => {
+    (snapFilter: any) => {
       const filteredVSC = vscList.filter(snapFilter);
       const defaultFilteredVSC = filteredVSC.filter(isDefaultSnapshotClass);
       const defaultItem = getName(defaultFilteredVSC?.[0]) || getName(filteredVSC?.[0]);
@@ -333,7 +337,7 @@ const CreateSnapshotForm = withHandlePromise<SnapshotResourceProps>((props) => {
   );
 });
 
-export const VolumeSnapshot: React.FC = () => {
+export const VolumeSnapshot: React.FC<React.PropsWithChildren<unknown>> = () => {
   const params = useParams();
   const { pvc } = getURLSearchParams();
   return <CreateSnapshotForm namespace={params.ns} pvcName={pvc} />;

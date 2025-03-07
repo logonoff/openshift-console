@@ -24,7 +24,10 @@ type BuildSectionProps = {
   appResources?: AppResources;
 };
 
-export const BuildSection: React.FC<BuildSectionProps> = ({ values, appResources }) => {
+export const BuildSection: React.FC<React.PropsWithChildren<BuildSectionProps>> = ({
+  values,
+  appResources,
+}) => {
   const { t } = useTranslation();
   const {
     project: { name: namespace },

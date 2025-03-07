@@ -26,7 +26,7 @@ type Props = {
   operatorNamespace: string;
 };
 
-const CloudShellAdminSetup: React.FunctionComponent<Props> = ({
+const CloudShellAdminSetup: React.FunctionComponent<React.PropsWithChildren<Props>> = ({
   onSubmit,
   onCancel,
   workspaceModel,

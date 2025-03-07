@@ -10,10 +10,9 @@ import { tableColumnClasses } from './subscription-table';
 type SubscriptionRowType = {
   channel?: string;
 };
-const SubscriptionRow: React.FC<RowFunctionArgs<EventSubscriptionKind, SubscriptionRowType>> = ({
-  obj,
-  customData,
-}) => {
+const SubscriptionRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<EventSubscriptionKind, SubscriptionRowType>
+>> = ({ obj, customData }) => {
   const {
     metadata: { name, namespace, creationTimestamp, uid },
     spec: { channel: connectedChannel, subscriber },

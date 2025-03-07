@@ -40,7 +40,10 @@ type WebhoookSectionProps = {
   formContextField?: string;
 };
 
-const WebhookSection: React.FC<WebhoookSectionProps> = ({ pac, formContextField }) => {
+const WebhookSection: React.FC<React.PropsWithChildren<WebhoookSectionProps>> = ({
+  pac,
+  formContextField,
+}) => {
   const [namespace] = useActiveNamespace();
   const { values, setFieldValue } = useFormikContext<FormikValues>();
   const fieldPrefix = formContextField ? `${formContextField}.` : '';

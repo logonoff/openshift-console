@@ -100,7 +100,7 @@ const getCreateProps = ({ namespace, t }: { namespace: string; t: TFunction }) =
   };
 };
 
-const BareMetalHostsPage: React.FC<BareMetalHostsPageProps> = (props) => {
+const BareMetalHostsPage: React.FC<React.PropsWithChildren<BareMetalHostsPageProps>> = (props) => {
   const { t } = useTranslation();
   const [model] = useMaintenanceCapability();
   const { namespace } = props;

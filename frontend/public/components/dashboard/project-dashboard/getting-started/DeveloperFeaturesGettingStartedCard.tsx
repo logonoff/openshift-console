@@ -14,7 +14,9 @@ import {
 } from '@console/shared/src/components/getting-started';
 import { getDisabledAddActions } from '@console/dev-console/src/utils/useAddActionExtensions';
 
-export const DeveloperFeaturesGettingStartedCard: React.FC = () => {
+export const DeveloperFeaturesGettingStartedCard: React.FC<React.PropsWithChildren<
+  unknown
+>> = () => {
   const { t } = useTranslation();
   const [activeNamespace] = useActiveNamespace();
   const isHelmEnabled = useFlag('OPENSHIFT_HELM');

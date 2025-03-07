@@ -27,7 +27,9 @@ const machineHealthCheckReference = referenceForModel(MachineHealthCheckModel);
 
 const tableColumnClasses = ['', '', 'pf-m-hidden pf-m-visible-on-md', Kebab.columnClass];
 
-const MachineHealthCheckTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj }) => {
+const MachineHealthCheckTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<K8sResourceKind>
+>> = ({ obj }) => {
   return (
     <>
       <TableData className={tableColumnClasses[0]}>
@@ -53,7 +55,7 @@ const MachineHealthCheckTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = (
   );
 };
 
-const MachineHealthCheckList: React.FC = (props) => {
+const MachineHealthCheckList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const MachineHealthCheckTableHeader = () => {
     return [
@@ -94,7 +96,9 @@ const MachineHealthCheckList: React.FC = (props) => {
   );
 };
 
-const UnhealthyConditionsTable: React.FC<{ obj: K8sResourceKind }> = ({ obj }) => {
+const UnhealthyConditionsTable: React.FC<React.PropsWithChildren<{ obj: K8sResourceKind }>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   return _.isEmpty(obj.spec.unhealthyConditions) ? (
     <EmptyBox label={t('public~Unhealthy conditions')} />
@@ -120,7 +124,9 @@ const UnhealthyConditionsTable: React.FC<{ obj: K8sResourceKind }> = ({ obj }) =
   );
 };
 
-const MachineHealthCheckDetails: React.FC<MachineHealthCheckDetailsProps> = ({ obj }) => {
+const MachineHealthCheckDetails: React.FC<React.PropsWithChildren<
+  MachineHealthCheckDetailsProps
+>> = ({ obj }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -165,7 +171,9 @@ const MachineHealthCheckDetails: React.FC<MachineHealthCheckDetailsProps> = ({ o
   );
 };
 
-export const MachineHealthCheckPage: React.FC<MachineHealthCheckPageProps> = (props) => (
+export const MachineHealthCheckPage: React.FC<React.PropsWithChildren<
+  MachineHealthCheckPageProps
+>> = (props) => (
   <ListPage
     {...props}
     ListComponent={MachineHealthCheckList}
@@ -174,7 +182,9 @@ export const MachineHealthCheckPage: React.FC<MachineHealthCheckPageProps> = (pr
   />
 );
 
-export const MachineHealthCheckDetailsPage: React.FC = (props) => (
+export const MachineHealthCheckDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (
+  props,
+) => (
   <DetailsPage
     {...props}
     menuActions={menuActions}

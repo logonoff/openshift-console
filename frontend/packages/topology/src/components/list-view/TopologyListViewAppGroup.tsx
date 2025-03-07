@@ -21,11 +21,9 @@ interface TopologyListViewAppGroupProps {
   onSelect: (ids: string[]) => void;
 }
 
-const TopologyListViewAppGroup: React.FC<TopologyListViewAppGroupProps> = ({
-  appGroup,
-  selectedIds,
-  onSelect,
-}) => {
+const TopologyListViewAppGroup: React.FC<React.PropsWithChildren<
+  TopologyListViewAppGroupProps
+>> = ({ appGroup, selectedIds, onSelect }) => {
   const [filtered] = useSearchFilter(appGroup.getLabel());
   const displayFilters = useDisplayFilters();
   const id = appGroup.getId();

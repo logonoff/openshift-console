@@ -22,7 +22,7 @@ import {
 import { RequireCreatePermission } from '../../utils/rbac';
 import { transformGroupVersionKindToReference } from '@console/dynamic-plugin-sdk/src/utils/k8s/k8s-ref';
 
-const CreateWithPermissions: React.FC<CreateWithPermissionsProps> = ({
+const CreateWithPermissions: React.FC<React.PropsWithChildren<CreateWithPermissionsProps>> = ({
   createAccessReview,
   children,
 }) => {
@@ -36,7 +36,7 @@ const CreateWithPermissions: React.FC<CreateWithPermissionsProps> = ({
   );
 };
 
-export const ListPageCreateLink: React.FC<ListPageCreateLinkProps> = ({
+export const ListPageCreateLink: React.FC<React.PropsWithChildren<ListPageCreateLinkProps>> = ({
   to,
   createAccessReview,
   children,
@@ -50,7 +50,7 @@ export const ListPageCreateLink: React.FC<ListPageCreateLinkProps> = ({
   </CreateWithPermissions>
 );
 
-export const ListPageCreateButton: React.FC<ListPageCreateButtonProps> = ({
+export const ListPageCreateButton: React.FC<React.PropsWithChildren<ListPageCreateButtonProps>> = ({
   createAccessReview,
   ...rest
 }) => (
@@ -59,12 +59,9 @@ export const ListPageCreateButton: React.FC<ListPageCreateButtonProps> = ({
   </CreateWithPermissions>
 );
 
-export const ListPageCreateDropdown: React.FC<ListPageCreateDropdownProps> = ({
-  items,
-  createAccessReview,
-  children,
-  onClick,
-}) => {
+export const ListPageCreateDropdown: React.FC<React.PropsWithChildren<
+  ListPageCreateDropdownProps
+>> = ({ items, createAccessReview, children, onClick }) => {
   const [isOpen, setOpen] = React.useState(false);
 
   const listCreateDropdownItems = Object.keys(items).map((key) => {
@@ -104,7 +101,7 @@ export const ListPageCreateDropdown: React.FC<ListPageCreateDropdownProps> = ({
   );
 };
 
-const ListPageCreate: React.FC<ListPageCreateProps> = ({
+const ListPageCreate: React.FC<React.PropsWithChildren<ListPageCreateProps>> = ({
   createAccessReview,
   groupVersionKind,
   children,

@@ -27,7 +27,7 @@ export const YAML_TO_JS_OPTIONS = {
 //
 //  This means that when switching from YAML to Form, you can lose changes if the YAML editor contains unparsable YAML
 //  TODO Add an extra step when switching from yaml to form to warn user if they are about to lose changes.
-export const SyncedEditor: React.FC<SyncedEditorProps> = ({
+export const SyncedEditor: React.FC<React.PropsWithChildren<SyncedEditorProps>> = ({
   context = {},
   FormEditor,
   initialType = EditorType.Form,
@@ -162,13 +162,13 @@ type SyncedEditorProps = {
     formContext: { [key: string]: any };
     yamlContext: { [key: string]: any };
   };
-  FormEditor: React.ComponentType<FormEditorProps>;
+  FormEditor: React.ComponentType<React.PropsWithChildren<FormEditorProps>>;
   initialType?: EditorType;
   initialData?: K8sResourceKind;
   onChangeEditorType?: (newType: EditorType) => void;
   onChange?: (data: K8sResourceKind) => void;
   prune?: (data: K8sResourceKind) => any;
-  YAMLEditor: React.ComponentType<YAMLEditorProps>;
+  YAMLEditor: React.ComponentType<React.PropsWithChildren<YAMLEditorProps>>;
   lastViewUserSettingKey: string;
   displayConversionError?: boolean;
 };

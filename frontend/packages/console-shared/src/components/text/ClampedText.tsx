@@ -9,7 +9,10 @@ type ClampedTextProps = {
   lineClamp?: number;
 };
 
-const ClampedText: React.FC<ClampedTextProps> = ({ children, lineClamp = 1 }) => {
+const ClampedText: React.FC<React.PropsWithChildren<ClampedTextProps>> = ({
+  children,
+  lineClamp = 1,
+}) => {
   const [isContentClamped, setContentClamped] = React.useState<boolean>(false);
   const debouncedSetContentClamped = useDebounceCallback(
     ({ scroll: { height: scrollHeight }, offset: { height: offsetHeight } }) =>

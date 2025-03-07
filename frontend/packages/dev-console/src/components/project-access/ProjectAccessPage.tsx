@@ -6,7 +6,7 @@ import { Firehose } from '@console/internal/components/utils';
 import { useProjectAccessRoles } from './hooks';
 import ProjectAccess from './ProjectAccess';
 
-const ProjectAccessPage: React.FC = (props) => {
+const ProjectAccessPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const params = useParams();
   const location = useLocation();

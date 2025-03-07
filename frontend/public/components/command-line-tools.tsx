@@ -14,7 +14,9 @@ import { referenceForModel } from '../module/k8s';
 import { SyncMarkdownView } from './markdown-view';
 import { useCopyCodeModal } from '@console/shared/src/hooks/useCopyCodeModal';
 
-export const CommandLineTools: React.FC<CommandLineToolsProps> = ({ obj }) => {
+export const CommandLineTools: React.FC<React.PropsWithChildren<CommandLineToolsProps>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   const [requestTokenURL, externalLoginCommand] = useCopyLoginCommands();
   const launchCopyLoginCommandModal = useCopyCodeModal(

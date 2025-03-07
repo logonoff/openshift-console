@@ -21,9 +21,9 @@ type NetworkPolicySelectorPreviewProps = {
   dataTest?: string;
 };
 
-export const NetworkPolicySelectorPreview: React.FC<NetworkPolicySelectorPreviewProps> = (
-  props,
-) => {
+export const NetworkPolicySelectorPreview: React.FC<React.PropsWithChildren<
+  NetworkPolicySelectorPreviewProps
+>> = (props) => {
   const allNamespaces =
     props.namespaceSelector && props.namespaceSelector.filter((pair) => !!pair[0]).length === 0;
 
@@ -101,7 +101,9 @@ type PodsPreviewProps = {
  * @param props see {@link PodsPreviewProps}
  * @returns a pods preview tree
  */
-export const PodsPreview: React.FunctionComponent<PodsPreviewProps> = (props) => {
+export const PodsPreview: React.FunctionComponent<React.PropsWithChildren<PodsPreviewProps>> = (
+  props,
+) => {
   const { namespace, podSelector, namespaceSelector } = props;
   const { t } = useTranslation();
 

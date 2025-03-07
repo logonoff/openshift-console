@@ -31,7 +31,7 @@ type MonitoringOverviewProps = {
   monitoringAlerts: Alert[];
 };
 
-const MonitoringOverview: React.FC<MonitoringOverviewProps> = (props) => {
+const MonitoringOverview: React.FC<React.PropsWithChildren<MonitoringOverviewProps>> = (props) => {
   const { t } = useTranslation();
   const { resource, pods, resourceEvents, monitoringAlerts } = props;
   const firingAlerts = getFiringAlerts(monitoringAlerts);

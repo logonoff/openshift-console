@@ -15,7 +15,7 @@ interface MultipleKeySelectorProps {
   tooltip?: string;
 }
 
-const MultipleKeySelector: React.FC<MultipleKeySelectorProps> = ({
+const MultipleKeySelector: React.FC<React.PropsWithChildren<MultipleKeySelectorProps>> = ({
   name,
   keys,
   addString,

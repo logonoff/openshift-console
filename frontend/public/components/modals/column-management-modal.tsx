@@ -24,7 +24,7 @@ export const MAX_VIEW_COLS = 9;
 export const NAME_COLUMN_ID = 'name';
 const readOnlyColumns = new Set([NAME_COLUMN_ID]);
 
-const DataListRow: React.FC<DataListRowProps> = ({
+const DataListRow: React.FC<React.PropsWithChildren<DataListRowProps>> = ({
   checkedColumns,
   column,
   onChange,
@@ -60,9 +60,9 @@ const DataListRow: React.FC<DataListRowProps> = ({
   </DataListItem>
 );
 
-export const ColumnManagementModal: React.FC<
+export const ColumnManagementModal: React.FC<React.PropsWithChildren<
   ColumnManagementModalProps & WithUserSettingsCompatibilityProps<object>
-> = ({ cancel, close, columnLayout, setUserSettingState: setTableColumns }) => {
+>> = ({ cancel, close, columnLayout, setUserSettingState: setTableColumns }) => {
   const { t } = useTranslation();
   const defaultColumns = columnLayout.columns.filter((column) => column.id && !column.additional);
   const additionalColumns = columnLayout.columns.filter((column) => column.additional);

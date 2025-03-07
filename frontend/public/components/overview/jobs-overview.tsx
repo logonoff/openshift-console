@@ -13,7 +13,7 @@ import { ChartLabel } from '@patternfly/react-charts/victory';
 const kind: string = 'Job';
 const MAX_JOBS: number = 3;
 
-const JobOverviewItem: React.FC<JobOverviewItemProps> = ({ job }) => {
+const JobOverviewItem: React.FC<React.PropsWithChildren<JobOverviewItemProps>> = ({ job }) => {
   const {
     metadata: { name, namespace },
   } = job;
@@ -47,7 +47,7 @@ type JobOverviewItemProps = {
   job: JobKind;
 };
 
-const JobsOverviewList: React.SFC<JobsOverviewListProps> = ({ jobs }) => (
+const JobsOverviewList: React.FC<React.PropsWithChildren<JobsOverviewListProps>> = ({ jobs }) => (
   <ul className="list-group">
     {_.map(jobs, (job) => (
       <JobOverviewItem key={job.metadata.uid} job={job} />
@@ -57,7 +57,7 @@ const JobsOverviewList: React.SFC<JobsOverviewListProps> = ({ jobs }) => (
 
 JobsOverviewList.displayName = 'JobsOverviewList';
 
-export const JobsOverview: React.SFC<JobsOverviewProps> = ({
+export const JobsOverview: React.FC<React.PropsWithChildren<JobsOverviewProps>> = ({
   jobs,
   obj,
   allJobsLink,

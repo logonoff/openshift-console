@@ -11,7 +11,7 @@ import { UNASSIGNED_KEY } from '@console/topology/src/const';
 import FormSection from '../../section/FormSection';
 import { getAppName } from '../../upload-jar-validation-utils';
 
-const JarSection: React.FunctionComponent = () => {
+const JarSection: React.FunctionComponent<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const {
     values: {

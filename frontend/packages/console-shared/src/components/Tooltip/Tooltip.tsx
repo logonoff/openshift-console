@@ -28,7 +28,11 @@ type TooltipProps = {
   content: React.ReactNode;
 };
 
-export const Tooltip: React.FC<TooltipProps> = ({ content, className, ...rest }) => {
+export const Tooltip: React.FC<React.PropsWithChildren<TooltipProps>> = ({
+  content,
+  className,
+  ...rest
+}) => {
   return (
     <Tippy
       className="ocs-tooltip"

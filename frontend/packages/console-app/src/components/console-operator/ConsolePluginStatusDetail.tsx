@@ -4,7 +4,9 @@ import { usePluginStore } from '@console/plugin-sdk/src/api/usePluginStore';
 import { DASH } from '@console/shared/src/constants';
 import { ConsolePluginStatus } from './ConsoleOperatorConfig';
 
-const ConsolePluginStatusDetail: React.FC<DetailsItemComponentProps> = ({ obj }) => {
+const ConsolePluginStatusDetail: React.FC<React.PropsWithChildren<DetailsItemComponentProps>> = ({
+  obj,
+}) => {
   const pluginStore = usePluginStore();
   const pluginName = React.useMemo(() => obj?.metadata?.name, [obj?.metadata?.name]);
 

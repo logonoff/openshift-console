@@ -18,7 +18,7 @@ type JobSideBarDetailsProps = {
   job: JobKind;
 };
 
-const JobSideBarDetails: React.FC<JobSideBarDetailsProps> = ({ job }) => {
+const JobSideBarDetails: React.FC<React.PropsWithChildren<JobSideBarDetailsProps>> = ({ job }) => {
   const { namespace } = job.metadata;
   const { podData, loaded, loadError } = usePodsWatcher(job, 'Job', namespace);
   const { t } = useTranslation();

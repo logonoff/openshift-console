@@ -12,7 +12,7 @@ export function getStoreTypedComponent<T = any, P = {}, S = any>(
   return component as any;
 }
 
-const TestHook: React.FC<{ callback: () => void }> = ({ callback }) => {
+const TestHook: React.FC<React.PropsWithChildren<{ callback: () => void }>> = ({ callback }) => {
   callback();
   return null;
 };

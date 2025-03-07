@@ -22,7 +22,7 @@ type ActionsLoaderProps = {
   onLoadError: (error: any) => void;
 };
 
-const ActionsLoader: React.FC<ActionsLoaderProps> = ({
+const ActionsLoader: React.FC<React.PropsWithChildren<ActionsLoaderProps>> = ({
   contextId,
   scope,
   onActionsLoaded,
@@ -37,17 +37,17 @@ const ActionsLoader: React.FC<ActionsLoaderProps> = ({
   }, []);
 
   const providerGuard = React.useCallback(
-    (e): e is ActionProvider => isActionProvider(e) && e.properties.contextId === contextId,
+    (e: any): e is ActionProvider => isActionProvider(e) && e.properties.contextId === contextId,
     [contextId],
   );
 
   const filterGuard = React.useCallback(
-    (e): e is ActionFilter => isActionFilter(e) && e.properties.contextId === contextId,
+    (e: any): e is ActionFilter => isActionFilter(e) && e.properties.contextId === contextId,
     [contextId],
   );
 
   const resourceProviderGuard = React.useCallback(
-    (e): e is ResourceActionProvider =>
+    (e: any): e is ResourceActionProvider =>
       isResourceActionProvider(e) &&
       referenceForExtensionModel(e.properties.model as ExtensionK8sGroupModel) === contextId,
     [contextId],

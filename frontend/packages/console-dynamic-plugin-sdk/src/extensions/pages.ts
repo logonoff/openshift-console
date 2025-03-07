@@ -6,12 +6,14 @@ type ResourcePageProperties = {
   model: ExtensionK8sGroupKindModel;
   /** The component to be rendered when the route matches. */
   component: CodeRef<
-    React.ComponentType<{
-      /** The namespace for which this resource page links to. */
-      namespace: string;
-      /** The model for which this resource page links to. */
-      model: ExtensionK8sModel;
-    }>
+    React.ComponentType<
+      React.PropsWithChildren<{
+        /** The namespace for which this resource page links to. */
+        namespace: string;
+        /** The model for which this resource page links to. */
+        model: ExtensionK8sModel;
+      }>
+    >
   >;
 };
 
@@ -19,7 +21,7 @@ type RoutePageProperties = {
   /** The perspective to which this page belongs to. If not specified, contributes to all perspectives. */
   perspective?: string;
   /** The component to be rendered when the route matches. */
-  component: CodeRef<React.ComponentType>;
+  component: CodeRef<React.ComponentType<React.PropsWithChildren<unknown>>>;
   /** Valid URL path or array of paths that `path-to-regexp@^1.7.0` understands. */
   path: string | string[];
   /** When true, will only match if the path matches the `location.pathname` exactly. */
@@ -57,7 +59,7 @@ export type ResourceTabPage = ExtensionDeclaration<
   'console.page/resource/tab',
   Omit<ResourcePageProperties, 'component'> & {
     /** The component to be rendered when the route matches. */
-    component: CodeRef<React.ComponentType>;
+    component: CodeRef<React.ComponentType<React.PropsWithChildren<unknown>>>;
     /** The name of the tab. */
     name: string;
     /** The optional href for the tab link. If not provided, the first `path` is used. */

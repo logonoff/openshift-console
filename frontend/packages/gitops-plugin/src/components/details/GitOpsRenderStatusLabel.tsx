@@ -11,7 +11,9 @@ interface GitOpsRenderStatusLabelProps {
   status: string;
 }
 
-const GitOpsRenderStatusLabel: React.FC<GitOpsRenderStatusLabelProps> = ({ status }) => {
+const GitOpsRenderStatusLabel: React.FC<React.PropsWithChildren<GitOpsRenderStatusLabelProps>> = ({
+  status,
+}) => {
   const { t } = useTranslation();
   switch (status) {
     case 'Synced':

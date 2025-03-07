@@ -104,7 +104,9 @@ const getBuildConfigKebabActions = (latestBuild?: K8sResourceKind): KebabAction[
   ...Kebab.factory.common,
 ];
 
-export const BuildConfigsDetails: React.SFC<BuildConfigsDetailsProps> = ({ obj: buildConfig }) => {
+export const BuildConfigsDetails: React.FC<React.PropsWithChildren<BuildConfigsDetailsProps>> = ({
+  obj: buildConfig,
+}) => {
   const hasPipeline = buildConfig.spec.strategy.type === BuildStrategyType.JenkinsPipeline;
   const { t } = useTranslation();
   return (
@@ -152,7 +154,9 @@ const getLatestBuild = (builds) => {
   }, builds[0]);
 };
 
-export const BuildConfigsDetailsPage: React.FC<DetailsPageProps> = (props) => {
+export const BuildConfigsDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (
+  props,
+) => {
   const buildModel = referenceForModel(BuildModel);
   const [builds, buildsLoaded, buildsLoadError] = useK8sWatchResource<K8sResourceKind[]>({
     kind: buildModel,
@@ -188,7 +192,9 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const BuildConfigsTableRow: React.FC<RowFunctionArgs<BuildConfig>> = ({ obj }) => {
+const BuildConfigsTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<BuildConfig>>> = ({
+  obj,
+}) => {
   const latestBuild = obj?.latestBuild;
   const menuActions: KebabAction[] = getBuildConfigKebabActions(latestBuild);
 
@@ -251,7 +257,9 @@ const getBuildStatus = (buildConfig: BuildConfig) => {
   return buildConfig?.latestBuild?.status?.phase || 'Unknown';
 };
 
-export const BuildConfigsList: React.SFC<BuildConfigsListProps> = (props) => {
+export const BuildConfigsList: React.FC<React.PropsWithChildren<BuildConfigsListProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const BuildConfigsTableHeader = () => {
     return [
@@ -357,7 +365,9 @@ export const BuildConfigsList: React.SFC<BuildConfigsListProps> = (props) => {
 
 BuildConfigsList.displayName = 'BuildConfigsList';
 
-export const BuildConfigsPage: React.FC<BuildConfigsPageProps> = (props) => {
+export const BuildConfigsPage: React.FC<React.PropsWithChildren<BuildConfigsPageProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const params = useParams();
   const allStrategies = [

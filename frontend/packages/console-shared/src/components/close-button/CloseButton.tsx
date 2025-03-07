@@ -12,8 +12,10 @@ type CloseButtonProps = {
 /**
  * @deprecated Do not use deprecated CloseButton import; the component has been moved to @patternfly/react-component-groups
  */
-const CloseButton: React.FC<CloseButtonProps> = ({ additionalClassName, ariaLabel, ...rest }) => (
-  <CloseButtonPF className={additionalClassName} aria-label={ariaLabel} {...rest} />
-);
+const CloseButton: React.FC<React.PropsWithChildren<CloseButtonProps>> = ({
+  additionalClassName,
+  ariaLabel,
+  ...rest
+}) => <CloseButtonPF className={additionalClassName} aria-label={ariaLabel} {...rest} />;
 
 export default CloseButton;

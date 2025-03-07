@@ -5,7 +5,7 @@ import { SecretType, SecretSubFormProps, SecretStringData } from './types';
 import { BasicAuthSubform } from './BasicAuthSubform';
 import { SSHAuthSubform } from './SSHAuthSubform';
 
-export const AuthSecretForm: React.FC<SecretSubFormProps> = ({
+export const AuthSecretForm: React.FC<React.PropsWithChildren<SecretSubFormProps>> = ({
   onChange,
   stringData,
   isCreate,

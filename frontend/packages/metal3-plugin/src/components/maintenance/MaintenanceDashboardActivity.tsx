@@ -6,7 +6,9 @@ import { K8sResourceKind } from '@console/internal/module/k8s';
 import { ActivityProgress } from '@console/shared/src/components/dashboard/activity-card/ActivityItem';
 import { getNodeMaintenanceProgressPercent } from '../../selectors';
 
-const MaintenanceActivity: React.FC<MaintenanceActivityProps> = ({ resource }) => {
+const MaintenanceActivity: React.FC<React.PropsWithChildren<MaintenanceActivityProps>> = ({
+  resource,
+}) => {
   const { t } = useTranslation();
   return (
     <ActivityProgress

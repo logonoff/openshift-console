@@ -4,11 +4,9 @@ import { Base64 } from 'js-base64';
 import { DroppableFileInput } from './DropableFileInput';
 import { OpaqueSecretFormEntryProps } from './types';
 
-export const OpaqueSecretFormEntry: React.FC<OpaqueSecretFormEntryProps> = ({
-  onChange,
-  entry,
-  index,
-}) => {
+export const OpaqueSecretFormEntry: React.FC<React.PropsWithChildren<
+  OpaqueSecretFormEntryProps
+>> = ({ onChange, entry, index }) => {
   const { t } = useTranslation();
 
   const handleValueChange = (fileData: string, isBinary: boolean) => {

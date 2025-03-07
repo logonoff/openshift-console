@@ -25,7 +25,7 @@ type HPAUtilizationFieldProps = {
   type: SupportedMetricTypes;
 };
 
-const HPAUtilizationField: React.FC<HPAUtilizationFieldProps> = ({
+const HPAUtilizationField: React.FC<React.PropsWithChildren<HPAUtilizationFieldProps>> = ({
   disabled,
   hpa,
   label,

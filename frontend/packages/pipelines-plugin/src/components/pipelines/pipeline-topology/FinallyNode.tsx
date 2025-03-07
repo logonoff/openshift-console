@@ -18,7 +18,7 @@ type FinallyNodeProps = {
   element: Node<NodeModel, FinallyNodeModel>;
 };
 
-const FinallyNode: React.FC<FinallyNodeProps> = ({ element }) => {
+const FinallyNode: React.FC<React.PropsWithChildren<FinallyNodeProps>> = ({ element }) => {
   const { task, pipeline, pipelineRun } = element.getData();
   const { width, height } = element.getBounds();
   const nodeCenter = NODE_HEIGHT + NODE_HEIGHT / 2;

@@ -23,7 +23,7 @@ const getRowProps = (obj) => ({
   id: obj.revision,
 });
 
-const HelmReleaseRollbackForm: React.FC<Props> = ({
+const HelmReleaseRollbackForm: React.FC<React.PropsWithChildren<Props>> = ({
   errors,
   handleSubmit,
   handleReset,

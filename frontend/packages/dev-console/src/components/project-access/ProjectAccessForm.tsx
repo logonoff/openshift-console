@@ -25,10 +25,9 @@ type SubjectNamespaceDropdownProps = {
   values: FormikValues;
 };
 
-export const SubjectNamespaceDropdown: React.FC<SubjectNamespaceDropdownProps> = ({
-  name,
-  values,
-}) => {
+export const SubjectNamespaceDropdown: React.FC<React.PropsWithChildren<
+  SubjectNamespaceDropdownProps
+>> = ({ name, values }) => {
   const { t } = useTranslation();
   const arr = name.split('.');
   const showDropdown =
@@ -47,7 +46,7 @@ export const SubjectNamespaceDropdown: React.FC<SubjectNamespaceDropdownProps> =
   );
 };
 
-const ProjectAccessForm: React.FC<ProjectAccessFormProps> = ({
+const ProjectAccessForm: React.FC<React.PropsWithChildren<ProjectAccessFormProps>> = ({
   handleSubmit,
   handleReset,
   isSubmitting,

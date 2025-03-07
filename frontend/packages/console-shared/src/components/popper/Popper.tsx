@@ -73,7 +73,7 @@ type PopperProps = {
 
 const DEFAULT_POPPER_OPTIONS: PopperOptions = {};
 
-const Popper: React.FC<PopperProps> = ({
+const Popper: React.FC<React.PropsWithChildren<PopperProps>> = ({
   children,
   container,
   className,
@@ -192,7 +192,7 @@ const Popper: React.FC<PopperProps> = ({
   ]);
 
   const nodeRefCallback = React.useCallback(
-    (node) => {
+    (node: any) => {
       nodeRef.current = node;
       initialize();
     },

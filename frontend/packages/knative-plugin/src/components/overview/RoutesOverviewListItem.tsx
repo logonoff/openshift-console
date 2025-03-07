@@ -12,7 +12,7 @@ export type RoutesOverviewListItemProps = {
   totalPercent?: string;
 };
 
-const RoutesOverviewListItem: React.FC<RoutesOverviewListItemProps> = ({
+const RoutesOverviewListItem: React.FC<React.PropsWithChildren<RoutesOverviewListItemProps>> = ({
   routeLink: { url, name, namespace, percent },
   totalPercent,
   uniqueRoutes,

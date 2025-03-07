@@ -10,7 +10,9 @@ export type EnvironmentVariablesSectionFormData = {
   };
 };
 
-const EnvironmentVariablesSection: React.FC<{ namespace: string }> = ({ namespace }) => {
+const EnvironmentVariablesSection: React.FC<React.PropsWithChildren<{ namespace: string }>> = ({
+  namespace,
+}) => {
   const { t } = useTranslation();
   const {
     values: {

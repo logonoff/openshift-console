@@ -71,7 +71,7 @@ const dragOperationKafka: EditableDragOperationType = {
 export const getKnativeServingComponentFactory = (
   kind,
   type,
-): React.ComponentType<{ element: GraphElement }> | undefined => {
+): React.ComponentType<React.PropsWithChildren<{ element: GraphElement }>> | undefined => {
   switch (type) {
     case TYPE_KNATIVE_SERVICE:
       return withCreateConnector(
@@ -107,7 +107,7 @@ export const getKnativeServingComponentFactory = (
 export const getKnativeEventingComponentFactory = (
   kind,
   type,
-): React.ComponentType<{ element: GraphElement }> | undefined => {
+): React.ComponentType<React.PropsWithChildren<{ element: GraphElement }>> | undefined => {
   switch (type) {
     case TYPE_EVENT_SOURCE:
       return withEditReviewAccess('patch')(

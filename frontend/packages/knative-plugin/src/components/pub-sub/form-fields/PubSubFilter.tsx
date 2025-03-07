@@ -16,7 +16,7 @@ const formatFilterData = (filters) => {
   return filterPairs;
 };
 
-const PubSubFilter: React.FC = () => {
+const PubSubFilter: React.FC<React.PropsWithChildren<unknown>> = () => {
   const initialValueResources = [['', '']];
   const { setFieldValue, status, values } = useFormikContext<FormikValues>();
   const filters = values.formData?.spec?.filter?.attributes;
@@ -27,7 +27,7 @@ const PubSubFilter: React.FC = () => {
   );
   const { t } = useTranslation();
   const handleNameValuePairs = React.useCallback(
-    ({ nameValuePairs }) => {
+    ({ nameValuePairs }: any) => {
       let updatedNameValuePairs = {};
       _.forEach(nameValuePairs, ([name, value]) => {
         if (value.length) {

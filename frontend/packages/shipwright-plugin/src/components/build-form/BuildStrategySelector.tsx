@@ -15,7 +15,10 @@ type BuildStrategySelectorProps = {
   formType?: string;
 };
 
-const BuildStrategySelector: React.FC<BuildStrategySelectorProps> = ({ namespace, formType }) => {
+const BuildStrategySelector: React.FC<React.PropsWithChildren<BuildStrategySelectorProps>> = ({
+  namespace,
+  formType,
+}) => {
   const { t } = useTranslation();
   const { setFieldValue } = useFormikContext<FormikValues>();
   const [error, setError] = React.useState('');

@@ -44,7 +44,7 @@ export type ViewComponentFactory = (
   kind: ModelKind,
   type: string,
   view?: TopologyViewType,
-) => React.ComponentType<{ element: GraphElement }> | undefined;
+) => React.ComponentType<React.PropsWithChildren<{ element: GraphElement }>> | undefined;
 
 export type TopologyDataModelDepicted = (resource: K8sResourceKind, model: Model) => boolean;
 

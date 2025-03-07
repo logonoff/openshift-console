@@ -141,7 +141,7 @@ const OngoingActivity = connect(mapStateToProps)(
   ),
 );
 
-export const ActivityCard: React.FC = () => {
+export const ActivityCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { obj } = React.useContext(ProjectDashboardContext);
   const projectName = getName(obj);
   const viewEvents = `/k8s/ns/${projectName}/events`;

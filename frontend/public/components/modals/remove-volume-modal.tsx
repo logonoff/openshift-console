@@ -15,7 +15,9 @@ import {
 import { RowVolumeData } from '../volumes-table';
 import { YellowExclamationTriangleIcon } from '@console/shared';
 
-export const RemoveVolumeModal: React.FC<RemoveVolumeModalProps> = (props) => {
+export const RemoveVolumeModal: React.FC<React.PropsWithChildren<RemoveVolumeModalProps>> = (
+  props,
+) => {
   const [inProgress, setInProgress] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
 

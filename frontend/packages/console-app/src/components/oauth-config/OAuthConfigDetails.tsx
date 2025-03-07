@@ -26,7 +26,11 @@ import { IdentityProviders } from './IdentityProviders';
 const tokenDuration = (seconds: number) =>
   _.isNil(seconds) ? '-' : formatPrometheusDuration(seconds * 1000);
 
-export const OAuthConfigDetails: React.FC<OAuthDetailsProps> = ({ obj }: { obj: OAuthKind }) => {
+export const OAuthConfigDetails: React.FC<React.PropsWithChildren<OAuthDetailsProps>> = ({
+  obj,
+}: {
+  obj: OAuthKind;
+}) => {
   const navigate = useNavigate();
   const [isIDPOpen, setIDPOpen] = React.useState(false);
   const { identityProviders, tokenConfig } = obj.spec;

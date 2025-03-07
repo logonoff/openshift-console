@@ -47,7 +47,7 @@ interface ItemSelectorFieldProps {
   emptyStateMessage?: string;
 }
 
-const ItemSelectorField: React.FC<ItemSelectorFieldProps> = ({
+const ItemSelectorField: React.FC<React.PropsWithChildren<ItemSelectorFieldProps>> = ({
   itemList,
   name,
   loadingItems,

@@ -12,7 +12,7 @@ type PageContentsProps = {
   namespace: string;
 };
 
-const PageContents: React.FC<PageContentsProps> = ({ namespace }) => {
+const PageContents: React.FC<React.PropsWithChildren<PageContentsProps>> = ({ namespace }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -33,7 +33,7 @@ const PageContents: React.FC<PageContentsProps> = ({ namespace }) => {
   );
 };
 
-const AdminHelmReleaseListPage: React.FC = () => {
+const AdminHelmReleaseListPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { ns } = useParams();
   return (
     <NamespacedPage variant={NamespacedPageVariants.light} hideApplications>

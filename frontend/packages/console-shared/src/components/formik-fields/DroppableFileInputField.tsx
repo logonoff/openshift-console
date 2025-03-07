@@ -5,7 +5,7 @@ import { DroppableFileInput } from '@console/internal/components/utils/file-inpu
 import { DroppableFileInputFieldProps } from './field-types';
 import { getFieldId } from './field-utils';
 
-const DroppableFileInputField: React.FC<DroppableFileInputFieldProps> = ({
+const DroppableFileInputField: React.FC<React.PropsWithChildren<DroppableFileInputFieldProps>> = ({
   name,
   label,
   helpText,

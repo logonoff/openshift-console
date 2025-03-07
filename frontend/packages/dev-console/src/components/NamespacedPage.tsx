@@ -19,7 +19,7 @@ export interface NamespacedPageProps {
   toolbar?: React.ReactNode;
 }
 
-const NamespacedPage: React.FC<NamespacedPageProps> = ({
+const NamespacedPage: React.FC<React.PropsWithChildren<NamespacedPageProps>> = ({
   children,
   disabled,
   onNamespaceChange,

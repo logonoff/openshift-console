@@ -13,7 +13,7 @@ import BuildRunDetailsTab from './BuildRunDetailsTab';
 import BuildRunEventsTab from './BuildRunEventsTab';
 import BuildRunLogsTab from './BuildRunLogsTab';
 
-const BuildRunDetailsPage: React.FC<DetailsPageProps> = (props) => {
+const BuildRunDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const customActionMenu = (_, buildRun) => {
     const kindReference = referenceFor(buildRun);
     const context = { [kindReference]: buildRun };

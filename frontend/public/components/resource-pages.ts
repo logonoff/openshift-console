@@ -81,7 +81,7 @@ const addDynamicResourcePage = (
 };
 
 type ResourceMapKey = GroupVersionKind | string;
-type ResourceMapValue = () => Promise<React.ComponentType<any>>;
+type ResourceMapValue = () => Promise<React.ComponentType<React.PropsWithChildren<any>>>;
 type DynamicResourcePage = DynamicResourceListPage | DynamicResourceDetailsPage;
 
 export const baseDetailsPages = ImmutableMap<ResourceMapKey, ResourceMapValue>()

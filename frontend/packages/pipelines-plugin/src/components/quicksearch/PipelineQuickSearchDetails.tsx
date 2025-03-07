@@ -35,10 +35,9 @@ import PipelineQuickSearchVersionDropdown from './PipelineQuickSearchVersionDrop
 
 import './PipelineQuickSearchDetails.scss';
 
-const PipelineQuickSearchDetails: React.FC<QuickSearchDetailsRendererProps> = ({
-  selectedItem,
-  closeModal,
-}) => {
+const PipelineQuickSearchDetails: React.FC<React.PropsWithChildren<
+  QuickSearchDetailsRendererProps
+>> = ({ selectedItem, closeModal }) => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
   const [selectedVersion, setSelectedVersion] = React.useState<string>();
@@ -54,7 +53,7 @@ const PipelineQuickSearchDetails: React.FC<QuickSearchDetailsRendererProps> = ({
   const [artifactHubDataLoaded, setArtifactHubDataLoaded] = React.useState<boolean>(false);
 
   const onChangeVersion = React.useCallback(
-    (key) => {
+    (key: any) => {
       setSelectedVersion(key);
       if (isArtifactHubTask(selectedItem)) {
         getArtifactHubTaskDetails(selectedItem, key)

@@ -15,7 +15,7 @@ export const useNavExtensionsForPerspective = (
     [allPerspectives, perspective],
   );
   const isExtensionForCurrentPerspective = React.useCallback(
-    (extension) =>
+    (extension: any) =>
       perspective === extension.properties.perspective ||
       (!extension.properties.perspective && isDefaultPerspective),
     [isDefaultPerspective, perspective],

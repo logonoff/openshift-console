@@ -229,7 +229,7 @@ const BuildMetrics = ({ obj }) => {
   ) : null;
 };
 
-const OpenShiftPipelines: React.FC = () => {
+const OpenShiftPipelines: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const text = t('public~OpenShift Pipelines based on Tekton');
   return isUpstream() || isManaged() ? (
@@ -239,7 +239,9 @@ const OpenShiftPipelines: React.FC = () => {
   );
 };
 
-export const PipelineBuildStrategyAlert: React.FC<BuildsDetailsProps> = () => {
+export const PipelineBuildStrategyAlert: React.FC<React.PropsWithChildren<
+  BuildsDetailsProps
+>> = () => {
   const { t } = useTranslation();
   return (
     <Alert
@@ -261,7 +263,9 @@ export const PipelineBuildStrategyAlert: React.FC<BuildsDetailsProps> = () => {
   );
 };
 
-export const BuildsDetails: React.SFC<BuildsDetailsProps> = ({ obj: build }) => {
+export const BuildsDetails: React.FC<React.PropsWithChildren<BuildsDetailsProps>> = ({
+  obj: build,
+}) => {
   const { logSnippet, message, startTimestamp, completionTimestamp } = build.status;
   const triggeredBy = _.map(build.spec.triggeredBy, 'message').join(', ');
   const hasPipeline = build.spec.strategy.type === BuildStrategyType.JenkinsPipeline;
@@ -405,7 +409,7 @@ export const BuildEnvironmentComponent = (props) => {
   );
 };
 
-export const BuildsDetailsPage: React.SFC = (props) => {
+export const BuildsDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const prometheusIsAvailable = usePrometheusGate();
   return (
     <DetailsPage
@@ -433,7 +437,9 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const BuildsTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj }) => {
+const BuildsTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<K8sResourceKind>>> = ({
+  obj,
+}) => {
   return (
     <>
       <TableData className={tableColumnClasses[0]}>
@@ -465,7 +471,7 @@ const BuildsTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj }) => 
   );
 };
 
-export const BuildsList: React.SFC = (props) => {
+export const BuildsList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const BuildsTableHeader = () => {
     return [
@@ -525,7 +531,7 @@ export const buildPhase = (build) => build.status.phase;
 
 export const allPhases = ['New', 'Pending', 'Running', 'Complete', 'Failed', 'Error', 'Cancelled'];
 
-export const BuildsPage: React.SFC<BuildsPageProps> = (props) => {
+export const BuildsPage: React.FC<React.PropsWithChildren<BuildsPageProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <ListPage

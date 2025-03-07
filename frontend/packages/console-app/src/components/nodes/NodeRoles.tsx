@@ -6,7 +6,7 @@ type NodeRolesProps = {
   node?: NodeKind;
 };
 
-const NodeRoles: React.FC<NodeRolesProps> = ({ node }) => (
+const NodeRoles: React.FC<React.PropsWithChildren<NodeRolesProps>> = ({ node }) => (
   <>{getNodeRoles(node).sort().join(', ') || DASH}</>
 );
 

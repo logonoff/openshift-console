@@ -80,7 +80,7 @@ const getRowVolumeData = (resource: K8sResourceKind): RowVolumeData[] => {
   return data;
 };
 
-const ContainerLink: React.FC<ContainerLinkProps> = ({ name, pod }) => (
+const ContainerLink: React.FC<React.PropsWithChildren<ContainerLinkProps>> = ({ name, pod }) => (
   <span className="co-resource-item co-resource-item--inline">
     <ResourceIcon kind="Container" />
     <Link to={`/k8s/ns/${pod.metadata.namespace}/pods/${pod.metadata.name}/containers/${name}`}>

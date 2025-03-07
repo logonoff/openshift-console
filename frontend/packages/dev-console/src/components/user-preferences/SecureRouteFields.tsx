@@ -23,7 +23,7 @@ import {
   usePreferredRoutingOptions,
 } from './usePreferredRoutingOptions';
 
-const SecureRouteFields: React.FC = () => {
+const SecureRouteFields: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
   const [
@@ -96,7 +96,7 @@ const SecureRouteFields: React.FC = () => {
   };
 
   const onTLSTerminationSelect = React.useCallback(
-    (_, selection: string) => {
+    (_: any, selection: string) => {
       if (typeof selection === 'undefined') {
         return;
       }
@@ -115,7 +115,7 @@ const SecureRouteFields: React.FC = () => {
   );
 
   const onInsecureTrafficSelect = React.useCallback(
-    (_, selection: string) => {
+    (_: any, selection: string) => {
       setPreferredRoutingOptions({
         secure,
         tlsTermination,

@@ -20,7 +20,9 @@ import { ContainerSelector } from '../container-selector';
 import { PVCDropdown } from '../utils/pvc-dropdown';
 import { PodTemplate, PersistentVolumeClaimKind, Patch } from '../../module/k8s/types';
 
-export const AttachStorageForm: React.FC<AttachStorageFormProps> = (props) => {
+export const AttachStorageForm: React.FC<React.PropsWithChildren<AttachStorageFormProps>> = (
+  props,
+) => {
   const [obj, setObj] = React.useState(null);
   const [inProgress, setInProgress] = React.useState(false);
   const [useContainerSelector, setUseContainerSelector] = React.useState(false);

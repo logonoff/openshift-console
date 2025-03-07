@@ -4,7 +4,7 @@ import { CheckIcon } from '@patternfly/react-icons/dist/esm/icons/check-icon';
 import CloseButton from '../close-button/CloseButton';
 import { ActionGroupWithIconsProps } from './form-utils-types';
 
-const ActionGroupWithIcons: React.FC<ActionGroupWithIconsProps> = ({
+const ActionGroupWithIcons: React.FC<React.PropsWithChildren<ActionGroupWithIconsProps>> = ({
   onSubmit,
   onClose,
   isDisabled,

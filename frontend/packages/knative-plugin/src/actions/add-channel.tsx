@@ -5,7 +5,9 @@ import { Action } from '@console/dynamic-plugin-sdk';
 import { UNASSIGNED_KEY } from '@console/topology/src/const';
 import { ChannelIcon } from '../utils/icons';
 
-const EventChannelIcon: React.FC = () => <ChannelIcon title="Eventing Channel" />;
+const EventChannelIcon: React.FC<React.PropsWithChildren<unknown>> = () => (
+  <ChannelIcon title="Eventing Channel" />
+);
 
 export const AddChannelAction = (
   namespace: string,

@@ -25,7 +25,9 @@ const { common } = Kebab.factory;
 const menuActions = [...Kebab.getExtensionsActionsForKind(MachineAutoscalerModel), ...common];
 const machineAutoscalerReference = referenceForModel(MachineAutoscalerModel);
 
-const MachineAutoscalerTargetLink: React.FC<MachineAutoscalerTargetLinkProps> = ({ obj }) => {
+const MachineAutoscalerTargetLink: React.FC<React.PropsWithChildren<
+  MachineAutoscalerTargetLinkProps
+>> = ({ obj }) => {
   const targetAPIVersion: string = _.get(obj, 'spec.scaleTargetRef.apiVersion');
   const targetKind: string = _.get(obj, 'spec.scaleTargetRef.kind');
   const targetName: string = _.get(obj, 'spec.scaleTargetRef.name');
@@ -49,7 +51,9 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const MachineAutoscalerTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj }) => {
+const MachineAutoscalerTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<K8sResourceKind>
+>> = ({ obj }) => {
   return (
     <>
       <TableData className={tableColumnClasses[0]}>
@@ -79,7 +83,7 @@ const MachineAutoscalerTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({
   );
 };
 
-const MachineAutoscalerList: React.FC = (props) => {
+const MachineAutoscalerList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const MachineAutoscalerTableHeader = () => {
     return [
@@ -132,7 +136,9 @@ const MachineAutoscalerList: React.FC = (props) => {
   );
 };
 
-const MachineAutoscalerDetails: React.FC<MachineAutoscalerDetailsProps> = ({ obj }) => {
+const MachineAutoscalerDetails: React.FC<React.PropsWithChildren<
+  MachineAutoscalerDetailsProps
+>> = ({ obj }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -157,7 +163,9 @@ const MachineAutoscalerDetails: React.FC<MachineAutoscalerDetailsProps> = ({ obj
   );
 };
 
-export const MachineAutoscalerPage: React.FC<MachineAutoscalerPageProps> = (props) => (
+export const MachineAutoscalerPage: React.FC<React.PropsWithChildren<
+  MachineAutoscalerPageProps
+>> = (props) => (
   <ListPage
     {...props}
     ListComponent={MachineAutoscalerList}
@@ -166,7 +174,7 @@ export const MachineAutoscalerPage: React.FC<MachineAutoscalerPageProps> = (prop
   />
 );
 
-export const MachineAutoscalerDetailsPage: React.FC = (props) => (
+export const MachineAutoscalerDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => (
   <DetailsPage
     {...props}
     menuActions={menuActions}

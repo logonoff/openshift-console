@@ -24,7 +24,7 @@ const connectorTypeToTitleKey = (type: string): string => {
   }
 };
 
-const TopologyEdgePanel: React.FC<TopologyEdgePanelProps> = ({ edge }) => {
+const TopologyEdgePanel: React.FC<React.PropsWithChildren<TopologyEdgePanelProps>> = ({ edge }) => {
   const { t } = useTranslation();
   const nodes = edge
     .getController()

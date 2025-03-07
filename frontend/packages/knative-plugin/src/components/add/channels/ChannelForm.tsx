@@ -32,7 +32,7 @@ interface OwnProps {
   channels: ChannelListProps;
 }
 
-const ChannelForm: React.FC<FormikProps<FormikValues> & OwnProps> = ({
+const ChannelForm: React.FC<React.PropsWithChildren<FormikProps<FormikValues> & OwnProps>> = ({
   errors,
   handleSubmit,
   handleReset,

@@ -13,7 +13,7 @@ type RemoveNodeDecoratorProps = {
   removeCallback?: () => void;
 };
 
-const RemoveNodeDecorator: React.FC<RemoveNodeDecoratorProps> = ({
+const RemoveNodeDecorator: React.FC<React.PropsWithChildren<RemoveNodeDecoratorProps>> = ({
   content,
   x,
   y,

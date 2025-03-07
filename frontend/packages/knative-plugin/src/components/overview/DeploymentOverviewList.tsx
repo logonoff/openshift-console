@@ -8,7 +8,9 @@ type DeploymentOverviewListProps = {
   resource: K8sResourceKind;
 };
 
-const DeploymentOverviewList: React.FC<DeploymentOverviewListProps> = ({ resource }) => {
+const DeploymentOverviewList: React.FC<React.PropsWithChildren<DeploymentOverviewListProps>> = ({
+  resource,
+}) => {
   const { t } = useTranslation();
   const { pods } = usePodsForRevisions(resource.metadata.uid, resource.metadata.namespace);
   const { obj } = pods?.[0] || {};

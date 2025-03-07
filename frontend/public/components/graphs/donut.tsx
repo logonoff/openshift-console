@@ -15,7 +15,7 @@ import { PrometheusGraph, PrometheusGraphLink } from './prometheus-graph';
 import { useRefWidth } from '../utils';
 import { DataPoint } from '.';
 
-export const DonutChart: React.FC<DonutChartProps> = ({
+export const DonutChart: React.FC<React.PropsWithChildren<DonutChartProps>> = ({
   data,
   query = '',
   title,

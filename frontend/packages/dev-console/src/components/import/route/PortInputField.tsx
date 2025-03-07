@@ -8,7 +8,9 @@ interface PortInputFieldProps {
   defaultPort: number;
 }
 
-const PortInputField: React.FC<PortInputFieldProps> = ({ defaultPort }) => {
+const PortInputField: React.FC<React.PropsWithChildren<PortInputFieldProps>> = ({
+  defaultPort,
+}) => {
   const { t } = useTranslation();
   const {
     values: {

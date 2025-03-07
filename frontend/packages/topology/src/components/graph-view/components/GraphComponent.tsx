@@ -15,7 +15,7 @@ type GraphComponentProps = React.ComponentProps<typeof BaseGraphComponent> & {
 const DRAG_ACTIVE_CLASS = 'odc-m-drag-active';
 const VALID_DROP_CLASS = 'odc-m-valid-drop-target';
 
-const GraphComponent: React.FC<GraphComponentProps> = (props) => {
+const GraphComponent: React.FC<React.PropsWithChildren<GraphComponentProps>> = (props) => {
   const { dragInProgress, dragEditInProgress, hasDropTarget, dragCreate } = props;
   const graphClasses = classNames('odc-graph', { 'odc-m-drag-create': dragCreate });
   const controller = props.element.getController();

@@ -8,7 +8,7 @@ import { RedExclamationCircleIcon } from '../status';
 import { SingleTypeaheadFieldProps, SelectInputOption } from './field-types';
 import { getFieldId } from './field-utils';
 
-const SingleTypeaheadField: React.FC<SingleTypeaheadFieldProps> = ({
+const SingleTypeaheadField: React.FC<React.PropsWithChildren<SingleTypeaheadFieldProps>> = ({
   name,
   label,
   ariaLabel,

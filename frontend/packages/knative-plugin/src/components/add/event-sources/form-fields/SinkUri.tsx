@@ -9,7 +9,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { InputField, getFieldId } from '@console/shared';
 
-const SinkUri: React.FC = () => {
+const SinkUri: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <FormGroup fieldId={getFieldId('sink-name', 'uri')} isRequired>

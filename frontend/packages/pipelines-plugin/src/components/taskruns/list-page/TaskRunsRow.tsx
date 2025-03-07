@@ -25,7 +25,10 @@ import './TaskRunsRow.scss';
 const taskRunsReference = referenceForModel(TaskRunModel);
 const pipelineReference = referenceForModel(PipelineModel);
 
-const TaskRunsRow: React.FC<RowFunctionArgs<TaskRunKind>> = ({ obj, customData }) => {
+const TaskRunsRow: React.FC<React.PropsWithChildren<RowFunctionArgs<TaskRunKind>>> = ({
+  obj,
+  customData,
+}) => {
   const { t } = useTranslation();
   const { selectedColumns } = customData;
   return (

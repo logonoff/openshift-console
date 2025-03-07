@@ -9,7 +9,7 @@ interface PVCDropdownProps {
   namespace: string;
 }
 
-const PVCDropdown: React.FC<PVCDropdownProps> = ({ name, namespace }) => {
+const PVCDropdown: React.FC<React.PropsWithChildren<PVCDropdownProps>> = ({ name, namespace }) => {
   const { t } = useTranslation();
   const autocompleteFilter = (strText, item): boolean => fuzzy(strText, item?.props?.name);
   const resources = [

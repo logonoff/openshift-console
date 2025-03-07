@@ -27,7 +27,7 @@ enum AvailabilityValue {
   SINGLE_NAMESPACE = '1',
 }
 
-export const CreateCatalogSource: React.FC = withHandlePromise(
+export const CreateCatalogSource: React.FC<React.PropsWithChildren<unknown>> = withHandlePromise(
   ({ handlePromise, inProgress, errorMessage }) => {
     const [availability, setAvailability] = React.useState(AvailabilityValue.ALL_NAMESPACES);
     const [image, setImage] = React.useState('');

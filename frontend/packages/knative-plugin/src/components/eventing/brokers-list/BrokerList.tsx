@@ -4,7 +4,7 @@ import { Table, TableProps } from '@console/internal/components/factory';
 import BrokerHeaders from './BrokerHeaders';
 import BrokerRow from './BrokerRow';
 
-const BrokerList: React.FC<TableProps> = (props) => {
+const BrokerList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table

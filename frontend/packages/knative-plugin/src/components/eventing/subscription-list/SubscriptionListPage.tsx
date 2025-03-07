@@ -6,7 +6,9 @@ import { referenceForModel } from '@console/internal/module/k8s';
 import { EventingSubscriptionModel } from '../../../models';
 import SubscriptionList from './SubscriptionList';
 
-const SubscriptionListPage: React.FC<React.ComponentProps<typeof ListPage>> = (props) => {
+const SubscriptionListPage: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof ListPage>
+>> = (props) => {
   return (
     <>
       <Helmet>

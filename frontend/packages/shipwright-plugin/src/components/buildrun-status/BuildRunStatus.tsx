@@ -59,7 +59,9 @@ export const getBuildRunStatusProps = (buildRun: BuildRun): StatusProps => {
   };
 };
 
-const BuildRunStatus: React.FC<{ buildRun: BuildRun }> = ({ buildRun }) => {
+const BuildRunStatus: React.FC<React.PropsWithChildren<{ buildRun: BuildRun }>> = ({
+  buildRun,
+}) => {
   const status = getBuildRunStatus(buildRun);
   const failedCondition = getSucceededCondition(buildRun);
   return (

@@ -25,7 +25,7 @@ type FilterDropdownProps = {
   opened?: boolean; // Use only for testing
 };
 
-const FilterDropdown: React.FC<FilterDropdownProps> = ({
+const FilterDropdown: React.FC<React.PropsWithChildren<FilterDropdownProps>> = ({
   filters,
   viewType,
   supportedFilters,

@@ -43,7 +43,7 @@ const getRowProps = (obj) => ({
   id: obj.deviceID,
 });
 
-const DiskRow: React.FC<RowFunctionArgs<DiskMetadata>> = ({ obj }) => (
+const DiskRow: React.FC<React.PropsWithChildren<RowFunctionArgs<DiskMetadata>>> = ({ obj }) => (
   <>
     <TableData className={tableColumnClasses[0]}>{obj.path}</TableData>
     <TableData className={tableColumnClasses[1]}>{obj.status.state}</TableData>
@@ -56,7 +56,7 @@ const DiskRow: React.FC<RowFunctionArgs<DiskMetadata>> = ({ obj }) => (
   </>
 );
 
-const DisksList: React.FC<TableProps> = (props) => {
+const DisksList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
 
   const diskHeader = () => [
@@ -114,7 +114,7 @@ const DisksList: React.FC<TableProps> = (props) => {
   );
 };
 
-export const NodesDisksListPage: React.FC<NodesDisksListPageProps> = ({
+export const NodesDisksListPage: React.FC<React.PropsWithChildren<NodesDisksListPageProps>> = ({
   obj,
   ListComponent = undefined,
 }) => {
@@ -227,5 +227,5 @@ export const NodesDisksListPage: React.FC<NodesDisksListPageProps> = ({
 
 export type NodesDisksListPageProps = {
   obj: NodeKind;
-  ListComponent: React.ComponentType;
+  ListComponent: React.ComponentType<React.PropsWithChildren<unknown>>;
 };

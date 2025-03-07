@@ -27,7 +27,9 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const TemplateInstanceTableRow: React.FC<RowFunctionArgs<TemplateInstanceKind>> = ({ obj }) => {
+const TemplateInstanceTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<TemplateInstanceKind>
+>> = ({ obj }) => {
   return (
     <>
       <TableData className={classNames(tableColumnClasses[0], 'co-break-word')}>
@@ -50,7 +52,7 @@ const TemplateInstanceTableRow: React.FC<RowFunctionArgs<TemplateInstanceKind>> 
   );
 };
 
-export const TemplateInstanceList: React.SFC = (props) => {
+export const TemplateInstanceList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
 
   const TemplateInstanceTableHeader = () => {
@@ -93,7 +95,9 @@ export const TemplateInstanceList: React.SFC = (props) => {
 
 const allStatuses = ['Ready', 'Not Ready', 'Failed'];
 
-export const TemplateInstancePage: React.SFC<TemplateInstancePageProps> = (props) => {
+export const TemplateInstancePage: React.FC<React.PropsWithChildren<TemplateInstancePageProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
 
   const filters = [
@@ -120,7 +124,9 @@ export const TemplateInstancePage: React.SFC<TemplateInstancePageProps> = (props
   );
 };
 
-const TemplateInstanceDetails: React.SFC<TemplateInstanceDetailsProps> = ({ obj }) => {
+const TemplateInstanceDetails: React.FC<React.PropsWithChildren<TemplateInstanceDetailsProps>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   const status = getTemplateInstanceStatus(obj);
   const secretName = _.get(obj, 'spec.secret.name');
@@ -198,7 +204,7 @@ const TemplateInstanceDetails: React.SFC<TemplateInstanceDetailsProps> = ({ obj 
   );
 };
 
-export const TemplateInstanceDetailsPage: React.SFC = (props) => (
+export const TemplateInstanceDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => (
   <DetailsPage
     {...props}
     kind="TemplateInstance"

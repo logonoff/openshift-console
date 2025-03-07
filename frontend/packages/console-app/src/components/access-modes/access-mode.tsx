@@ -28,7 +28,9 @@ export const getPVCAccessModes = (resource: PersistentVolumeClaimKind, key: stri
     [],
   );
 
-export const AccessModeSelector: React.FC<AccessModeSelectorProps> = (props) => {
+export const AccessModeSelector: React.FC<React.PropsWithChildren<AccessModeSelectorProps>> = (
+  props,
+) => {
   const {
     className,
     pvcResource,

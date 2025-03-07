@@ -40,7 +40,7 @@ const usePipelineAccessReview = (): boolean => {
   return canListPipelines && canCreatePipelines;
 };
 
-const PipelineSection: React.FC<PipelineSectionProps> = ({
+const PipelineSection: React.FC<React.PropsWithChildren<PipelineSectionProps>> = ({
   flags,
   builderImages,
   existingPipeline,

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Alert } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
 
-const ConsolePluginWarning: React.FC<ConsolePluginWarningProps> = ({
+const ConsolePluginWarning: React.FC<React.PropsWithChildren<ConsolePluginWarningProps>> = ({
   enabled,
   previouslyEnabled,
   trusted,

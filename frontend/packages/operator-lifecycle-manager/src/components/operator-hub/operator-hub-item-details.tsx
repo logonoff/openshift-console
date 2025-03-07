@@ -49,11 +49,9 @@ const levels = [
   'Auto Pilot',
 ];
 
-const OperatorHubItemCustomizedHint: React.FC<OperatorHubItemCustomizedHintProps> = ({
-  title,
-  body,
-  footer,
-}) => {
+const OperatorHubItemCustomizedHint: React.FC<React.PropsWithChildren<
+  OperatorHubItemCustomizedHintProps
+>> = ({ title, body, footer }) => {
   return (
     <Hint className="pf-v6-u-mb-sm">
       <HintTitle className="pf-v6-u-font-size-md">{title}</HintTitle>
@@ -63,7 +61,9 @@ const OperatorHubItemCustomizedHint: React.FC<OperatorHubItemCustomizedHintProps
   );
 };
 
-const CapabilityLevel: React.FC<CapabilityLevelProps> = ({ selectedChannelCapabilityLevel }) => {
+const CapabilityLevel: React.FC<React.PropsWithChildren<CapabilityLevelProps>> = ({
+  selectedChannelCapabilityLevel,
+}) => {
   const { t } = useTranslation();
   const capabilityLevelIndex = levels.indexOf(selectedChannelCapabilityLevel);
 
@@ -97,7 +97,7 @@ type CapabilityLevelProps = {
   selectedChannelCapabilityLevel: string;
 };
 
-const InstalledHint: React.FC<OperatorHubItemDetailsHintProps> = ({
+const InstalledHint: React.FC<React.PropsWithChildren<OperatorHubItemDetailsHintProps>> = ({
   latestVersion,
   subscription,
   installedChannel,
@@ -144,7 +144,9 @@ const InstalledHint: React.FC<OperatorHubItemDetailsHintProps> = ({
   );
 };
 
-const InstallingHint: React.FC<OperatorHubItemDetailsHintProps> = ({ subscription }) => {
+const InstallingHint: React.FC<React.PropsWithChildren<OperatorHubItemDetailsHintProps>> = ({
+  subscription,
+}) => {
   const { t } = useTranslation();
   const [installedCSV] = useK8sWatchResource<ClusterServiceVersionKind>(
     subscription?.status?.installedCSV
@@ -180,7 +182,9 @@ const InstallingHint: React.FC<OperatorHubItemDetailsHintProps> = ({ subscriptio
   );
 };
 
-const OperatorHubItemDetailsHint: React.FC<OperatorHubItemDetailsHintProps> = (props) => {
+const OperatorHubItemDetailsHint: React.FC<React.PropsWithChildren<
+  OperatorHubItemDetailsHintProps
+>> = (props) => {
   const { t } = useTranslation();
   const { installed, isInstalling, catalogSource } = props;
   if (isInstalling) {
@@ -232,13 +236,9 @@ const OperatorHubItemDetailsHint: React.FC<OperatorHubItemDetailsHintProps> = (p
   return null;
 };
 
-export const OperatorHubItemDetails: React.FC<OperatorHubItemDetailsProps> = ({
-  item,
-  updateChannel,
-  setUpdateChannel,
-  updateVersion,
-  setUpdateVersion,
-}) => {
+export const OperatorHubItemDetails: React.FC<React.PropsWithChildren<
+  OperatorHubItemDetailsProps
+>> = ({ item, updateChannel, setUpdateChannel, updateVersion, setUpdateVersion }) => {
   const { t } = useTranslation();
   const {
     catalogSource,

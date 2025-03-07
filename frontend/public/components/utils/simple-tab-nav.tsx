@@ -4,7 +4,7 @@ import { Tabs, Tab as PfTab, TabTitleText } from '@patternfly/react-core';
 
 export type Tab = {
   name: string;
-  component: React.FunctionComponent<{}> | React.ReactElement;
+  component: React.FunctionComponent<React.PropsWithChildren<{}>> | React.ReactElement;
 };
 
 type SimpleTabNavProps = {
@@ -19,7 +19,7 @@ type SimpleTabNavProps = {
   noInset?: boolean;
 };
 
-export const SimpleTabNav: React.FC<SimpleTabNavProps> = ({
+export const SimpleTabNav: React.FC<React.PropsWithChildren<SimpleTabNavProps>> = ({
   onClickTab,
   selectedTab,
   tabProps = null,
@@ -45,7 +45,10 @@ export const SimpleTabNav: React.FC<SimpleTabNavProps> = ({
         {tabs.map((tab) => {
           const content =
             !React.isValidElement(tab.component) && !Array.isArray(tab.component)
-              ? React.createElement(tab.component as React.FunctionComponent, tabProps)
+              ? React.createElement(
+                  tab.component as React.FunctionComponent<React.PropsWithChildren<unknown>>,
+                  tabProps,
+                )
               : tab.component;
 
           return (

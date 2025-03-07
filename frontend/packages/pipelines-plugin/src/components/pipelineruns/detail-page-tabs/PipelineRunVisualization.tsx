@@ -10,7 +10,9 @@ type PipelineRunVisualizationProps = {
   pipelineRun: PipelineRunKind;
 };
 
-const PipelineRunVisualization: React.FC<PipelineRunVisualizationProps> = ({ pipelineRun }) => {
+const PipelineRunVisualization: React.FC<React.PropsWithChildren<
+  PipelineRunVisualizationProps
+>> = ({ pipelineRun }) => {
   const [taskRuns, taskRunsLoaded] = useTaskRuns(
     pipelineRun?.metadata?.namespace,
     pipelineRun?.metadata?.name,

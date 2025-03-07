@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const ListPageBody: React.FC = ({ children }) => {
+const ListPageBody: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   return <div className="co-m-pane__body co-m-pane__body--no-top-margin">{children}</div>;
 };
 

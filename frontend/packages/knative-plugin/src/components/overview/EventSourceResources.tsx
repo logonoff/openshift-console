@@ -25,7 +25,9 @@ type OwnedEventSourcesProps = {
   eventSources: K8sResourceKind[];
 };
 
-export const EventSourceTarget: React.FC<EventSourceTargetProps> = ({ obj }) => {
+export const EventSourceTarget: React.FC<React.PropsWithChildren<EventSourceTargetProps>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   const {
     metadata: { namespace },
@@ -70,9 +72,9 @@ export const EventSourceTarget: React.FC<EventSourceTargetProps> = ({ obj }) => 
   );
 };
 
-export const EventSourceDeployments: React.FC<EventSourceDeploymentsProps> = ({
-  deploymentObj,
-}) => {
+export const EventSourceDeployments: React.FC<React.PropsWithChildren<
+  EventSourceDeploymentsProps
+>> = ({ deploymentObj }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -94,7 +96,9 @@ export const EventSourceDeployments: React.FC<EventSourceDeploymentsProps> = ({
   );
 };
 
-export const OwnedEventSources: React.FC<OwnedEventSourcesProps> = ({ eventSources }) => (
+export const OwnedEventSources: React.FC<React.PropsWithChildren<OwnedEventSourcesProps>> = ({
+  eventSources,
+}) => (
   <>
     {eventSources?.length > 0
       ? eventSources.map((source) => (

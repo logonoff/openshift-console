@@ -24,7 +24,7 @@ import useClusterConfigurationItems from './useClusterConfigurationItems';
 
 import './ClusterConfigurationPage.scss';
 
-const ClusterConfigurationPage: React.FC = () => {
+const ClusterConfigurationPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const params = useParams();
 

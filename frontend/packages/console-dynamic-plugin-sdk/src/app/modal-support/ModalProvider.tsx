@@ -3,7 +3,9 @@ import * as React from 'react';
 type CloseModal = () => void;
 
 type UnknownProps = { [key: string]: unknown };
-export type ModalComponent<P = UnknownProps> = React.FC<P & { closeModal: CloseModal }>;
+export type ModalComponent<P = UnknownProps> = React.FC<
+  React.PropsWithChildren<P & { closeModal: CloseModal }>
+>;
 
 export type LaunchModal = <P = UnknownProps>(component: ModalComponent<P>, extraProps: P) => void;
 
@@ -17,7 +19,7 @@ export const ModalContext = React.createContext<ModalContextValue>({
   closeModal: () => {},
 });
 
-export const ModalProvider: React.FC = ({ children }) => {
+export const ModalProvider: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   const [isOpen, setOpen] = React.useState(false);
   const [Component, setComponent] = React.useState<ModalComponent>();
   const [componentProps, setComponentProps] = React.useState({});

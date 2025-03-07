@@ -67,7 +67,7 @@ export const getURLSearchParams = () => {
   return all;
 };
 
-export const ExternalLink: React.FC<ExternalLinkProps> = ({
+export const ExternalLink: React.FC<React.PropsWithChildren<ExternalLinkProps>> = ({
   children,
   href,
   text,
@@ -91,7 +91,7 @@ export const ExternalLink: React.FC<ExternalLinkProps> = ({
 
 // Opens link with copy-to-clipboard
 
-export const ExternalLinkWithCopy: React.FC<ExternalLinkWithCopyProps> = ({
+export const ExternalLinkWithCopy: React.FC<React.PropsWithChildren<ExternalLinkWithCopyProps>> = ({
   link,
   text,
   additionalClassName,
@@ -155,9 +155,9 @@ export const ExternalLinkWithCopy: React.FC<ExternalLinkWithCopyProps> = ({
 };
 
 // Open links in a new window and set noopener/noreferrer.
-export const LinkifyExternal: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <Linkify properties={{ target: '_blank', rel: 'noopener noreferrer' }}>{children}</Linkify>
-);
+export const LinkifyExternal: React.FC<React.PropsWithChildren<{ children: React.ReactNode }>> = ({
+  children,
+}) => <Linkify properties={{ target: '_blank', rel: 'noopener noreferrer' }}>{children}</Linkify>;
 LinkifyExternal.displayName = 'LinkifyExternal';
 
 type ExternalLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {

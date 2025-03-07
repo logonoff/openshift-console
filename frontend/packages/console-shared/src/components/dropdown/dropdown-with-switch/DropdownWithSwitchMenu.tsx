@@ -9,7 +9,7 @@ import {
 } from '@patternfly/react-core';
 import DropdownWithSwitchGroups, { DropdownWithSwitchGroup } from './DropdownWithSwitchGroups';
 
-const DropdownWithSwitchMenu: React.FC<DropdownWithSwitchMenuProps> = ({
+const DropdownWithSwitchMenu: React.FC<React.PropsWithChildren<DropdownWithSwitchMenuProps>> = ({
   menuRef,
   onSelect,
   options,

@@ -11,11 +11,11 @@ import TopologySideBarTabSection from '../side-bar/TopologySideBarTabSection';
 import { NetworkingOverview } from './NetworkingOverview';
 import { getDataFromAdapter } from './utils';
 
-const NetworkTabSection: React.FC<{
+const NetworkTabSection: React.FC<React.PropsWithChildren<{
   networkAdapter: {
     resource: K8sResourceCommon;
   };
-}> = ({ networkAdapter }) => {
+}>> = ({ networkAdapter }) => {
   return networkAdapter ? (
     <TopologySideBarTabSection>
       <NetworkingOverview obj={networkAdapter.resource} />

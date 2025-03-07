@@ -17,7 +17,7 @@ import { volumeSnapshotStatus } from '../../status';
 
 const { editYaml, events } = navFactory;
 
-const Details: React.FC<DetailsProps> = ({ obj }) => {
+const Details: React.FC<React.PropsWithChildren<DetailsProps>> = ({ obj }) => {
   const { t } = useTranslation();
   const { deletionPolicy, driver } = obj?.spec;
   const { volumeHandle, snapshotHandle } = obj?.spec?.source || {};
@@ -83,7 +83,9 @@ const Details: React.FC<DetailsProps> = ({ obj }) => {
   );
 };
 
-const VolumeSnapshotContentDetailsPage: React.FC<DetailsPageProps> = (props) => {
+const VolumeSnapshotContentDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (
+  props,
+) => {
   const pages = [
     {
       href: '',

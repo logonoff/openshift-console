@@ -7,7 +7,10 @@ type DetailPropertyListItemProps = {
   title?: string;
 };
 
-const DetailPropertyListItem: React.FC<DetailPropertyListItemProps> = ({ title, children }) => (
+const DetailPropertyListItem: React.FC<React.PropsWithChildren<DetailPropertyListItemProps>> = ({
+  title,
+  children,
+}) => (
   <ListItem>
     {title && <span className="co-detail-property-list__item-title">{title}: </span>}
     {children}

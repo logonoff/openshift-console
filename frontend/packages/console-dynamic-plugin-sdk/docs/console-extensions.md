@@ -256,7 +256,7 @@ Adds a new inventory item into cluster overview page.
 
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
-| `component` | `CodeRef<React.ComponentType<{}>>` | no | The component to be rendered. |
+| `component` | `CodeRef<React.ComponentType<{ children?: React.ReactNode \| undefined; }>>` | no | The component to be rendered. |
 
 ---
 
@@ -273,7 +273,7 @@ Adds a new cluster overview multiline utilization item.
 | `title` | `string` | no | The title of the utilization item. |
 | `getUtilizationQueries` | `CodeRef<GetMultilineQueries>` | no | Prometheus utilization query. |
 | `humanize` | `CodeRef<Humanize>` | no | Convert prometheus data to human readable form. |
-| `TopConsumerPopovers` | `CodeRef<React.ComponentType<TopConsumerPopoverProps>[]>` | yes | Shows Top consumer popover instead of plain value |
+| `TopConsumerPopovers` | `CodeRef<React.ComponentType<React.PropsWithChildren<TopConsumerPopoverProps>>[]>` | yes | Shows Top consumer popover instead of plain value |
 
 ---
 
@@ -293,7 +293,7 @@ Adds a new cluster overview utilization item.
 | `getTotalQuery` | `CodeRef<GetQuery>` | yes | Prometheus total query. |
 | `getRequestQuery` | `CodeRef<GetQuery>` | yes | Prometheus request query. |
 | `getLimitQuery` | `CodeRef<GetQuery>` | yes | Prometheus limit query. |
-| `TopConsumerPopover` | `CodeRef<React.ComponentType<TopConsumerPopoverProps>>` | yes | Shows Top consumer popover instead of plain value |
+| `TopConsumerPopover` | `CodeRef<React.ComponentType<React.PropsWithChildren<TopConsumerPopoverProps>>>` | yes | Shows Top consumer popover instead of plain value |
 
 ---
 
@@ -338,7 +338,7 @@ Adds a new dashboard card.
 | ---- | ---------- | -------- | ----------- |
 | `tab` | `string` | no | The id of the dashboard tab to which the card will be added. |
 | `position` | `'MAIN' \| 'LEFT' \| 'RIGHT'` | no | The grid position of the card on the dashboard. |
-| `component` | `CodeRef<React.ComponentType<{}>>` | no | Dashboard card component. |
+| `component` | `CodeRef<React.ComponentType<{ children?: React.ReactNode \| undefined; }>>` | no | Dashboard card component. |
 | `span` | `OverviewCardSpan` | yes | Card's vertical span in the column. Ignored for small screens, defaults to 12. |
 
 ---
@@ -354,7 +354,7 @@ Adds an item to the Details card of Overview Dashboard
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
 | `title` | `string` | no | Details card title |
-| `component` | `CodeRef<React.ComponentType<{}>>` | no | The value, rendered by the OverviewDetailItem component |
+| `component` | `CodeRef<React.ComponentType<{ children?: React.ReactNode \| undefined; }>>` | no | The value, rendered by the OverviewDetailItem component |
 | `valueClassName` | `string` | yes | Value for a className |
 | `isLoading` | `CodeRef<() => boolean>` | yes | Function returning the loading state of the component |
 | `error` | `CodeRef<() => string>` | yes | Function returning errors to be displayed by the component |
@@ -372,7 +372,7 @@ Adds an activity to the Activity Card of Overview Dashboard where the triggering
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
 | `k8sResource` | `CodeRef<FirehoseResource & { isList: true; }>` | no | The utilization item to be replaced. |
-| `component` | `CodeRef<React.ComponentType<K8sActivityProps<T>>>` | no | The action component. |
+| `component` | `CodeRef<React.ComponentType<React.PropsWithChildren<K8sActivityProps<T>>>>` | no | The action component. |
 | `isActivity` | `CodeRef<(resource: T) => boolean>` | yes | Function which determines if the given resource represents the action. If not defined, every resource represents activity. |
 | `getTimestamp` | `CodeRef<(resource: T) => Date>` | yes | Timestamp for the given action, which will be used for ordering. |
 
@@ -391,7 +391,7 @@ Adds a health subsystem to the status card of Overview dashboard where the sourc
 | `title` | `string` | no | Title of operators section in the popup. |
 | `resources` | `CodeRef<FirehoseResource[]>` | no | Kubernetes resources which will be fetched and passed to `healthHandler`. |
 | `getOperatorsWithStatuses` | `CodeRef<GetOperatorsWithStatuses<T>>` | yes | Resolves status for the operators. |
-| `operatorRowLoader` | `CodeRef<React.ComponentType<OperatorRowProps<T>>>` | yes | Loader for popup row component. |
+| `operatorRowLoader` | `CodeRef<React.ComponentType<React.PropsWithChildren<OperatorRowProps<T>>>>` | yes | Loader for popup row component. |
 | `viewAllLink` | `string` | yes | Links to all resources page. If not provided then a list page of the first resource from resources prop is used. |
 
 ---
@@ -410,7 +410,7 @@ Adds a health subsystem to the status card of Overview dashboard where the sourc
 | `queries` | `string[]` | no | The Prometheus queries |
 | `healthHandler` | `CodeRef<PrometheusHealthHandler>` | no | Resolve the subsystem's health. |
 | `additionalResource` | `CodeRef<FirehoseResource>` | yes | Additional resource which will be fetched and passed to `healthHandler`. |
-| `popupComponent` | `CodeRef<React.ComponentType<PrometheusHealthPopupProps>>` | yes | Loader for popup content. If defined, a health item will be represented as a link which opens popup with given content. |
+| `popupComponent` | `CodeRef<React.ComponentType<React.PropsWithChildren<PrometheusHealthPopupProps>>>` | yes | Loader for popup content. If defined, a health item will be represented as a link which opens popup with given content. |
 | `popupTitle` | `string` | yes | The title of the popover. |
 | `popupClassname` | `string` | yes | Optional classname for the popup top-level component. |
 | `popupKeepOnOutsideClick` | `boolean` | yes | If true, the popup will stay open when clicked outside of its boundary. Default: false |
@@ -450,7 +450,7 @@ Adds a health subsystem to the status card of Overview dashboard where the sourc
 | `url` | `string` | no | The URL to fetch data from. It will be prefixed with base k8s URL. |
 | `healthHandler` | `CodeRef<URLHealthHandler<T>>` | no | Resolve the subsystem's health. |
 | `additionalResource` | `CodeRef<FirehoseResource>` | yes | Additional resource which will be fetched and passed to `healthHandler`. |
-| `popupComponent` | `CodeRef<React.ComponentType<{ healthResult?: T; healthResultError?: any; k8sResult?: FirehoseResult<R>; }>>` | yes | Loader for popup content. If defined, a health item will be represented as a link which opens popup with given content. |
+| `popupComponent` | `CodeRef<React.ComponentType<React.PropsWithChildren<{ healthResult?: T; healthResultError?: any; k8sResult?: FirehoseResult<R>; }>>>` | yes | Loader for popup content. If defined, a health item will be represented as a link which opens popup with given content. |
 | `popupTitle` | `string` | yes | The title of the popover. |
 
 ---
@@ -513,7 +513,7 @@ Adds an activity to the Activity Card of Prometheus Overview Dashboard where the
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
 | `queries` | `string[]` | no | Queries to watch |
-| `component` | `CodeRef<React.ComponentType<PrometheusActivityProps>>` | no | The action component. |
+| `component` | `CodeRef<React.ComponentType<React.PropsWithChildren<PrometheusActivityProps>>>` | no | The action component. |
 | `isActivity` | `CodeRef<(results: PrometheusResponse[]) => boolean>` | yes | Function which determines if the given resource represents the action. If not defined, every resource represents activity. |
 
 ---
@@ -761,7 +761,7 @@ Adds new resource details page to Console router.
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
 | `model` | `ExtensionK8sGroupKindModel` | no | The model for which this resource page links to. |
-| `component` | `CodeRef<React.ComponentType<{ namespace: string; model: ExtensionK8sModel; }>>` | no | The component to be rendered when the route matches. |
+| `component` | `CodeRef<React.ComponentType<React.PropsWithChildren<{ namespace: string; model: ExtensionK8sModel; }>>>` | no | The component to be rendered when the route matches. |
 
 ---
 
@@ -776,7 +776,7 @@ Adds new resource list page to Console router.
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
 | `model` | `ExtensionK8sGroupKindModel` | no | The model for which this resource page links to. |
-| `component` | `CodeRef<React.ComponentType<{ namespace: string; model: ExtensionK8sModel; }>>` | no | The component to be rendered when the route matches. |
+| `component` | `CodeRef<React.ComponentType<React.PropsWithChildren<{ namespace: string; model: ExtensionK8sModel; }>>>` | no | The component to be rendered when the route matches. |
 
 ---
 
@@ -790,7 +790,7 @@ Adds new page to Console router.<br/><br/>Under the hood we use React Router.<br
 
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
-| `component` | `CodeRef<React.ComponentType<{}>>` | no | The component to be rendered when the route matches. |
+| `component` | `CodeRef<React.ComponentType<{ children?: React.ReactNode \| undefined; }>>` | no | The component to be rendered when the route matches. |
 | `path` | `string \| string[]` | no | Valid URL path or array of paths that `path-to-regexp@^1.7.0` understands. |
 | `perspective` | `string` | yes | The perspective to which this page belongs to. If not specified, contributes to all perspectives. |
 | `exact` | `boolean` | yes | When true, will only match if the path matches the `location.pathname` exactly. |
@@ -807,8 +807,8 @@ Adds new standalone page (rendered outside the common page layout) to Console ro
 
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
+| `component` | `CodeRef<React.ComponentType<{ children?: React.ReactNode \| undefined; }>>` | no | The component to be rendered when the route matches. |
 | `path` | `string \| string[]` | no | Valid URL path or array of paths that `path-to-regexp@^1.7.0` understands. |
-| `component` | `CodeRef<React.ComponentType<{}>>` | no | The component to be rendered when the route matches. |
 | `exact` | `boolean` | yes | When true, will only match if the path matches the `location.pathname` exactly. |
 
 ---
@@ -844,7 +844,7 @@ Adds a new inventory item into project overview page.
 
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
-| `component` | `CodeRef<React.ComponentType<{ projectName: string; }>>` | no | The component to be rendered. |
+| `component` | `CodeRef<React.ComponentType<React.PropsWithChildren<{ projectName: string; }>>>` | no | The component to be rendered. |
 
 ---
 
@@ -864,7 +864,7 @@ Adds a new project overview utilization item.
 | `getTotalQuery` | `CodeRef<GetProjectQuery>` | yes | Prometheus total query. |
 | `getRequestQuery` | `CodeRef<GetProjectQuery>` | yes | Prometheus request query. |
 | `getLimitQuery` | `CodeRef<GetProjectQuery>` | yes | Prometheus limit query. |
-| `TopConsumerPopover` | `CodeRef<React.ComponentType<TopConsumerPopoverProps>>` | yes | Shows Top consumer popover instead of plain value |
+| `TopConsumerPopover` | `CodeRef<React.ComponentType<React.PropsWithChildren<TopConsumerPopoverProps>>>` | yes | Shows Top consumer popover instead of plain value |
 
 ---
 
@@ -878,7 +878,7 @@ This extension can be used to contribute custom alerts on the PVC details page.
 
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
-| `alert` | `CodeRef<React.ComponentType<{ pvc: K8sResourceCommon; }>>` | no | The alert component. |
+| `alert` | `CodeRef<React.ComponentType<React.PropsWithChildren<{ pvc: K8sResourceCommon; }>>>` | no | The alert component. |
 
 ---
 
@@ -909,7 +909,7 @@ This extension allows hooking into deleting PVC resources. It can provide an ale
 | ---- | ---------- | -------- | ----------- |
 | `predicate` | `CodeRef<(pvc: K8sResourceCommon) => boolean>` | no | Predicate that tells whether to use the extension or not. |
 | `onPVCKill` | `CodeRef<(pvc: K8sResourceCommon) => Promise<void>>` | no | Method for the PVC delete operation. |
-| `alert` | `CodeRef<React.ComponentType<{ pvc: K8sResourceCommon; }>>` | no | Alert component to show additional information. |
+| `alert` | `CodeRef<React.ComponentType<React.PropsWithChildren<{ pvc: K8sResourceCommon; }>>>` | no | Alert component to show additional information. |
 
 ---
 
@@ -924,7 +924,7 @@ This extension can be used to contribute an additional status component for PVC 
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
 | `priority` | `number` | no | Priority for the status component. Bigger value means higher priority. |
-| `status` | `CodeRef<React.ComponentType<{ pvc: K8sResourceCommon; }>>` | no | The status component. |
+| `status` | `CodeRef<React.ComponentType<React.PropsWithChildren<{ pvc: K8sResourceCommon; }>>>` | no | The status component. |
 | `predicate` | `CodeRef<(pvc: K8sResourceCommon) => boolean>` | no | Predicate that tells whether to render the status component or not. |
 
 ---
@@ -955,7 +955,7 @@ This extension allows plugins to provide a custom component (ie wizard or form) 
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
 | `model` | `ExtensionK8sModel` | no | The model for which this create resource page will be rendered. |
-| `component` | `CodeRef<React.ComponentType<CreateResourceComponentProps>>` | no | The component to be rendered when the model matches |
+| `component` | `CodeRef<React.ComponentType<React.PropsWithChildren<CreateResourceComponentProps>>>` | no | The component to be rendered when the model matches |
 
 ---
 
@@ -975,7 +975,7 @@ Adds a new details item to the default resource summary on the details page.
 | `title` | `string` | no | The details item title. |
 | `description` | `string` | yes | An optional description that will appear in the title popover. |
 | `path` | `string` | yes | An optional, fully-qualified path to a resource property to used as the details item<br/>value. Only [primitive type](https://developer.mozilla.org/en-US/docs/Glossary/Primitive)<br/>values can be rendered directly. Use the component property to handle other data types. |
-| `component` | `CodeRef<React.ComponentType<DetailsItemComponentProps<K8sResourceCommon, any>>>` | yes | An optional React component that will render the details item value. |
+| `component` | `CodeRef<React.ComponentType<React.PropsWithChildren<DetailsItemComponentProps<K8sResourceCommon, any>>>>` | yes | An optional React component that will render the details item value. |
 | `sortWeight` | `number` | yes | An optional sort weight, relative to all other details items in the same column. Represented<br/>by any valid [JavaScript<br/>Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type).<br/>Items in each column are sorted independently, lowest to highest. Items without sort weights<br/>are sorted after items with sort weights. |
 
 ---
@@ -1006,7 +1006,7 @@ This extension can be used to contribute a new storage provider to select,<br/>w
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
 | `name` | `string` | no | Displayed name of the provider. |
-| `Component` | `CodeRef<React.ComponentType<{}>>` | no | Provider specific component to render. |
+| `Component` | `CodeRef<React.ComponentType<{ children?: React.ReactNode \| undefined; }>>` | no | Provider specific component to render. |
 
 ---
 
@@ -1023,7 +1023,7 @@ Adds a tab to a horizontal nav matching the `contextId`.
 | `contextId` | `string` | no | Context ID assigned to the horizontal nav in which the tab will be injected.<br/>Possible values:<br/>- `dev-console-observe` |
 | `name` | `string` | no | The display label of the tab |
 | `href` | `string` | no | The href appended to the existing URL |
-| `component` | `CodeRef<React.ComponentType<PageComponentProps<K8sResourceCommon>>>` | no | Tab content component. |
+| `component` | `CodeRef<React.ComponentType<React.PropsWithChildren<PageComponentProps<K8sResourceCommon>>>>` | no | Tab content component. |
 
 ---
 
@@ -1039,7 +1039,7 @@ This extension can be used to add a tab on the resource details page.
 | ---- | ---------- | -------- | ----------- |
 | `model` | `ExtensionK8sKindVersionModel` | no | The model for which this provider show tab. |
 | `page` | `{ name: string; href: string; }` | no | The page to be show in horizontal tab. It takes tab name as name and href of the tab |
-| `component` | `CodeRef<React.ComponentType<PageComponentProps<K8sResourceCommon>>>` | no | The component to be rendered when the route matches. |
+| `component` | `CodeRef<React.ComponentType<React.PropsWithChildren<PageComponentProps<K8sResourceCommon>>>>` | no | The component to be rendered when the route matches. |
 
 ---
 
@@ -1380,7 +1380,7 @@ This extension can be used to specify extra build environment variable fields un
 
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
-| `component` | `CodeRef<React.ComponentType<{}>>` | no | The value, based on the DetailItem component |
+| `component` | `CodeRef<React.ComponentType<{ children?: React.ReactNode \| undefined; }>>` | no | The value, based on the DetailItem component |
 
 ---
 
@@ -1395,7 +1395,7 @@ This extension can be used to specify extra build environment variable fields un
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
 | `model` | `ExtensionK8sGroupKindModel` | no | The model for which this resource page links to. |
-| `component` | `CodeRef<React.ComponentType<{}>>` | no | The component to be rendered when the route matches. |
+| `component` | `CodeRef<React.ComponentType<{ children?: React.ReactNode \| undefined; }>>` | no | The component to be rendered when the route matches. |
 | `name` | `string` | no | The name of the tab. |
 | `href` | `string` | yes | The optional href for the tab link. If not provided, the first `path` is used. |
 | `exact` | `boolean` | yes | When true, will only match if the path matches the `location.pathname` exactly. |

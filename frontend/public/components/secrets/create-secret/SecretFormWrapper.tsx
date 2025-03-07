@@ -21,7 +21,9 @@ import {
 import { SecretSubForm } from './SecretSubForm';
 import { isBinary } from 'istextorbinary';
 
-export const SecretFormWrapper: React.FC<BaseEditSecretProps_> = (props) => {
+export const SecretFormWrapper: React.FC<React.PropsWithChildren<BaseEditSecretProps_>> = (
+  props,
+) => {
   const { isCreate, modal, onCancel, secretTypeAbstraction } = props;
   const { t } = useTranslation();
   const navigate = useNavigate();

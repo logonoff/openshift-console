@@ -360,7 +360,10 @@ const setURLParams = (params) => {
   history.replace(`${url.pathname}${searchParams}`);
 };
 
-const OperatorHubTile: React.FC<OperatorHubTileProps> = ({ item, onClick }) => {
+const OperatorHubTile: React.FC<React.PropsWithChildren<OperatorHubTileProps>> = ({
+  item,
+  onClick,
+}) => {
   const { t } = useTranslation();
   if (!item) {
     return null;
@@ -411,7 +414,9 @@ const OperatorHubTile: React.FC<OperatorHubTileProps> = ({ item, onClick }) => {
   );
 };
 
-export const OperatorHubTileView: React.FC<OperatorHubTileViewProps> = (props) => {
+export const OperatorHubTileView: React.FC<React.PropsWithChildren<OperatorHubTileViewProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const [detailsItem, setDetailsItem] = React.useState(null);
   const [showDetails, setShowDetails] = React.useState(false);

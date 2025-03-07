@@ -21,7 +21,7 @@ type ConfigMapDropdownProps = {
   name: string;
 };
 
-const ConfigMapDropdown: React.FC<ConfigMapDropdownProps> = (props) => {
+const ConfigMapDropdown: React.FC<React.PropsWithChildren<ConfigMapDropdownProps>> = (props) => {
   const { t } = useTranslation();
   const autocompleteFilter = (strText, item): boolean => fuzzy(strText, item?.props?.name);
   const resources = {

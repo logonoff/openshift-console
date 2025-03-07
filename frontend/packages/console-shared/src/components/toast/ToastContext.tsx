@@ -21,7 +21,7 @@ export type ToastOptions = {
     // If `true`, executing this action will dismiss the toast.
     dismiss?: boolean;
     // Sets the base component to render. defaults to button
-    component?: React.ElementType<any> | React.ComponentType<any>;
+    component?: React.ElementType<any> | React.ComponentType<React.PropsWithChildren<any>>;
     // The data test id
     dataTest?: string;
   }[];

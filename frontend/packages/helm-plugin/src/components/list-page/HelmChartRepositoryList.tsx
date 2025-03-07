@@ -4,7 +4,7 @@ import { Table, TableProps } from '@console/internal/components/factory';
 import HelmChartRepositoryRow from './HelmChartRepositoryRow';
 import RepositoriesHeader from './RepositoriesHeader';
 
-const HelmChartRepositoryList: React.FC<TableProps> = (props) => {
+const HelmChartRepositoryList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table

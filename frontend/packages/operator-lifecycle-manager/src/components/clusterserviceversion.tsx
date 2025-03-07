@@ -182,10 +182,10 @@ const menuActionsForCSV = (
     : [() => editSubscription(subscription), () => uninstall(subscription, csv)];
 };
 
-const SubscriptionStatus: React.FC<{ muted?: boolean; subscription: SubscriptionKind }> = ({
-  muted = false,
-  subscription,
-}) => {
+const SubscriptionStatus: React.FC<React.PropsWithChildren<{
+  muted?: boolean;
+  subscription: SubscriptionKind;
+}>> = ({ muted = false, subscription }) => {
   const { t } = useTranslation();
   if (!subscription) {
     return null;
@@ -207,10 +207,9 @@ const SubscriptionStatus: React.FC<{ muted?: boolean; subscription: Subscription
   );
 };
 
-const ClusterServiceVersionStatus: React.FC<ClusterServiceVersionStatusProps> = ({
-  obj,
-  subscription,
-}) => {
+const ClusterServiceVersionStatus: React.FC<React.PropsWithChildren<
+  ClusterServiceVersionStatusProps
+>> = ({ obj, subscription }) => {
   const status = obj?.status?.phase;
   if (obj.metadata.deletionTimestamp) {
     return (
@@ -229,7 +228,7 @@ const ClusterServiceVersionStatus: React.FC<ClusterServiceVersionStatusProps> = 
   ) : null;
 };
 
-const ManagedNamespaces: React.FC<ManagedNamespacesProps> = ({ obj }) => {
+const ManagedNamespaces: React.FC<React.PropsWithChildren<ManagedNamespacesProps>> = ({ obj }) => {
   const { t } = useTranslation();
   const managedNamespaces = targetNamespacesFor(obj)?.split(',') || [];
   if (isCopiedCSV(obj)) {
@@ -270,7 +269,10 @@ const ManagedNamespaces: React.FC<ManagedNamespacesProps> = ({ obj }) => {
   }
 };
 
-const ConsolePlugins: React.FC<ConsolePluginsProps> = ({ csvPlugins, trusted }) => {
+const ConsolePlugins: React.FC<React.PropsWithChildren<ConsolePluginsProps>> = ({
+  csvPlugins,
+  trusted,
+}) => {
   const console: WatchK8sResource = {
     kind: referenceForModel(ConsoleOperatorConfigModel),
     isList: false,
@@ -323,7 +325,10 @@ const ConsolePlugins: React.FC<ConsolePluginsProps> = ({ csvPlugins, trusted }) 
   );
 };
 
-const ConsolePluginStatus: React.FC<ConsolePluginStatusProps> = ({ csv, csvPlugins }) => {
+const ConsolePluginStatus: React.FC<React.PropsWithChildren<ConsolePluginStatusProps>> = ({
+  csv,
+  csvPlugins,
+}) => {
   const console: WatchK8sResource = {
     kind: referenceForModel(ConsoleOperatorConfigModel),
     isList: false,
@@ -470,7 +475,7 @@ export const ClusterServiceVersionTableRow = withFallback<ClusterServiceVersionT
   },
 );
 
-export const SubscriptionTableRow: React.FC<SubscriptionTableRowProps> = ({
+export const SubscriptionTableRow: React.FC<React.PropsWithChildren<SubscriptionTableRowProps>> = ({
   activeNamespace,
   catalogSourceMissing,
   obj,
@@ -530,10 +535,9 @@ export const SubscriptionTableRow: React.FC<SubscriptionTableRowProps> = ({
   );
 };
 
-const InstalledOperatorTableRow: React.FC<InstalledOperatorTableRowProps> = ({
-  obj,
-  customData,
-}) => {
+const InstalledOperatorTableRow: React.FC<React.PropsWithChildren<
+  InstalledOperatorTableRowProps
+>> = ({ obj, customData }) => {
   const { catalogSources, subscriptions, activeNamespace } = customData;
   const subscription = isCSV(obj)
     ? subscriptionForCSV(subscriptions, obj as ClusterServiceVersionKind)
@@ -591,12 +595,9 @@ const CSVListNoDataEmptyMsg = () => {
   return <ConsoleEmptyState title={t('olm~No Operators found')}>{detail}</ConsoleEmptyState>;
 };
 
-export const ClusterServiceVersionList: React.FC<ClusterServiceVersionListProps> = ({
-  subscriptions,
-  catalogSources,
-  data,
-  ...rest
-}) => {
+export const ClusterServiceVersionList: React.FC<React.PropsWithChildren<
+  ClusterServiceVersionListProps
+>> = ({ subscriptions, catalogSources, data, ...rest }) => {
   const { t } = useTranslation();
   const activeNamespace = useActiveNamespace();
   const nameHeader: Header = {
@@ -740,7 +741,9 @@ export const ClusterServiceVersionList: React.FC<ClusterServiceVersionListProps>
   );
 };
 
-export const ClusterServiceVersionsPage: React.FC<ClusterServiceVersionsPageProps> = (props) => {
+export const ClusterServiceVersionsPage: React.FC<React.PropsWithChildren<
+  ClusterServiceVersionsPageProps
+>> = (props) => {
   const { t } = useTranslation();
   const [canListAllSubscriptions] = useAccessReview({
     group: SubscriptionModel.apiGroup,
@@ -851,7 +854,12 @@ export const MarkdownView = (props: {
   );
 };
 
-export const CRDCard: React.FC<CRDCardProps> = ({ csv, crd, required, ...rest }) => {
+export const CRDCard: React.FC<React.PropsWithChildren<CRDCardProps>> = ({
+  csv,
+  crd,
+  required,
+  ...rest
+}) => {
   const { t } = useTranslation();
   const reference = referenceForProvidedAPI(crd);
   const [model] = useK8sModel(reference);
@@ -915,7 +923,9 @@ export const CRDCardRow = ({ csv, providedAPIs }: CRDCardRowProps) => {
   );
 };
 
-const InitializationResourceAlert: React.FC<InitializationResourceAlertProps> = (props) => {
+const InitializationResourceAlert: React.FC<React.PropsWithChildren<
+  InitializationResourceAlertProps
+>> = (props) => {
   const { t } = useTranslation();
   const { initializationResource, csv } = props;
 
@@ -962,9 +972,9 @@ const InitializationResourceAlert: React.FC<InitializationResourceAlertProps> = 
   return null;
 };
 
-export const ClusterServiceVersionDetails: React.FC<ClusterServiceVersionDetailsProps> = (
-  props,
-) => {
+export const ClusterServiceVersionDetails: React.FC<React.PropsWithChildren<
+  ClusterServiceVersionDetailsProps
+>> = (props) => {
   const { t } = useTranslation();
   const { spec, metadata, status } = props.obj;
   const { subscription } = props.customData;
@@ -1217,7 +1227,11 @@ export const ClusterServiceVersionDetails: React.FC<ClusterServiceVersionDetails
   );
 };
 
-export const CSVSubscription: React.FC<CSVSubscriptionProps> = ({ obj, customData, ...rest }) => {
+export const CSVSubscription: React.FC<React.PropsWithChildren<CSVSubscriptionProps>> = ({
+  obj,
+  customData,
+  ...rest
+}) => {
   const { t } = useTranslation();
   const { subscription, subscriptions, subscriptionsLoaded, subscriptionsLoadError } =
     customData ?? {};
@@ -1244,7 +1258,9 @@ export const CSVSubscription: React.FC<CSVSubscriptionProps> = ({ obj, customDat
   );
 };
 
-export const ClusterServiceVersionDetailsPage: React.FC = (props) => {
+export const ClusterServiceVersionDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const params = useParams();
   const location = useLocation();

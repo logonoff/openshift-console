@@ -30,7 +30,7 @@ export const usePodsWatcher = (
   const resources = useK8sWatchResources(watchedResources);
 
   const updateResults = React.useCallback(
-    (watchedResource, updatedResources) => {
+    (watchedResource: any, updatedResources: any) => {
       const errorKey = Object.keys(updatedResources).find((key) => updatedResources[key].loadError);
       if (errorKey) {
         setLoadError(updatedResources[errorKey].loadError);

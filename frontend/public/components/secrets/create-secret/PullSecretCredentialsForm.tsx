@@ -12,12 +12,9 @@ import {
   newPullSecretCredential,
 } from './utils';
 
-export const PullSecretCredentialsForm: React.FC<PullSecretCredentialsFormProps> = ({
-  onChange,
-  stringData,
-  onError,
-  secretType,
-}) => {
+export const PullSecretCredentialsForm: React.FC<React.PropsWithChildren<
+  PullSecretCredentialsFormProps
+>> = ({ onChange, stringData, onError, secretType }) => {
   const { t } = useTranslation();
   const pullSecretFileName = getPullSecretFileName(secretType);
   const pullSecretJSON = stringData[pullSecretFileName];

@@ -7,7 +7,10 @@ export type RoutesUrlLinkProps = {
   title?: string;
 };
 
-const RoutesUrlLink: React.FC<RoutesUrlLinkProps> = ({ urls = [], title }) =>
+const RoutesUrlLink: React.FC<React.PropsWithChildren<RoutesUrlLinkProps>> = ({
+  urls = [],
+  title,
+}) =>
   urls.length > 0 && (
     <>
       {title && <span className="text-muted">{title}: </span>}

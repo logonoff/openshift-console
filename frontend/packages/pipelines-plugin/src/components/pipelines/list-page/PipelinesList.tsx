@@ -8,7 +8,7 @@ import { PipelineModel } from '../../../models';
 import { filters } from './PipelineAugmentRuns';
 import PipelineAugmentRunsWrapper from './PipelineAugmentRunsWrapper';
 
-const PipelinesList: React.FC = () => {
+const PipelinesList: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const resources = [

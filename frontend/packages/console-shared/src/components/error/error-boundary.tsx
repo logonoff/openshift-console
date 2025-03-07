@@ -3,7 +3,7 @@ import { ErrorBoundaryFallbackProps } from '@console/dynamic-plugin-sdk';
 import { history } from '@console/internal/components/utils/router';
 
 type ErrorBoundaryProps = {
-  FallbackComponent?: React.ComponentType<ErrorBoundaryFallbackProps>;
+  FallbackComponent?: React.ComponentType<React.PropsWithChildren<ErrorBoundaryFallbackProps>>;
 };
 
 /** Needed for tests -- should not be imported by application logic */
@@ -13,7 +13,7 @@ export type ErrorBoundaryState = {
   errorInfo: { componentStack: string };
 };
 
-const DefaultFallback: React.FC = () => <div />;
+const DefaultFallback: React.FC<React.PropsWithChildren<unknown>> = () => <div />;
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   unlisten: () => void = () => {};

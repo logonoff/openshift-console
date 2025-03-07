@@ -7,7 +7,7 @@ type TrafficConnectorProps = {
   element: Edge;
 };
 
-const TrafficConnector: React.FC<TrafficConnectorProps> = (props) => (
+const TrafficConnector: React.FC<React.PropsWithChildren<TrafficConnectorProps>> = (props) => (
   <BaseEdge
     className="odc-traffic-connector"
     endTerminalType={EdgeTerminalType.directionalAlt}

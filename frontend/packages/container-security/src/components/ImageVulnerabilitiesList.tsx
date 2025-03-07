@@ -21,7 +21,9 @@ type ImageVuln = {
   vulnerability: Vulnerability;
 };
 
-const ImageVulnerabilitiesList: React.FC<ImageVulnerabilitiesListProps> = (props) => {
+const ImageVulnerabilitiesList: React.FC<React.PropsWithChildren<ImageVulnerabilitiesListProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const {
     obj: {

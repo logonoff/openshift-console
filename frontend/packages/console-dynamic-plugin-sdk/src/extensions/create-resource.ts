@@ -12,7 +12,7 @@ export type CreateResource = ExtensionDeclaration<
     /** The model for which this create resource page will be rendered. */
     model: ExtensionK8sModel;
     /** The component to be rendered when the model matches */
-    component: CodeRef<React.ComponentType<CreateResourceComponentProps>>;
+    component: CodeRef<React.ComponentType<React.PropsWithChildren<CreateResourceComponentProps>>>;
   }
 >;
 

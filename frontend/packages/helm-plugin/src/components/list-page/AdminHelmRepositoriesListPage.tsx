@@ -6,7 +6,7 @@ import NamespacedPage, {
 } from '@console/dev-console/src/components/NamespacedPage';
 import RepositoriesPage from './RepositoriesListPage';
 
-const AdminHelmRepositoriesListPage: React.FC = () => {
+const AdminHelmRepositoriesListPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { ns } = useParams();
   const { t } = useTranslation();
 

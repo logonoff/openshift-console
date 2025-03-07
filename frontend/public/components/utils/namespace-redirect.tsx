@@ -10,7 +10,7 @@ const appendActiveNamespace = (namespace: string, pathname: string): string => {
     : `${basePath}/ns/${namespace}`;
 };
 
-export const NamespaceRedirect: React.FC = () => {
+export const NamespaceRedirect: React.FC<React.PropsWithChildren<unknown>> = () => {
   const location = useLocation();
   const [activeNamespace] = useActiveNamespace();
   return (

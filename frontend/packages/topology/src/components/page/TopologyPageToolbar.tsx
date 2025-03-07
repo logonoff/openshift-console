@@ -21,7 +21,7 @@ interface TopologyPageToolbarProps {
   onViewChange: (view: TopologyViewType) => void;
 }
 
-const TopologyPageToolbar: React.FC<TopologyPageToolbarProps> = observer(
+const TopologyPageToolbar: React.FC<React.PropsWithChildren<TopologyPageToolbarProps>> = observer(
   function TopologyPageToolbar({ viewType, onViewChange }) {
     const { t } = useTranslation();
     const isMobile = useIsMobile();

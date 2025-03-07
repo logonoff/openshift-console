@@ -7,7 +7,7 @@ import { RedExclamationCircleIcon } from '../status';
 import { DropdownFieldProps } from './field-types';
 import { getFieldId } from './field-utils';
 
-const NSDropdownField: React.FC<DropdownFieldProps> = ({
+const NSDropdownField: React.FC<React.PropsWithChildren<DropdownFieldProps>> = ({
   label,
   helpText,
   required,

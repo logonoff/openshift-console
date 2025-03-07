@@ -14,7 +14,11 @@ type HelmReadmeModalProps = {
 };
 type Props = HelmReadmeModalProps & ModalComponentProps;
 
-const HelmReadmeModal: React.FunctionComponent<Props> = ({ readme, theme, close }) => {
+const HelmReadmeModal: React.FunctionComponent<React.PropsWithChildren<Props>> = ({
+  readme,
+  theme,
+  close,
+}) => {
   const { t } = useTranslation();
   return (
     <div className="modal-content">

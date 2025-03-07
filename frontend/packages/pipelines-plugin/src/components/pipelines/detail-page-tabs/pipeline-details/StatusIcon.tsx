@@ -17,7 +17,11 @@ interface StatusIconProps {
   disableSpin?: boolean;
 }
 
-export const StatusIcon: React.FC<StatusIconProps> = ({ status, disableSpin, ...props }) => {
+export const StatusIcon: React.FC<React.PropsWithChildren<StatusIconProps>> = ({
+  status,
+  disableSpin,
+  ...props
+}) => {
   switch (status) {
     case ComputedStatus['In Progress']:
     case ComputedStatus.Running:
@@ -44,7 +48,10 @@ export const StatusIcon: React.FC<StatusIconProps> = ({ status, disableSpin, ...
   }
 };
 
-export const ColoredStatusIcon: React.FC<StatusIconProps> = ({ status, ...others }) => {
+export const ColoredStatusIcon: React.FC<React.PropsWithChildren<StatusIconProps>> = ({
+  status,
+  ...others
+}) => {
   return (
     <div
       style={{

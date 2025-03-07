@@ -11,7 +11,7 @@ type PodSideBarDetailsProps = {
   pod: PodKind;
 };
 
-const PodSideBarDetails: React.FC<PodSideBarDetailsProps> = ({ pod }) => {
+const PodSideBarDetails: React.FC<React.PropsWithChildren<PodSideBarDetailsProps>> = ({ pod }) => {
   return (
     <div className="overview__sidebar-pane-body resource-overview__body">
       <div className="resource-overview__pod-counts">

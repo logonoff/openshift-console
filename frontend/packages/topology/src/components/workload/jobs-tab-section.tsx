@@ -8,7 +8,9 @@ import { getResource } from '../../utils';
 import TopologySideBarTabSection from '../side-bar/TopologySideBarTabSection';
 import { JobsOverview } from './JobsOverview';
 
-const JobsTabSection: React.FC<{ resource: K8sResourceCommon }> = ({ resource }) => {
+const JobsTabSection: React.FC<React.PropsWithChildren<{ resource: K8sResourceCommon }>> = ({
+  resource,
+}) => {
   const { jobs } = useJobsForCronJobWatcher(resource);
   return (
     <TopologySideBarTabSection>

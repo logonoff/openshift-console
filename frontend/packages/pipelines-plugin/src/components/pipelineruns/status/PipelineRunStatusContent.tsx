@@ -11,7 +11,7 @@ type PipelineRunStatusProps = {
   pipelineRun: PipelineRunKind;
   title?: string;
 };
-const PipelineRunStatusContent: React.FC<PipelineRunStatusProps> = ({
+const PipelineRunStatusContent: React.FC<React.PropsWithChildren<PipelineRunStatusProps>> = ({
   status,
   pipelineRun,
   title,

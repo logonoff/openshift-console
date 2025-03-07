@@ -7,7 +7,7 @@ import {
 } from '@console/internal/components/utils';
 import { FieldLevelHelp } from '@console/internal/components/utils/field-level-help';
 
-const AvailabilityRequirementPopover: React.FC = () => {
+const AvailabilityRequirementPopover: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <FieldLevelHelp>

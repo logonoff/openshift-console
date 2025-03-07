@@ -43,7 +43,7 @@ jest.mock('@console/internal/components/utils/timestamp', () => ({
 
 configure({ testIdAttribute: 'data-test' });
 
-const Wrapper: React.FC = ({ children }) => (
+const Wrapper: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
   <BrowserRouter>
     <Provider store={store}>{children}</Provider>
   </BrowserRouter>

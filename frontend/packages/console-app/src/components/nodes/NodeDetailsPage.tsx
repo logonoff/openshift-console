@@ -16,7 +16,7 @@ import NodeDetails from './NodeDetails';
 import NodeLogs from './NodeLogs';
 import NodeTerminal from './NodeTerminal';
 
-const NodePodsPage: React.FC<PageComponentProps<NodeKind>> = ({ obj }) => (
+const NodePodsPage: React.FC<React.PropsWithChildren<PageComponentProps<NodeKind>>> = ({ obj }) => (
   <PodsPage
     showTitle={false}
     fieldSelector={`spec.nodeName=${obj.metadata.name}`}
@@ -24,7 +24,9 @@ const NodePodsPage: React.FC<PageComponentProps<NodeKind>> = ({ obj }) => (
   />
 );
 
-const NodeDetailsPage: React.FC<React.ComponentProps<typeof DetailsPage>> = (props) => {
+const NodeDetailsPage: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof DetailsPage>
+>> = (props) => {
   const pagesFor = React.useCallback(
     (node: NodeKind) => [
       {

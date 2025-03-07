@@ -7,12 +7,12 @@ import AdminNamespaceSection from './AdminNamespaceSection';
 import CloudShellAdvancedOption from './CloudShellAdvancedOption';
 import NamespaceSection from './NamespaceSection';
 
-const CloudShellSetupForm: React.FC<
+const CloudShellSetupForm: React.FC<React.PropsWithChildren<
   Pick<
     FormikProps<FormikValues>,
     'errors' | 'handleSubmit' | 'handleReset' | 'status' | 'isSubmitting'
   > & { isAdmin?: boolean }
-> = ({ errors, handleSubmit, handleReset, status, isSubmitting, isAdmin = false }) => {
+>> = ({ errors, handleSubmit, handleReset, status, isSubmitting, isAdmin = false }) => {
   const { t } = useTranslation();
   return (
     <FlexForm onSubmit={handleSubmit}>

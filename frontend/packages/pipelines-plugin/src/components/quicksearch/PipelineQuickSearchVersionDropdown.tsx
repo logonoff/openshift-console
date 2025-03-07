@@ -20,12 +20,9 @@ interface PipelineQuickSearchVersionDropdownProps {
   onChange: (key: string) => void;
 }
 
-const PipelineQuickSearchVersionDropdown: React.FC<PipelineQuickSearchVersionDropdownProps> = ({
-  item,
-  versions,
-  onChange,
-  selectedVersion,
-}) => {
+const PipelineQuickSearchVersionDropdown: React.FC<React.PropsWithChildren<
+  PipelineQuickSearchVersionDropdownProps
+>> = ({ item, versions, onChange, selectedVersion }) => {
   const [isOpen, setOpen] = React.useState(false);
   const toggleIsOpen = React.useCallback(() => setOpen((v) => !v), []);
 

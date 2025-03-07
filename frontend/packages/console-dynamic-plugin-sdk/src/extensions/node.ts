@@ -19,7 +19,9 @@ export type NodeStatus<T extends ResourcesObject = ResourcesObject> = ExtensionD
     /** Returns true if the additional state is active */
     isActive: CodeRef<IsNodeStatusActive<T>>;
     /** React component that will be rendered in status popover */
-    PopoverContent: CodeRef<React.ComponentType<NodePopoverContentProps<T>>>;
+    PopoverContent: CodeRef<
+      React.ComponentType<React.PropsWithChildren<NodePopoverContentProps<T>>>
+    >;
     /** Title of the additional Node state */
     title: string;
     /** Additional resources that are needed to determine the additional state */

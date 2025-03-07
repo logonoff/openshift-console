@@ -9,7 +9,7 @@ import {
 } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
 
-const PacPermissions: React.FC = () => {
+const PacPermissions: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = React.useState(false);
   return (

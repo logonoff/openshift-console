@@ -31,7 +31,7 @@ const NameValueEditorComponent = (props) => (
 
 // This form is done a little odd since it is used in both its own page and as
 // a sub form inside the attach storage page.
-export const CreatePVCForm: React.FC<CreatePVCFormProps> = (props) => {
+export const CreatePVCForm: React.FC<React.PropsWithChildren<CreatePVCFormProps>> = (props) => {
   const [accessModeHelp, setAccessModeHelp] = React.useState('Permissions to the mounted drive.');
   const [storageClass, setStorageClass] = React.useState('');
   const [pvcName, setPvcName] = React.useState('');
@@ -238,7 +238,7 @@ export const CreatePVCForm: React.FC<CreatePVCFormProps> = (props) => {
   );
 };
 
-export const CreatePVCPage: React.FC<CreatePVCPageProps> = (props) => {
+export const CreatePVCPage: React.FC<React.PropsWithChildren<CreatePVCPageProps>> = (props) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [error, setError] = React.useState('');

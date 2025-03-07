@@ -6,7 +6,9 @@ import { PipelineRunKind } from '../../../types';
 import { pipelineRunFilterReducer } from '../../../utils/pipeline-filter-reducer';
 import ResultsList from './ResultsList';
 
-const OutputTab: React.FC<{ obj: PipelineRunKind }> = ({ obj: pipelineRun }) => {
+const OutputTab: React.FC<React.PropsWithChildren<{ obj: PipelineRunKind }>> = ({
+  obj: pipelineRun,
+}) => {
   const { t } = useTranslation();
 
   return pipelineRun.status?.pipelineResults || pipelineRun.status?.results ? (

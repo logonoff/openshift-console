@@ -12,7 +12,7 @@ import { tableColumnClasses } from './service-table';
 
 const serviceReference = referenceForModel(ServiceModel);
 
-const ServiceRow: React.FC<RowFunctionArgs<ServiceKind>> = ({ obj }) => {
+const ServiceRow: React.FC<React.PropsWithChildren<RowFunctionArgs<ServiceKind>>> = ({ obj }) => {
   const readyCondition = obj.status
     ? getCondition(obj.status.conditions, ConditionTypes.Ready)
     : null;

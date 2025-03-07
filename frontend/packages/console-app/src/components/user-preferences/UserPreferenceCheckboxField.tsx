@@ -12,15 +12,9 @@ import './UserPreferenceField.scss';
 
 type UserPreferenceCheckboxFieldProps = UserPreferenceFieldProps<CheckboxFieldType>;
 
-const UserPreferenceCheckboxField: React.FC<UserPreferenceCheckboxFieldProps> = ({
-  id,
-  label,
-  userSettingsKey,
-  trueValue,
-  falseValue,
-  defaultValue,
-  description,
-}) => {
+const UserPreferenceCheckboxField: React.FC<React.PropsWithChildren<
+  UserPreferenceCheckboxFieldProps
+>> = ({ id, label, userSettingsKey, trueValue, falseValue, defaultValue, description }) => {
   // resources and calls to hooks
   const [
     currentUserPreferenceValue,

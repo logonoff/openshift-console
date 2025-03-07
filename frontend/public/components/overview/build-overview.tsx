@@ -78,7 +78,9 @@ const BuildStatus = ({ build }: { build: K8sResourceKind }) => {
   return unsuccessful ? <LogSnippet message={message} logSnippet={logSnippet} /> : null;
 };
 
-const BuildOverviewItem: React.SFC<BuildOverviewListItemProps> = ({ build }) => {
+const BuildOverviewItem: React.FC<React.PropsWithChildren<BuildOverviewListItemProps>> = ({
+  build,
+}) => {
   const {
     metadata: { creationTimestamp },
     status: { completionTimestamp, startTimestamp, phase },
@@ -116,7 +118,9 @@ const BuildOverviewItem: React.SFC<BuildOverviewListItemProps> = ({ build }) => 
   );
 };
 
-const BuildOverviewList: React.SFC<BuildOverviewListProps> = ({ buildConfig }) => {
+const BuildOverviewList: React.FC<React.PropsWithChildren<BuildOverviewListProps>> = ({
+  buildConfig,
+}) => {
   const {
     metadata: { name, namespace },
     builds,
@@ -163,7 +167,9 @@ const BuildOverviewList: React.SFC<BuildOverviewListProps> = ({ buildConfig }) =
     </ul>
   );
 };
-export const BuildOverview: React.SFC<BuildConfigsOverviewProps> = ({ buildConfigs }) => {
+export const BuildOverview: React.FC<React.PropsWithChildren<BuildConfigsOverviewProps>> = ({
+  buildConfigs,
+}) => {
   const { t } = useTranslation();
   if (_.isEmpty(buildConfigs)) {
     return null;

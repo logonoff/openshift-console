@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { Link, LinkProps } from 'react-router-dom-v5-compat';
 
-export const NavLink: React.FC<NavLinkProps> = ({ children, dragRef, ...linkProps }) => {
+export const NavLink: React.FC<React.PropsWithChildren<NavLinkProps>> = ({
+  children,
+  dragRef,
+  ...linkProps
+}) => {
   return (
     <Link data-test="nav" ref={dragRef} {...linkProps}>
       {children}

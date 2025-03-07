@@ -21,7 +21,7 @@ import CreateProjectListPage, { CreateAProjectButton } from '../projects/CreateP
  * Currently we just check if some well known build (BuildConfigs and Shipwright Builds)
  * are available and load their (dynamic) resource list page.
  */
-const BuildsTabListPage: React.FC = () => {
+const BuildsTabListPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace, '*': currentTab } = useParams();
   const navigate = useNavigate();

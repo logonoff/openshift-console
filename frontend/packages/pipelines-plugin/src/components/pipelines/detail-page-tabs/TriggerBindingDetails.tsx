@@ -11,7 +11,9 @@ export interface TriggerBindingDetailsProps {
   obj: TriggerBindingKind;
 }
 
-const TriggerBindingDetails: React.FC<TriggerBindingDetailsProps> = ({ obj: triggerBinding }) => {
+const TriggerBindingDetails: React.FC<React.PropsWithChildren<TriggerBindingDetailsProps>> = ({
+  obj: triggerBinding,
+}) => {
   const { t } = useTranslation();
   const eventListeners: string[] = useTriggerBindingEventListenerNames(triggerBinding);
   return (

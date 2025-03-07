@@ -93,7 +93,9 @@ export const TagsModal = withHandlePromise<TagsModalProps & HandlePromiseProps>(
   );
 });
 
-export const AnnotationsModal: React.FC<AnnotationsModalProps> = (props) => (
+export const AnnotationsModal: React.FC<React.PropsWithChildren<AnnotationsModalProps>> = (
+  props,
+) => (
   <TagsModal
     path="/metadata/annotations"
     tags={props.resource?.metadata?.annotations}

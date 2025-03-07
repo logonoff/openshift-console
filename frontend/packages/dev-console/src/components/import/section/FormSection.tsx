@@ -21,7 +21,7 @@ const flexStyle: React.CSSProperties = {
   margin: 'var(--pf-t--global--spacer--md)',
 };
 
-const FormSection: React.FC<FormSectionProps> = ({
+const FormSection: React.FC<React.PropsWithChildren<FormSectionProps>> = ({
   title,
   subTitle,
   fullWidth,

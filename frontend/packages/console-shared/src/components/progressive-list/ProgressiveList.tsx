@@ -8,7 +8,7 @@ type ProgressiveListProps = {
   Footer: (children) => React.ReactElement;
 };
 
-const ProgressiveList: React.FC<ProgressiveListProps> = ({
+const ProgressiveList: React.FC<React.PropsWithChildren<ProgressiveListProps>> = ({
   visibleItems,
   children,
   onVisibleItemChange,

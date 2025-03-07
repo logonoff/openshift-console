@@ -23,7 +23,10 @@ const reactPropFix = {
   translate: 'no' as 'no',
 };
 
-export const ImportYAMLPageStatus: React.FC<ImportYAMLPageStatusProps> = ({ errors, inFlight }) => {
+export const ImportYAMLPageStatus: React.FC<React.PropsWithChildren<ImportYAMLPageStatusProps>> = ({
+  errors,
+  inFlight,
+}) => {
   const { t } = useTranslation();
   let StatusBlock: React.ReactNode;
 
@@ -68,11 +71,9 @@ export const ImportYAMLPageStatus: React.FC<ImportYAMLPageStatusProps> = ({ erro
   return <div className="co-import-yaml-status pf-v6-u-text-align-center">{StatusBlock}</div>;
 };
 
-export const ImportYAMLResourceStatus: React.FC<ImportYAMLResourceStatusProps> = ({
-  creating,
-  error,
-  message,
-}) => {
+export const ImportYAMLResourceStatus: React.FC<React.PropsWithChildren<
+  ImportYAMLResourceStatusProps
+>> = ({ creating, error, message }) => {
   let StatusIcon: React.ReactNode;
   if (creating) {
     StatusIcon = <Spinner size="sm" className="co-icon-space-r" />;
@@ -97,7 +98,7 @@ export const ImportYAMLResourceStatus: React.FC<ImportYAMLResourceStatusProps> =
   );
 };
 
-export const ImportYAMLResults: React.FC<ImportYAMLResultsProps> = ({
+export const ImportYAMLResults: React.FC<React.PropsWithChildren<ImportYAMLResultsProps>> = ({
   createResources,
   displayResults,
   importResources,

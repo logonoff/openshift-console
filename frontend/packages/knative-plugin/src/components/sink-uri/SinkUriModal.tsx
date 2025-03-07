@@ -23,7 +23,7 @@ export interface SinkUriModalProps {
 
 type Props = FormikProps<FormikValues> & SinkUriModalProps;
 
-const SinkUriModal: React.FC<Props> = ({
+const SinkUriModal: React.FC<React.PropsWithChildren<Props>> = ({
   handleSubmit,
   cancel,
   isSubmitting,

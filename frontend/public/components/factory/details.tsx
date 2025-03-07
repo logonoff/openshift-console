@@ -124,7 +124,7 @@ export const DetailsPage = withFallback<DetailsPageProps>(({ pages = [], ...prop
     [resourcePageExtensions, dynamicResourcePageExtensions, kindObj, props.kind],
   );
   const resolvedBreadcrumbExtension = useBreadCrumbsForDetailPage(kindObj);
-  const onBreadcrumbsResolved = React.useCallback((breadcrumbs) => {
+  const onBreadcrumbsResolved = React.useCallback((breadcrumbs: any) => {
     setPluginBreadcrumbs(breadcrumbs || undefined);
   }, []);
   let allPages = [...pages, ...pluginPages];
@@ -215,7 +215,7 @@ export type DetailsPageProps = {
   ) => ({ name: string; path: string } | { name: string; path: Location })[];
   customData?: any;
   badge?: React.ReactNode;
-  icon?: React.ComponentType<{ obj: K8sResourceKind }>;
+  icon?: React.ComponentType<React.PropsWithChildren<{ obj: K8sResourceKind }>>;
   getResourceStatus?: (resource: K8sResourceKind) => string;
   children?: React.ReactNode;
   customKind?: string;

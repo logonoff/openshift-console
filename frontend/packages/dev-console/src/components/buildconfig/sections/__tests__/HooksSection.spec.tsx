@@ -12,7 +12,10 @@ jest.mock('../EditorField', () =>
 
 configure({ testIdAttribute: 'data-test' });
 
-const Wrapper: React.FC<FormikConfig<HooksSectionFormData>> = ({ children, ...formikConfig }) => (
+const Wrapper: React.FC<React.PropsWithChildren<FormikConfig<HooksSectionFormData>>> = ({
+  children,
+  ...formikConfig
+}) => (
   <Provider store={store}>
     <Formik {...formikConfig}>
       {(formikProps) => (

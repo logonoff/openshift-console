@@ -14,9 +14,8 @@ jest.mock('react-router-dom-v5-compat', () => ({
 }));
 
 describe(ConnectedStorageClassForm.displayName, () => {
-  const Component: React.ComponentType<Omit<
-    StorageClassFormProps,
-    't' | 'i18n' | 'tReady'
+  const Component: React.ComponentType<React.PropsWithChildren<
+    Omit<StorageClassFormProps, 't' | 'i18n' | 'tReady'>
   >> = ConnectedStorageClassForm.WrappedComponent as any;
   let wrapper: ShallowWrapper<StorageClassFormProps>;
   let onClose: Spy;

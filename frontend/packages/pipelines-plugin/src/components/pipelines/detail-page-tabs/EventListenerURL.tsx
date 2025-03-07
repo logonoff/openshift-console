@@ -11,7 +11,10 @@ type EventListenerURLProps = {
   namespace: string;
 };
 
-const EventListenerURL: React.FC<EventListenerURLProps> = ({ eventListener, namespace }) => {
+const EventListenerURL: React.FC<React.PropsWithChildren<EventListenerURLProps>> = ({
+  eventListener,
+  namespace,
+}) => {
   const { t } = useTranslation();
   const routeURL = useEventListenerURL(eventListener, namespace);
   return (

@@ -6,9 +6,9 @@ type TopologyHelmReleaseNotesPanelProps = {
   releaseNotes: string;
 };
 
-const TopologyHelmReleaseNotesPanel: React.FC<TopologyHelmReleaseNotesPanelProps> = ({
-  releaseNotes,
-}) =>
+const TopologyHelmReleaseNotesPanel: React.FC<React.PropsWithChildren<
+  TopologyHelmReleaseNotesPanelProps
+>> = ({ releaseNotes }) =>
   releaseNotes ? (
     <div className="overview__sidebar-pane-body">
       <SyncMarkdownView content={releaseNotes} />

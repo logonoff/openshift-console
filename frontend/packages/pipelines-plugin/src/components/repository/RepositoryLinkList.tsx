@@ -23,7 +23,9 @@ export type RepositoryLinkListProps = {
   pipelineRun: PipelineRunKind;
 };
 
-const RepositoryLinkList: React.FC<RepositoryLinkListProps> = ({ pipelineRun }) => {
+const RepositoryLinkList: React.FC<React.PropsWithChildren<RepositoryLinkListProps>> = ({
+  pipelineRun,
+}) => {
   const { t } = useTranslation();
   const plrLabels = pipelineRun.metadata.labels;
   const plrAnnotations = pipelineRun.metadata.annotations;

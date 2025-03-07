@@ -17,7 +17,9 @@ type TopologyEdgeResourcesPanelProps = {
   edge: Edge;
 };
 
-const TopologyEdgeResourcesPanel: React.FC<TopologyEdgeResourcesPanelProps> = ({ edge }) => {
+const TopologyEdgeResourcesPanel: React.FC<React.PropsWithChildren<
+  TopologyEdgeResourcesPanelProps
+>> = ({ edge }) => {
   const { t } = useTranslation();
   const [consoleLinks] = useK8sWatchResource<K8sResourceKind[]>({
     isList: true,

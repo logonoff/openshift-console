@@ -95,7 +95,7 @@ const sorts = {
 };
 
 // Common table row/columns helper SFCs for implementing accessible data grid
-export const TableRow: React.FC<TableRowProps> = ({
+export const TableRow: React.FC<React.PropsWithChildren<TableRowProps>> = ({
   id,
   index,
   trKey,
@@ -173,7 +173,7 @@ const isColumnVisible = (
   return true;
 };
 
-export const TableData: React.FC<TableDataProps> = ({
+export const TableData: React.FC<React.PropsWithChildren<TableDataProps>> = ({
   className,
   columnID,
   columns,
@@ -199,7 +199,7 @@ const RowMemo = React.memo<RowFunctionArgs & { Row: React.FC<RowFunctionArgs> }>
   ({ Row, ...props }) => <Row {...props} />,
 );
 
-const VirtualBody: React.FC<VirtualBodyProps> = (props) => {
+const VirtualBody: React.FC<React.PropsWithChildren<VirtualBodyProps>> = (props) => {
   const {
     customData,
     Row,
@@ -278,7 +278,7 @@ export type RowFunctionArgs<T = any, C = any> = {
 
 export type VirtualBodyProps = {
   customData?: any;
-  Row: React.FC<RowFunctionArgs>;
+  Row: React.FC<React.PropsWithChildren<RowFunctionArgs>>;
   height: number;
   isScrolling: boolean;
   onChildScroll: (params: Scroll) => void;
@@ -441,7 +441,7 @@ const StandardTable: React.FCC<StandardTableProps> = ({
   );
 };
 
-export const Table: React.FC<TableProps> = ({
+export const Table: React.FC<React.PropsWithChildren<TableProps>> = ({
   onSelect,
   filters: initFilters,
   selected,
@@ -528,7 +528,7 @@ export const Table: React.FC<TableProps> = ({
   );
 
   const applySort = React.useCallback(
-    (sortField, sortFunc, direction, columnTitle) => {
+    (sortField: any, sortFunc: any, direction: any, columnTitle: any) => {
       dispatch(UIActions.sortList(listId, sortField, sortFunc || currentSortFunc, direction));
       const url = new URL(window.location.href);
       const sp = new URLSearchParams(window.location.search);
@@ -540,7 +540,7 @@ export const Table: React.FC<TableProps> = ({
   );
 
   const onSort = React.useCallback(
-    (event, index, direction) => {
+    (event: any, index: any, direction: any) => {
       event.preventDefault();
       const sortColumn = columns[index - columnShift];
       applySort(sortColumn.sortField, sortColumn.sortFunc, direction, sortColumn.title);
@@ -674,13 +674,13 @@ export type TableProps = Partial<ComponentProps> & {
   showNamespaceOverride?: boolean;
   Header: HeaderFunc;
   loadError?: string | Object;
-  Row?: React.FC<RowFunctionArgs>;
+  Row?: React.FC<React.PropsWithChildren<RowFunctionArgs>>;
   Rows?: (args: RowsArgs) => IRow[];
   'aria-label': string;
   onSelect?: OnSelect;
   virtualize?: boolean;
-  NoDataEmptyMsg?: React.ComponentType<{}>;
-  EmptyMsg?: React.ComponentType<{}>;
+  NoDataEmptyMsg?: React.ComponentType<React.PropsWithChildren<{}>>;
+  EmptyMsg?: React.ComponentType<React.PropsWithChildren<{}>>;
   loaded?: boolean;
   reduxID?: string;
   reduxIDs?: string[];

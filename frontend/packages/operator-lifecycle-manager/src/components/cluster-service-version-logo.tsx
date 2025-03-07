@@ -7,7 +7,9 @@ import operatorLogo from '../operator.svg';
 import { ClusterServiceVersionIcon } from '../types';
 import { DeprecatedOperatorWarningBadge } from './deprecated-operator-warnings/deprecated-operator-warnings';
 
-export const ClusterServiceVersionLogo: React.FC<ClusterServiceVersionLogoProps> = (props) => {
+export const ClusterServiceVersionLogo: React.FC<React.PropsWithChildren<
+  ClusterServiceVersionLogoProps
+>> = (props) => {
   const { icon, displayName, provider, version, deprecation } = props;
   const { t } = useTranslation();
 

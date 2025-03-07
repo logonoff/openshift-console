@@ -10,7 +10,7 @@ import FormSection from '@console/dev-console/src/components/import/section/Form
 import { useActiveNamespace } from '@console/shared/src/hooks/useActiveNamespace';
 import './PacSection.scss';
 
-const InfoPanel: React.FC = () => {
+const InfoPanel: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const [namespace] = useActiveNamespace();
   const {

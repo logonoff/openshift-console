@@ -15,9 +15,9 @@ type NodeStatusResources = {};
 export const isUnschedulableActive: IsNodeStatusActive<NodeStatusResources> = (node) =>
   !!node.spec.unschedulable;
 
-export const MarkAsSchedulablePopover: React.FC<NodePopoverContentProps<NodeStatusResources>> = ({
-  node,
-}) => {
+export const MarkAsSchedulablePopover: React.FC<React.PropsWithChildren<
+  NodePopoverContentProps<NodeStatusResources>
+>> = ({ node }) => {
   const { t } = useTranslation();
   const [isExpanded, setExpanded] = React.useState(true);
 

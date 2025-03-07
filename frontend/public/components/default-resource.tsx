@@ -26,7 +26,9 @@ const { common } = Kebab.factory;
 
 const tableColumnClasses = ['', '', 'pf-m-hidden pf-m-visible-on-md', Kebab.columnClass];
 
-export const DetailsForKind: React.FC<PageComponentProps<K8sResourceKind>> = ({ obj }) => {
+export const DetailsForKind: React.FC<React.PropsWithChildren<
+  PageComponentProps<K8sResourceKind>
+>> = ({ obj }) => {
   const { t } = useTranslation();
   const groupVersionKind = getGroupVersionKindForResource(obj);
   const [model] = useK8sModel(groupVersionKind);
@@ -77,7 +79,10 @@ export const DetailsForKind: React.FC<PageComponentProps<K8sResourceKind>> = ({ 
   );
 };
 
-const TableRowForKind: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj, customData }) => {
+const TableRowForKind: React.FC<React.PropsWithChildren<RowFunctionArgs<K8sResourceKind>>> = ({
+  obj,
+  customData,
+}) => {
   const kind = referenceFor(obj) || customData.kind;
   const menuActions = [...Kebab.getExtensionsActionsForKind(kindObj(kind)), ...common];
   const { t } = useTranslation();
@@ -107,7 +112,9 @@ const TableRowForKind: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj, cust
   );
 };
 
-export const DefaultList: React.FC<TableProps & { kinds: string[] }> = (props) => {
+export const DefaultList: React.FC<React.PropsWithChildren<TableProps & { kinds: string[] }>> = (
+  props,
+) => {
   const { t } = useTranslation();
 
   const { kinds } = props;
@@ -168,9 +175,9 @@ export const DefaultList: React.FC<TableProps & { kinds: string[] }> = (props) =
 };
 DefaultList.displayName = 'DefaultList';
 
-export const DefaultPage: React.FC<Omit<React.ComponentProps<typeof ListPage>, 'ListComponent'>> = (
-  props,
-) => (
+export const DefaultPage: React.FC<React.PropsWithChildren<
+  Omit<React.ComponentProps<typeof ListPage>, 'ListComponent'>
+>> = (props) => (
   <ListPage
     {...props}
     ListComponent={DefaultList}
@@ -179,7 +186,9 @@ export const DefaultPage: React.FC<Omit<React.ComponentProps<typeof ListPage>, '
 );
 DefaultPage.displayName = 'DefaultPage';
 
-export const DefaultDetailsPage: React.FC<React.ComponentProps<typeof DetailsPage>> = (props) => {
+export const DefaultDetailsPage: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof DetailsPage>
+>> = (props) => {
   const pages = [navFactory.details(DetailsForKind), navFactory.editYaml()];
   const menuActions = [...Kebab.getExtensionsActionsForKind(kindObj(props.kind)), ...common];
 

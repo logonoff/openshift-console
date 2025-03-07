@@ -69,7 +69,7 @@ export const getDaemonSetsOfPods = (pods?: PodKind[]) => {
   return result;
 };
 
-const ExpandableResources: React.FC<ExpandableResourcesProps> = ({
+const ExpandableResources: React.FC<React.PropsWithChildren<ExpandableResourcesProps>> = ({
   resources,
   onLinkClicked,
   subject,
@@ -77,7 +77,7 @@ const ExpandableResources: React.FC<ExpandableResourcesProps> = ({
   const [isExpanded, setExpanded] = React.useState(false);
   const onToggle = React.useCallback(() => setExpanded(!isExpanded), [isExpanded, setExpanded]);
   const onLinkClick = React.useCallback(
-    (event) => {
+    (event: any) => {
       onLinkClicked && (!event.key || event.key === 'Enter') && onLinkClicked();
     },
     [onLinkClicked],
@@ -112,7 +112,7 @@ const ExpandableResources: React.FC<ExpandableResourcesProps> = ({
   );
 };
 
-export const StatusValidations: React.FC<StatusValidationProps> = ({
+export const StatusValidations: React.FC<React.PropsWithChildren<StatusValidationProps>> = ({
   status,
   nodePods,
   loadError,

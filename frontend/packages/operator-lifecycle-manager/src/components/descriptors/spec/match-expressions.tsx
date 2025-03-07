@@ -17,7 +17,7 @@ const ALL_OPERATORS: MatchExpression['operator'][] = [
   Operator.NotIn,
 ];
 
-const MatchExpression: React.FC<MatchExpressionProps> = ({
+const MatchExpression: React.FC<React.PropsWithChildren<MatchExpressionProps>> = ({
   expression,
   onChange = () => {},
   allowedOperators = ALL_OPERATORS,
@@ -90,7 +90,7 @@ const MatchExpression: React.FC<MatchExpressionProps> = ({
   );
 };
 
-export const MatchExpressions: React.FC<MatchExpressionsProps> = ({
+export const MatchExpressions: React.FC<React.PropsWithChildren<MatchExpressionsProps>> = ({
   matchExpressions = [],
   onChange = () => {}, // Default to noop
   allowedOperators = ALL_OPERATORS,

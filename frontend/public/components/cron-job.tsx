@@ -59,7 +59,9 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const CronJobTableRow: React.FC<RowFunctionArgs<CronJobKind>> = ({ obj: cronjob }) => {
+const CronJobTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<CronJobKind>>> = ({
+  obj: cronjob,
+}) => {
   const resourceKind = referenceFor(cronjob);
   const context = { [resourceKind]: cronjob };
   return (
@@ -94,7 +96,9 @@ const CronJobTableRow: React.FC<RowFunctionArgs<CronJobKind>> = ({ obj: cronjob 
   );
 };
 
-const CronJobDetails: React.FC<CronJobDetailsProps> = ({ obj: cronjob }) => {
+const CronJobDetails: React.FC<React.PropsWithChildren<CronJobDetailsProps>> = ({
+  obj: cronjob,
+}) => {
   const job = cronjob.spec.jobTemplate;
   const { t } = useTranslation();
   return (
@@ -193,7 +197,9 @@ const getPodsWatcher = (namespace: string) => {
   ];
 };
 
-export const CronJobPodsComponent: React.FC<CronJobPodsComponentProps> = ({ obj }) => {
+export const CronJobPodsComponent: React.FC<React.PropsWithChildren<CronJobPodsComponentProps>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   const podFilters = React.useMemo(() => getPodFilters(t), [t]);
   return (
@@ -233,7 +239,9 @@ export type CronJobJobsComponentProps = {
   obj: K8sResourceKind;
 };
 
-export const CronJobJobsComponent: React.FC<CronJobJobsComponentProps> = ({ obj }) => (
+export const CronJobJobsComponent: React.FC<React.PropsWithChildren<CronJobJobsComponentProps>> = ({
+  obj,
+}) => (
   <div className="co-m-pane__body">
     <Firehose resources={getJobsWatcher(obj.metadata.namespace)}>
       <ListPageWrapper
@@ -252,7 +260,7 @@ export const CronJobJobsComponent: React.FC<CronJobJobsComponentProps> = ({ obj 
   </div>
 );
 
-export const CronJobsList: React.FC = (props) => {
+export const CronJobsList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const CronJobTableHeader = () => [
     {
@@ -309,11 +317,11 @@ export const CronJobsList: React.FC = (props) => {
   );
 };
 
-export const CronJobsPage: React.FC<CronJobsPageProps> = (props) => (
+export const CronJobsPage: React.FC<React.PropsWithChildren<CronJobsPageProps>> = (props) => (
   <ListPage {...props} ListComponent={CronJobsList} kind={kind} canCreate={true} />
 );
 
-export const CronJobsDetailsPage: React.FC = (props) => {
+export const CronJobsDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const customActionMenu = (kindObj, obj) => {
     const resourceKind = referenceForModel(kindObj);
     const context = { [resourceKind]: obj };

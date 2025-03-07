@@ -13,7 +13,7 @@ import { FavoriteNavItem } from './FavoriteNavItem';
 
 import './FavoriteNavItems.scss';
 
-export const FavoriteNavItems: React.FC = () => {
+export const FavoriteNavItems: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const [activeGroup, setActiveGroup] = React.useState('');
   const [activeItem, setActiveItem] = React.useState('');

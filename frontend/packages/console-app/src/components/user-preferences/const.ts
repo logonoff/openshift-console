@@ -5,7 +5,10 @@ import UserPreferenceDropdownField from './UserPreferenceDropdownField';
 
 export const USER_PREFERENCES_BASE_URL = '/user-preferences';
 
-export const componentForFieldType: Record<UserPreferenceFieldType, React.FC<{ id: string }>> = {
+export const componentForFieldType: Record<
+  UserPreferenceFieldType,
+  React.FC<React.PropsWithChildren<{ id: string }>>
+> = {
   [UserPreferenceFieldType.dropdown]: UserPreferenceDropdownField,
   [UserPreferenceFieldType.checkbox]: UserPreferenceCheckboxField,
   [UserPreferenceFieldType.custom]: UserPreferenceCustomField,

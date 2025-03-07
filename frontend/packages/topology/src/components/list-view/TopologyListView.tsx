@@ -36,7 +36,9 @@ interface TopologyGraphViewProps {
   unassignedItems: Node[];
 }
 
-const TopologyListViewComponent: React.FC<TopologyGraphViewProps> = React.memo(
+const TopologyListViewComponent: React.FC<React.PropsWithChildren<
+  TopologyGraphViewProps
+>> = React.memo(
   function TopologyListViewComponent({
     visualizationReady,
     visualization,
@@ -133,9 +135,9 @@ interface TopologyListViewProps {
   setVisualization: (vis: Visualization) => void;
 }
 
-const ConnectedTopologyListView: React.FC<
+const ConnectedTopologyListView: React.FC<React.PropsWithChildren<
   TopologyListViewProps & TopologyListViewPropsFromDispatch & TopologyListViewPropsFromState
-> = observer(function TopologyListView({
+>> = observer(function TopologyListView({
   model,
   onSelect,
   setVisualization,

@@ -10,7 +10,9 @@ export interface ServiceBindingWarningProps {
   namespace: string;
 }
 
-export const ServiceBindingDeprecationAlertForTopology: React.FC = () => {
+export const ServiceBindingDeprecationAlertForTopology: React.FC<React.PropsWithChildren<
+  unknown
+>> = () => {
   const { t } = useTranslation();
   const productDetails = getBrandingDetails();
   return (
@@ -23,9 +25,9 @@ export const ServiceBindingDeprecationAlertForTopology: React.FC = () => {
   );
 };
 
-export const ServiceBindingWarningForTopology: React.FC<ServiceBindingWarningProps> = ({
-  namespace,
-}) => {
+export const ServiceBindingWarningForTopology: React.FC<React.PropsWithChildren<
+  ServiceBindingWarningProps
+>> = ({ namespace }) => {
   const { t } = useTranslation();
 
   const [serviceBindings, serviceBindingsLoaded] = useK8sWatchResource<K8sResourceCommon[]>({
@@ -52,7 +54,7 @@ export const ServiceBindingWarningForTopology: React.FC<ServiceBindingWarningPro
   );
 };
 
-export const ServiceBindingDeprecationAlert: React.FC = () => {
+export const ServiceBindingDeprecationAlert: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const productDetails = getBrandingDetails();
   return (
@@ -79,7 +81,9 @@ export const ServiceBindingDeprecationAlert: React.FC = () => {
   );
 };
 
-export const ServiceBindingDeprecationAlertForModals: React.FC = () => {
+export const ServiceBindingDeprecationAlertForModals: React.FC<React.PropsWithChildren<
+  unknown
+>> = () => {
   const { t } = useTranslation();
   const productDetails = getBrandingDetails();
   return (

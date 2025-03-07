@@ -40,13 +40,19 @@ type OngoingActvityProps<T> = {
 export type OngoingActivityBodyProps = {
   resourceActivities?: (OngoingActvityProps<K8sResourceCommon> & {
     timestamp: Date;
-    loader?: () => Promise<React.ComponentType<Partial<OngoingActvityProps<K8sResourceCommon>>>>;
-    component?: React.ComponentType<Partial<OngoingActvityProps<K8sResourceCommon>>>;
+    loader?: () => Promise<
+      React.ComponentType<React.PropsWithChildren<Partial<OngoingActvityProps<K8sResourceCommon>>>>
+    >;
+    component?: React.ComponentType<
+      React.PropsWithChildren<Partial<OngoingActvityProps<K8sResourceCommon>>>
+    >;
   })[];
   prometheusActivities?: {
     results: PrometheusResponse[];
-    loader?: () => Promise<React.ComponentType<{ results?: PrometheusResponse[] }>>;
-    component?: React.ComponentType<{ results: PrometheusResponse[] }>;
+    loader?: () => Promise<
+      React.ComponentType<React.PropsWithChildren<{ results?: PrometheusResponse[] }>>
+    >;
+    component?: React.ComponentType<React.PropsWithChildren<{ results: PrometheusResponse[] }>>;
   }[];
   loaded: boolean;
 };
@@ -77,10 +83,10 @@ export type ResourceInventoryItemProps = {
   namespace?: string;
   error: boolean;
   showLink?: boolean;
-  TitleComponent?: React.ComponentType<{}>;
+  TitleComponent?: React.ComponentType<React.PropsWithChildren<{}>>;
   title?: string;
   titlePlural?: string;
-  ExpandedComponent?: React.ComponentType<{}>;
+  ExpandedComponent?: React.ComponentType<React.PropsWithChildren<{}>>;
   basePath?: string;
   dataTest?: string;
 };
@@ -121,7 +127,7 @@ export type UtilizationItemProps = {
   error: boolean;
   max?: number;
   byteDataType?: ByteDataTypes;
-  TopConsumerPopover?: React.ComponentType<TopConsumerPopoverProps>;
+  TopConsumerPopover?: React.ComponentType<React.PropsWithChildren<TopConsumerPopoverProps>>;
   setLimitReqState?: (state: { limit: LIMIT_STATE; requested: LIMIT_STATE }) => void;
 };
 

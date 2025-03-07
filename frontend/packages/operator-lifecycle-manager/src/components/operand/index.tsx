@@ -143,7 +143,9 @@ const hasAllNamespaces = (csv: ClusterServiceVersionKind) => {
   return managedNamespaces.length === 1 && managedNamespaces[0] === '';
 };
 
-export const OperandStatus: React.FC<OperandStatusProps> = ({ operand }) => {
+export const OperandStatus: React.FC<React.PropsWithChildren<OperandStatusProps>> = ({
+  operand,
+}) => {
   const status: OperandStatusType = getOperandStatus(operand);
   if (!status) {
     return <>-</>;
@@ -164,7 +166,10 @@ const getOperandStatusText = (operand: K8sResourceKind): string => {
   return status ? `${status.type}: ${status.value}` : '';
 };
 
-export const OperandTableRow: React.FC<OperandTableRowProps> = ({ obj, showNamespace }) => {
+export const OperandTableRow: React.FC<React.PropsWithChildren<OperandTableRowProps>> = ({
+  obj,
+  showNamespace,
+}) => {
   const objReference = referenceFor(obj);
   const context = { [objReference]: obj, 'csv-actions': { resource: obj } };
   return (
@@ -209,7 +214,7 @@ export const OperandTableRow: React.FC<OperandTableRowProps> = ({ obj, showNames
 
 const getOperandNamespace = (obj: ClusterServiceVersionKind): string | null => getNamespace(obj);
 
-export const OperandList: React.FC<OperandListProps> = (props) => {
+export const OperandList: React.FC<React.PropsWithChildren<OperandListProps>> = (props) => {
   const { t } = useTranslation();
   const { noAPIsFound, showNamespace } = props;
 
@@ -477,7 +482,9 @@ export const ProvidedAPIsPage = (props: ProvidedAPIsPageProps) => {
   );
 };
 
-const DefaultProvidedAPIPage: React.FC<DefaultProvidedAPIPageProps> = (props) => {
+const DefaultProvidedAPIPage: React.FC<React.PropsWithChildren<DefaultProvidedAPIPageProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const location = useLocation();
   const [showOperandsInAllNamespaces] = useShowOperandsInAllNamespaces();
@@ -583,7 +590,12 @@ export const ProvidedAPIPage = (props: ProvidedAPIPageProps) => {
   );
 };
 
-const PodStatuses: React.FC<PodStatusesProps> = ({ kindObj, obj, podStatusDescriptors, schema }) =>
+const PodStatuses: React.FC<React.PropsWithChildren<PodStatusesProps>> = ({
+  kindObj,
+  obj,
+  podStatusDescriptors,
+  schema,
+}) =>
   podStatusDescriptors?.length > 0 ? (
     <div className="row">
       {podStatusDescriptors.map((statusDescriptor: StatusDescriptor) => {

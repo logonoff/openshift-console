@@ -11,7 +11,9 @@ export interface ClusterTaskDetailsProps {
   obj: TaskKind;
 }
 
-const ClusterTaskDetails: React.FC<ClusterTaskDetailsProps> = ({ obj: task }) => {
+const ClusterTaskDetails: React.FC<React.PropsWithChildren<ClusterTaskDetailsProps>> = ({
+  obj: task,
+}) => {
   const { t } = useTranslation();
   return (
     <div className="co-m-pane__body">

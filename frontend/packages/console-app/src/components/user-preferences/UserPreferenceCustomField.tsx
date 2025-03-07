@@ -5,10 +5,9 @@ import { UserPreferenceFieldProps } from './types';
 
 type UserPreferenceCustomFieldProps = UserPreferenceFieldProps<CustomFieldType>;
 
-const UserPreferenceCustomField: React.FC<UserPreferenceCustomFieldProps> = ({
-  component: CustomComponent,
-  props: customComponentProps,
-}) =>
+const UserPreferenceCustomField: React.FC<React.PropsWithChildren<
+  UserPreferenceCustomFieldProps
+>> = ({ component: CustomComponent, props: customComponentProps }) =>
   CustomComponent ? (
     <ErrorBoundaryInline>
       <CustomComponent {...customComponentProps} />

@@ -13,9 +13,9 @@ import { secretModalLauncher } from '../CreateSecretModal';
 const CREATE_SOURCE_SECRET = 'create-source-secret';
 const CLEAR_SOURCE_SECRET = 'clear-source-secret';
 
-const SourceSecretSelector: React.FC<{
+const SourceSecretSelector: React.FC<React.PropsWithChildren<{
   formContextField?: string;
-}> = ({ formContextField }) => {
+}>> = ({ formContextField }) => {
   const fieldPrefix = formContextField ? `${formContextField}.` : '';
 
   const { t } = useTranslation();

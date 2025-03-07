@@ -5,7 +5,7 @@ import { ConsoleEmptyState } from '@console/internal/components/utils';
 import HelmReleaseResourcesHeader from './HelmReleaseResourcesHeader';
 import HelmReleaseResourcesRow from './HelmReleaseResourcesRow';
 
-const HelmReleaseResourcesList: React.FC<TableProps> = (props) => {
+const HelmReleaseResourcesList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table

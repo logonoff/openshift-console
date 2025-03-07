@@ -43,7 +43,10 @@ interface ApplicationDropdownProps {
   onLoad?: (items: { [key: string]: string }) => void;
 }
 
-const ApplicationDropdown: React.FC<ApplicationDropdownProps> = ({ namespace, ...props }) => {
+const ApplicationDropdown: React.FC<React.PropsWithChildren<ApplicationDropdownProps>> = ({
+  namespace,
+  ...props
+}) => {
   const { t } = useTranslation();
   const modelFactories = useExtensions<TopologyDataModelFactory>(isTopologyDataModelFactory);
   const dynamicModelFactories = useExtensions<DynamicTopologyDataModelFactory>(

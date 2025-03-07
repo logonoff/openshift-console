@@ -114,7 +114,7 @@ const useOperatorHealth = (t: TFunction, name: string): OperatorHealthType => {
   };
 };
 
-export const VSphereOperatorStatuses: React.FC = () => {
+export const VSphereOperatorStatuses: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = React.useState(false);
 

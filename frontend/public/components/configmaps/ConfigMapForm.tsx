@@ -18,7 +18,7 @@ export interface ConfigMapProps {
   isCreateFlow: boolean;
 }
 
-const ConfigmapForm: React.FC<ConfigMapProps> = ({
+const ConfigmapForm: React.FC<React.PropsWithChildren<ConfigMapProps>> = ({
   name,
   namespace,
   title,

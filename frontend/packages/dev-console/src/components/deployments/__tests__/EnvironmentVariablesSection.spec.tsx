@@ -10,7 +10,9 @@ import EnvironmentVariablesSection from '../EnvironmentVariablesSection';
 
 configure({ testIdAttribute: 'data-test' });
 
-const MockContainerField: React.FC = () => <div>Container: foo</div>;
+const MockContainerField: React.FC<React.PropsWithChildren<unknown>> = () => (
+  <div>Container: foo</div>
+);
 
 jest.mock('../ContainerField', () => ({
   __esModule: true,
@@ -18,7 +20,9 @@ jest.mock('../ContainerField', () => ({
   default: jest.fn(),
 }));
 
-const mockedContainerField = ContainerField as jest.Mock<React.FC>;
+const mockedContainerField = ContainerField as jest.Mock<
+  React.FC<React.PropsWithChildren<unknown>>
+>;
 const handleSubmit = jest.fn();
 const mockInitialValues = _.cloneDeep(mockEditDeploymentData);
 mockInitialValues.formData.envs = [

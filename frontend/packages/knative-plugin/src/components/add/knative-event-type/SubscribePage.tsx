@@ -14,7 +14,7 @@ import {
 } from '../../../const';
 import Subscribe from './Subscribe';
 
-const SubscribePage: React.FC = () => {
+const SubscribePage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const location = useLocation();

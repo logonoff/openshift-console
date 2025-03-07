@@ -19,7 +19,7 @@ import { PodsOverviewMultiple } from './pods-overview';
 import { BuildOverview } from './build-overview';
 import { JobsOverview } from './jobs-overview';
 
-const CronJobOverviewDetails: React.SFC<CronJobOverviewDetailsProps> = ({
+const CronJobOverviewDetails: React.FC<React.PropsWithChildren<CronJobOverviewDetailsProps>> = ({
   item: { obj: cronjob },
 }) => {
   const { t } = useTranslation();
@@ -56,7 +56,9 @@ const CronJobOverviewDetails: React.SFC<CronJobOverviewDetailsProps> = ({
     </div>
   );
 };
-const CronJobResourcesTab: React.SFC<CronJobResourcesTabProps> = ({ item }) => {
+const CronJobResourcesTab: React.FC<React.PropsWithChildren<CronJobResourcesTabProps>> = ({
+  item,
+}) => {
   const { obj } = item;
   const pluginComponents = usePluginsOverviewTabSection(item);
   const { buildConfigs } = useBuildConfigsWatcher(obj);
@@ -73,7 +75,10 @@ const CronJobResourcesTab: React.SFC<CronJobResourcesTabProps> = ({ item }) => {
   );
 };
 
-export const CronJobOverview: React.SFC<CronJobOverviewProps> = ({ item, customActions }) => {
+export const CronJobOverview: React.FC<React.PropsWithChildren<CronJobOverviewProps>> = ({
+  item,
+  customActions,
+}) => {
   const { t } = useTranslation();
   const tabs = [
     {

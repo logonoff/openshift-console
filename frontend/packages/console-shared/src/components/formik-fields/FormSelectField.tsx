@@ -13,7 +13,7 @@ import { RedExclamationCircleIcon } from '../status';
 import { FormSelectFieldOption, FormSelectFieldProps } from './field-types';
 import { getFieldId } from './field-utils';
 
-const FormSelectField: React.FC<FormSelectFieldProps> = ({
+const FormSelectField: React.FC<React.PropsWithChildren<FormSelectFieldProps>> = ({
   label,
   helpText,
   required,

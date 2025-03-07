@@ -28,7 +28,7 @@ type BuildFormProp = {
 
 const LAST_VIEWED_EDITOR_TYPE_USERSETTING_KEY = 'shipwright.buildForm.editor.lastView';
 
-const BuildForm: React.FC<BuildFormProp> = ({
+const BuildForm: React.FC<React.PropsWithChildren<BuildFormProp>> = ({
   handleSubmit,
   heading,
   build: watchedBuild,

@@ -31,7 +31,7 @@ export type ProvisionerDetails = {
       required?: CodeRef<(arg) => boolean> | boolean;
       validation?: CodeRef<(params) => string>;
       format?: CodeRef<(arg) => string>;
-      Component?: CodeRef<React.ComponentType<ProvisionerProps>>;
+      Component?: CodeRef<React.ComponentType<React.PropsWithChildren<ProvisionerProps>>>;
       type?: 'checkbox';
       validationMsg?: string;
     };

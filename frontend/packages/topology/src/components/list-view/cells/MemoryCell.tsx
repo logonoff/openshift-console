@@ -13,7 +13,7 @@ type MemoryCellProps = {
   item: Node;
 };
 
-const MemoryCellComponent: React.FC<MemoryCellComponentProps> = React.memo(
+const MemoryCellComponent: React.FC<React.PropsWithChildren<MemoryCellComponentProps>> = React.memo(
   ({ memoryByPod, totalBytes }) => (
     <div className="odc-topology-list-view__metrics-cell__detail--memory">
       <MetricsTooltip metricLabel="Memory" byPod={memoryByPod}>
@@ -29,7 +29,7 @@ const MemoryCellComponent: React.FC<MemoryCellComponentProps> = React.memo(
   ),
 );
 
-const MemoryCell: React.FC<MemoryCellProps> = ({ item }) => {
+const MemoryCell: React.FC<React.PropsWithChildren<MemoryCellProps>> = ({ item }) => {
   const resource = getTopologyResourceObject(item.getData());
   const memoryStats = useMetricStats(resource);
 

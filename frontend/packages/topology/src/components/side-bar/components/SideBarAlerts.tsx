@@ -14,11 +14,11 @@ import { deseralizeData } from '@console/shared/src/utils/user-settings';
 
 const SIDEBAR_ALERTS = 'sideBarAlerts';
 
-const ResolveResourceAlerts: React.FC<{
+const ResolveResourceAlerts: React.FC<React.PropsWithChildren<{
   id?: string;
   useResourceAlertsContent?: (element: GraphElement) => DetailsResourceAlertContent;
   element: GraphElement;
-}> = observer(function ResolveResourceAlerts({ id, useResourceAlertsContent, element }) {
+}>> = observer(function ResolveResourceAlerts({ id, useResourceAlertsContent, element }) {
   const [cfData, cfLoaded, cfLoadError] = useGetUserSettingConfigMap();
   const [showAlert, setShowAlert] = useUserSettingsLocalStorage(
     `${USERSETTINGS_PREFIX}/${SIDEBAR_ALERTS}/${id}`,
@@ -61,7 +61,9 @@ const ResolveResourceAlerts: React.FC<{
   ) : null;
 });
 
-const SideBarAlerts: React.FC<{ element: GraphElement }> = ({ element }) => {
+const SideBarAlerts: React.FC<React.PropsWithChildren<{ element: GraphElement }>> = ({
+  element,
+}) => {
   const [resourceAlertsExtension, resolved] = useResolvedExtensions<DetailsResourceAlert>(
     isDetailsResourceAlert,
   );

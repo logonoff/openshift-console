@@ -17,7 +17,9 @@ export interface HelmReleaseResourcesProps {
   customData: HelmRelease;
 }
 
-const HelmReleaseResources: React.FC<HelmReleaseResourcesProps> = ({ customData }) => {
+const HelmReleaseResources: React.FC<React.PropsWithChildren<HelmReleaseResourcesProps>> = ({
+  customData,
+}) => {
   const { t } = useTranslation();
   const params = useParams();
   const namespace = params.ns;

@@ -11,7 +11,7 @@ type DynamicFormFieldProps = FormProps<any> & {
   showAlert?: boolean;
 };
 
-const DynamicFormField: React.FC<DynamicFormFieldProps> = ({
+const DynamicFormField: React.FC<React.PropsWithChildren<DynamicFormFieldProps>> = ({
   name,
   schema,
   uiSchema,

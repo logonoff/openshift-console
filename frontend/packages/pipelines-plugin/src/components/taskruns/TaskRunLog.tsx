@@ -11,7 +11,7 @@ export type TaskRunLogProps = {
   obj: TaskRunKind;
 };
 
-const TaskRunLog: React.FC<TaskRunLogProps> = ({ obj }) => {
+const TaskRunLog: React.FC<React.PropsWithChildren<TaskRunLogProps>> = ({ obj }) => {
   const { t } = useTranslation();
   if (obj?.status?.podName) {
     const podResources = {

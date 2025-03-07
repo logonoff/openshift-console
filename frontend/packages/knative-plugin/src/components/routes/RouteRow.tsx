@@ -12,7 +12,7 @@ import { tableColumnClasses } from './route-table';
 const routeReference = referenceForModel(RouteModel);
 const revisionReference = referenceForModel(RevisionModel);
 
-const RouteRow: React.FC<RowFunctionArgs<RouteKind>> = ({ obj }) => {
+const RouteRow: React.FC<React.PropsWithChildren<RowFunctionArgs<RouteKind>>> = ({ obj }) => {
   const objReference = referenceFor(obj);
   const context = { [objReference]: obj };
   return (

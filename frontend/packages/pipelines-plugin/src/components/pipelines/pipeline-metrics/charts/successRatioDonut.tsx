@@ -6,15 +6,9 @@ interface SuccessRatioDonutProps {
   successValue: number;
 }
 
-const SuccessRatioDonut: React.FC<SuccessRatioDonutProps & ChartDonutProps> = ({
-  data,
-  width,
-  successValue = 0,
-  ariaDesc,
-  ariaTitle,
-  title,
-  subTitle,
-}) => {
+const SuccessRatioDonut: React.FC<React.PropsWithChildren<
+  SuccessRatioDonutProps & ChartDonutProps
+>> = ({ data, width, successValue = 0, ariaDesc, ariaTitle, title, subTitle }) => {
   return (
     <ChartDonut
       ariaDesc={ariaDesc}

@@ -20,7 +20,9 @@ const lastTimeInSeries = (series: DataPoint[]) => new Date(_.last(series)?.x ?? 
 const getMaxDate = (data: DataPoint[][]) =>
   new Date(Math.max(...(data?.map?.(lastTimeInSeries) ?? [])) ?? 0);
 
-export const MultilineUtilizationItem: React.FC<MultilineUtilizationItemProps> = React.memo(
+export const MultilineUtilizationItem: React.FC<React.PropsWithChildren<
+  MultilineUtilizationItemProps
+>> = React.memo(
   ({
     title,
     data,
@@ -146,7 +148,7 @@ export const trimSecondsXMutator = (x) => {
   return d;
 };
 
-export const UtilizationItem: React.FC<UtilizationItemProps> = React.memo(
+export const UtilizationItem: React.FC<React.PropsWithChildren<UtilizationItemProps>> = React.memo(
   ({
     title,
     utilization,
@@ -211,7 +213,7 @@ export const UtilizationItem: React.FC<UtilizationItemProps> = React.memo(
       />
     );
 
-    let LimitIcon: React.ComponentType<ColoredIconProps>;
+    let LimitIcon: React.ComponentType<React.PropsWithChildren<ColoredIconProps>>;
     let humanLimit: string;
     let limitState = LIMIT_STATE.OK;
     let requestedState = LIMIT_STATE.OK;
@@ -347,7 +349,7 @@ type MultilineUtilizationItemProps = {
   queries: QueryWithDescription[];
   error: boolean;
   byteDataType?: ByteDataTypes;
-  TopConsumerPopovers?: React.ComponentType<TopConsumerPopoverProps>[];
+  TopConsumerPopovers?: React.ComponentType<React.PropsWithChildren<TopConsumerPopoverProps>>[];
 };
 
 export type QueryWithDescription = {

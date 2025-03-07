@@ -20,7 +20,7 @@ const getBuildStatus = (build: Build): string => {
   return 'Unknown';
 };
 
-const BuildListPage: React.FC<BuildListPageProps> = (props) => {
+const BuildListPage: React.FC<React.PropsWithChildren<BuildListPageProps>> = (props) => {
   const { t } = useTranslation();
 
   const filters: RowFilter<Build>[] = [

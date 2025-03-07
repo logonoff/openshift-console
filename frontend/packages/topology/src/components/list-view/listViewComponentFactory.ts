@@ -13,11 +13,13 @@ import TopologyListViewNode from './TopologyListViewNode';
 export const listViewNodeComponentFactory = (
   type,
 ):
-  | React.ComponentType<{
-      item: Node;
-      selectedIds: string[];
-      onSelect: (ids: string[]) => void;
-    }>
+  | React.ComponentType<
+      React.PropsWithChildren<{
+        item: Node;
+        selectedIds: string[];
+        onSelect: (ids: string[]) => void;
+      }>
+    >
   | undefined => {
   // TODO: Move to plugins
   const knativeComponent = knativeListViewNodeComponentFactory(type);

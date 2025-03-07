@@ -10,9 +10,9 @@ const componentForFieldType = {
   [ClusterConfigurationFieldType.custom]: ClusterConfigurationCustomField,
 };
 
-const ClusterConfigurationField: React.FC<{ item: ResolvedClusterConfigurationItem }> = ({
-  item,
-}) => {
+const ClusterConfigurationField: React.FC<React.PropsWithChildren<{
+  item: ResolvedClusterConfigurationItem;
+}>> = ({ item }) => {
   const Field = componentForFieldType[item.field.type];
   return Field ? <Field item={item} field={item.field} /> : null;
 };

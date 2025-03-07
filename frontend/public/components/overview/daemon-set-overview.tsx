@@ -11,7 +11,9 @@ import { OverviewDetailsResourcesTab } from './resource-overview-page';
 import { ResourceOverviewDetails } from './resource-overview-details';
 import { DaemonSetKind } from '../../module/k8s';
 
-const DaemonSetOverviewDetails: React.SFC<DaemonSetOverviewDetailsProps> = ({ item: { obj } }) => {
+const DaemonSetOverviewDetails: React.FC<React.PropsWithChildren<
+  DaemonSetOverviewDetailsProps
+>> = ({ item: { obj } }) => {
   const { namespace } = obj.metadata;
   const { podData, loaded, loadError } = usePodsWatcher(obj, 'DaemonSet', namespace);
 
@@ -37,7 +39,10 @@ const DaemonSetOverviewDetails: React.SFC<DaemonSetOverviewDetailsProps> = ({ it
   );
 };
 
-export const DaemonSetOverview: React.SFC<DaemonSetOverviewProps> = ({ item, customActions }) => {
+export const DaemonSetOverview: React.FC<React.PropsWithChildren<DaemonSetOverviewProps>> = ({
+  item,
+  customActions,
+}) => {
   const { t } = useTranslation();
 
   const tabs = [

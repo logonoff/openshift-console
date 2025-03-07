@@ -20,7 +20,10 @@ const getMastheadHeight = (): number => {
   return height;
 };
 
-const CloudShellDrawer: React.FC<CloudShellDrawerProps> = ({ children, onClose }) => {
+const CloudShellDrawer: React.FC<React.PropsWithChildren<CloudShellDrawerProps>> = ({
+  children,
+  onClose,
+}) => {
   const [expanded, setExpanded] = React.useState<boolean>(true);
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();

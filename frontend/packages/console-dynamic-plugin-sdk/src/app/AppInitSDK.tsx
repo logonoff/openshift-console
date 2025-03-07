@@ -34,7 +34,10 @@ type AppInitSDKProps = {
  * )
  * ```
  */
-const AppInitSDK: React.FC<AppInitSDKProps> = ({ children, configurations }) => {
+const AppInitSDK: React.FC<React.PropsWithChildren<AppInitSDKProps>> = ({
+  children,
+  configurations,
+}) => {
   const { store, storeContextPresent } = useReduxStore();
   React.useEffect(() => {
     const { appFetch, initPlugins, apiDiscovery = initApiDiscovery } = configurations;

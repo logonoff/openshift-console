@@ -16,7 +16,7 @@ import {
   removeDuplicateDomainMappings,
 } from './serverless-utils';
 
-const ServerlessRouteSection: React.FC = () => {
+const ServerlessRouteSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const {
     setFieldValue,

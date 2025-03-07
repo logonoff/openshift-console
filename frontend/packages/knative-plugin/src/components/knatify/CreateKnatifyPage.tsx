@@ -31,7 +31,7 @@ type watchResource = {
   [key: string]: K8sResourceKind[] | K8sResourceKind;
 };
 
-const CreateKnatifyPage: React.FunctionComponent = () => {
+const CreateKnatifyPage: React.FunctionComponent<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const location = useLocation();

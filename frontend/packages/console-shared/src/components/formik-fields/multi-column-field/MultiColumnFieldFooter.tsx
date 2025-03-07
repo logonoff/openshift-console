@@ -11,7 +11,7 @@ export interface MultiColumnFieldFooterProps {
   onAdd: () => void;
 }
 
-const MultiColumnFieldFooter: React.FC<MultiColumnFieldFooterProps> = ({
+const MultiColumnFieldFooter: React.FC<React.PropsWithChildren<MultiColumnFieldFooterProps>> = ({
   addLabel,
   disableAddRow = false,
   tooltipAddRow,

@@ -7,9 +7,9 @@ interface RestoreGettingStartedButtonProps {
   userSettingsKey: string;
 }
 
-export const RestoreGettingStartedButton: React.FC<RestoreGettingStartedButtonProps> = ({
-  userSettingsKey,
-}) => {
+export const RestoreGettingStartedButton: React.FC<React.PropsWithChildren<
+  RestoreGettingStartedButtonProps
+>> = ({ userSettingsKey }) => {
   const { t } = useTranslation();
   const [showState, setShowState, showStateLoaded] = useGettingStartedShowState(userSettingsKey);
 

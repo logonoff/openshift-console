@@ -31,7 +31,7 @@ export type SinkUriNodeProps = {
   WithContextMenuProps;
 
 const DECORATOR_RADIUS = 13;
-const SinkUriNode: React.FC<SinkUriNodeProps> = ({
+const SinkUriNode: React.FC<React.PropsWithChildren<SinkUriNodeProps>> = ({
   element,
   canDrop,
   dropTarget,

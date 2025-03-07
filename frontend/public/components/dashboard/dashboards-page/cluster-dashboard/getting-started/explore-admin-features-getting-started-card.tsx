@@ -12,7 +12,9 @@ import {
 import { lightspeedOperatorURL } from '@console/app/src/components/lightspeed/Lightspeed';
 import { DOC_URL_OPENSHIFT_WHATS_NEW } from '../../../../utils';
 
-export const ExploreAdminFeaturesGettingStartedCard: React.FC = () => {
+export const ExploreAdminFeaturesGettingStartedCard: React.FC<React.PropsWithChildren<
+  unknown
+>> = () => {
   const { t } = useTranslation();
   const canListPackageManifest = useFlag(FLAGS.CAN_LIST_PACKAGE_MANIFEST);
   const canListOperatorGroup = useFlag(FLAGS.CAN_LIST_OPERATOR_GROUP);

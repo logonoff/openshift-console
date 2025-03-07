@@ -21,7 +21,7 @@ type PacOverviewProps = {
   showSuccessAlert?: boolean;
 };
 
-const PacOverview: React.FC<PacOverviewProps> = ({
+const PacOverview: React.FC<React.PropsWithChildren<PacOverviewProps>> = ({
   namespace,
   secret,
   loadError,

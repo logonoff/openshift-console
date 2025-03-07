@@ -13,7 +13,9 @@ export interface ResourceQuotaAlertProps {
   namespace: string;
 }
 
-export const ResourceQuotaAlert: React.FC<ResourceQuotaAlertProps> = ({ namespace }) => {
+export const ResourceQuotaAlert: React.FC<React.PropsWithChildren<ResourceQuotaAlertProps>> = ({
+  namespace,
+}) => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
   const [warningMessageFlag, setWarningMessageFlag] = React.useState<boolean>();

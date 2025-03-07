@@ -11,7 +11,9 @@ export interface PipelineResourceParamProps {
   type: string;
 }
 
-const PipelineResourceParam: React.FC<PipelineResourceParamProps> = (props) => {
+const PipelineResourceParam: React.FC<React.PropsWithChildren<PipelineResourceParamProps>> = (
+  props,
+) => {
   const { name, type } = props;
 
   const renderTypeFields = () => {

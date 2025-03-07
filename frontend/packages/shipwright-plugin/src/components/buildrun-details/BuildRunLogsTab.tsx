@@ -15,7 +15,9 @@ type BuildRunLogsTabProps = {
   obj: BuildRun;
 };
 
-const BuildRunLogsTab: React.FC<BuildRunLogsTabProps> = ({ obj: buildRun }) => {
+const BuildRunLogsTab: React.FC<React.PropsWithChildren<BuildRunLogsTabProps>> = ({
+  obj: buildRun,
+}) => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
 

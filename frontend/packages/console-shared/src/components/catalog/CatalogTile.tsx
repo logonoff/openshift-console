@@ -22,7 +22,12 @@ type CatalogTileProps = {
   href?: string;
 };
 
-const CatalogTile: React.FC<CatalogTileProps> = ({ item, catalogTypes, onClick, href }) => {
+const CatalogTile: React.FC<React.PropsWithChildren<CatalogTileProps>> = ({
+  item,
+  catalogTypes,
+  onClick,
+  href,
+}) => {
   const { t } = useTranslation();
   const { uid, name, title, provider, description, type, typeLabel, badges } = item;
   const vendor = provider ? t('console-shared~Provided by {{provider}}', { provider }) : null;

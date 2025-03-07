@@ -17,7 +17,9 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const ProjectHelmChartRepositoryRow: React.FC<RowFunctionArgs> = ({ obj }) => {
+const ProjectHelmChartRepositoryRow: React.FC<React.PropsWithChildren<RowFunctionArgs>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   const objReference = referenceFor(obj);
   const context = { [objReference]: obj };

@@ -53,7 +53,7 @@ export type ViewComponentFactory = (
   kind: ModelKind,
   type: string,
   view?: TopologyViewType,
-) => React.ComponentType<{ element: GraphElement }> | undefined;
+) => React.ComponentType<React.PropsWithChildren<{ element: GraphElement }>> | undefined;
 
 export type TopologyDataModelDepicted = (resource: K8sResourceCommon, model: Model) => boolean;
 
@@ -231,8 +231,8 @@ export type WithEditReviewAccessComponentProps = { element: Node };
 export type WithEditReviewAccess = (
   verb: K8sVerb,
 ) => (
-  WrappedComponent: React.ComponentType,
-) => React.ComponentType<WithEditReviewAccessComponentProps>;
+  WrappedComponent: React.ComponentType<React.PropsWithChildren<unknown>>,
+) => React.ComponentType<React.PropsWithChildren<WithEditReviewAccessComponentProps>>;
 
 export type PodStats = {
   name: string;

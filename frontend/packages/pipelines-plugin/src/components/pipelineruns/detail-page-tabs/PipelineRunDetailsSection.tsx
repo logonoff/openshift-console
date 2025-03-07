@@ -9,7 +9,9 @@ export interface PipelineRunDetailsSectionProps {
   pipelineRun: PipelineRunKind;
 }
 
-const PipelineRunDetailsSection: React.FC<PipelineRunDetailsSectionProps> = ({ pipelineRun }) => {
+const PipelineRunDetailsSection: React.FC<React.PropsWithChildren<
+  PipelineRunDetailsSectionProps
+>> = ({ pipelineRun }) => {
   const { t } = useTranslation();
   return (
     <>

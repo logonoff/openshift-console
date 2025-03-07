@@ -20,13 +20,9 @@ interface TopologyListViewKindGroupProps {
   onSelect: (ids: string[]) => void;
 }
 
-const TopologyListViewKindGroup: React.FC<TopologyListViewKindGroupProps> = ({
-  groupLabel,
-  kind,
-  childElements,
-  selectedIds,
-  onSelect,
-}) => {
+const TopologyListViewKindGroup: React.FC<React.PropsWithChildren<
+  TopologyListViewKindGroupProps
+>> = ({ groupLabel, kind, childElements, selectedIds, onSelect }) => {
   const { t } = useTranslation();
   const resourceLabel = getTitleForNodeKind(kind);
 

@@ -19,7 +19,7 @@ type EventingPubSubLinkProps = {
   WithTargetDragProps &
   WithContextMenuProps;
 
-const EventingPubSubLink: React.FC<EventingPubSubLinkProps> = ({
+const EventingPubSubLink: React.FC<React.PropsWithChildren<EventingPubSubLinkProps>> = ({
   element,
   children,
   ...others

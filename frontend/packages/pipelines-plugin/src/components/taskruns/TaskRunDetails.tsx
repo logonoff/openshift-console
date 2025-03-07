@@ -12,7 +12,9 @@ export interface TaskRunDetailsProps {
   obj: TaskRunKind;
 }
 
-const TaskRunDetails: React.FC<TaskRunDetailsProps> = ({ obj: taskRun }) => {
+const TaskRunDetails: React.FC<React.PropsWithChildren<TaskRunDetailsProps>> = ({
+  obj: taskRun,
+}) => {
   const { t } = useTranslation();
   return (
     <>

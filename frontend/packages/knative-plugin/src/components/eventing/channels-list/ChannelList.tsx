@@ -4,7 +4,7 @@ import { Table, TableProps } from '@console/internal/components/factory';
 import ChannelHeaders from './ChannelHeaders';
 import ChannelRow from './ChannelRow';
 
-const ChannelList: React.FC<TableProps> = (props) => {
+const ChannelList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table

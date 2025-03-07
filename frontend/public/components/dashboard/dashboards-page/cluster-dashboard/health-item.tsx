@@ -36,15 +36,19 @@ import { uniqueResource } from './utils';
 import { getPrometheusQueryResponse } from '../../../../actions/dashboards';
 import { ClusterDashboardContext } from './context';
 
-const OperatorRow: React.FC<
+const OperatorRow: React.FC<React.PropsWithChildren<
   OperatorRowProps & {
     LoadingComponent: () => JSX.Element;
-    Component: React.ComponentType<OperatorRowProps> | LazyLoader<OperatorRowProps>;
+    Component:
+      | React.ComponentType<React.PropsWithChildren<OperatorRowProps>>
+      | LazyLoader<OperatorRowProps>;
     key: string;
     isResolved: boolean;
   }
-> = ({ operatorStatus, isResolved, key, Component, LoadingComponent }) => {
-  const ResolvedComponent = Component as React.ComponentType<OperatorRowProps>;
+>> = ({ operatorStatus, isResolved, key, Component, LoadingComponent }) => {
+  const ResolvedComponent = Component as React.ComponentType<
+    React.PropsWithChildren<OperatorRowProps>
+  >;
   return isResolved ? (
     <ResolvedComponent key={key} operatorStatus={operatorStatus} />
   ) : (
@@ -57,7 +61,7 @@ const OperatorRow: React.FC<
   );
 };
 
-export const OperatorsPopup: React.FC<OperatorsPopupProps> = ({
+export const OperatorsPopup: React.FC<React.PropsWithChildren<OperatorsPopupProps>> = ({
   resources,
   operatorExtensions,
   dynamicOperatorSubsystems,
@@ -318,7 +322,10 @@ export const PrometheusHealthItem = withDashboardResources<PrometheusHealthItemP
   },
 );
 
-export const ResourceHealthItem: React.FC<ResourceHealthItemProps> = ({ subsystem, namespace }) => {
+export const ResourceHealthItem: React.FC<React.PropsWithChildren<ResourceHealthItemProps>> = ({
+  subsystem,
+  namespace,
+}) => {
   const { t } = useTranslation();
 
   const { title, resources, healthHandler, popupComponent, popupTitle } = subsystem;

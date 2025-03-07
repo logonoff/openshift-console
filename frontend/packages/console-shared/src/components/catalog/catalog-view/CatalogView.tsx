@@ -51,7 +51,7 @@ type CatalogViewProps = {
   hideSidebar?: boolean;
 };
 
-const CatalogView: React.FC<CatalogViewProps> = ({
+const CatalogView: React.FC<React.PropsWithChildren<CatalogViewProps>> = ({
   items,
   catalogType,
   catalogTypes,
@@ -95,7 +95,7 @@ const CatalogView: React.FC<CatalogViewProps> = ({
   const catalogToolbarRef = React.useRef<HTMLInputElement>();
 
   const itemsSorter = React.useCallback(
-    (itemsToSort) => _.orderBy(itemsToSort, ({ name }) => name.toLowerCase(), [sortOrder]),
+    (itemsToSort: any) => _.orderBy(itemsToSort, ({ name }) => name.toLowerCase(), [sortOrder]),
     [sortOrder],
   );
 
@@ -115,26 +115,26 @@ const CatalogView: React.FC<CatalogViewProps> = ({
   };
 
   const handleFilterChange = React.useCallback(
-    (filterType, id, value) => {
+    (filterType: any, id: any, value: any) => {
       const updatedFilters = _.set(activeFilters, [filterType, id, 'active'], value);
       updateURLParams(filterType, getFilterSearchParam(updatedFilters[filterType]));
     },
     [activeFilters],
   );
 
-  const handleSearchKeywordChange = React.useCallback((searchKeyword) => {
+  const handleSearchKeywordChange = React.useCallback((searchKeyword: any) => {
     updateURLParams(CatalogQueryParams.KEYWORD, searchKeyword);
   }, []);
 
-  const handleGroupingChange = React.useCallback((grouping) => {
+  const handleGroupingChange = React.useCallback((grouping: any) => {
     updateURLParams(CatalogQueryParams.GROUPING, grouping);
   }, []);
 
-  const handleSortOrderChange = React.useCallback((order) => {
+  const handleSortOrderChange = React.useCallback((order: any) => {
     updateURLParams(CatalogQueryParams.SORT_ORDER, order);
   }, []);
 
-  const handleShowAllToggle = React.useCallback((groupName) => {
+  const handleShowAllToggle = React.useCallback((groupName: any) => {
     setFilterGroupsShowAll((showAll) => {
       const updatedShowAll = _.clone(showAll);
       _.set(updatedShowAll, groupName, !(showAll[groupName] ?? false));

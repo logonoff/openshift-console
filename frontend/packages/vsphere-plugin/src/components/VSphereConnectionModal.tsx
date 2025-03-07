@@ -30,10 +30,9 @@ type VSphereConnectionModalFooterProps = {
   mustPatch: boolean;
 };
 
-const VSphereConnectionModalFooter: React.FC<VSphereConnectionModalFooterProps> = ({
-  onClose,
-  mustPatch,
-}) => {
+const VSphereConnectionModalFooter: React.FC<React.PropsWithChildren<
+  VSphereConnectionModalFooterProps
+>> = ({ onClose, mustPatch }) => {
   const { t } = useTranslation('vsphere-plugin');
   const { isSubmitting, isValid, dirty, submitForm } = useFormikContext();
   return (
@@ -62,10 +61,9 @@ type VSphereConnectionModalAlertProps = {
   error?: { title: string; message: string };
 };
 
-const VSphereConnectionModalAlert: React.FC<VSphereConnectionModalAlertProps> = ({
-  health,
-  error,
-}) => {
+const VSphereConnectionModalAlert: React.FC<React.PropsWithChildren<
+  VSphereConnectionModalAlertProps
+>> = ({ health, error }) => {
   const { t } = useTranslation('vsphere-plugin');
   const { isSubmitting } = useFormikContext();
 
@@ -137,7 +135,7 @@ const validationSchema = Yup.lazy((values: ConnectionFormFormikValues) =>
   }),
 );
 
-export const VSphereConnectionModal: React.FC<VSphereConnectionProps> = ({
+export const VSphereConnectionModal: React.FC<React.PropsWithChildren<VSphereConnectionProps>> = ({
   health,
   hide,
   cloudProviderConfig,

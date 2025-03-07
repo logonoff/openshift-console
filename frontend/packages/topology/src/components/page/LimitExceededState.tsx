@@ -14,7 +14,9 @@ type LimitExceededStateProps = {
   onShowTopologyAnyway: () => void;
 };
 
-export const LimitExceededState: React.FC<LimitExceededStateProps> = ({ onShowTopologyAnyway }) => {
+export const LimitExceededState: React.FC<React.PropsWithChildren<LimitExceededStateProps>> = ({
+  onShowTopologyAnyway,
+}) => {
   const { t } = useTranslation();
   return (
     <EmptyState

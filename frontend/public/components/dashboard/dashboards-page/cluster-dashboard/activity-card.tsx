@@ -191,7 +191,7 @@ const OngoingActivity = connect(mapStateToProps)(
   ),
 );
 
-export const ActivityCard: React.FC<{}> = React.memo(() => {
+export const ActivityCard: React.FC<React.PropsWithChildren<{}>> = React.memo(() => {
   const { t } = useTranslation();
   return (
     <Card data-test-id="activity-card">

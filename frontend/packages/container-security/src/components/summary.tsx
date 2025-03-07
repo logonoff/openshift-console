@@ -47,10 +47,9 @@ export const quayURLFor = (vuln: ImageManifestVuln) =>
         .join('/')}/manifest/${vuln.spec?.manifest}?tab=vulnerabilities`
     : '';
 
-export const SecurityBreakdownPopup: React.FC<SecurityBreakdownPopupProps> = ({
-  imageManifestVuln,
-  namespace,
-}) => {
+export const SecurityBreakdownPopup: React.FC<React.PropsWithChildren<
+  SecurityBreakdownPopupProps
+>> = ({ imageManifestVuln, namespace }) => {
   const { t } = useTranslation();
   const resource = imageManifestVuln.data;
   const vulnsFor = (severity: string) =>

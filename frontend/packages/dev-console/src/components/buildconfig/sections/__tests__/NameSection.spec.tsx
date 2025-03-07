@@ -6,7 +6,10 @@ import NameSection, { NameSectionFormData } from '../NameSection';
 
 configure({ testIdAttribute: 'data-test' });
 
-const Wrapper: React.FC<FormikConfig<NameSectionFormData>> = ({ children, ...formikConfig }) => (
+const Wrapper: React.FC<React.PropsWithChildren<FormikConfig<NameSectionFormData>>> = ({
+  children,
+  ...formikConfig
+}) => (
   <Formik {...formikConfig}>
     {(formikProps) => (
       <form onSubmit={formikProps.handleSubmit}>

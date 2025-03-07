@@ -12,7 +12,7 @@ type WhenExpressionFormProps = {
   autoCompleteValues: string[];
 };
 
-const WhenExpressionForm: React.FC<WhenExpressionFormProps> = ({
+const WhenExpressionForm: React.FC<React.PropsWithChildren<WhenExpressionFormProps>> = ({
   namePrefix,
   autoCompleteValues,
 }) => {

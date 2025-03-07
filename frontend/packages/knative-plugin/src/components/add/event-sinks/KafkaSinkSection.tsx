@@ -15,7 +15,11 @@ interface KafkaSinkSectionProps {
   fullWidth?: boolean;
 }
 
-const KafkaSinkSection: React.FC<KafkaSinkSectionProps> = ({ title, namespace, fullWidth }) => {
+const KafkaSinkSection: React.FC<React.PropsWithChildren<KafkaSinkSectionProps>> = ({
+  title,
+  namespace,
+  fullWidth,
+}) => {
   const { t } = useTranslation();
   const [bootstrapServers, bsPlaceholder] = useBootstrapServers(namespace);
 

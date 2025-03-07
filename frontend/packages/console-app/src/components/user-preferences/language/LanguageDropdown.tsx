@@ -16,7 +16,7 @@ import { PREFERRED_LANGUAGE_USER_SETTING_KEY, usePreferredLanguage } from './use
 
 import './LanguageDropdown.scss';
 
-const LanguageDropdown: React.FC = () => {
+const LanguageDropdown: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
   const [preferredLanguage, setPreferredLanguage, preferredLanguageLoaded] = usePreferredLanguage();

@@ -55,7 +55,7 @@ const getHostEventsFilter = (
   machine: MachineKind,
 ): ((event: EventKind) => boolean) => _.partial(hostEventsFilter, host, machine);
 
-const EventsCard: React.FC<EventsCardProps> = ({
+const EventsCard: React.FC<React.PropsWithChildren<EventsCardProps>> = ({
   watchK8sResource,
   stopWatchK8sResource,
   resources,

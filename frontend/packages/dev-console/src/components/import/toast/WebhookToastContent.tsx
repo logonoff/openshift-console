@@ -10,7 +10,7 @@ interface WebhookToastContentProps {
   projectName: string;
 }
 
-const WebhookToastContent: React.FC<WebhookToastContentProps> = ({
+const WebhookToastContent: React.FC<React.PropsWithChildren<WebhookToastContentProps>> = ({
   repositoryName,
   git,
   projectName,

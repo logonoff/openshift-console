@@ -20,7 +20,10 @@ type AddTriggerModalProps = ModalComponentProps & {
   pipeline: PipelineKind;
 };
 
-const AddTriggerModal: React.FC<AddTriggerModalProps> = ({ pipeline, close }) => {
+const AddTriggerModal: React.FC<React.PropsWithChildren<AddTriggerModalProps>> = ({
+  pipeline,
+  close,
+}) => {
   const { t } = useTranslation();
   const [pipelinePVC, pipelinePVCLoaded] = usePipelinePVC(
     pipeline.metadata?.name,

@@ -12,7 +12,9 @@ import { ServiceTypeValue } from '../../types';
 import { ServiceDetailsPage } from '../services';
 import { KnativeServiceTypeContext } from './ServiceTypeContext';
 
-const FunctionDetailsPage: React.FC<React.ComponentProps<typeof DetailsPage>> = () => {
+const FunctionDetailsPage: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof DetailsPage>
+>> = () => {
   const params = useParams();
   const handleNamespaceChange = (newNamespace: string): void => {
     if (newNamespace === ALL_NAMESPACES_KEY) {

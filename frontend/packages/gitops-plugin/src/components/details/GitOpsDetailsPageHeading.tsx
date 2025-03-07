@@ -12,12 +12,9 @@ interface GitOpsDetailsPageHeadingProps {
   badge?: React.ReactNode;
 }
 
-const GitOpsDetailsPageHeading: React.FC<GitOpsDetailsPageHeadingProps> = ({
-  url,
-  appName,
-  manifestURL,
-  badge,
-}) => {
+const GitOpsDetailsPageHeading: React.FC<React.PropsWithChildren<
+  GitOpsDetailsPageHeadingProps
+>> = ({ url, appName, manifestURL, badge }) => {
   const { t } = useTranslation();
   const breadcrumbs = [
     {

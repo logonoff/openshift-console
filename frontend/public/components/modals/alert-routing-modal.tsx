@@ -22,7 +22,7 @@ const updateAlertRoutingProperty = (
   }
 };
 
-export const AlertRoutingModal: React.FC<AlertRoutingModalProps> = ({
+export const AlertRoutingModal: React.FC<React.PropsWithChildren<AlertRoutingModalProps>> = ({
   config,
   secret,
   cancel,

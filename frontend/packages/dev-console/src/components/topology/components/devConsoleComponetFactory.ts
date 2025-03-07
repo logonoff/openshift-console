@@ -15,7 +15,7 @@ import { TYPE_BINDABLE_NODE } from '../const';
 export const getDevConsoleComponentFactory = (
   kind,
   type,
-): React.ComponentType<{ element: GraphElement }> | undefined => {
+): React.ComponentType<React.PropsWithChildren<{ element: GraphElement }>> | undefined => {
   switch (type) {
     case TYPE_BINDABLE_NODE:
       return withCreateConnector(

@@ -16,7 +16,7 @@ interface GitOpsResourceRowProps {
   nonSyncedResources: string[];
 }
 
-const GitOpsResourceRow: React.FC<GitOpsResourceRowProps> = ({
+const GitOpsResourceRow: React.FC<React.PropsWithChildren<GitOpsResourceRowProps>> = ({
   resources,
   degradedResources,
   nonSyncedResources,

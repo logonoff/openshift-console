@@ -18,12 +18,9 @@ interface KnativeRevisionListViewNodeProps {
   onSelect: (ids: string[]) => void;
 }
 
-const ObservedKnativeRevisionListViewNode: React.FC<KnativeRevisionListViewNodeProps> = ({
-  item,
-  selectedIds,
-  onSelect,
-  children,
-}) => {
+const ObservedKnativeRevisionListViewNode: React.FC<React.PropsWithChildren<
+  KnativeRevisionListViewNodeProps
+>> = ({ item, selectedIds, onSelect, children }) => {
   const resource = getTopologyResourceObject(item.getData());
   const metrics = useOverviewMetrics();
   const { loaded, pods } = usePodsForRevisions(resource.metadata.uid, resource.metadata.namespace);

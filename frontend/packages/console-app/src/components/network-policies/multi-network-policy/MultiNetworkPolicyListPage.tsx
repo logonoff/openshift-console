@@ -9,7 +9,9 @@ export type MultiNetworkPolicyPageNavProps = {
   kind: string;
 };
 
-export const MultiNetworkPolicyListPage: React.FC<MultiNetworkPolicyPageNavProps> = (props) => {
+export const MultiNetworkPolicyListPage: React.FC<React.PropsWithChildren<
+  MultiNetworkPolicyPageNavProps
+>> = (props) => {
   const params = useParams();
 
   const namespace = React.useMemo(() => params.ns || 'default', [params.ns]);

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ContainerSpec } from '../module/k8s';
 import { Checkbox } from '@patternfly/react-core';
 
-export const ContainerSelector: React.FC<ContainerSelectorProps> = ({
+export const ContainerSelector: React.FC<React.PropsWithChildren<ContainerSelectorProps>> = ({
   containers,
   onChange,
   selected,

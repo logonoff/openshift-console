@@ -21,9 +21,9 @@ const getSidebarResources = (item: KnativeServiceOverviewItem) => {
   );
 };
 
-const OverviewDetailsKnativeResourcesTab: React.FC<OverviewDetailsResourcesTabProps> = ({
-  item,
-}) => (
+const OverviewDetailsKnativeResourcesTab: React.FC<React.PropsWithChildren<
+  OverviewDetailsResourcesTabProps
+>> = ({ item }) => (
   <div className="overview__sidebar-pane-body">
     <OperatorBackedOwnerReferences item={item} />
     {getSidebarResources(item)}

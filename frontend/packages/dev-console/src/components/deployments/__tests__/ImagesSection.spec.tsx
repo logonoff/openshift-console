@@ -23,8 +23,12 @@ jest.mock('../ContainerField', () => ({
   default: jest.fn(),
 }));
 
-const MockContainerField: React.FC = () => <div>Container: foo</div>;
-const mockedContainerField = ContainerField as jest.Mock<React.FC>;
+const MockContainerField: React.FC<React.PropsWithChildren<unknown>> = () => (
+  <div>Container: foo</div>
+);
+const mockedContainerField = ContainerField as jest.Mock<
+  React.FC<React.PropsWithChildren<unknown>>
+>;
 
 const handleSubmit = jest.fn();
 

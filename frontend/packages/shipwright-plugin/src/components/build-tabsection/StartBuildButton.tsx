@@ -22,7 +22,7 @@ type StartBuildButtonProps = {
   namespace: string;
 };
 
-const StartBuildButton: React.FC<StartBuildButtonProps & StateProps> = ({
+const StartBuildButton: React.FC<React.PropsWithChildren<StartBuildButtonProps & StateProps>> = ({
   build,
   namespace,
   impersonate,

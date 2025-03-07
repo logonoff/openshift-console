@@ -7,7 +7,7 @@ type MasonryLayoutProps = {
   columnWidth: number;
   children: React.ReactElement[];
   loading?: boolean;
-  LoadingComponent?: React.ComponentType<any>;
+  LoadingComponent?: React.ComponentType<React.PropsWithChildren<any>>;
   /**
    * This threshold ensures that the resize doesn't happen to often.
    * It is set to 30 pixels by default to ensure that the column count is not
@@ -18,7 +18,7 @@ type MasonryLayoutProps = {
   resizeThreshold?: number;
 };
 
-export const MasonryLayout: React.FC<MasonryLayoutProps> = ({
+export const MasonryLayout: React.FC<React.PropsWithChildren<MasonryLayoutProps>> = ({
   columnWidth,
   children,
   loading,

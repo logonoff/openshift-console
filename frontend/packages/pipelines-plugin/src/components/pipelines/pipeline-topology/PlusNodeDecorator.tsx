@@ -13,7 +13,7 @@ type PlusNodeProps = {
   onClick?: () => void;
 };
 
-const PlusNodeDecorator: React.FC<PlusNodeProps> = ({
+const PlusNodeDecorator: React.FC<React.PropsWithChildren<PlusNodeProps>> = ({
   x,
   y,
   onClick,

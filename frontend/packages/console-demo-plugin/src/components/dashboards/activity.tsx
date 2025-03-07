@@ -7,7 +7,7 @@ import ActivityItem, {
   ActivityProgress,
 } from '@console/shared/src/components/dashboard/activity-card/ActivityItem';
 
-export const DemoActivity: React.FC<K8sActivityProps> = ({ resource }) => (
+export const DemoActivity: React.FC<React.PropsWithChildren<K8sActivityProps>> = ({ resource }) => (
   <ActivityProgress title={`Demo activity for node ${getName(resource)}`} progress={30}>
     <ResourceLink
       kind={NodeModel.kind}
@@ -17,6 +17,6 @@ export const DemoActivity: React.FC<K8sActivityProps> = ({ resource }) => (
   </ActivityProgress>
 );
 
-export const DemoPrometheusActivity: React.FC<PrometheusActivityProps> = () => (
-  <ActivityItem>Demo prometheus activity</ActivityItem>
-);
+export const DemoPrometheusActivity: React.FC<React.PropsWithChildren<
+  PrometheusActivityProps
+>> = () => <ActivityItem>Demo prometheus activity</ActivityItem>;

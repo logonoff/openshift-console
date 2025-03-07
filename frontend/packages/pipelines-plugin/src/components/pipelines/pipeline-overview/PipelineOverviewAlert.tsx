@@ -8,10 +8,9 @@ type PipelineOverviewAlertProps = {
   onClose?: () => void;
 };
 
-const PipelineOverviewAlert: React.FC<PipelineOverviewAlertProps & AlertProps> = ({
-  title,
-  onClose,
-}) => {
+const PipelineOverviewAlert: React.FC<React.PropsWithChildren<
+  PipelineOverviewAlertProps & AlertProps
+>> = ({ title, onClose }) => {
   return (
     <Alert
       className="pipeline-overview-alert"

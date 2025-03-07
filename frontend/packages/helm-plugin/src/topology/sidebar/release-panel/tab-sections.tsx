@@ -9,7 +9,9 @@ import HelmReleaseOverview from '../../../components/details-page/overview/HelmR
 import { TYPE_HELM_RELEASE } from '../../components/const';
 import TopologyHelmReleaseNotesPanel from '../../TopologyHelmReleaseNotesPanel';
 
-const HelmReleasePanelDetailsTabSection: React.FC<{ element: GraphElement }> = ({ element }) => {
+const HelmReleasePanelDetailsTabSection: React.FC<React.PropsWithChildren<{
+  element: GraphElement;
+}>> = ({ element }) => {
   const { t } = useTranslation();
   const secret = element.getData().resources.obj;
   return !secret ? (

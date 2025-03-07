@@ -30,7 +30,10 @@ const Footer = ({ children }) => {
   );
 };
 
-const List: React.FC<AdvancedSectionProps> = ({ appResources, values }) => {
+const List: React.FC<React.PropsWithChildren<AdvancedSectionProps>> = ({
+  appResources,
+  values,
+}) => {
   const { t } = useTranslation();
 
   const [visibleItems, setVisibleItems] = React.useState([]);
@@ -73,7 +76,10 @@ const List: React.FC<AdvancedSectionProps> = ({ appResources, values }) => {
   );
 };
 
-const AdvancedSection: React.FC<AdvancedSectionProps> = ({ values, appResources }) => {
+const AdvancedSection: React.FC<React.PropsWithChildren<AdvancedSectionProps>> = ({
+  values,
+  appResources,
+}) => {
   const { t } = useTranslation();
   return (
     <FormSection title={t('devconsole~Advanced options')}>

@@ -16,7 +16,7 @@ export type HorizontalStackedBarsProps = {
   width?: number | string;
 };
 
-const HorizontalStackedBars: React.FC<HorizontalStackedBarsProps> = ({
+const HorizontalStackedBars: React.FC<React.PropsWithChildren<HorizontalStackedBarsProps>> = ({
   barGap,
   height,
   inline,

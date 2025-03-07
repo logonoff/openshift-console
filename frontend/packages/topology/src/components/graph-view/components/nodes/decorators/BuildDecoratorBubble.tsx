@@ -8,7 +8,7 @@ type BuildDecoratorBubbleProps = React.ComponentProps<typeof Decorator> & {
   y: number;
 };
 
-const BuildDecoratorBubble: React.FC<BuildDecoratorBubbleProps> = ({
+const BuildDecoratorBubble: React.FC<React.PropsWithChildren<BuildDecoratorBubbleProps>> = ({
   children,
   radius,
   x,

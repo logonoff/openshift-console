@@ -14,7 +14,11 @@ export interface SinkSourceProps {
   close?: () => void;
 }
 
-const SinkSource: React.FC<SinkSourceProps> = ({ source, cancel, close }) => {
+const SinkSource: React.FC<React.PropsWithChildren<SinkSourceProps>> = ({
+  source,
+  cancel,
+  close,
+}) => {
   const { t } = useTranslation();
   const {
     metadata: { namespace, name },

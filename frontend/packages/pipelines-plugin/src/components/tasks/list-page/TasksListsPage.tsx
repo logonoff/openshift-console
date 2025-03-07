@@ -15,7 +15,7 @@ import TaskRunsListPage from '../../taskruns/list-page/TaskRunsListPage';
 import ClusterTasksPage from './ClusterTasksPage';
 import TasksPage from './TasksPage';
 
-const TasksListsPage: React.FC = () => {
+const TasksListsPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const IS_PIPELINE_OPERATOR_VERSION_1_17_OR_NEWER = useFlag(
     FLAG_PIPELINES_OPERATOR_VERSION_1_17_OR_NEWER,

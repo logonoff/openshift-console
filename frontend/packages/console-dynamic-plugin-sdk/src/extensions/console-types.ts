@@ -275,7 +275,7 @@ export type NavPage = {
   href?: string;
   path?: string;
   name: string;
-  component: React.ComponentType;
+  component: React.ComponentType<React.PropsWithChildren<unknown>>;
 };
 
 export type HorizontalNavProps = {
@@ -308,9 +308,9 @@ export type VirtualizedTableProps<D, R extends any = {}> = {
   loaded: boolean;
   loadError: any;
   columns: TableColumn<D>[];
-  Row: React.ComponentType<RowProps<D, R>>;
-  NoDataEmptyMsg?: React.ComponentType<{}>;
-  EmptyMsg?: React.ComponentType<{}>;
+  Row: React.ComponentType<React.PropsWithChildren<RowProps<D, R>>>;
+  NoDataEmptyMsg?: React.ComponentType<React.PropsWithChildren<{}>>;
+  EmptyMsg?: React.ComponentType<React.PropsWithChildren<{}>>;
   scrollNode?: () => HTMLElement;
   onSelect?: OnSelect;
   allRowsSelected?: boolean;
@@ -546,7 +546,7 @@ export enum GridPosition {
 export type OverviewCardSpan = 4 | 6 | 12;
 
 export type OverviewGridCard = {
-  Card: React.ComponentType<any>;
+  Card: React.ComponentType<React.PropsWithChildren<any>>;
   span?: OverviewCardSpan;
 };
 
@@ -706,7 +706,7 @@ export type QueryBrowserProps = {
   filterLabels?: PrometheusLabels;
   fixedEndTime?: number;
   formatSeriesTitle?: FormatSeriesTitle;
-  GraphLink?: React.ComponentType<{}>;
+  GraphLink?: React.ComponentType<React.PropsWithChildren<{}>>;
   hideControls?: boolean;
   isStack?: boolean;
   namespace?: string;

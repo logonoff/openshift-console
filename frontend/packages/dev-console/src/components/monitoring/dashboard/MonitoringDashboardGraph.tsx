@@ -48,7 +48,9 @@ type MonitoringDashboardGraphProps = {
 const DEFAULT_TIME_SPAN = 30 * 60 * 1000;
 const DEFAULT_SAMPLES = 30;
 
-export const MonitoringDashboardGraph: React.FC<MonitoringDashboardGraphProps> = ({
+export const MonitoringDashboardGraph: React.FC<React.PropsWithChildren<
+  MonitoringDashboardGraphProps
+>> = ({
   query,
   namespace,
   title,
@@ -60,7 +62,7 @@ export const MonitoringDashboardGraph: React.FC<MonitoringDashboardGraphProps> =
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const onZoom = React.useCallback(
-    (from, to) => {
+    (from: any, to: any) => {
       dispatch(dashboardsSetEndTime(to, 'dev'));
       dispatch(dashboardsSetTimespan(to - from, 'dev'));
     },

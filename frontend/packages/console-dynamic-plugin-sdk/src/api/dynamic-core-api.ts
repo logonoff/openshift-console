@@ -78,7 +78,7 @@ export const useResolvedExtensions: UseResolvedExtensions = require('@console/dy
  * }
  * ```
  */
-export const HorizontalNav: React.FC<HorizontalNavProps> = require('@console/internal/components/utils/horizontal-nav')
+export const HorizontalNav: React.FC<React.PropsWithChildren<HorizontalNavProps>> = require('@console/internal/components/utils/horizontal-nav')
   .HorizontalNavFacade;
 
 /**
@@ -142,7 +142,7 @@ export const VirtualizedTable: VirtualizedTableFC = require('@console/internal/c
  * };
  * ```
  */
-export const TableData: React.FC<TableDataProps> = require('@console/internal/components/factory/Table/VirtualizedTable')
+export const TableData: React.FC<React.PropsWithChildren<TableDataProps>> = require('@console/internal/components/factory/Table/VirtualizedTable')
   .TableData;
 
 /**
@@ -182,7 +182,7 @@ export const useActiveColumns: UseActiveColumns = require('@console/internal/com
  * };
  * ```
  */
-export const ListPageHeader: React.FC<ListPageHeaderProps> = require('@console/internal/components/factory/ListPage/ListPageHeader')
+export const ListPageHeader: React.FC<React.PropsWithChildren<ListPageHeaderProps>> = require('@console/internal/components/factory/ListPage/ListPageHeader')
   .default;
 
 /**
@@ -201,7 +201,7 @@ export const ListPageHeader: React.FC<ListPageHeaderProps> = require('@console/i
  * };
  * ```
  */
-export const ListPageCreate: React.FC<ListPageCreateProps> = require('@console/internal/components/factory/ListPage/ListPageCreate')
+export const ListPageCreate: React.FC<React.PropsWithChildren<ListPageCreateProps>> = require('@console/internal/components/factory/ListPage/ListPageCreate')
   .default;
 
 /**
@@ -222,7 +222,7 @@ export const ListPageCreate: React.FC<ListPageCreateProps> = require('@console/i
  * };
  * ```
  */
-export const ListPageCreateLink: React.FC<ListPageCreateLinkProps> = require('@console/internal/components/factory/ListPage/ListPageCreate')
+export const ListPageCreateLink: React.FC<React.PropsWithChildren<ListPageCreateLinkProps>> = require('@console/internal/components/factory/ListPage/ListPageCreate')
   .ListPageCreateLink;
 
 /**
@@ -242,7 +242,7 @@ export const ListPageCreateLink: React.FC<ListPageCreateLinkProps> = require('@c
  * };
  * ```
  */
-export const ListPageCreateButton: React.FC<ListPageCreateButtonProps> = require('@console/internal/components/factory/ListPage/ListPageCreate')
+export const ListPageCreateButton: React.FC<React.PropsWithChildren<ListPageCreateButtonProps>> = require('@console/internal/components/factory/ListPage/ListPageCreate')
   .ListPageCreateButton;
 
 /**
@@ -268,7 +268,7 @@ export const ListPageCreateButton: React.FC<ListPageCreateButtonProps> = require
  * };
  * ```
  */
-export const ListPageCreateDropdown: React.FC<ListPageCreateDropdownProps> = require('@console/internal/components/factory/ListPage/ListPageCreate')
+export const ListPageCreateDropdown: React.FC<React.PropsWithChildren<ListPageCreateDropdownProps>> = require('@console/internal/components/factory/ListPage/ListPageCreate')
   .ListPageCreateDropdown;
 
 /**
@@ -308,7 +308,7 @@ export const ListPageCreateDropdown: React.FC<ListPageCreateDropdownProps> = req
  *   )
  * ```
  */
-export const ListPageFilter: React.FC<ListPageFilterProps> = require('@console/internal/components/factory/ListPage/ListPageFilter')
+export const ListPageFilter: React.FC<React.PropsWithChildren<ListPageFilterProps>> = require('@console/internal/components/factory/ListPage/ListPageFilter')
   .default;
 
 /**
@@ -364,7 +364,7 @@ export const useListPageFilter: UseListPageFilter = require('@console/internal/c
  *   />
  * ```
  */
-export const ResourceLink: React.FC<ResourceLinkProps> = require('@console/internal/components/utils/resource-link')
+export const ResourceLink: React.FC<React.PropsWithChildren<ResourceLinkProps>> = require('@console/internal/components/utils/resource-link')
   .ResourceLink;
 export { default as ResourceStatus } from '../app/components/utils/resource-status';
 
@@ -378,7 +378,7 @@ export { default as ResourceStatus } from '../app/components/utils/resource-stat
  * <ResourceIcon kind="Pod"/>
  * ```
  */
-export const ResourceIcon: React.FC<ResourceIconProps> = require('@console/internal/components/utils/resource-icon')
+export const ResourceIcon: React.FC<React.PropsWithChildren<ResourceIconProps>> = require('@console/internal/components/utils/resource-icon')
   .ResourceIcon;
 
 export {
@@ -426,7 +426,7 @@ export {
  *   >
  * ```
  */
-export const StatusPopupSection: React.FC<StatusPopupSectionProps> = require('@console/shared/src/components/dashboard/status-card/StatusPopup')
+export const StatusPopupSection: React.FC<React.PropsWithChildren<StatusPopupSectionProps>> = require('@console/shared/src/components/dashboard/status-card/StatusPopup')
   .StatusPopupSection;
 
 /**
@@ -449,7 +449,7 @@ export const StatusPopupSection: React.FC<StatusPopupSectionProps> = require('@c
  * </StatusPopupSection>
  * ```
  */
-export const StatusPopupItem: React.FC<StatusPopupItemProps> = require('@console/shared/src/components/dashboard/status-card/StatusPopup')
+export const StatusPopupItem: React.FC<React.PropsWithChildren<StatusPopupItemProps>> = require('@console/shared/src/components/dashboard/status-card/StatusPopup')
   .default;
 
 /**
@@ -463,7 +463,7 @@ export const StatusPopupItem: React.FC<StatusPopupItemProps> = require('@console
  *     </Overview>
  *```
  */
-export const Overview: React.FC<OverviewProps> = require('@console/shared/src/components/dashboard/Dashboard')
+export const Overview: React.FC<React.PropsWithChildren<OverviewProps>> = require('@console/shared/src/components/dashboard/Dashboard')
   .default;
 
 /**
@@ -478,7 +478,7 @@ export const Overview: React.FC<OverviewProps> = require('@console/shared/src/co
  *     </Overview>
  *```
  */
-export const OverviewGrid: React.FC<OverviewGridProps> = require('@console/shared/src/components/dashboard/DashboardGrid')
+export const OverviewGrid: React.FC<React.PropsWithChildren<OverviewGridProps>> = require('@console/shared/src/components/dashboard/DashboardGrid')
   .default;
 
 /**
@@ -496,7 +496,7 @@ export const OverviewGrid: React.FC<OverviewGridProps> = require('@console/share
  *   )
  * ```
  */
-export const InventoryItem: React.FC = require('@console/shared/src/components/dashboard/inventory-card/InventoryCard')
+export const InventoryItem: React.FC<React.PropsWithChildren<unknown>> = require('@console/shared/src/components/dashboard/inventory-card/InventoryCard')
   .default;
 
 /**
@@ -514,7 +514,7 @@ export const InventoryItem: React.FC = require('@console/shared/src/components/d
  *   )
  * ```
  */
-export const InventoryItemTitle: React.FC<InventoryItemTitleProps> = require('@console/shared/src/components/dashboard/inventory-card/InventoryCard')
+export const InventoryItemTitle: React.FC<React.PropsWithChildren<InventoryItemTitleProps>> = require('@console/shared/src/components/dashboard/inventory-card/InventoryCard')
   .InventoryItemTitle;
 
 /**
@@ -533,7 +533,7 @@ export const InventoryItemTitle: React.FC<InventoryItemTitleProps> = require('@c
  *   )
  * ```
  */
-export const InventoryItemBody: React.FC<InventoryItemBodyProps> = require('@console/shared/src/components/dashboard/inventory-card/InventoryCard')
+export const InventoryItemBody: React.FC<React.PropsWithChildren<InventoryItemBodyProps>> = require('@console/shared/src/components/dashboard/inventory-card/InventoryCard')
   .InventoryItemBody;
 
 /**
@@ -553,7 +553,7 @@ export const InventoryItemBody: React.FC<InventoryItemBodyProps> = require('@con
  *   )
  * ```
  */
-export const InventoryItemStatus: React.FC<InventoryItemStatusProps> = require('@console/shared/src/components/dashboard/inventory-card/InventoryCard')
+export const InventoryItemStatus: React.FC<React.PropsWithChildren<InventoryItemStatusProps>> = require('@console/shared/src/components/dashboard/inventory-card/InventoryCard')
   .InventoryItemStatus;
 
 /**
@@ -572,7 +572,7 @@ export const InventoryItemStatus: React.FC<InventoryItemStatusProps> = require('
  * )
  * ```
  */
-export const InventoryItemLoading: React.FC = require('@console/shared/src/components/dashboard/inventory-card/InventoryCard')
+export const InventoryItemLoading: React.FC<React.PropsWithChildren<unknown>> = require('@console/shared/src/components/dashboard/inventory-card/InventoryCard')
   .InventoryItemLoading;
 
 export { useFlag } from '../utils/flags';
@@ -651,7 +651,7 @@ export const CodeEditor: React.ForwardRefExoticComponent<
  * @param {ResourceYAMLEditorProps['onChange']} onChange - Callback triggered at any editor change.
  * @param {ResourceYAMLEditorProps['hideHeader']} hideHeader - On creation mode the editor by default show an header that can be hided with this property
  */
-export const ResourceYAMLEditor: React.FC<ResourceYAMLEditorProps> = require('@console/internal/components/AsyncResourceYAMLEditor')
+export const ResourceYAMLEditor: React.FC<React.PropsWithChildren<ResourceYAMLEditorProps>> = require('@console/internal/components/AsyncResourceYAMLEditor')
   .AsyncResourceYAMLEditor;
 
 /**
@@ -663,7 +663,7 @@ export const ResourceYAMLEditor: React.FC<ResourceYAMLEditorProps> = require('@c
  * ```
  * @param {K8sResourceCommon} resource - An object whose related events should be shown.
  */
-export const ResourceEventStream: React.FC<ResourceEventStreamProps> = require('@console/internal/components/events')
+export const ResourceEventStream: React.FC<React.PropsWithChildren<ResourceEventStreamProps>> = require('@console/internal/components/events')
   .WrappedResourceEventStream;
 
 /**
@@ -696,7 +696,7 @@ export const usePrometheusPoll: UsePrometheusPoll = (options) => {
  * @param {TimestampProps['omitSuffix']} omitSuffix - formats the date ommiting the suffix.
  * @param {TimestampProps['className']} className - additional class name for the component.
  */
-export const Timestamp: React.FC<TimestampProps> = require('@console/internal/components/utils/timestamp')
+export const Timestamp: React.FC<React.PropsWithChildren<TimestampProps>> = require('@console/internal/components/utils/timestamp')
   .Timestamp;
 
 export { useModal } from '../app/modal-support/useModal';
@@ -721,7 +721,7 @@ export { useModal } from '../app/modal-support/useModal';
  *    </ActionServiceProvider>
  * ```
  */
-export const ActionServiceProvider: React.FC<ActionServiceProviderProps> = require('@console/shared/src/components/actions/ActionServiceProvider')
+export const ActionServiceProvider: React.FC<React.PropsWithChildren<ActionServiceProviderProps>> = require('@console/shared/src/components/actions/ActionServiceProvider')
   .default;
 
 /**
@@ -743,7 +743,7 @@ export const ActionServiceProvider: React.FC<ActionServiceProviderProps> = requi
  *      ...
  * ```
  */
-export const NamespaceBar: React.FC<NamespaceBarProps> = require('@console/internal/components/namespace-bar')
+export const NamespaceBar: React.FC<React.PropsWithChildren<NamespaceBarProps>> = require('@console/internal/components/namespace-bar')
   .NamespaceBar;
 
 /**
@@ -768,7 +768,7 @@ export const NamespaceBar: React.FC<NamespaceBarProps> = require('@console/inter
  *  )
  * ```
  */
-export const ErrorBoundaryFallbackPage: React.FC<ErrorBoundaryFallbackProps> = require('@console/shared/src/components/error/fallbacks/ErrorBoundaryFallbackPage')
+export const ErrorBoundaryFallbackPage: React.FC<React.PropsWithChildren<ErrorBoundaryFallbackProps>> = require('@console/shared/src/components/error/fallbacks/ErrorBoundaryFallbackPage')
   .default;
 
 /**
@@ -805,7 +805,7 @@ export const ErrorBoundaryFallbackPage: React.FC<ErrorBoundaryFallbackProps> = r
  * />
  * ```
  */
-export const QueryBrowser: React.FC<QueryBrowserProps> = require('@console/shared/src/components/query-browser')
+export const QueryBrowser: React.FC<React.PropsWithChildren<QueryBrowserProps>> = require('@console/shared/src/components/query-browser')
   .QueryBrowser;
 
 /**

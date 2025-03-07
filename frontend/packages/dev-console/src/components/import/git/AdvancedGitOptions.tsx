@@ -7,9 +7,9 @@ import { InputField, useDebounceCallback } from '@console/shared';
 import FormSection from '../section/FormSection';
 import SourceSecretSelector from './SourceSecretSelector';
 
-const AdvancedGitOptions: React.FC<{
+const AdvancedGitOptions: React.FC<React.PropsWithChildren<{
   formContextField?: string;
-}> = ({ formContextField }) => {
+}>> = ({ formContextField }) => {
   const fieldPrefix = formContextField ? `${formContextField}.` : '';
 
   const { t } = useTranslation();

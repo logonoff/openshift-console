@@ -10,7 +10,9 @@ import {
 import { FieldLevelHelp } from '@console/internal/components/utils';
 import { PersistentVolumeClaimKind } from '@console/internal/module/k8s';
 
-export const VolumeModeSelector: React.FC<VolumeModeSelectorProps> = (props) => {
+export const VolumeModeSelector: React.FC<React.PropsWithChildren<VolumeModeSelectorProps>> = (
+  props,
+) => {
   const {
     className,
     pvcResource,

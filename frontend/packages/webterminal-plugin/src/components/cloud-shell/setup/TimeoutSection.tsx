@@ -3,7 +3,7 @@ import { FormSection } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
 import { ResourceLimitField } from '@console/shared';
 
-const TimeoutSection: React.FC = () => {
+const TimeoutSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
 
   const TimeoutUnits = {

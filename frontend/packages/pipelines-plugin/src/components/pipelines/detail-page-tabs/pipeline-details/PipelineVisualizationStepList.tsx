@@ -46,13 +46,9 @@ const TooltipColoredStatusIcon = ({ status }) => {
   return icon;
 };
 
-export const PipelineVisualizationStepList: React.FC<PipelineVisualizationStepListProps> = ({
-  isSpecOverview,
-  taskName,
-  steps,
-  isFinallyTask,
-  hideHeader,
-}) => {
+export const PipelineVisualizationStepList: React.FC<React.PropsWithChildren<
+  PipelineVisualizationStepListProps
+>> = ({ isSpecOverview, taskName, steps, isFinallyTask, hideHeader }) => {
   const { t } = useTranslation();
   return (
     <div className="odc-pipeline-visualization-step-list">

@@ -9,7 +9,9 @@ import { NodesTable } from '../tables/nodes-table';
 
 import './body.scss';
 
-export const LocalVolumeDiscoveryBody: React.FC<LocalVolumeDiscoveryBodyProps> = ({
+export const LocalVolumeDiscoveryBody: React.FC<React.PropsWithChildren<
+  LocalVolumeDiscoveryBodyProps
+>> = ({
   allNodes,
   selectNodes,
   showSelectNodes,

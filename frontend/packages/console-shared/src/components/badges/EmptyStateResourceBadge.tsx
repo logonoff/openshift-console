@@ -7,7 +7,9 @@ type EmptyStateResourceBadgeProps = {
   model: K8sKind;
 };
 
-const EmptyStateResourceBadge: React.FC<EmptyStateResourceBadgeProps> = ({ model }) => (
+const EmptyStateResourceBadge: React.FC<React.PropsWithChildren<EmptyStateResourceBadgeProps>> = ({
+  model,
+}) => (
   <div className="ocs-empty-state-resource-badge">
     <Badge className="ocs-empty-state-resource-badge--badge" isRead>
       {model.abbr || kindToAbbr(model.kind)}

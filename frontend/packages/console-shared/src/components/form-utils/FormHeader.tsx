@@ -10,7 +10,12 @@ type FormHeaderProps = {
   marginBottom?: SpacerSize;
 };
 
-const FormHeader: React.FC<FormHeaderProps> = ({ title, helpText, marginTop, marginBottom }) => {
+const FormHeader: React.FC<React.PropsWithChildren<FormHeaderProps>> = ({
+  title,
+  helpText,
+  marginTop,
+  marginBottom,
+}) => {
   const marginStyles = {
     ...(marginTop ? { marginTop: `var(--pf-t--global--spacer--${marginTop})` } : {}),
     ...(marginBottom ? { marginBottom: `var(--pf-t--global--spacer--${marginBottom})` } : {}),

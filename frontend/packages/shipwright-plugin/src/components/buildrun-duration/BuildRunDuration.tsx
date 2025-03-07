@@ -58,7 +58,9 @@ export const getBuildRunDuration = (buildRun: BuildRun): string => {
   return getDuration(seconds, true);
 };
 
-const BuildRunDuration: React.FC<{ buildRun: BuildRun }> = ({ buildRun }) => {
+const BuildRunDuration: React.FC<React.PropsWithChildren<{ buildRun: BuildRun }>> = ({
+  buildRun,
+}) => {
   return <>{getBuildRunDuration(buildRun)}</>;
 };
 

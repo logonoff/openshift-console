@@ -5,7 +5,9 @@ import { InputField } from '@console/shared';
 
 type PipelineGitOptionsProps = { prefixName: string };
 
-const PipelineGitOptions: React.FC<PipelineGitOptionsProps> = ({ prefixName }) => {
+const PipelineGitOptions: React.FC<React.PropsWithChildren<PipelineGitOptionsProps>> = ({
+  prefixName,
+}) => {
   const { t } = useTranslation();
   return (
     <>

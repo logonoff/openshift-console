@@ -8,7 +8,7 @@ type NodeDetailsProps = {
   obj: NodeKind;
 };
 
-const NodeDetails: React.FC<NodeDetailsProps> = ({ obj: node }) => (
+const NodeDetails: React.FC<React.PropsWithChildren<NodeDetailsProps>> = ({ obj: node }) => (
   <>
     <NodeDetailsOverview node={node} />
     <NodeDetailsConditions node={node} />

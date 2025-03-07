@@ -13,7 +13,10 @@ type RemoveTriggerModalProps = ModalComponentProps & {
   pipeline: PipelineKind;
 };
 
-const RemoveTriggerModal: React.FC<RemoveTriggerModalProps> = ({ pipeline, close }) => {
+const RemoveTriggerModal: React.FC<React.PropsWithChildren<RemoveTriggerModalProps>> = ({
+  pipeline,
+  close,
+}) => {
   const { t } = useTranslation();
   const initialValues: RemoveTriggerFormValues = {
     selectedTrigger: null,

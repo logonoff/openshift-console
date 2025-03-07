@@ -6,9 +6,9 @@ import { EnvironmentField } from '@console/shared/src';
 import FormSection from '../import/section/FormSection';
 import ContainerField from './ContainerField';
 
-const EnvironmentVariablesSection: React.FC<{ resourceObj: K8sResourceKind }> = ({
-  resourceObj,
-}) => {
+const EnvironmentVariablesSection: React.FC<React.PropsWithChildren<{
+  resourceObj: K8sResourceKind;
+}>> = ({ resourceObj }) => {
   const { t } = useTranslation();
   const {
     values: {

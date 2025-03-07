@@ -12,7 +12,11 @@ interface SyncProps {
   icon: string;
 }
 
-const GitOpsSyncFragment: React.FC<SyncProps> = ({ tooltip, count, icon }) => {
+const GitOpsSyncFragment: React.FC<React.PropsWithChildren<SyncProps>> = ({
+  tooltip,
+  count,
+  icon,
+}) => {
   let targetIcon: React.ReactNode;
   if (icon === 'check') {
     targetIcon = <GreenCheckCircleIcon />;

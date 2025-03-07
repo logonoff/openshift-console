@@ -10,8 +10,8 @@ export const withUserSettings = <Props extends WithUserSettingsProps<T>, T = str
   configStorageKey: string,
   defaultvalue?: T,
 ) => (
-  WrappedComponent: React.ComponentType<Props>,
-): React.FC<Omit<Props, keyof WithUserSettingsProps<T>>> => {
+  WrappedComponent: React.ComponentType<React.PropsWithChildren<Props>>,
+): React.FC<React.PropsWithChildren<Omit<Props, keyof WithUserSettingsProps<T>>>> => {
   const Component = (props: Props) => {
     const [state, setState, loaded] = useUserSettings(configStorageKey, defaultvalue);
     return loaded ? (

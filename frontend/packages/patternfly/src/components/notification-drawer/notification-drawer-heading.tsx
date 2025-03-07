@@ -3,11 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { TimesIcon } from '@patternfly/react-icons';
 import { Title } from '@patternfly/react-core';
 
-const NotificationDrawerHeading: React.FC<NotificationDrawerHeadingProps> = ({
-  count,
-  children,
-  onClose,
-}) => {
+const NotificationDrawerHeading: React.FC<React.PropsWithChildren<
+  NotificationDrawerHeadingProps
+>> = ({ count, children, onClose }) => {
   const { t } = useTranslation();
   return (
     <div className="pf-v6-c-notification-drawer">

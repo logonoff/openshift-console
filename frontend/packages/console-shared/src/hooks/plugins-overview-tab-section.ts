@@ -3,13 +3,14 @@ import { AsyncComponent, AsyncComponentProps } from '@console/internal/component
 import { OverviewTabSection, isOverviewTabSection, useExtensions } from '@console/plugin-sdk';
 import { OverviewItem } from '../types';
 
-export const getResourceTabSectionComp = (t: OverviewTabSection): React.FC<AsyncComponentProps> => (
-  props: AsyncComponentProps,
-) => React.createElement(AsyncComponent, { ...props, loader: t.properties.loader });
+export const getResourceTabSectionComp = (
+  t: OverviewTabSection,
+): React.FC<React.PropsWithChildren<AsyncComponentProps>> => (props: AsyncComponentProps) =>
+  React.createElement(AsyncComponent, { ...props, loader: t.properties.loader });
 
 export const usePluginsOverviewTabSection = (
   item: OverviewItem,
-): { Component: React.FC<AsyncComponentProps>; key: string }[] => {
+): { Component: React.FC<React.PropsWithChildren<AsyncComponentProps>>; key: string }[] => {
   const tabSections = useExtensions<OverviewTabSection>(isOverviewTabSection);
   return React.useMemo(
     () =>

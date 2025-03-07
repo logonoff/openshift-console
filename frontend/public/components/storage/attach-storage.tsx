@@ -26,7 +26,7 @@ type StorageProviderMap = {
   };
 };
 
-const AttachStorageInner: React.FC<AttachStorageFormProps> = (props) => {
+const AttachStorageInner: React.FC<React.PropsWithChildren<AttachStorageFormProps>> = (props) => {
   const storageProviders = useExtensions<StorageProvider>(isStorageProvider);
   const [activeProvider, setActiveProvider] = React.useState('0');
   const memoizedStorageProviders = useDeepCompareMemoize(storageProviders, true);

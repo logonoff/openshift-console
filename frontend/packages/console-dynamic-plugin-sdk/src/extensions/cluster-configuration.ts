@@ -62,7 +62,7 @@ export type ClusterConfigurationCheckboxField = {
 
 export type ClusterConfigurationCustomField = {
   type: ClusterConfigurationFieldType.custom;
-  component: CodeRef<React.ComponentType<ClusterConfigurationFieldProps>>;
+  component: CodeRef<React.ComponentType<React.PropsWithChildren<ClusterConfigurationFieldProps>>>;
   props?: { [key: string]: JSONSchema7Type };
 };
 

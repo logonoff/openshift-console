@@ -31,7 +31,7 @@ const getSeverityIcon = (severity: string) => {
   }
 };
 
-export const StatusItem: React.FC<StatusItemProps> = ({
+export const StatusItem: React.FC<React.PropsWithChildren<StatusItemProps>> = ({
   name,
   documentationLink,
   Icon,
@@ -72,12 +72,15 @@ export const StatusItem: React.FC<StatusItemProps> = ({
   );
 };
 
-const AlertItem: React.FC<AlertItemProps> = ({ alert, documentationLink }) => {
+const AlertItem: React.FC<React.PropsWithChildren<AlertItemProps>> = ({
+  alert,
+  documentationLink,
+}) => {
   const { t } = useTranslation();
   const launchModal = useModal();
   const [actionExtensions] = useResolvedExtensions<AlertAction>(
     React.useCallback(
-      (e): e is AlertAction => isAlertAction(e) && e.properties.alert === alert.rule.name,
+      (e: any): e is AlertAction => isAlertAction(e) && e.properties.alert === alert.rule.name,
       [alert],
     ),
   );
@@ -106,7 +109,7 @@ const AlertItem: React.FC<AlertItemProps> = ({ alert, documentationLink }) => {
 export default AlertItem;
 
 type StatusItemProps = {
-  Icon: React.ComponentType<any>;
+  Icon: React.ComponentType<React.PropsWithChildren<any>>;
   timestamp?: string;
   message: string;
   name?: string;

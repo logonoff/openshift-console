@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const ShortcutTable: React.FC = ({ children }) => (
+const ShortcutTable: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
   <table>
     <tbody>{children}</tbody>
   </table>

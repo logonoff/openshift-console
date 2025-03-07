@@ -7,7 +7,7 @@ import { RedExclamationCircleIcon } from '../status';
 import { ResourceLimitFieldProps } from './field-types';
 import { getFieldId } from './field-utils';
 
-const ResourceLimitField: React.FC<ResourceLimitFieldProps> = ({
+const ResourceLimitField: React.FC<React.PropsWithChildren<ResourceLimitFieldProps>> = ({
   label,
   unitName,
   unitOptions,

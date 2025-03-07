@@ -31,7 +31,9 @@ type FirehoseProps = {
 };
 
 describe(Firehose.displayName, () => {
-  const Component: React.ComponentType<FirehoseProps> = Firehose.WrappedComponent as any;
+  const Component: React.ComponentType<React.PropsWithChildren<
+    FirehoseProps
+  >> = Firehose.WrappedComponent as any;
   let wrapper: ShallowWrapper<FirehoseProps>;
   let resources: FirehoseResource[];
   let k8sModels: ImmutableMap<K8sResourceKindReference, K8sKind>;

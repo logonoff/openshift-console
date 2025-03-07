@@ -2,7 +2,7 @@ import * as React from 'react';
 import { MultiTypeaheadSelect, MultiTypeaheadSelectOption } from '@patternfly/react-templates';
 import { useTranslation } from 'react-i18next';
 
-export const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({
+export const MultiSelectDropdown: React.FC<React.PropsWithChildren<MultiSelectDropdownProps>> = ({
   onChange,
   placeholder,
   id,

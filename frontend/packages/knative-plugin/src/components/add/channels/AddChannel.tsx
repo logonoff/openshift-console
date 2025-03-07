@@ -30,7 +30,11 @@ interface StateProps {
 
 type Props = ChannelProps & StateProps;
 
-const AddChannel: React.FC<Props> = ({ namespace, channels, activeApplication }) => {
+const AddChannel: React.FC<React.PropsWithChildren<Props>> = ({
+  namespace,
+  channels,
+  activeApplication,
+}) => {
   const [perspective] = useActivePerspective();
   const { t } = useTranslation();
   const initialFormData: AddChannelFormData = {

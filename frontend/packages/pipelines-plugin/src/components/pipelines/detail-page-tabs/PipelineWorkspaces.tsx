@@ -9,7 +9,7 @@ type PipelineWorkspacesParam = {
   isReadOnly?: boolean;
 };
 
-const PipelineWorkspaces: React.FC<PipelineWorkspacesParam> = (props) => {
+const PipelineWorkspaces: React.FC<React.PropsWithChildren<PipelineWorkspacesParam>> = (props) => {
   const { t } = useTranslation();
   const {
     addLabel = t('pipelines-plugin~Add Pipeline workspace'),

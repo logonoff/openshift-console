@@ -10,7 +10,7 @@ import { AddTriggerFormValues } from './types';
 
 import './TriggerBindingSection.scss';
 
-const TriggerBindingSection: React.FC = () => {
+const TriggerBindingSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { values, setFieldValue } = useFormikContext<AddTriggerFormValues>();
   const [bindingVars, setBindingVars] = React.useState<TriggerBindingParam[]>(null);

@@ -28,7 +28,7 @@ const Footer = ({ children }) => {
   );
 };
 
-const List: React.FC<BuildConfigFormEditorProps> = ({ namespace }) => {
+const List: React.FC<React.PropsWithChildren<BuildConfigFormEditorProps>> = ({ namespace }) => {
   const { t } = useTranslation();
 
   const [visibleItems, setVisibleItems] = React.useState<string[]>([]);
@@ -58,7 +58,9 @@ const List: React.FC<BuildConfigFormEditorProps> = ({ namespace }) => {
   );
 };
 
-const BuildConfigFormEditor: React.FC<BuildConfigFormEditorProps> = ({ namespace }) => {
+const BuildConfigFormEditor: React.FC<React.PropsWithChildren<BuildConfigFormEditorProps>> = ({
+  namespace,
+}) => {
   const { t } = useTranslation();
   const [showYAMLAlert, setShowYAMLAlert] = React.useState<boolean>(true);
 

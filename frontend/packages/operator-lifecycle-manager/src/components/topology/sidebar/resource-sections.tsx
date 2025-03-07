@@ -11,7 +11,9 @@ import { ClusterServiceVersionKind } from '../../../types';
 import TopologyOperatorBackedResources from './TopologyOperatorBackedResources';
 import { OperatorGroupData } from './types';
 
-const ResourceSection: React.FC<{ item: TopologyDataObject<OperatorGroupData> }> = ({ item }) => {
+const ResourceSection: React.FC<React.PropsWithChildren<{
+  item: TopologyDataObject<OperatorGroupData>;
+}>> = ({ item }) => {
   const { resource, data } = item;
   const { namespace } = resource.metadata;
   const { csvName } = data;

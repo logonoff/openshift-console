@@ -8,7 +8,7 @@ type TopologyActionsProps = {
   element: GraphElement;
 };
 
-const TopologyActions: React.FC<TopologyActionsProps> = ({ element }) => {
+const TopologyActions: React.FC<React.PropsWithChildren<TopologyActionsProps>> = ({ element }) => {
   const resource = getResource(element);
   const context = React.useMemo(() => {
     const { csvName } = element.getData()?.data ?? {};

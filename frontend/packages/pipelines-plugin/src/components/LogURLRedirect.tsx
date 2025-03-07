@@ -7,7 +7,7 @@ const createLogURL = (pathname: string, taskName: string): string => {
   return `${detailsURL[0]}/logs?taskName=${taskName}`;
 };
 
-export const LogURLRedirect: React.FC = () => {
+export const LogURLRedirect: React.FC<React.PropsWithChildren<unknown>> = () => {
   const location = useLocation();
   const { taskName } = useParams();
   return <Navigate to={createLogURL(location.pathname, taskName)} replace />;

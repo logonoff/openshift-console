@@ -33,7 +33,12 @@ interface GitOpsDetailsProps {
   error: Error;
 }
 
-const GitOpsDetails: React.FC<GitOpsDetailsProps> = ({ envs, appName, manifestURL, error }) => {
+const GitOpsDetails: React.FC<React.PropsWithChildren<GitOpsDetailsProps>> = ({
+  envs,
+  appName,
+  manifestURL,
+  error,
+}) => {
   const { t } = useTranslation();
   const [consoleLinks] = useK8sWatchResource<K8sResourceKind[]>({
     isList: true,

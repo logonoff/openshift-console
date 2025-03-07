@@ -19,7 +19,7 @@ const getRowProps = (obj) => ({
   id: obj.revision,
 });
 
-const HelmReleaseHistory: React.FC<HelmReleaseHistoryProps> = ({
+const HelmReleaseHistory: React.FC<React.PropsWithChildren<HelmReleaseHistoryProps>> = ({
   obj,
   customData: latestHelmRelease,
 }) => {

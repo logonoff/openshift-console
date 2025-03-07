@@ -21,7 +21,7 @@ type WatchResource = {
   [key: string]: K8sResourceKind[] | K8sResourceKind | PipelineKind[];
 };
 
-const EditApplicationPage: React.FunctionComponent = () => {
+const EditApplicationPage: React.FunctionComponent<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const params = useParams();
   const location = useLocation();

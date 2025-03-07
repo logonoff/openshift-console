@@ -36,7 +36,7 @@ const FILTER_ID = 'SvgBoxedTextDropShadowFilterId';
 /**
  * Renders a `<text>` component with a `<rect>` box behind.
  */
-const SvgBoxedText: React.FC<SvgBoxedTextProps> = ({
+const SvgBoxedText: React.FC<React.PropsWithChildren<SvgBoxedTextProps>> = ({
   children,
   className,
   paddingX = 0,

@@ -10,7 +10,7 @@ import {
   InsecureTrafficType,
 } from '../import-types';
 
-const SecureRoute: React.FC = () => {
+const SecureRoute: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const [preferredRoutingOptions, , preferredRoutingOptionsLoaded] = usePreferredRoutingOptions();
   const { secure: secureRoute, tlsTermination, insecureTraffic } =

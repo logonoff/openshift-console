@@ -12,7 +12,7 @@ type PipelineTopologyGraphProps = {
   showControlBar?: boolean;
 };
 
-const PipelineTopologyGraph: React.FC<PipelineTopologyGraphProps> = ({
+const PipelineTopologyGraph: React.FC<React.PropsWithChildren<PipelineTopologyGraphProps>> = ({
   builder,
   model,
   componentFactory,

@@ -29,7 +29,9 @@ type AddHealthChecksProps = {
   currentContainer: string;
 };
 
-const AddHealthChecks: React.FC<FormikProps<FormikValues> & AddHealthChecksProps> = ({
+const AddHealthChecks: React.FC<React.PropsWithChildren<
+  FormikProps<FormikValues> & AddHealthChecksProps
+>> = ({
   resource,
   currentContainer,
   handleSubmit,

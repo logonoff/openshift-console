@@ -4,7 +4,7 @@ import withDragDropContext from '@console/internal/components/utils/drag-drop-co
 import { TextColumnItemProps, ItemTypes, DragItem } from './text-column-types';
 import TextColumnItemContent from './TextColumnItemContent';
 
-const TextColumnItemWithDnd: React.FC<TextColumnItemProps> = (props) => {
+const TextColumnItemWithDnd: React.FC<React.PropsWithChildren<TextColumnItemProps>> = (props) => {
   const { idx, onChange, rowValues, arrayHelpers } = props;
   const [, drag, preview] = useDrag({
     item: { type: ItemTypes.TextColumn, id: `${ItemTypes.TextColumn}-${idx}`, idx },

@@ -24,7 +24,9 @@ type PipelineBuilderFormEditorProps = {
   onUpdateTasks: UpdateTasksCallback;
 };
 
-const PipelineBuilderFormEditor: React.FC<PipelineBuilderFormEditorProps> = (props) => {
+const PipelineBuilderFormEditor: React.FC<React.PropsWithChildren<
+  PipelineBuilderFormEditorProps
+>> = (props) => {
   const { t } = useTranslation();
   const {
     hasExistingPipeline,

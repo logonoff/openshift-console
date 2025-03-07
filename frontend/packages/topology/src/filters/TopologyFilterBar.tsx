@@ -62,7 +62,7 @@ type OwnProps = {
 
 type TopologyFilterBarProps = StateProps & OwnProps;
 
-const TopologyFilterBar: React.FC<TopologyFilterBarProps> = ({
+const TopologyFilterBar: React.FC<React.PropsWithChildren<TopologyFilterBarProps>> = ({
   supportedFilters,
   supportedKinds,
   isDisabled,

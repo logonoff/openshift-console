@@ -9,7 +9,7 @@ const RestrictedSignIcon = () => {
   return <img src={restrictedSignImg} alt={t('Restricted access')} />;
 };
 
-export const AccessDenied: React.FC = ({ children }) => {
+export const AccessDenied: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   const { t } = useTranslation('console-shared');
   return (
     <ConsoleEmptyState

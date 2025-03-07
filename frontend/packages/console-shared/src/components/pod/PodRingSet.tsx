@@ -14,7 +14,7 @@ interface PodRingSetProps {
   impersonate?: string;
 }
 
-const PodRingSet: React.FC<PodRingSetProps> = ({ obj, path }) => {
+const PodRingSet: React.FC<React.PropsWithChildren<PodRingSetProps>> = ({ obj, path }) => {
   const { podData, loadError, loaded } = usePodsWatcher(obj);
   const resourceKind = modelFor(obj?.kind);
 

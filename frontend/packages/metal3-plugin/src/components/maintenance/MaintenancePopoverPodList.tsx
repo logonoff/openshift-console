@@ -17,7 +17,9 @@ const podRowRenderer = (pods) => ({ key, index, style }) => {
 type MaintenancePopoverPodListProps = {
   pods: string[];
 };
-const MaintenancePopoverPodList: React.FC<MaintenancePopoverPodListProps> = ({ pods }) => (
+const MaintenancePopoverPodList: React.FC<React.PropsWithChildren<
+  MaintenancePopoverPodListProps
+>> = ({ pods }) => (
   <AutoSizer disableHeight>
     {({ width }) => (
       <List

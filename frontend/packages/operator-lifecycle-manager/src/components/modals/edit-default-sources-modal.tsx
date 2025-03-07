@@ -14,7 +14,7 @@ import { k8sPatch } from '@console/internal/module/k8s';
 import { OperatorHubModel } from '../../models';
 import { OperatorHubKind } from '../operator-hub';
 
-const EditDefaultSourcesModal: React.FC<EditDefaultSourcesModalProps> = ({
+const EditDefaultSourcesModal: React.FC<React.PropsWithChildren<EditDefaultSourcesModalProps>> = ({
   cancel,
   close,
   operatorHub,
@@ -54,7 +54,7 @@ const EditDefaultSourcesModal: React.FC<EditDefaultSourcesModalProps> = ({
     [close, handlePromise, operatorHub, userSelectedDefaultSourceToggleState],
   );
 
-  const onToggle = React.useCallback((sourceName, checked) => {
+  const onToggle = React.useCallback((sourceName: any, checked: any) => {
     setUserSelectedDefaultSourceToggleState((currState) => ({
       ...currState,
       [sourceName]: !checked,

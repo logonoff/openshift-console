@@ -144,7 +144,7 @@ const getRouteLabelsForEditor = (
   return !isDefaultReceiver && _.isEmpty(routeLabels) ? [''] : routeLabels;
 };
 
-const AlertMsg: React.FC<AlertMsgProps> = ({ type }) => {
+const AlertMsg: React.FC<React.PropsWithChildren<AlertMsgProps>> = ({ type }) => {
   const { t } = useTranslation();
   switch (type) {
     case InitialReceivers.Default:
@@ -164,7 +164,7 @@ const AlertMsg: React.FC<AlertMsgProps> = ({ type }) => {
   }
 };
 
-const ReceiverInfoTip: React.FC<ReceiverInfoTipProps> = ({ type }) => {
+const ReceiverInfoTip: React.FC<React.PropsWithChildren<ReceiverInfoTipProps>> = ({ type }) => {
   const { t } = useTranslation();
   return (
     <Alert
@@ -180,7 +180,7 @@ const ReceiverInfoTip: React.FC<ReceiverInfoTipProps> = ({ type }) => {
   );
 };
 
-const ReceiverBaseForm: React.FC<ReceiverBaseFormProps> = ({
+const ReceiverBaseForm: React.FC<React.PropsWithChildren<ReceiverBaseFormProps>> = ({
   obj: secret, // Secret "alertmanager-main" which contains alertmanager.yaml config
   titleVerb,
   saveButtonText,
@@ -472,55 +472,57 @@ const ReceiverBaseForm: React.FC<ReceiverBaseFormProps> = ({
   );
 };
 
-const ReceiverWrapper: React.FC<ReceiverFormsWrapperProps> = React.memo(({ obj, ...props }) => {
-  const { alertManagerBaseURL } = window.SERVER_FLAGS;
-  const [alertmanagerGlobals, setAlertmanagerGlobals] = React.useState();
-  const [loaded, setLoaded] = React.useState(false);
-  const [loadError, setLoadError] = React.useState<APIError>();
+const ReceiverWrapper: React.FC<React.PropsWithChildren<ReceiverFormsWrapperProps>> = React.memo(
+  ({ obj, ...props }) => {
+    const { alertManagerBaseURL } = window.SERVER_FLAGS;
+    const [alertmanagerGlobals, setAlertmanagerGlobals] = React.useState();
+    const [loaded, setLoaded] = React.useState(false);
+    const [loadError, setLoadError] = React.useState<APIError>();
 
-  React.useEffect(() => {
-    if (!alertManagerBaseURL) {
-      setLoadError({ message: `Error alertManagerBaseURL not set` });
-      return;
-    }
-    coFetchJSON(`${alertManagerBaseURL}/api/v2/status/`)
-      .then((data) => {
-        const originalAlertmanagerConfigJSON = data?.config?.original;
-        if (_.isEmpty(originalAlertmanagerConfigJSON)) {
-          setLoadError({ message: 'alertmanager.v2.status.config.original not found.' });
-        } else {
-          try {
-            const { global } = safeLoad(originalAlertmanagerConfigJSON);
-            setAlertmanagerGlobals(global);
-            setLoaded(true);
-          } catch (error) {
-            setLoadError({
-              message: `Error parsing Alertmanager config.original: ${
-                error.message || 'invalid YAML'
-              }`,
-            });
+    React.useEffect(() => {
+      if (!alertManagerBaseURL) {
+        setLoadError({ message: `Error alertManagerBaseURL not set` });
+        return;
+      }
+      coFetchJSON(`${alertManagerBaseURL}/api/v2/status/`)
+        .then((data) => {
+          const originalAlertmanagerConfigJSON = data?.config?.original;
+          if (_.isEmpty(originalAlertmanagerConfigJSON)) {
+            setLoadError({ message: 'alertmanager.v2.status.config.original not found.' });
+          } else {
+            try {
+              const { global } = safeLoad(originalAlertmanagerConfigJSON);
+              setAlertmanagerGlobals(global);
+              setLoaded(true);
+            } catch (error) {
+              setLoadError({
+                message: `Error parsing Alertmanager config.original: ${
+                  error.message || 'invalid YAML'
+                }`,
+              });
+            }
           }
-        }
-      })
-      .catch((e) =>
-        setLoadError({
-          message: `Error loading ${alertManagerBaseURL}/api/v2/status/: ${e.message}`,
-        }),
-      );
-  }, [alertManagerBaseURL]);
+        })
+        .catch((e) =>
+          setLoadError({
+            message: `Error loading ${alertManagerBaseURL}/api/v2/status/: ${e.message}`,
+          }),
+        );
+    }, [alertManagerBaseURL]);
 
-  const { t } = useTranslation();
-  return (
-    <StatusBox
-      {...obj}
-      label={t('public~Alertmanager globals')}
-      loaded={loaded}
-      loadError={loadError}
-    >
-      <ReceiverBaseForm {...props} obj={obj.data} alertmanagerGlobals={alertmanagerGlobals} />
-    </StatusBox>
-  );
-});
+    const { t } = useTranslation();
+    return (
+      <StatusBox
+        {...obj}
+        label={t('public~Alertmanager globals')}
+        loaded={loaded}
+        loadError={loadError}
+      >
+        <ReceiverBaseForm {...props} obj={obj.data} alertmanagerGlobals={alertmanagerGlobals} />
+      </StatusBox>
+    );
+  },
+);
 
 const resources = [
   {

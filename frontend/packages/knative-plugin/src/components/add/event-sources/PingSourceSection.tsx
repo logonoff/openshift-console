@@ -10,7 +10,10 @@ interface PingSourceSectionProps {
   fullWidth?: boolean;
 }
 
-const PingSourceSection: React.FC<PingSourceSectionProps> = ({ title, fullWidth }) => {
+const PingSourceSection: React.FC<React.PropsWithChildren<PingSourceSectionProps>> = ({
+  title,
+  fullWidth,
+}) => {
   const { t } = useTranslation();
   return (
     <FormSection title={title} extraMargin fullWidth={fullWidth}>

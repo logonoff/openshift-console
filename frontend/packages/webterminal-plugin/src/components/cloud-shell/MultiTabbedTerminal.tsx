@@ -16,7 +16,9 @@ interface MultiTabbedTerminalProps {
   onClose?: () => void;
 }
 
-export const MultiTabbedTerminal: React.FC<MultiTabbedTerminalProps> = ({ onClose }) => {
+export const MultiTabbedTerminal: React.FC<React.PropsWithChildren<MultiTabbedTerminalProps>> = ({
+  onClose,
+}) => {
   const [terminalTabs, setTerminalTabs] = React.useState<number[]>([1]);
   const [activeTabKey, setActiveTabKey] = React.useState<number>(1);
   const [tickNamespace, setTickNamespace] = React.useState<string>(null);

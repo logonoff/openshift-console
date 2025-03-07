@@ -39,7 +39,10 @@ jest.mock('../../../import/image-search/ImageStream', () => ({
 
 configure({ testIdAttribute: 'data-test' });
 
-const Wrapper: React.FC<FormikConfig<ImagesSectionFormData>> = ({ children, ...formikConfig }) => (
+const Wrapper: React.FC<React.PropsWithChildren<FormikConfig<ImagesSectionFormData>>> = ({
+  children,
+  ...formikConfig
+}) => (
   <Provider store={store}>
     <Formik {...formikConfig}>
       {(formikProps) => (

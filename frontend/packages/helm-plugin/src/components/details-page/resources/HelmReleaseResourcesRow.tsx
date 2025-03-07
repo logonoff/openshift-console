@@ -12,9 +12,9 @@ type HelmReleaseResourceStatusProps = {
   resource: K8sResourceKind;
 };
 
-export const HelmReleaseResourceStatus: React.FC<HelmReleaseResourceStatusProps> = ({
-  resource,
-}) => {
+export const HelmReleaseResourceStatus: React.FC<React.PropsWithChildren<
+  HelmReleaseResourceStatusProps
+>> = ({ resource }) => {
   const { t } = useTranslation();
   const kind = referenceFor(resource);
   return resource.status?.replicas ? (
@@ -29,7 +29,9 @@ export const HelmReleaseResourceStatus: React.FC<HelmReleaseResourceStatusProps>
   );
 };
 
-const HelmReleaseResourcesRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj: resource }) => {
+const HelmReleaseResourcesRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<K8sResourceKind>
+>> = ({ obj: resource }) => {
   const kind = referenceFor(resource);
   return (
     <>

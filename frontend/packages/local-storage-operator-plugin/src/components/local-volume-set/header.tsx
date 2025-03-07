@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Content } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
 
-export const LocalVolumeSetHeader: React.FC<LocalVolumeSetHeaderProps> = ({
+export const LocalVolumeSetHeader: React.FC<React.PropsWithChildren<LocalVolumeSetHeaderProps>> = ({
   className,
   variant,
 }) => {

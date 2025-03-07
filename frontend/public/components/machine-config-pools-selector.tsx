@@ -5,11 +5,9 @@ import { useTranslation } from 'react-i18next';
 import { isMCPWorker, MachineConfigPoolKind, NodeTypeNames } from '../module/k8s';
 import { NodeModel } from '../models';
 
-export const MachineConfigPoolsSelector: React.FC<MachineConfigPoolsSelectorProps> = ({
-  machineConfigPools,
-  onChange,
-  selected,
-}) => {
+export const MachineConfigPoolsSelector: React.FC<React.PropsWithChildren<
+  MachineConfigPoolsSelectorProps
+>> = ({ machineConfigPools, onChange, selected }) => {
   const { t } = useTranslation();
   return (
     <div className="form-group">

@@ -6,7 +6,7 @@ type EventSinkLinkProps = {
   element: Edge;
 };
 
-const EventSinkLink: React.FC<EventSinkLinkProps> = ({ ...others }) => (
+const EventSinkLink: React.FC<React.PropsWithChildren<EventSinkLinkProps>> = ({ ...others }) => (
   <BaseEdge endTerminalType={EdgeTerminalType.circle} {...others} />
 );
 

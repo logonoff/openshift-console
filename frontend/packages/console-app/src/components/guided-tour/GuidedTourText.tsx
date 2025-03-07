@@ -4,7 +4,7 @@ import { useK8sWatchResource } from '@console/internal/components/utils/k8s-watc
 import { ConsoleLinkModel } from '@console/internal/models';
 import { K8sResourceKind, referenceForModel } from '@console/internal/module/k8s';
 
-const HelpTourText: React.FC = () => {
+const HelpTourText: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return t(
     'console-app~Access our new quick starts where you can learn more about creating or deploying an application using OpenShift Developer Console. You can also restart this tour anytime here.',
@@ -13,7 +13,7 @@ const HelpTourText: React.FC = () => {
 
 export const helpTourText = <HelpTourText />;
 
-const UserPrefrencesTourText: React.FC = () => {
+const UserPrefrencesTourText: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return t(
     'console-app~Set your individual console preferences including default views, language, import settings, and more.',
@@ -22,7 +22,7 @@ const UserPrefrencesTourText: React.FC = () => {
 
 export const userPreferencesTourText = <UserPrefrencesTourText />;
 
-export const FinishTourText: React.FC = () => {
+export const FinishTourText: React.FC<React.PropsWithChildren<unknown>> = () => {
   const [consoleLinks] = useK8sWatchResource<K8sResourceKind[]>({
     isList: true,
     kind: referenceForModel(ConsoleLinkModel),

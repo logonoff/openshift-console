@@ -21,7 +21,7 @@ type ResourceSectionProps = {
   flags: FlagsObject;
 };
 
-const ResourceSection: React.FC<ResourceSectionProps> = ({ flags }) => {
+const ResourceSection: React.FC<React.PropsWithChildren<ResourceSectionProps>> = ({ flags }) => {
   const { t } = useTranslation();
   const [field] = useField<Resources[]>('resourceTypesNotValid');
   const fieldName = 'resources';

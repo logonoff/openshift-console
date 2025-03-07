@@ -12,7 +12,10 @@ type DeploySectionProps = {
   appResources?: AppResources;
 };
 
-export const DeploySection: React.FC<DeploySectionProps> = ({ values, appResources }) => {
+export const DeploySection: React.FC<React.PropsWithChildren<DeploySectionProps>> = ({
+  values,
+  appResources,
+}) => {
   const { t } = useTranslation();
   return (
     <FormSection title={t('devconsole~Deploy')} fullWidth>

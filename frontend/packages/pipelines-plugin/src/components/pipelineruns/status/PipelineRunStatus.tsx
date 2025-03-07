@@ -16,7 +16,7 @@ type PipelineRunStatusProps = {
   taskRuns: TaskRunKind[];
   taskRunsLoaded?: boolean;
 };
-const PipelineRunStatus: React.FC<PipelineRunStatusProps> = ({
+const PipelineRunStatus: React.FC<React.PropsWithChildren<PipelineRunStatusProps>> = ({
   status,
   pipelineRun,
   title,

@@ -17,7 +17,9 @@ type TaskSidebarWhenExpressionProps = {
   selectedData: SelectedBuilderTask;
 };
 
-const TaskSidebarWhenExpression: React.FC<TaskSidebarWhenExpressionProps> = (props) => {
+const TaskSidebarWhenExpression: React.FC<React.PropsWithChildren<
+  TaskSidebarWhenExpressionProps
+>> = (props) => {
   const { name, selectedData } = props;
   const [field] = useField(name);
   const { t } = useTranslation();

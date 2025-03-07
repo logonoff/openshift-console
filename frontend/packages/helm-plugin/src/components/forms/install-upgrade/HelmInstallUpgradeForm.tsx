@@ -50,9 +50,9 @@ export interface HelmInstallUpgradeFormProps {
   providerName?: string;
 }
 
-const HelmInstallUpgradeForm: React.FC<
+const HelmInstallUpgradeForm: React.FC<React.PropsWithChildren<
   FormikProps<HelmInstallUpgradeFormData> & HelmInstallUpgradeFormProps
-> = ({
+>> = ({
   chartHasValues,
   errors,
   handleSubmit,

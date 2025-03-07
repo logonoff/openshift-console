@@ -11,7 +11,7 @@ export interface TaskDetailsProps {
   obj: TaskKind;
 }
 
-const TaskDetails: React.FC<TaskDetailsProps> = ({ obj: task }) => {
+const TaskDetails: React.FC<React.PropsWithChildren<TaskDetailsProps>> = ({ obj: task }) => {
   const { t } = useTranslation();
   return (
     <div className="co-m-pane__body">

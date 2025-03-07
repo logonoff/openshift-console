@@ -40,7 +40,7 @@ function safeIndex<T>(list: T[], comparatorFunc: (v: T) => boolean): number {
   return idx === -1 ? list.length : idx;
 }
 
-const TaskSidebar: React.FC<TaskSidebarProps> = (props) => {
+const TaskSidebar: React.FC<React.PropsWithChildren<TaskSidebarProps>> = (props) => {
   const { t } = useTranslation();
   const { onRemoveTask, onRenameTask, resourceList, workspaceList, selectedData, onClose } = props;
   const { isFinallyTask, taskIndex, resource: taskResource } = selectedData;

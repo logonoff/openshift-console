@@ -11,7 +11,7 @@ type PipelineParametersFormProps = FormikProps<FormikValues> & {
   namespace: string;
 };
 
-const PipelineParametersForm: React.FC<PipelineParametersFormProps> = ({
+const PipelineParametersForm: React.FC<React.PropsWithChildren<PipelineParametersFormProps>> = ({
   namespace,
   handleSubmit,
   handleReset,

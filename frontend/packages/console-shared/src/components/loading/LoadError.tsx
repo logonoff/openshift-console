@@ -3,7 +3,11 @@ import { Button } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
 import { ConsoleEmptyState } from '../empty-state';
 
-export const LoadError: React.FC<LoadErrorProps> = ({ label, children, canRetry = true }) => {
+export const LoadError: React.FC<React.PropsWithChildren<LoadErrorProps>> = ({
+  label,
+  children,
+  canRetry = true,
+}) => {
   const { t } = useTranslation('console-shared');
   const actions = canRetry
     ? [

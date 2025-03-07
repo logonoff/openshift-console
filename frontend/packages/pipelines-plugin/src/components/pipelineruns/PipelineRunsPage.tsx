@@ -8,7 +8,7 @@ import { PipelineRunModel } from '../../models';
 import { usePipelineTechPreviewBadge } from '../../utils/hooks';
 import PipelineRunsResourceList from './PipelineRunsResourceList';
 
-const PipelineRunsPage: React.FC = (props) => {
+const PipelineRunsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const badge = usePipelineTechPreviewBadge(namespace);

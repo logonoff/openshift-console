@@ -26,7 +26,10 @@ const NameValueEditorComponent = (props) => (
   />
 );
 
-const RequestPane: React.FC<FormikProps<FormikValues>> = ({ setFieldValue, values }) => {
+const RequestPane: React.FC<React.PropsWithChildren<FormikProps<FormikValues>>> = ({
+  setFieldValue,
+  values,
+}) => {
   const { t } = useTranslation();
   const [showCustomHeaders, setShowCustomHeaders] = React.useState(false);
   const {

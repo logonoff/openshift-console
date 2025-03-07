@@ -25,7 +25,7 @@ type PopoverProps = {
   id?: string;
 };
 
-const Popover: React.FC<PopoverProps> = ({
+const Popover: React.FC<React.PropsWithChildren<PopoverProps>> = ({
   open,
   headerContent,
   placement,

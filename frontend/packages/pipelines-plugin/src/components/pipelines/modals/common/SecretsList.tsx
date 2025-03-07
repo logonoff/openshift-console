@@ -26,7 +26,7 @@ type SecretsListProps = {
 
 const secretTypes = [SecretType.dockerconfigjson, SecretType.basicAuth, SecretType.sshAuth];
 
-const Secrets: React.FC<SecretsProps> = ({ secrets, serviceaccounts }) => {
+const Secrets: React.FC<React.PropsWithChildren<SecretsProps>> = ({ secrets, serviceaccounts }) => {
   const { t } = useTranslation();
   const serviceAccountSecrets = _.map(serviceaccounts.data.secrets, 'name');
   const filterData = _.filter(
@@ -57,7 +57,7 @@ const Secrets: React.FC<SecretsProps> = ({ secrets, serviceaccounts }) => {
   );
 };
 
-const SecretsList: React.FC<SecretsListProps> = ({ namespace }) => {
+const SecretsList: React.FC<React.PropsWithChildren<SecretsListProps>> = ({ namespace }) => {
   const resources: FirehoseResource[] = [
     {
       isList: true,

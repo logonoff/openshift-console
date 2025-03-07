@@ -7,7 +7,7 @@ type GithubSectionProps = {
   pac: ConfigMapKind;
 };
 
-const GithubSection: React.FC<GithubSectionProps> = ({ pac }) => {
+const GithubSection: React.FC<React.PropsWithChildren<GithubSectionProps>> = ({ pac }) => {
   const { t } = useTranslation();
   const appLink = pac?.data?.['app-link'] ?? '';
   return (

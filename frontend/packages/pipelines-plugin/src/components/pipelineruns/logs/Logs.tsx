@@ -18,7 +18,7 @@ type LogsProps = {
   onComplete: (containerName: string) => void;
 };
 
-const Logs: React.FC<LogsProps> = ({
+const Logs: React.FC<React.PropsWithChildren<LogsProps>> = ({
   resource,
   resourceStatus,
   container,

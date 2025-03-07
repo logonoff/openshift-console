@@ -22,7 +22,7 @@ type LineChartProps = {
 } & Omit<ChartLineProps, 'events'> &
   ChartProps;
 
-export const LineChart: React.FC<LineChartProps> = ({
+export const LineChart: React.FC<React.PropsWithChildren<LineChartProps>> = ({
   data = [],
   width,
   height,

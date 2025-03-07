@@ -7,10 +7,9 @@ type QuickStartPermissionCheckerProps = {
   onPermissionCheck: (quickStart: QuickStart, hasPermission: boolean) => void;
 };
 
-const QuickStartPermissionChecker: React.FC<QuickStartPermissionCheckerProps> = ({
-  quickStart,
-  onPermissionCheck,
-}) => {
+const QuickStartPermissionChecker: React.FC<React.PropsWithChildren<
+  QuickStartPermissionCheckerProps
+>> = ({ quickStart, onPermissionCheck }) => {
   const [hasPermission, loaded] = useQuickStartPermission(quickStart);
 
   React.useEffect(() => {

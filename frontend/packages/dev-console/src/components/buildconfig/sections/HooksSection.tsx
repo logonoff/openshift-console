@@ -15,7 +15,7 @@ type HookFormData = {
 
 export type HooksSectionFormData = { formData: { hooks: HookFormData } };
 
-const HooksSection: React.FC<{}> = () => {
+const HooksSection: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
 
   const [

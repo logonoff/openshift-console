@@ -8,7 +8,9 @@ import { useDetailsResourceLink } from '../providers/useDetailsResourceLink';
 import SideBarAlerts from './SideBarAlerts';
 import './SideBarHeading.scss';
 
-const SideBarHeading: React.FC<{ element: GraphElement }> = ({ element }) => {
+const SideBarHeading: React.FC<React.PropsWithChildren<{ element: GraphElement }>> = ({
+  element,
+}) => {
   const resourceLabel = element.getLabel();
   const resourceLink = useDetailsResourceLink(element);
   const resourceKind = element.getData()?.resource?.kind;

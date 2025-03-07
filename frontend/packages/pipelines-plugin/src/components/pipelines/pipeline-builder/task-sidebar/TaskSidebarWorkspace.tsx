@@ -17,7 +17,9 @@ interface WorkspaceLink {
   workspace: string;
 }
 
-const TaskSidebarWorkspace: React.FC<TaskSidebarWorkspaceProps> = (props) => {
+const TaskSidebarWorkspace: React.FC<React.PropsWithChildren<TaskSidebarWorkspaceProps>> = (
+  props,
+) => {
   const {
     availableWorkspaces,
     hasWorkspace,

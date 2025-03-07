@@ -16,10 +16,9 @@ type ClusterConfigurationTextFieldProps = {
   field: ClusterConfigurationTextField;
 };
 
-const ClusterConfigurationTextField: React.FC<ClusterConfigurationTextFieldProps> = ({
-  item,
-  field,
-}) => {
+const ClusterConfigurationTextField: React.FC<React.PropsWithChildren<
+  ClusterConfigurationTextFieldProps
+>> = ({ item, field }) => {
   const [value, setValue] = React.useState<string>(field.defaultValue || '');
 
   const save = useDebounceCallback(() => {

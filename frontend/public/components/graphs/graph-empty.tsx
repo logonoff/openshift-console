@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const GraphEmpty: React.FC<GraphEmptyProps> = ({ height = 180, loading = false }) => {
+export const GraphEmpty: React.FC<React.PropsWithChildren<GraphEmptyProps>> = ({
+  height = 180,
+  loading = false,
+}) => {
   const { t } = useTranslation();
 
   return (

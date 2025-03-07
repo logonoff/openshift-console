@@ -22,9 +22,9 @@ type EditApplicationComponentProps = {
   resources: AppResources;
 };
 
-const EditApplicationComponent: React.FunctionComponent<EditApplicationComponentProps> = (
-  props,
-) => {
+const EditApplicationComponent: React.FunctionComponent<React.PropsWithChildren<
+  EditApplicationComponentProps
+>> = (props) => {
   const { appName, resources } = props;
   const appLabel =
     resources.editAppResource?.data?.metadata?.labels?.[NAME_LABEL] ||

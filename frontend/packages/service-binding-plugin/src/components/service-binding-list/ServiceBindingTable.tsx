@@ -56,9 +56,9 @@ export const ServiceBindingHeader = () => {
   ];
 };
 
-export const ServiceBindingRow: React.FC<RowFunctionArgs<ServiceBinding>> = ({
-  obj: serviceBinding,
-}) => {
+export const ServiceBindingRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<ServiceBinding>
+>> = ({ obj: serviceBinding }) => {
   const kindReference = referenceFor(serviceBinding);
   const context = { [kindReference]: serviceBinding };
 
@@ -87,7 +87,7 @@ export const ServiceBindingRow: React.FC<RowFunctionArgs<ServiceBinding>> = ({
   );
 };
 
-const ServiceBindingTable: React.FC<TableProps> = (props) => {
+const ServiceBindingTable: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
 
   return (

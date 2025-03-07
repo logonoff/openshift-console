@@ -9,7 +9,7 @@ import { TextColumnFieldProps, TextColumnItemProps } from './text-column-types';
 import TextColumnItem from './TextColumnItem';
 import TextColumnItemWithDnd from './TextColumnItemWithDnd';
 
-const TextColumnField: React.FC<TextColumnFieldProps> = (props) => {
+const TextColumnField: React.FC<React.PropsWithChildren<TextColumnFieldProps>> = (props) => {
   const {
     required,
     name,

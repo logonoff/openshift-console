@@ -14,7 +14,10 @@ interface ApiServerSectionProps {
   fullWidth?: boolean;
 }
 
-const ApiServerSection: React.FC<ApiServerSectionProps> = ({ title, fullWidth }) => {
+const ApiServerSection: React.FC<React.PropsWithChildren<ApiServerSectionProps>> = ({
+  title,
+  fullWidth,
+}) => {
   const { t } = useTranslation();
   const { values, setFieldValue, setFieldTouched } = useFormikContext<FormikValues>();
   const defaultInitvalue = values?.formData?.data?.[EventSources.ApiServerSource] || {};
@@ -24,7 +27,7 @@ const ApiServerSection: React.FC<ApiServerSectionProps> = ({ title, fullWidth })
     : [['', '']];
   const [nameValue, setNameValue] = React.useState(initialValueResources);
   const handleNameValuePairs = React.useCallback(
-    ({ nameValuePairs }) => {
+    ({ nameValuePairs }: any) => {
       const updatedNameValuePairs = _.compact(
         nameValuePairs.map(([name, value]) => {
           if (value.length) {

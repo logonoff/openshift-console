@@ -8,7 +8,7 @@ export type ClusterOverviewInventoryItem = ExtensionDeclaration<
   'console.cluster-overview/inventory-item',
   {
     /** The component to be rendered. */
-    component: CodeRef<React.ComponentType>;
+    component: CodeRef<React.ComponentType<React.PropsWithChildren<unknown>>>;
   }
 >;
 
@@ -32,7 +32,9 @@ export type ClusterOverviewUtilizationItem = ExtensionDeclaration<
     /** Prometheus limit query. */
     getLimitQuery?: CodeRef<GetQuery>;
     /** Shows Top consumer popover instead of plain value */
-    TopConsumerPopover?: CodeRef<React.ComponentType<TopConsumerPopoverProps>>;
+    TopConsumerPopover?: CodeRef<
+      React.ComponentType<React.PropsWithChildren<TopConsumerPopoverProps>>
+    >;
   }
 >;
 
@@ -47,7 +49,9 @@ export type ClusterOverviewMultilineUtilizationItem = ExtensionDeclaration<
     /** Convert prometheus data to human readable form. */
     humanize: CodeRef<Humanize>;
     /** Shows Top consumer popover instead of plain value */
-    TopConsumerPopovers?: CodeRef<React.ComponentType<TopConsumerPopoverProps>[]>;
+    TopConsumerPopovers?: CodeRef<
+      React.ComponentType<React.PropsWithChildren<TopConsumerPopoverProps>>[]
+    >;
   }
 >;
 
@@ -58,7 +62,7 @@ export type OverviewDetailItem = ExtensionDeclaration<
   'console.dashboards/overview/detail/item',
   {
     /** The value, based on the DetailItem component */
-    component: CodeRef<React.ComponentType>;
+    component: CodeRef<React.ComponentType<React.PropsWithChildren<unknown>>>;
   }
 >;
 
@@ -67,7 +71,7 @@ export type CustomOverviewDetailItem = ExtensionDeclaration<
   'console.dashboards/custom/overview/detail/item',
   Omit<OverviewDetailItemProps, 'children' | 'isLoading' | 'error'> & {
     /** The value, rendered by the OverviewDetailItem component */
-    component: CodeRef<React.ComponentType>;
+    component: CodeRef<React.ComponentType<React.PropsWithChildren<unknown>>>;
     /** Function returning the loading state of the component */
     isLoading?: CodeRef<() => boolean>;
     /** Function returning errors to be displayed by the component */

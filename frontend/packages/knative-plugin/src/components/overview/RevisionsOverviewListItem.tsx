@@ -15,10 +15,9 @@ export type RevisionsOverviewListItemProps = {
   service: K8sResourceKind;
 };
 
-const RevisionsOverviewListItem: React.FC<RevisionsOverviewListItemProps> = ({
-  revision,
-  service,
-}) => {
+const RevisionsOverviewListItem: React.FC<React.PropsWithChildren<
+  RevisionsOverviewListItemProps
+>> = ({ revision, service }) => {
   const {
     metadata: { name, namespace },
   } = revision;

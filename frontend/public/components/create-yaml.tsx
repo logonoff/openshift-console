@@ -33,7 +33,7 @@ export const CreateYAMLInner = (props) => {
   const { t } = useTranslation();
   const [templateExtensions, resolvedTemplates] = useResolvedExtensions<YAMLTemplate>(
     React.useCallback(
-      (e): e is YAMLTemplate => isYAMLTemplate(e) && e.properties.model.kind === kindObj?.kind,
+      (e: any): e is YAMLTemplate => isYAMLTemplate(e) && e.properties.model.kind === kindObj?.kind,
       [kindObj],
     ),
   );
@@ -91,7 +91,7 @@ export const CreateYAML = (props) => {
   return <CreateYAML_ {...props} params={params} />;
 };
 
-export const EditYAMLPage: React.SFC<EditYAMLPageProps> = (props) => {
+export const EditYAMLPage: React.FC<React.PropsWithChildren<EditYAMLPageProps>> = (props) => {
   const params = useParams();
   const Wrapper = (wrapperProps) => (
     <AsyncComponent

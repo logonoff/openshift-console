@@ -11,7 +11,7 @@ import { SectionHeading, LabelList, navFactory, ResourceLink, Selector, pluraliz
 import { configureReplicaCountModal } from './modals';
 import { AlertmanagerModel } from '../models';
 
-const Details: React.SFC<DetailsProps> = (props) => {
+const Details: React.FC<React.PropsWithChildren<DetailsProps>> = (props) => {
   const alertManager = props.obj;
   const { metadata, spec } = alertManager;
 
@@ -82,7 +82,7 @@ const tableColumnClasses = [
   'pf-m-hidden pf-m-visible-on-lg pf-v6-u-w-25-on-lg',
 ];
 
-const AlertManagerTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({
+const AlertManagerTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<K8sResourceKind>>> = ({
   obj: alertManager,
 }) => {
   const { metadata, spec } = alertManager;

@@ -8,7 +8,7 @@ interface ImportToastContentProps {
   route?: RouteKind;
 }
 
-const ImportToastContent: React.FC<ImportToastContentProps> = ({
+const ImportToastContent: React.FC<React.PropsWithChildren<ImportToastContentProps>> = ({
   deployedResources = [],
   route,
 }) => {

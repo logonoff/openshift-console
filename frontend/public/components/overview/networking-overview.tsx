@@ -11,7 +11,7 @@ import { RouteLocation } from '../routes';
 import { ResourceLink, SidebarSectionHeading } from '../utils';
 import { useRoutesWatcher, useServicesWatcher } from '@console/shared/src';
 
-const ServicePortList: React.SFC<ServicePortListProps> = ({ service }) => {
+const ServicePortList: React.FC<React.PropsWithChildren<ServicePortListProps>> = ({ service }) => {
   const ports = _.get(service, 'spec.ports', []);
   const { t } = useTranslation();
   return (
@@ -30,7 +30,9 @@ const ServicePortList: React.SFC<ServicePortListProps> = ({ service }) => {
   );
 };
 
-const ServicesOverviewListItem: React.SFC<ServiceOverviewListItemProps> = ({ service }) => {
+const ServicesOverviewListItem: React.FC<React.PropsWithChildren<ServiceOverviewListItemProps>> = ({
+  service,
+}) => {
   const { name, namespace } = service.metadata;
   return (
     <li className="list-group-item">
@@ -40,7 +42,9 @@ const ServicesOverviewListItem: React.SFC<ServiceOverviewListItemProps> = ({ ser
   );
 };
 
-const ServicesOverviewList: React.SFC<ServiceOverviewListProps> = ({ services }) => (
+const ServicesOverviewList: React.FC<React.PropsWithChildren<ServiceOverviewListProps>> = ({
+  services,
+}) => (
   <ul className="list-group">
     {_.map(services, (service) => (
       <ServicesOverviewListItem key={service.metadata.uid} service={service} />
@@ -48,7 +52,9 @@ const ServicesOverviewList: React.SFC<ServiceOverviewListProps> = ({ services })
   </ul>
 );
 
-const RoutesOverviewListItem: React.SFC<RoutesOverviewListItemProps> = ({ route }) => {
+const RoutesOverviewListItem: React.FC<React.PropsWithChildren<RoutesOverviewListItemProps>> = ({
+  route,
+}) => {
   const { name, namespace } = route.metadata;
   const { t } = useTranslation();
   return (
@@ -60,7 +66,9 @@ const RoutesOverviewListItem: React.SFC<RoutesOverviewListItemProps> = ({ route 
   );
 };
 
-const RoutesOverviewList: React.SFC<RoutesOverviewListProps> = ({ routes }) => (
+const RoutesOverviewList: React.FC<React.PropsWithChildren<RoutesOverviewListProps>> = ({
+  routes,
+}) => (
   <ul className="list-group">
     {_.map(routes, (route) => (
       <RoutesOverviewListItem key={route.metadata.uid} route={route} />
@@ -68,7 +76,9 @@ const RoutesOverviewList: React.SFC<RoutesOverviewListProps> = ({ routes }) => (
   </ul>
 );
 
-export const NetworkingOverview: React.SFC<NetworkingOverviewProps> = ({ obj }) => {
+export const NetworkingOverview: React.FC<React.PropsWithChildren<NetworkingOverviewProps>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   const serviceResources = useServicesWatcher(obj);
   const services =

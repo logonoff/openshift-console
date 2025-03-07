@@ -52,7 +52,7 @@ type StorageProvisionerMap = {
   [provisioner: string]: ProvisionerDetails;
 };
 
-const StorageClassFormInner: React.FC<StorageClassFormProps> = (props) => {
+const StorageClassFormInner: React.FC<React.PropsWithChildren<StorageClassFormProps>> = (props) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 

@@ -13,7 +13,7 @@ type StepFooterProps = {
   children?: React.ReactNode;
 };
 
-const StepFooter: React.FC<StepFooterProps> = ({
+const StepFooter: React.FC<React.PropsWithChildren<StepFooterProps>> = ({
   children,
   primaryButton: { name: primaryButton, onClick: primaryButtonCallback },
   secondaryButton: { name: secondaryButton, onClick: secondaryButtonCallback },

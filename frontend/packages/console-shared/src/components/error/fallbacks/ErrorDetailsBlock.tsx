@@ -4,7 +4,9 @@ import { ErrorBoundaryFallbackProps } from '@console/dynamic-plugin-sdk';
 import { CopyToClipboard } from '@console/internal/components/utils/copy-to-clipboard';
 import TertiaryHeading from '../../heading/TertiaryHeading';
 
-const ErrorDetailsBlock: React.FC<ErrorBoundaryFallbackProps> = (props) => {
+const ErrorDetailsBlock: React.FC<React.PropsWithChildren<ErrorBoundaryFallbackProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   return (
     <>

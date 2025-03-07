@@ -27,13 +27,9 @@ const availablePollIntervals: DropdownItems = {
   '60m': '60m',
 };
 
-const EditRegistryPollIntervalModal: React.FC<EditRegistryPollIntervalModalProps> = ({
-  cancel,
-  close,
-  catalogSource,
-  handlePromise,
-  errorMessage,
-}) => {
+const EditRegistryPollIntervalModal: React.FC<React.PropsWithChildren<
+  EditRegistryPollIntervalModalProps
+>> = ({ cancel, close, catalogSource, handlePromise, errorMessage }) => {
   const { t } = useTranslation();
   const [pollInterval, setPollInterval] = React.useState(() => {
     let initialValue = catalogSource.spec?.updateStrategy?.registryPoll?.interval || '';

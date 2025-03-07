@@ -10,7 +10,9 @@ import {
 } from '@console/shared/src/promql/resource-metrics';
 import { K8sResourceKind } from '@console/internal/module/k8s';
 
-const ResourceMetricsDashboardCard: React.FC<ResourceMetricsDashboardCardProps> = (props) => (
+const ResourceMetricsDashboardCard: React.FC<React.PropsWithChildren<
+  ResourceMetricsDashboardCardProps
+>> = (props) => (
   <Card className="resource-metrics-dashboard__card">
     <CardHeader>
       <CardTitle>{props.title}</CardTitle>
@@ -21,7 +23,9 @@ const ResourceMetricsDashboardCard: React.FC<ResourceMetricsDashboardCardProps> 
   </Card>
 );
 
-export const ResourceMetricsDashboard: React.FC<ResourceMetricsDashboardProps> = ({ obj }) => {
+export const ResourceMetricsDashboard: React.FC<React.PropsWithChildren<
+  ResourceMetricsDashboardProps
+>> = ({ obj }) => {
   const { t } = useTranslation();
   const queries = useResourceMetricsQueries(obj);
   return queries ? (

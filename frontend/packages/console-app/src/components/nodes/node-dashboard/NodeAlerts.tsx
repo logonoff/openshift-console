@@ -35,7 +35,7 @@ import {
   PopoverProps,
 } from './utilization-popovers';
 
-const LimitLink: React.FC<LimitLinkProps> = ({
+const LimitLink: React.FC<React.PropsWithChildren<LimitLinkProps>> = ({
   humanize,
   currentKey,
   totalKey,
@@ -108,7 +108,7 @@ const getMessage: GetMessage = (
   };
 };
 
-const HealthChecksLink: React.FC = () => {
+const HealthChecksLink: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { obj } = React.useContext(NodeDashboardContext);
   const [name, namespace] = getNodeMachineNameAndNamespace(obj);
 
@@ -144,7 +144,7 @@ const HealthChecksLink: React.FC = () => {
   );
 };
 
-const NodeAlerts: React.FC = ({ children }) => {
+const NodeAlerts: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   const { cpuLimit, memoryLimit, healthCheck } = React.useContext(NodeDashboardContext);
   const { t } = useTranslation();
 
@@ -224,7 +224,7 @@ type GetMessage = (
     reqWarn: string;
   },
 ) => {
-  Icon: React.ComponentType;
+  Icon: React.ComponentType<React.PropsWithChildren<unknown>>;
   message: string;
 };
 
@@ -236,5 +236,5 @@ type LimitLinkProps = {
   requestedKey: string;
   limitState: LIMIT_STATE;
   requestedState: LIMIT_STATE;
-  Popover: React.ComponentType<PopoverProps>;
+  Popover: React.ComponentType<React.PropsWithChildren<PopoverProps>>;
 };

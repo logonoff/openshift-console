@@ -9,7 +9,9 @@ type ChannelSubscriptionTabProps = {
   obj: EventChannelKind;
 };
 
-const ChannelSubscriptionTab: React.FC<ChannelSubscriptionTabProps> = ({ obj }) => {
+const ChannelSubscriptionTab: React.FC<React.PropsWithChildren<ChannelSubscriptionTabProps>> = ({
+  obj,
+}) => {
   const customData = React.useMemo(
     () => ({
       channel: obj.metadata.name,

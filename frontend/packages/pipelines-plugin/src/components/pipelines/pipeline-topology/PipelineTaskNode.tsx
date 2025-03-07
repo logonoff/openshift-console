@@ -40,7 +40,7 @@ type PipelineTaskNodeProps = {
 } & WithContextMenuProps &
   WithSelectionProps;
 
-const PipelineTaskNode: React.FunctionComponent<PipelineTaskNodeProps> = ({
+const PipelineTaskNode: React.FunctionComponent<React.PropsWithChildren<PipelineTaskNodeProps>> = ({
   element,
   onContextMenu,
   contextMenuOpen,

@@ -9,7 +9,10 @@ type TaskNodeProps = {
   disableTooltip?: boolean;
 };
 
-const TaskNode: React.FC<TaskNodeProps> = ({ element, disableTooltip }) => {
+const TaskNode: React.FC<React.PropsWithChildren<TaskNodeProps>> = ({
+  element,
+  disableTooltip,
+}) => {
   const { height, width } = element.getBounds();
   const { pipeline, pipelineRun, task, selected } = element.getData();
   const isTaskSkipped = pipelineRun?.status?.skippedTasks?.some((t) => t.name === task.name);

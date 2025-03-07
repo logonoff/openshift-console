@@ -9,7 +9,7 @@ import { useUtilizationDuration } from '../../../hooks/useUtilizationDuration';
 
 import './utilization-card.scss';
 
-const UtilizationAxis: React.FC = () => {
+const UtilizationAxis: React.FC<React.PropsWithChildren<unknown>> = () => {
   const [containerRef, width] = useRefWidth();
   const { startDate, endDate } = useUtilizationDuration();
 
@@ -33,7 +33,9 @@ const UtilizationAxis: React.FC = () => {
   );
 };
 
-export const UtilizationBody: React.FC<UtilizationBodyProps> = ({ children }) => {
+export const UtilizationBody: React.FC<React.PropsWithChildren<UtilizationBodyProps>> = ({
+  children,
+}) => {
   const { t } = useTranslation();
   const axis = (
     <div className="co-utilization-card__item co-utilization-card__item-header">

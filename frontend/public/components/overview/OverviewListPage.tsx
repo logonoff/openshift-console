@@ -5,7 +5,7 @@ import { TopologyViewType } from '@console/topology/src/topology-types';
 
 const LAST_TOPOLOGY_WORKLOADS_VIEW_LOCAL_STORAGE_KEY = `${STORAGE_PREFIX}/last-topology-workloads-view`;
 
-export const OverviewListPage: React.FC = () => {
+export const OverviewListPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   return (
     <TopologyPage
       hideProjects

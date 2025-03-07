@@ -6,7 +6,10 @@ import { HealthItemProps } from '@console/dynamic-plugin-sdk/src/api/internal-ty
 import { SecondaryStatus } from '../../status';
 import { HealthState, healthStateMapping, healthStateMessage } from './states';
 
-const HealthItemIcon: React.FC<HealthItemIconProps> = ({ state, dataTest }) => {
+const HealthItemIcon: React.FC<React.PropsWithChildren<HealthItemIconProps>> = ({
+  state,
+  dataTest,
+}) => {
   const Icon = (healthStateMapping[state] || healthStateMapping[HealthState.UNKNOWN]).icon;
   return (
     <div data-test={dataTest} className="co-dashboard-icon">
@@ -15,7 +18,7 @@ const HealthItemIcon: React.FC<HealthItemIconProps> = ({ state, dataTest }) => {
   );
 };
 
-const HealthItem: React.FC<HealthItemProps> = React.memo(
+const HealthItem: React.FC<React.PropsWithChildren<HealthItemProps>> = React.memo(
   ({
     className,
     state,

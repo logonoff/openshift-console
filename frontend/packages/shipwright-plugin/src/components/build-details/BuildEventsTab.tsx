@@ -26,7 +26,7 @@ const getFilters = (build: Build) => {
   ];
 };
 
-const BuildEventsTab: React.FC<BuildEventsTabProps> = ({ obj: build }) => {
+const BuildEventsTab: React.FC<React.PropsWithChildren<BuildEventsTabProps>> = ({ obj: build }) => {
   const { ns: namespace } = useParams();
   return <ResourcesEventStream filters={getFilters(build)} namespace={namespace} />;
 };

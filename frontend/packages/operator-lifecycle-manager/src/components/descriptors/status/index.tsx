@@ -9,14 +9,9 @@ import { isMainStatusDescriptor, getValidCapabilitiesForValue } from '../utils';
 import { Phase } from './phase';
 import { PodStatusChart, PodStatusChartProps } from './pods';
 
-const PodStatuses: React.FC<StatusCapabilityProps<PodStatusChartProps['statuses']>> = ({
-  description,
-  descriptor,
-  fullPath,
-  label,
-  obj,
-  value,
-}) => {
+const PodStatuses: React.FC<React.PropsWithChildren<
+  StatusCapabilityProps<PodStatusChartProps['statuses']>
+>> = ({ description, descriptor, fullPath, label, obj, value }) => {
   const { t } = useTranslation();
   const detail = React.useMemo(() => {
     if (!_.isObject(value) || _.some(value, (v) => !_.isArray(v))) {
@@ -36,7 +31,7 @@ const PodStatuses: React.FC<StatusCapabilityProps<PodStatusChartProps['statuses'
   );
 };
 
-const Link: React.FC<StatusCapabilityProps<string>> = ({
+const Link: React.FC<React.PropsWithChildren<StatusCapabilityProps<string>>> = ({
   description,
   fullPath,
   label,
@@ -55,7 +50,7 @@ const Link: React.FC<StatusCapabilityProps<string>> = ({
   );
 };
 
-const K8sPhase: React.FC<StatusCapabilityProps<string>> = ({
+const K8sPhase: React.FC<React.PropsWithChildren<StatusCapabilityProps<string>>> = ({
   description,
   fullPath,
   label,
@@ -67,7 +62,7 @@ const K8sPhase: React.FC<StatusCapabilityProps<string>> = ({
   </DetailsItem>
 );
 
-const K8sPhaseReason: React.FC<StatusCapabilityProps<string>> = ({
+const K8sPhaseReason: React.FC<React.PropsWithChildren<StatusCapabilityProps<string>>> = ({
   description,
   fullPath,
   label,
@@ -88,7 +83,7 @@ const K8sPhaseReason: React.FC<StatusCapabilityProps<string>> = ({
   );
 };
 
-const MainStatus: React.FC<StatusCapabilityProps<string>> = ({
+const MainStatus: React.FC<React.PropsWithChildren<StatusCapabilityProps<string>>> = ({
   description,
   fullPath,
   label,
@@ -100,10 +95,9 @@ const MainStatus: React.FC<StatusCapabilityProps<string>> = ({
   </DetailsItem>
 );
 
-export const StatusDescriptorDetailsItem: React.FC<StatusCapabilityProps> = ({
-  className,
-  ...props
-}) => {
+export const StatusDescriptorDetailsItem: React.FC<React.PropsWithChildren<
+  StatusCapabilityProps
+>> = ({ className, ...props }) => {
   const [capability] =
     getValidCapabilitiesForValue<StatusCapability>(props.descriptor, props.value) ?? [];
 

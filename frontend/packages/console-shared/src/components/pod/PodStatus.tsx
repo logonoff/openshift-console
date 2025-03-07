@@ -43,7 +43,7 @@ const podStatusIsNumeric = (podStatusValue: string) => {
   );
 };
 
-const PodStatus: React.FC<PodStatusProps> = ({
+const PodStatus: React.FC<React.PropsWithChildren<PodStatusProps>> = ({
   innerRadius = podStatusInnerRadius,
   outerRadius = podStatusOuterRadius,
   x,

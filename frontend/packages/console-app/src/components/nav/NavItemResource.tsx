@@ -13,7 +13,7 @@ import { useLocation } from '@console/shared/src/hooks/useLocation';
 import { NavLink, NavLinkProps } from './NavLink';
 import { navItemResourceIsActive } from './utils';
 
-export const NavItemResource: React.FC<NavItemResourceProps> = ({
+export const NavItemResource: React.FC<React.PropsWithChildren<NavItemResourceProps>> = ({
   model,
   startsWith,
   namespaced,

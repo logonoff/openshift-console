@@ -20,7 +20,9 @@ type BareMetalHostDetailsPageProps = {
   name: string;
 };
 
-const BareMetalHostDetailsPage: React.FC<BareMetalHostDetailsPageProps> = (props) => {
+const BareMetalHostDetailsPage: React.FC<React.PropsWithChildren<BareMetalHostDetailsPageProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const [maintenanceModel] = useMaintenanceCapability();
   const bmoEnabled = useFlag(BMO_ENABLED_FLAG);

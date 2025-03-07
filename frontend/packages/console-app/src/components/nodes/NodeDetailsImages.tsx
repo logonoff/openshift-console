@@ -8,7 +8,7 @@ type NodeDetailsImagesProps = {
   node: NodeKind;
 };
 
-const NodeDetailsImages: React.FC<NodeDetailsImagesProps> = ({ node }) => {
+const NodeDetailsImages: React.FC<React.PropsWithChildren<NodeDetailsImagesProps>> = ({ node }) => {
   const images = _.filter(node.status.images, 'names');
   const { t } = useTranslation();
   return (

@@ -69,7 +69,9 @@ export const BuildRunHeader = () => {
   ];
 };
 
-export const BuildRunRow: React.FC<RowFunctionArgs<BuildRun>> = ({ obj: buildRun }) => {
+export const BuildRunRow: React.FC<React.PropsWithChildren<RowFunctionArgs<BuildRun>>> = ({
+  obj: buildRun,
+}) => {
   const kindReference = referenceFor(buildRun);
   const context = { [kindReference]: buildRun };
 
@@ -101,7 +103,7 @@ export const BuildRunRow: React.FC<RowFunctionArgs<BuildRun>> = ({ obj: buildRun
   );
 };
 
-export const BuildRunTable: React.FC<TableProps> = (props) => {
+export const BuildRunTable: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
 
   return (

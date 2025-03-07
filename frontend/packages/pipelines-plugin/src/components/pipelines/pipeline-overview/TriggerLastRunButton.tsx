@@ -19,7 +19,7 @@ type TriggerLastRunButtonProps = {
   impersonate?;
 };
 
-const TriggerLastRunButton: React.FC<TriggerLastRunButtonProps> = ({
+const TriggerLastRunButton: React.FC<React.PropsWithChildren<TriggerLastRunButtonProps>> = ({
   pipelineRuns,
   namespace,
   impersonate,

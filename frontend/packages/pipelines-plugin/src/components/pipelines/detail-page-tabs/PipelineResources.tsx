@@ -15,7 +15,7 @@ type PipelineResourcesParam = {
   isReadOnly?: boolean;
 };
 
-const PipelineResources: React.FC<PipelineResourcesParam> = (props) => {
+const PipelineResources: React.FC<React.PropsWithChildren<PipelineResourcesParam>> = (props) => {
   const { t } = useTranslation();
   const {
     addLabel = t('pipelines-plugin~Add Pipeline resource'),

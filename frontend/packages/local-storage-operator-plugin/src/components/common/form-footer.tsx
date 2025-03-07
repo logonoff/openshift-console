@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ButtonBar } from '@console/internal/components/utils';
 import { history } from '@console/internal/components/utils/router';
 
-export const FormFooter: React.FC<FormFooterProps> = ({
+export const FormFooter: React.FC<React.PropsWithChildren<FormFooterProps>> = ({
   errorMessage,
   inProgress,
   disableNext,

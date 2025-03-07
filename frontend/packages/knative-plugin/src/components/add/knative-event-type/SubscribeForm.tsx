@@ -36,7 +36,7 @@ type Props = FormikProps<FormikValues> & SubscribeFormProps;
 
 const LAST_VIEWED_EDITOR_TYPE_USERSETTING_KEY = 'knative.addSubscriberForm.editor.lastView';
 
-const SubscribeForm: React.FC<Props> = ({
+const SubscribeForm: React.FC<React.PropsWithChildren<Props>> = ({
   filterEnabled,
   handleSubmit,
   handleCancel,

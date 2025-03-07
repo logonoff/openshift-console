@@ -20,7 +20,7 @@ jest.mock('@console/internal/module/k8s/k8s-models', () => ({
   throw new Error(`Unexpected model when mocking 'modelFor': ${ref}`);
 });
 
-const Wrapper: React.FC = ({ children }) => (
+const Wrapper: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
   <BrowserRouter>
     <Provider store={store}>{children}</Provider>
   </BrowserRouter>

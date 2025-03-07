@@ -11,8 +11,8 @@ export type WithQueryParamsProps = {
 };
 
 export const withQueryParams = <Props extends WithQueryParamsProps>(
-  Component: React.ComponentType<Props>,
-): React.FC<Omit<Props, keyof WithQueryParamsProps>> => (props: Props) => {
+  Component: React.ComponentType<React.PropsWithChildren<Props>>,
+): React.FC<React.PropsWithChildren<Omit<Props, keyof WithQueryParamsProps>>> => (props: Props) => {
   const queryParams = useQueryParams();
   return <Component {...props} queryParams={queryParams} />;
 };

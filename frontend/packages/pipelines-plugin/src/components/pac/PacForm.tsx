@@ -8,7 +8,7 @@ import { usePacGHManifest } from './hooks/usePacGHManifest';
 import { pacValidationSchema } from './pac-validation-schema';
 import PacAppForm from './PacAppForm';
 
-const PacForm: React.FC<{ namespace: string }> = ({ namespace }) => {
+const PacForm: React.FC<React.PropsWithChildren<{ namespace: string }>> = ({ namespace }) => {
   const { t } = useTranslation();
   const { loaded, manifestData } = usePacGHManifest();
 

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import './resource-quota-card.scss';
 
-const ResourceQuotaBody: React.FC<ResourceQuotaBodyProps> = ({
+const ResourceQuotaBody: React.FC<React.PropsWithChildren<ResourceQuotaBodyProps>> = ({
   error,
   isLoading,
   noText,

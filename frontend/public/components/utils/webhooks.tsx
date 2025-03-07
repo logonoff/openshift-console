@@ -47,7 +47,7 @@ const getTableColumnClasses = (canGetSecret: boolean) => {
   ];
 };
 
-export const WebhookTriggers: React.FC<WebhookTriggersProps> = (props) => {
+export const WebhookTriggers: React.FC<React.PropsWithChildren<WebhookTriggersProps>> = (props) => {
   const { t } = useTranslation();
   const { resource } = props;
   const { name, namespace } = resource.metadata;

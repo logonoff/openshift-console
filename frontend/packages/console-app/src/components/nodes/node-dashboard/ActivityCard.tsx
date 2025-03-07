@@ -22,17 +22,17 @@ const nodeEventsFilter = (event: EventKind, uid: string, kind: string, name: str
   return objectUID === uid && objectKind === kind && objectName === name;
 };
 
-const RecentEvent: React.FC<RecentEventProps> = ({ node }) => {
+const RecentEvent: React.FC<React.PropsWithChildren<RecentEventProps>> = ({ node }) => {
   const [data, loaded, loadError] = useK8sWatchResource<EventKind[]>(eventsResource);
   const { uid, name } = node.metadata;
   const eventsFilter = React.useCallback(
-    (event) => nodeEventsFilter(event, uid, NodeModel.kind, name),
+    (event: any) => nodeEventsFilter(event, uid, NodeModel.kind, name),
     [uid, name],
   );
   return <RecentEventsBody events={{ data, loaded, loadError }} filter={eventsFilter} />;
 };
 
-const ActivityCard: React.FC = () => {
+const ActivityCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { obj } = React.useContext(NodeDashboardContext);
   const eventsLink = `${resourcePathFromModel(NodeModel, obj.metadata.name)}/events`;
   const { t } = useTranslation();

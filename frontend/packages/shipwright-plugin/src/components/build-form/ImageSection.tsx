@@ -5,7 +5,7 @@ import FormSection from '@console/dev-console/src/components/import/section/Form
 import { InputField } from '@console/shared/src';
 import PushSecretSelector from './PushSecretSelector';
 
-const ImageSection: React.FC<{ namespace: string }> = ({ namespace }) => {
+const ImageSection: React.FC<React.PropsWithChildren<{ namespace: string }>> = ({ namespace }) => {
   const { t } = useTranslation();
   return (
     <FormSection title={t('shipwright-plugin~Image')}>

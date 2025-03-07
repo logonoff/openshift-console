@@ -9,7 +9,11 @@ type ModalContentProps = {
   message: string;
 };
 
-const ModalContent: React.FC<ModalContentProps> = ({ icon, message, title }) => {
+const ModalContent: React.FC<React.PropsWithChildren<ModalContentProps>> = ({
+  icon,
+  message,
+  title,
+}) => {
   return (
     <Split className="odc-modal-content" hasGutter>
       {icon && <SplitItem>{icon}</SplitItem>}

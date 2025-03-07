@@ -12,7 +12,7 @@ type HPAPageHeaderProps = {
   validSupportedType: boolean;
 };
 
-const HPAPageHeader: React.FC<HPAPageHeaderProps> = ({
+const HPAPageHeader: React.FC<React.PropsWithChildren<HPAPageHeaderProps>> = ({
   name,
   title,
   kind,

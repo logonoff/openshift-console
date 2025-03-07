@@ -8,7 +8,9 @@ import { ServiceModel } from '@console/internal/models';
 import { ConsolePluginKind } from '@console/internal/module/k8s';
 import { DASH } from '@console/shared/src/constants';
 
-const ConsolePluginBackendDetail: React.FC<ConsolePluginBackendDetailProps> = ({
+const ConsolePluginBackendDetail: React.FC<React.PropsWithChildren<
+  ConsolePluginBackendDetailProps
+>> = ({
   obj: {
     spec: { backend },
   },

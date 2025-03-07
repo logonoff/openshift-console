@@ -4,7 +4,7 @@ import { Table, TableProps } from '@console/internal/components/factory';
 import ProjectHelmChartRepositoryRow from './ProjectHelmChartRepositoryRow';
 import RepositoriesHeader from './RepositoriesHeader';
 
-const ProjectHelmChartRepositoryList: React.FC<TableProps> = (props) => {
+const ProjectHelmChartRepositoryList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table

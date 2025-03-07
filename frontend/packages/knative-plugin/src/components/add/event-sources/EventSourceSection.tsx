@@ -24,7 +24,7 @@ interface EventSourceSectionProps {
   kameletSource?: K8sResourceKind;
 }
 
-const EventSourceSection: React.FC<EventSourceSectionProps> = ({
+const EventSourceSection: React.FC<React.PropsWithChildren<EventSourceSectionProps>> = ({
   namespace,
   fullWidth = false,
   kameletSource,

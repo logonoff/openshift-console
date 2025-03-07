@@ -11,10 +11,9 @@ type ClusterConfigurationCustomFieldProps = {
   field: ResolvedCodeRefProperties<ClusterConfigurationCustomField>;
 };
 
-const ClusterConfigurationCustomField: React.FC<ClusterConfigurationCustomFieldProps> = ({
-  item,
-  field,
-}) => {
+const ClusterConfigurationCustomField: React.FC<React.PropsWithChildren<
+  ClusterConfigurationCustomFieldProps
+>> = ({ item, field }) => {
   const CustomComponent = field.component;
 
   return (

@@ -5,7 +5,7 @@ import { useTriggersTechPreviewBadge } from '../../utils/hooks';
 import EventListenerDetails from './detail-page-tabs/EventListenerDetails';
 import { useTriggersBreadcrumbsFor } from './hooks';
 
-const EventListenerPage: React.FC<DetailsPageProps> = (props) => {
+const EventListenerPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const { kindObj } = props;
   const breadcrumbsFor = useTriggersBreadcrumbsFor(kindObj);
   const badge = useTriggersTechPreviewBadge(props.namespace);

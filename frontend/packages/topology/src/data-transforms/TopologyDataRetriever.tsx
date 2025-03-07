@@ -13,7 +13,9 @@ type TopologyDataRetrieverProps = {
   trafficData?: TrafficData;
 };
 
-const TopologyDataRetriever: React.FC<TopologyDataRetrieverProps> = ({ trafficData }) => {
+const TopologyDataRetriever: React.FC<React.PropsWithChildren<TopologyDataRetrieverProps>> = ({
+  trafficData,
+}) => {
   const dataModelContext = React.useContext<ExtensibleModel>(ModelContext);
   const { namespace, extensionsLoaded, watchedResources } = dataModelContext;
   const [resources, setResources] = React.useState<WatchK8sResults<TopologyResourcesObject>>();

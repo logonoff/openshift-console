@@ -23,7 +23,7 @@ interface QuickSearchContentProps {
   onListChange?: (items: number) => void;
 }
 
-const QuickSearchContent: React.FC<QuickSearchContentProps> = ({
+const QuickSearchContent: React.FC<React.PropsWithChildren<QuickSearchContentProps>> = ({
   catalogItems,
   catalogItemTypes,
   viewAll,

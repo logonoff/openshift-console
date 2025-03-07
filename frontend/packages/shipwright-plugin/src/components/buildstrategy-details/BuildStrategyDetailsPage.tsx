@@ -4,7 +4,7 @@ import { DetailsPage, DetailsPageProps } from '@console/internal/components/fact
 import { Page, navFactory } from '@console/internal/components/utils';
 import { useShipwrightBreadcrumbsFor } from '../../utils';
 
-const BuildStrategyPage: React.FC<DetailsPageProps> = (props) => {
+const BuildStrategyPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const pages: Page[] = [navFactory.details(DetailsForKind), navFactory.editYaml()];
 
   return <DetailsPage {...props} pages={pages} breadcrumbsFor={useShipwrightBreadcrumbsFor} />;

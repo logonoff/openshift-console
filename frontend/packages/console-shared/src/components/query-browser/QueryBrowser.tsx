@@ -84,13 +84,19 @@ const valueFormatter = (units: string): ((v: number) => string) =>
     ? (v: number) => formatNumber(String(v), undefined, units)
     : formatValue;
 
-const Error: React.FC<ErrorProps> = ({ error, title = 'An error occurred' }) => (
+const Error: React.FC<React.PropsWithChildren<ErrorProps>> = ({
+  error,
+  title = 'An error occurred',
+}) => (
   <Alert isInline className="co-alert" title={title} variant="danger">
     {_.get(error, 'json.error', error.message)}
   </Alert>
 );
 
-const GraphEmptyState: React.FC<GraphEmptyStateProps> = ({ children, title }) => (
+const GraphEmptyState: React.FC<React.PropsWithChildren<GraphEmptyStateProps>> = ({
+  children,
+  title,
+}) => (
   <div className="query-browser__wrapper graph-empty-state">
     <EmptyState
       headingLevel="h2"
@@ -103,7 +109,7 @@ const GraphEmptyState: React.FC<GraphEmptyStateProps> = ({ children, title }) =>
   </div>
 );
 
-const SpanControls: React.FC<SpanControlsProps> = React.memo(
+const SpanControls: React.FC<React.PropsWithChildren<SpanControlsProps>> = React.memo(
   ({ defaultSpanText, onChange, span, hasReducedResolution }) => {
     const [isValid, setIsValid] = React.useState(true);
     const [text, setText] = React.useState(formatPrometheusDuration(span));
@@ -210,7 +216,7 @@ type TooltipSeries = {
 };
 
 // For performance, use this instead of PatternFly's ChartTooltip or Victory VictoryTooltip
-const TooltipWrapped: React.FC<TooltipProps> = ({
+const TooltipWrapped: React.FC<React.PropsWithChildren<TooltipProps>> = ({
   activePoints,
   center,
   height,
@@ -356,7 +362,7 @@ const getXDomain = (endTime: number, span: number): AxisDomain => [endTime - spa
 
 const ONE_MINUTE = 60 * 1000;
 
-const Graph: React.FC<GraphProps> = React.memo(
+const Graph: React.FC<React.PropsWithChildren<GraphProps>> = React.memo(
   ({
     allSeries,
     disabledSeries,
@@ -576,7 +582,7 @@ const minSpan = 30 * 1000;
 // Don't poll more often than this number of milliseconds
 const minPollInterval = 10 * 1000;
 
-const ZoomableGraph: React.FC<ZoomableGraphProps> = ({
+const ZoomableGraph: React.FC<React.PropsWithChildren<ZoomableGraphProps>> = ({
   allSeries,
   disabledSeries,
   fixedXDomain,
@@ -673,7 +679,7 @@ const Loading = () => (
 const getMaxSamplesForSpan = (span: number) =>
   _.clamp(Math.round(span / minStep), minSamples, maxSamples);
 
-const QueryBrowserWrapped: React.FC<QueryBrowserProps> = ({
+const QueryBrowserWrapped: React.FC<React.PropsWithChildren<QueryBrowserProps>> = ({
   customDataSource,
   defaultSamples,
   defaultTimespan = parsePrometheusDuration('30m'),

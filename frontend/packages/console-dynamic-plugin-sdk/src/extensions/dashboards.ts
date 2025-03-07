@@ -44,7 +44,7 @@ export type DashboardsCard = ExtensionDeclaration<
     /** The grid position of the card on the dashboard. */
     position: 'LEFT' | 'RIGHT' | 'MAIN';
     /** Dashboard card component. */
-    component: CodeRef<React.ComponentType>;
+    component: CodeRef<React.ComponentType<React.PropsWithChildren<unknown>>>;
     /** Card's vertical span in the column. Ignored for small screens, defaults to 12. */
     span?: CardSpan;
   }
@@ -63,7 +63,9 @@ export type DashboardsOverviewHealthPrometheusSubsystem = ExtensionDeclaration<
     /** Additional resource which will be fetched and passed to `healthHandler`. */
     additionalResource?: CodeRef<FirehoseResource>;
     /** Loader for popup content. If defined, a health item will be represented as a link which opens popup with given content. */
-    popupComponent?: CodeRef<React.ComponentType<PrometheusHealthPopupProps>>;
+    popupComponent?: CodeRef<
+      React.ComponentType<React.PropsWithChildren<PrometheusHealthPopupProps>>
+    >;
     /** The title of the popover. */
     popupTitle?: string;
     /** Optional classname for the popup top-level component. */
@@ -92,11 +94,13 @@ export type DashboardsOverviewHealthURLSubsystem<
     additionalResource?: CodeRef<FirehoseResource>;
     /** Loader for popup content. If defined, a health item will be represented as a link which opens popup with given content. */
     popupComponent?: CodeRef<
-      React.ComponentType<{
-        healthResult?: T;
-        healthResultError?: any;
-        k8sResult?: FirehoseResult<R>;
-      }>
+      React.ComponentType<
+        React.PropsWithChildren<{
+          healthResult?: T;
+          healthResultError?: any;
+          k8sResult?: FirehoseResult<R>;
+        }>
+      >
     >;
     /** The title of the popover. */
     popupTitle?: string;
@@ -135,7 +139,7 @@ export type DashboardsOverviewHealthOperator<
     /** Resolves status for the operators. */
     getOperatorsWithStatuses?: CodeRef<GetOperatorsWithStatuses<T>>;
     /** Loader for popup row component. */
-    operatorRowLoader?: CodeRef<React.ComponentType<OperatorRowProps<T>>>;
+    operatorRowLoader?: CodeRef<React.ComponentType<React.PropsWithChildren<OperatorRowProps<T>>>>;
     /** Links to all resources page. If not provided then a list page of the first resource from resources prop is used. */
     viewAllLink?: string;
   }
@@ -192,7 +196,7 @@ export type DashboardsOverviewResourceActivity<
     /** Timestamp for the given action, which will be used for ordering. */
     getTimestamp?: CodeRef<(resource: T) => Date>;
     /** The action component. */
-    component: CodeRef<React.ComponentType<K8sActivityProps<T>>>;
+    component: CodeRef<React.ComponentType<React.PropsWithChildren<K8sActivityProps<T>>>>;
   }
 >;
 
@@ -205,7 +209,7 @@ export type DashboardsOverviewPrometheusActivity = ExtensionDeclaration<
     /** Function which determines if the given resource represents the action. If not defined, every resource represents activity. */
     isActivity?: CodeRef<(results: PrometheusResponse[]) => boolean>;
     /** The action component. */
-    component: CodeRef<React.ComponentType<PrometheusActivityProps>>;
+    component: CodeRef<React.ComponentType<React.PropsWithChildren<PrometheusActivityProps>>>;
   }
 >;
 

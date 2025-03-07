@@ -41,7 +41,7 @@ export interface GettingStartedCardProps {
   moreLink?: GettingStartedLink;
 }
 
-export const GettingStartedCard: React.FC<GettingStartedCardProps> = ({
+export const GettingStartedCard: React.FC<React.PropsWithChildren<GettingStartedCardProps>> = ({
   id,
   icon,
   title,

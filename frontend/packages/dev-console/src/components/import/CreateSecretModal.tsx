@@ -16,7 +16,12 @@ export interface CreateSecretModalProps {
 
 type Props = CreateSecretModalProps & ModalComponentProps;
 
-const CreateSecretModal: React.FC<Props> = ({ close, namespace, save, secretType }) => {
+const CreateSecretModal: React.FC<React.PropsWithChildren<Props>> = ({
+  close,
+  namespace,
+  save,
+  secretType,
+}) => {
   const handleSave = (name: string) => {
     close();
     save(name);

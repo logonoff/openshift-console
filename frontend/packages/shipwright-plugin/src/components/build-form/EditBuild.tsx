@@ -20,7 +20,12 @@ type EditBuildProps = {
   build: Build;
 };
 
-const EditBuild: React.FC<EditBuildProps> = ({ heading, build: watchedBuild, namespace, name }) => {
+const EditBuild: React.FC<React.PropsWithChildren<EditBuildProps>> = ({
+  heading,
+  build: watchedBuild,
+  namespace,
+  name,
+}) => {
   const { t } = useTranslation();
   const [initialValues] = React.useState<BuildFormikValues>(() => {
     const values = convertBuildToFormData(watchedBuild);

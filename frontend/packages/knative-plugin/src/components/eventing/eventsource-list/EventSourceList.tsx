@@ -4,7 +4,7 @@ import { Table, TableProps } from '@console/internal/components/factory';
 import EventSourceHeaders from './EventSourceHeaders';
 import EventSourceRow from './EventSourceRow';
 
-const EventSourceList: React.FC<TableProps> = (props) => {
+const EventSourceList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table

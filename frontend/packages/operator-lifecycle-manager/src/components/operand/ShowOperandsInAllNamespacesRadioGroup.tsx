@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { RadioGroup } from '@console/internal/components/radio';
 import { useShowOperandsInAllNamespaces } from './useShowOperandsInAllNamespaces';
 
-export const ShowOperandsInAllNamespacesRadioGroup: React.FC = () => {
+export const ShowOperandsInAllNamespacesRadioGroup: React.FC<React.PropsWithChildren<
+  unknown
+>> = () => {
   const { t } = useTranslation();
   const [
     showOperandsInAllNamespaces,

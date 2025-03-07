@@ -14,7 +14,7 @@ type AdvancedRouteOptionsProps = {
   resources: Resources;
 };
 
-const AdvancedRouteOptions: React.FC<AdvancedRouteOptionsProps> = ({
+const AdvancedRouteOptions: React.FC<React.PropsWithChildren<AdvancedRouteOptionsProps>> = ({
   canCreateRoute,
   resources,
 }) => {

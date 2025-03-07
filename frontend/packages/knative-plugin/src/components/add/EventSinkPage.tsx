@@ -11,7 +11,7 @@ import { useEventSinkStatus } from '../../hooks/useEventSinkStatus';
 import EventSink from './EventSink';
 import EventSinkAlert from './EventSinkAlert';
 
-const EventSinkPage: React.FC = () => {
+const EventSinkPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const location = useLocation();

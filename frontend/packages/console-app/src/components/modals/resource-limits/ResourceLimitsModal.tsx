@@ -15,7 +15,7 @@ interface ResourceLimitsModalProps {
 
 type Props = FormikProps<FormikValues> & ResourceLimitsModalProps;
 
-const ResourceLimitsModal: React.FC<Props> = ({
+const ResourceLimitsModal: React.FC<React.PropsWithChildren<Props>> = ({
   handleSubmit,
   cancel,
   isSubmitting,

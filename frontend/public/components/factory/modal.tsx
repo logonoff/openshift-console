@@ -30,7 +30,7 @@ export const createModal: CreateModal = (getModalElement) => {
 };
 
 /** @deprecated Use PF modals instead */
-export const ModalWrapper: React.FC<ModalWrapperProps> = ({
+export const ModalWrapper: React.FC<React.PropsWithChildren<ModalWrapperProps>> = ({
   blocking,
   className,
   children,
@@ -91,7 +91,7 @@ export const createModalLauncher: CreateModalLauncher = (Component, modalWrapper
 };
 
 /** @deprecated Use PF modals instead */
-export const ModalTitle: React.FC<ModalTitleProps> = ({
+export const ModalTitle: React.FC<React.PropsWithChildren<ModalTitleProps>> = ({
   children,
   className = 'modal-header',
   close,
@@ -114,14 +114,14 @@ export const ModalTitle: React.FC<ModalTitleProps> = ({
 );
 
 /** @deprecated Use PF modals instead */
-export const ModalBody: React.FC<ModalBodyProps> = ({ children }) => (
+export const ModalBody: React.FC<React.PropsWithChildren<ModalBodyProps>> = ({ children }) => (
   <div className="modal-body">
     <div className="modal-body-content">{children}</div>
   </div>
 );
 
 /** @deprecated Use PF modals instead */
-export const ModalFooter: React.FC<ModalFooterProps> = ({
+export const ModalFooter: React.FC<React.PropsWithChildren<ModalFooterProps>> = ({
   message,
   errorMessage,
   inProgress,
@@ -140,7 +140,7 @@ export const ModalFooter: React.FC<ModalFooterProps> = ({
 };
 
 /** @deprecated Use PF modals instead */
-export const ModalSubmitFooter: React.FC<ModalSubmitFooterProps> = ({
+export const ModalSubmitFooter: React.FC<React.PropsWithChildren<ModalSubmitFooterProps>> = ({
   message,
   errorMessage,
   inProgress,
@@ -280,6 +280,6 @@ export type ModalSubmitFooterProps = {
 };
 
 export type CreateModalLauncher = <P extends ModalComponentProps>(
-  C: React.ComponentType<P>,
+  C: React.ComponentType<React.PropsWithChildren<P>>,
   modalWrapper?: boolean,
 ) => (props: P & CreateModalLauncherProps) => { result: Promise<{}> };

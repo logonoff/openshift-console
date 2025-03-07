@@ -19,7 +19,7 @@ type QuickSearchControllerProps = {
   detailsRenderer?: DetailsRendererFunction;
 };
 
-const QuickSearchController: React.FC<QuickSearchControllerProps> = ({
+const QuickSearchController: React.FC<React.PropsWithChildren<QuickSearchControllerProps>> = ({
   namespace,
   quickSearchProviders,
   searchPlaceholder,

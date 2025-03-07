@@ -29,7 +29,10 @@ export interface SinkResourcesProps {
   isMoveSink?: boolean;
 }
 
-const SinkResources: React.FC<SinkResourcesProps> = ({ namespace, isMoveSink }) => {
+const SinkResources: React.FC<React.PropsWithChildren<SinkResourcesProps>> = ({
+  namespace,
+  isMoveSink,
+}) => {
   const { t } = useTranslation();
   const [resourceAlert, setResourceAlert] = React.useState(false);
   const { setFieldValue, setFieldTouched, validateForm, initialValues } = useFormikContext<
@@ -40,7 +43,7 @@ const SinkResources: React.FC<SinkResourcesProps> = ({ namespace, isMoveSink }) 
     fuzzy(strText, item?.props?.name);
   const fieldId = getFieldId('sink-name', 'dropdown');
   const onChange = React.useCallback(
-    (_selectedValue, valueObj) => {
+    (_selectedValue: any, valueObj: any) => {
       const modelData = valueObj?.props?.model;
       const name = valueObj?.props?.name;
       if (name && modelData) {

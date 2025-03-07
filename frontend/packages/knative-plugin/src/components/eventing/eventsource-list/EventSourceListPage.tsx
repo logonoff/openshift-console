@@ -18,7 +18,9 @@ import {
 } from '../../../utils/fetch-dynamic-eventsources-utils';
 import EventSourceList from './EventSourceList';
 
-const EventSourceListPage: React.FC<React.ComponentProps<typeof MultiListPage>> = (props) => {
+const EventSourceListPage: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof MultiListPage>
+>> = (props) => {
   const { t } = useTranslation();
   const { loaded: modelsLoaded, eventSourceModels } = useEventSourceModels();
   const isKameletEnabled = useFlag(FLAG_CAMEL_KAMELETS);

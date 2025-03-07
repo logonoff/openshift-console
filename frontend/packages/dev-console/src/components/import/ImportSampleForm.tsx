@@ -15,7 +15,7 @@ type ImportSampleFormProps = {
 
 type Props = FormikProps<FormikValues> & ImportSampleFormProps;
 
-const ImportSampleForm: React.FC<Props> = ({
+const ImportSampleForm: React.FC<React.PropsWithChildren<Props>> = ({
   values,
   errors,
   handleSubmit,

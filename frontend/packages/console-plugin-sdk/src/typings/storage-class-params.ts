@@ -34,7 +34,7 @@ export type ExtensionSCProvisionerProp = {
           value?: string;
           visible?: (params?: any) => boolean;
           required?: boolean | ((params?: any) => boolean);
-          Component?: React.ComponentType<ProvisionerProps>;
+          Component?: React.ComponentType<React.PropsWithChildren<ProvisionerProps>>;
         };
       };
     };

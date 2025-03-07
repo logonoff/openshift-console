@@ -19,7 +19,7 @@ type AddBareMetalHostFormProps = FormikProps<AddBareMetalHostFormValues> & {
   showUpdated: boolean;
 };
 
-const AddBareMetalHostForm: React.FC<AddBareMetalHostFormProps> = ({
+const AddBareMetalHostForm: React.FC<React.PropsWithChildren<AddBareMetalHostFormProps>> = ({
   errors,
   handleSubmit,
   handleReset,

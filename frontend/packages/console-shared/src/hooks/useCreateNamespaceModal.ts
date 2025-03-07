@@ -5,7 +5,7 @@ import { CreateNamespaceModal } from '../components/modals/CreateNamespaceModal'
 
 export const useCreateNamespaceModal: UseCreateNamespaceModal = () => {
   const launcher = useModal();
-  return React.useCallback((props) => launcher(CreateNamespaceModal, props), [launcher]);
+  return React.useCallback((props: any) => launcher(CreateNamespaceModal, props), [launcher]);
 };
 
 type UseCreateNamespaceModal = () => (props: CreateProjectModalProps) => void;

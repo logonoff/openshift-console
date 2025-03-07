@@ -7,7 +7,9 @@ import { ResourceQuotaModel } from '@console/internal/models';
 import { ResourceQuotaKind } from '@console/internal/module/k8s';
 import QuotaSummary from './QuotaSummary';
 
-const ResourceQuotaItem: React.FC<ResourceQuotaItemProps> = ({ resourceQuota }) => {
+const ResourceQuotaItem: React.FC<React.PropsWithChildren<ResourceQuotaItemProps>> = ({
+  resourceQuota,
+}) => {
   const resources = Object.keys(resourceQuota.status?.hard ?? {});
   const [isExpanded, setExpanded] = React.useState(resources.length <= 4);
 

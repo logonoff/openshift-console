@@ -17,14 +17,14 @@ interface QuickSearchProps {
   setIsOpen: (isOpen: boolean) => void;
 }
 
-const Contents: React.FC<
+const Contents: React.FC<React.PropsWithChildren<
   {
     quickStarts: QuickStart[];
     quickStartsLoaded: boolean;
     catalogService: CatalogService;
     catalogServiceSample: CatalogService;
   } & QuickSearchProps
-> = ({
+>> = ({
   quickStarts,
   quickStartsLoaded,
   catalogService,
@@ -81,7 +81,7 @@ const Contents: React.FC<
   );
 };
 
-const TopologyQuickSearch: React.FC<QuickSearchProps> = ({
+const TopologyQuickSearch: React.FC<React.PropsWithChildren<QuickSearchProps>> = ({
   namespace,
   viewContainer,
   isOpen,

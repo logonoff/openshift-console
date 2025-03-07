@@ -20,7 +20,7 @@ export enum NotificationTypes {
   update = 'update',
 }
 
-const NotificationIcon: React.FC<NotificationIconTypes> = ({ type }) => {
+const NotificationIcon: React.FC<React.PropsWithChildren<NotificationIconTypes>> = ({ type }) => {
   switch (type) {
     case NotificationTypes.update:
       return <BlueArrowCircleUpIcon />;
@@ -36,7 +36,7 @@ const NotificationIcon: React.FC<NotificationIconTypes> = ({ type }) => {
   }
 };
 
-const NotificationAction: React.FC<NotificationActionProps> = ({
+const NotificationAction: React.FC<React.PropsWithChildren<NotificationActionProps>> = ({
   onClick,
   text,
   actionExternalLinkURL,
@@ -61,7 +61,7 @@ const NotificationAction: React.FC<NotificationActionProps> = ({
   );
 };
 
-const NotificationEntry: React.FC<NotificationEntryProps> = ({
+const NotificationEntry: React.FC<React.PropsWithChildren<NotificationEntryProps>> = ({
   alertAction,
   actionPath,
   actionText,

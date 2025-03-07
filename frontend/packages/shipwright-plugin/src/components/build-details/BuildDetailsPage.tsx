@@ -12,7 +12,7 @@ import BuildDetailsTab from './BuildDetailsTab';
 import BuildEventsTab from './BuildEventsTab';
 import BuildRunsTab from './BuildRunsTab';
 
-const BuildDetailsPage: React.FC<DetailsPageProps> = (props) => {
+const BuildDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const customActionMenu = (_, build) => {
     const kindReference = referenceFor(build);
     const context = { [kindReference]: build };

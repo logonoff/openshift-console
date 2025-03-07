@@ -7,7 +7,9 @@ export interface HelmReleaseNotesProps {
   customData: HelmRelease;
 }
 
-const HelmReleaseNotes: React.FC<HelmReleaseNotesProps> = ({ customData }) => {
+const HelmReleaseNotes: React.FC<React.PropsWithChildren<HelmReleaseNotesProps>> = ({
+  customData,
+}) => {
   const helmReleaseNotes = customData?.info?.notes ?? '';
   return helmReleaseNotes ? (
     <div className="co-m-pane__body">

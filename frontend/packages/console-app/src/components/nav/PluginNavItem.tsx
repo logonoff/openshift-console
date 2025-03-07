@@ -15,7 +15,9 @@ import { NavItemHref } from './NavItemHref';
 import { NavItemResource } from './NavItemResource';
 import { NavSection } from './NavSection';
 
-export const PluginNavItem: React.FC<PluginNavItemProps> = ({ extension }) => {
+export const PluginNavItem: React.FC<React.PropsWithChildren<PluginNavItemProps>> = ({
+  extension,
+}) => {
   const [activePerspective] = useActivePerspective();
   if (isNavSection(extension)) {
     return (

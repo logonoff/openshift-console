@@ -19,10 +19,10 @@ const sidebarScrollTop = () => {
   document.getElementsByClassName('co-p-has-sidebar__sidebar')[0].scrollTop = 0;
 };
 
-const ResourceSidebarWrapper: React.FC<{
+const ResourceSidebarWrapper: React.FC<React.PropsWithChildren<{
   label: string;
   toggleSidebar: () => void;
-}> = (props) => {
+}>> = (props) => {
   const { t } = useTranslation();
   const { label, children, toggleSidebar } = props;
 
@@ -46,16 +46,17 @@ const ResourceSidebarWrapper: React.FC<{
   );
 };
 
-const ResourceSchema: React.FC<{ kindObj: K8sKind; schema: any }> = ({ kindObj, schema }) => (
-  <ExploreType kindObj={kindObj} schema={schema} scrollTop={sidebarScrollTop} />
-);
+const ResourceSchema: React.FC<React.PropsWithChildren<{ kindObj: K8sKind; schema: any }>> = ({
+  kindObj,
+  schema,
+}) => <ExploreType kindObj={kindObj} schema={schema} scrollTop={sidebarScrollTop} />;
 
-const ResourceSamples: React.FC<{
+const ResourceSamples: React.FC<React.PropsWithChildren<{
   samples: Sample[];
   loadSampleYaml: LoadSampleYaml;
   downloadSampleYaml: DownloadSampleYaml;
   kindObj: K8sKind;
-}> = ({ samples, kindObj, downloadSampleYaml, loadSampleYaml }) => (
+}>> = ({ samples, kindObj, downloadSampleYaml, loadSampleYaml }) => (
   <ResourceSidebarSamples
     samples={samples}
     kindObj={kindObj}
@@ -64,14 +65,14 @@ const ResourceSamples: React.FC<{
   />
 );
 
-const ResourceSnippets: React.FC<{
+const ResourceSnippets: React.FC<React.PropsWithChildren<{
   snippets: Sample[];
   insertSnippetYaml(id: string, yaml: string, reference: string);
-}> = ({ snippets, insertSnippetYaml }) => (
+}>> = ({ snippets, insertSnippetYaml }) => (
   <ResourceSidebarSnippets snippets={snippets} insertSnippetYaml={insertSnippetYaml} />
 );
 
-export const ResourceSidebar: React.FC<{
+export const ResourceSidebar: React.FC<React.PropsWithChildren<{
   kindObj: K8sKind;
   downloadSampleYaml: DownloadSampleYaml;
   schema: any;
@@ -81,7 +82,7 @@ export const ResourceSidebar: React.FC<{
   toggleSidebar: () => void;
   samples: Sample[];
   snippets: Sample[];
-}> = (props) => {
+}>> = (props) => {
   const { t } = useTranslation();
   const {
     downloadSampleYaml,

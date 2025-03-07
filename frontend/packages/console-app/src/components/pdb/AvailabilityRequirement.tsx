@@ -3,7 +3,10 @@ import * as _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { PodDisruptionBudgetKind } from './types';
 
-const AvailabilityRequirement: React.FC<AvailabilityRequirementProps> = ({ pdb, replicas }) => {
+const AvailabilityRequirement: React.FC<React.PropsWithChildren<AvailabilityRequirementProps>> = ({
+  pdb,
+  replicas,
+}) => {
   const { t } = useTranslation();
   return (
     <>

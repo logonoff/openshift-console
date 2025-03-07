@@ -5,7 +5,7 @@ import { PullSecretCredentialsForm } from './PullSecretCredentialsForm';
 import { PullSecretUploadForm } from './PullSecretUploadForm';
 import { SecretSubFormProps } from './types';
 
-export const PullSecretForm: React.FC<SecretSubFormProps> = ({
+export const PullSecretForm: React.FC<React.PropsWithChildren<SecretSubFormProps>> = ({
   onChange,
   onError,
   onFormDisable,

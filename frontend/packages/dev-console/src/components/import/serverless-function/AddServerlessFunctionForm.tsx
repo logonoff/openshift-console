@@ -44,9 +44,9 @@ enum SupportedRuntime {
 export const SERVERLESS_FUNCTION_DOCS_URL =
   'https://docs.openshift.com/serverless/latest/functions/serverless-functions-getting-started.html';
 
-const AddServerlessFunctionForm: React.FC<
+const AddServerlessFunctionForm: React.FC<React.PropsWithChildren<
   FormikProps<FormikValues> & AddServerlessFunctionFormProps
-> = ({
+>> = ({
   values,
   errors,
   handleSubmit,

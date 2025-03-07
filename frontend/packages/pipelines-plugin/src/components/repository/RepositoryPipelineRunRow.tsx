@@ -46,7 +46,11 @@ type PLRStatusProps = {
   taskRunsLoaded?: boolean;
 };
 
-const PLRStatus: React.FC<PLRStatusProps> = ({ obj, taskRuns, taskRunsLoaded }) => {
+const PLRStatus: React.FC<React.PropsWithChildren<PLRStatusProps>> = ({
+  obj,
+  taskRuns,
+  taskRunsLoaded,
+}) => {
   return (
     <PipelineRunStatus
       status={pipelineRunFilterReducer(obj)}
@@ -58,10 +62,9 @@ const PLRStatus: React.FC<PLRStatusProps> = ({ obj, taskRuns, taskRunsLoaded }) 
   );
 };
 
-const RepositoryPipelineRunRow: React.FC<RowFunctionArgs<PipelineRunKind>> = ({
-  obj,
-  customData,
-}) => {
+const RepositoryPipelineRunRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<PipelineRunKind>
+>> = ({ obj, customData }) => {
   const { t } = useTranslation();
   const plrLabels = obj.metadata.labels;
   const plrAnnotations = obj.metadata.annotations;

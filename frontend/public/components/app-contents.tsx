@@ -58,11 +58,11 @@ _.each(namespacedPrefixes, (p) => {
   namespacedRoutes.push({ path: `${p}/all-namespaces/*` });
 });
 
-const DefaultPageRedirect: React.FC<{
+const DefaultPageRedirect: React.FC<React.PropsWithChildren<{
   url: Perspective['properties']['landingPageURL'];
   flags: { [key: string]: boolean };
   firstVisit: boolean;
-}> = ({ url, flags, firstVisit }) => {
+}>> = ({ url, flags, firstVisit }) => {
   const [resolvedUrl, setResolvedUrl] = React.useState<string>();
   React.useEffect(() => {
     (async () => {
@@ -78,7 +78,7 @@ type DefaultPageProps = {
 };
 
 // The default page component lets us connect to flags without connecting the entire App.
-const DefaultPage_: React.FC<DefaultPageProps> = ({ flags }) => {
+const DefaultPage_: React.FC<React.PropsWithChildren<DefaultPageProps>> = ({ flags }) => {
   const [activePerspective] = useActivePerspective();
   const perspectiveExtensions = usePerspectives();
   const [visited, setVisited, visitedLoaded] = useUserSettings<boolean>(
@@ -147,7 +147,7 @@ const HorizontalPodRedirect = () => {
   return <Navigate to={`/k8s/ns/${ns}/${HorizontalPodAutoscalerModel.plural}/${name}`} replace />;
 };
 
-const AppContents: React.FC<{}> = () => {
+const AppContents: React.FC<React.PropsWithChildren<{}>> = () => {
   const [, allPluginsProcessed] = useDynamicPluginInfo();
   const location = useLocation();
   const [pluginPageRoutes, inactivePluginPageRoutes] = usePluginRoutes();

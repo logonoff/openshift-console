@@ -25,7 +25,10 @@ const handleNamespaceChange = (newNamespace: string): void => {
   }
 };
 
-export const PageContents: React.FC<MonitoringPageProps> = ({ noProjectsAvailable, ...props }) => {
+export const PageContents: React.FC<React.PropsWithChildren<MonitoringPageProps>> = ({
+  noProjectsAvailable,
+  ...props
+}) => {
   const { t } = useTranslation();
   const params = useParams();
   const activeNamespace = params.ns;
@@ -95,7 +98,9 @@ export const PageContents: React.FC<MonitoringPageProps> = ({ noProjectsAvailabl
 
 const PageContentsWithStartGuide = withStartGuide(PageContents);
 
-export const ProjectDetailsPage: React.FC<MonitoringPageProps> = (props) => {
+export const ProjectDetailsPage: React.FC<React.PropsWithChildren<MonitoringPageProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   return (
     <>

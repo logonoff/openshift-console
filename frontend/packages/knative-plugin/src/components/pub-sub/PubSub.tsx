@@ -15,7 +15,7 @@ interface PubSubProps {
   close?: () => void;
 }
 
-const PubSub: React.FC<PubSubProps> = ({
+const PubSub: React.FC<React.PropsWithChildren<PubSubProps>> = ({
   source,
   cancel,
   close,

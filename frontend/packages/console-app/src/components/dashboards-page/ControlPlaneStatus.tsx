@@ -12,7 +12,9 @@ import Status, {
 } from '@console/shared/src/components/dashboard/status-card/StatusPopup';
 import { getControlPlaneComponentHealth } from './status';
 
-const ControlPlanePopup: React.FC<PrometheusHealthPopupProps> = ({ responses }) => {
+const ControlPlanePopup: React.FC<React.PropsWithChildren<PrometheusHealthPopupProps>> = ({
+  responses,
+}) => {
   const { t } = useTranslation();
   const titles = [
     t('console-app~API Servers'),

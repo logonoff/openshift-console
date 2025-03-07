@@ -5,7 +5,9 @@ import { InputField, DroppableFileInputField } from '@console/shared';
 
 type PipelineClusterOptionsProps = { prefixName: string };
 
-const PipelineClusterOptions: React.FC<PipelineClusterOptionsProps> = ({ prefixName }) => {
+const PipelineClusterOptions: React.FC<React.PropsWithChildren<PipelineClusterOptionsProps>> = ({
+  prefixName,
+}) => {
   const { t } = useTranslation();
   return (
     <>

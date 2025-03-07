@@ -13,7 +13,7 @@ interface SelectorCardProps {
   onChange: (name: string) => void;
 }
 
-const SelectorCard: React.FC<SelectorCardProps> = ({
+const SelectorCard: React.FC<React.PropsWithChildren<SelectorCardProps>> = ({
   title,
   iconUrl,
   name,

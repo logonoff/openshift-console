@@ -3,7 +3,9 @@ import { OverviewItem } from '@console/shared';
 import { OwnerReferences } from './owner-references';
 import { useTranslation } from 'react-i18next';
 
-const OperatorBackedOwnerReferences: React.FC<OperatorBackedOwnerReferencesProps> = ({ item }) => {
+const OperatorBackedOwnerReferences: React.FC<React.PropsWithChildren<
+  OperatorBackedOwnerReferencesProps
+>> = ({ item }) => {
   const { t } = useTranslation();
 
   return item.isOperatorBackedService ? (

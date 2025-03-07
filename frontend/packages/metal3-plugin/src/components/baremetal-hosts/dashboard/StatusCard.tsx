@@ -64,7 +64,7 @@ const getHostHardwareHealthState = (obj): HostHealthState => {
 const filterAlerts = (alerts: Alert[]): Alert[] =>
   alerts.filter((alert) => _.get(alert, 'labels.hwalert'));
 
-const HealthCard: React.FC<HealthCardProps> = ({
+const HealthCard: React.FC<React.PropsWithChildren<HealthCardProps>> = ({
   watchAlerts,
   stopWatchAlerts,
   notificationAlerts,

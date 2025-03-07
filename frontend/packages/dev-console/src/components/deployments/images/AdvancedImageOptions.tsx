@@ -8,7 +8,7 @@ import { SecretModel } from '@console/internal/models';
 import { ResourceDropdownField } from '@console/shared/src';
 import { secretModalLauncher } from '../../import/CreateSecretModal';
 
-const AdvancedImageOptions: React.FC = () => {
+const AdvancedImageOptions: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const {
     setFieldValue,

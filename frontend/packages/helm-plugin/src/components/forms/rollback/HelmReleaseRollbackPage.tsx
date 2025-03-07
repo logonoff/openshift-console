@@ -15,7 +15,7 @@ type HelmRollbackFormData = {
   revision: number;
 };
 
-const HelmReleaseRollbackPage: React.FC = () => {
+const HelmReleaseRollbackPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { releaseName, ns: namespace } = useParams();
   const actionOrigin = getQueryArgument('actionOrigin') as HelmActionOrigins;

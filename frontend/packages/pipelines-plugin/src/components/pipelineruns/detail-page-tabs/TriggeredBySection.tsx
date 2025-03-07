@@ -10,7 +10,7 @@ type TriggeredByProps = {
   pipelineRun: PipelineRunKind;
 };
 
-const TriggeredBySection: React.FC<TriggeredByProps> = (props) => {
+const TriggeredBySection: React.FC<React.PropsWithChildren<TriggeredByProps>> = (props) => {
   const { t } = useTranslation();
   const {
     pipelineRun: {

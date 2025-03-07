@@ -8,9 +8,10 @@ type PubSubControllerProps = {
   target?: K8sResourceKind;
 };
 
-const PubSubController: React.FC<PubSubControllerProps> = ({ source, ...props }) => (
-  <PubSub {...props} source={source} />
-);
+const PubSubController: React.FC<React.PropsWithChildren<PubSubControllerProps>> = ({
+  source,
+  ...props
+}) => <PubSub {...props} source={source} />;
 
 type Props = PubSubControllerProps & ModalComponentProps;
 

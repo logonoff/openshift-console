@@ -20,7 +20,7 @@ type PipelineResourceRefProps = {
   namespace?: string;
 };
 
-const PipelineResourceRef: React.FC<PipelineResourceRefProps> = ({
+const PipelineResourceRef: React.FC<React.PropsWithChildren<PipelineResourceRefProps>> = ({
   disableLink,
   displayName,
   largeIcon,

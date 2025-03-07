@@ -11,11 +11,13 @@ import { useK8sModels } from '../useK8sModels';
 
 // Redux wrapper
 let store;
-const Wrapper: React.FC = ({ children }) => <Provider store={store}>{children}</Provider>;
+const Wrapper: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
+  <Provider store={store}>{children}</Provider>
+);
 
 // Object under test
 const modelUpdate = jest.fn();
-const WatchModels: React.FC<{}> = () => {
+const WatchModels: React.FC<React.PropsWithChildren<{}>> = () => {
   modelUpdate(...useK8sModels());
   return null;
 };

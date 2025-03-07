@@ -8,7 +8,10 @@ type RunDetailErrorLogProps = {
   namespace: string;
 };
 
-const RunDetailsErrorLog: React.FC<RunDetailErrorLogProps> = ({ logDetails, namespace }) => {
+const RunDetailsErrorLog: React.FC<React.PropsWithChildren<RunDetailErrorLogProps>> = ({
+  logDetails,
+  namespace,
+}) => {
   const { t } = useTranslation();
   if (!logDetails) {
     return null;

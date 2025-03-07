@@ -16,7 +16,10 @@ interface EventListenerTriggersProps {
   namespace: string;
 }
 
-const EventListenerTriggers: React.FC<EventListenerTriggersProps> = ({ namespace, triggers }) => {
+const EventListenerTriggers: React.FC<React.PropsWithChildren<EventListenerTriggersProps>> = ({
+  namespace,
+  triggers,
+}) => {
   const { t } = useTranslation();
   const triggerTemplates = triggers.filter((tr) => tr.template?.ref || tr.template?.name);
   if (triggerTemplates.length === 0) {

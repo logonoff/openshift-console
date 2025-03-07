@@ -6,7 +6,7 @@ type KSRoutesProps = {
   route: K8sResourceKind;
 };
 
-const KSRoutes: React.FC<KSRoutesProps> = ({ route }) => (
+const KSRoutes: React.FC<React.PropsWithChildren<KSRoutesProps>> = ({ route }) => (
   <>
     <KSRoutesOverviewListItem ksroute={route} />
   </>

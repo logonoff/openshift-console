@@ -38,7 +38,7 @@ type CSRPopoverContentProps = {
   onPatch?: VoidFunction;
 };
 
-export const CSRPopoverContent: React.FC<CSRPopoverContentProps> = ({
+export const CSRPopoverContent: React.FC<React.PropsWithChildren<CSRPopoverContentProps>> = ({
   csr,
   serverCSR,
   onPatch,
@@ -130,7 +130,7 @@ type StatusTitleProps = {
   title?: string;
 };
 
-const StatusTitle: React.FC<StatusTitleProps> = ({ title }) => {
+const StatusTitle: React.FC<React.PropsWithChildren<StatusTitleProps>> = ({ title }) => {
   const { t } = useTranslation();
   return (
     <StatusIconAndText
@@ -140,10 +140,9 @@ const StatusTitle: React.FC<StatusTitleProps> = ({ title }) => {
   );
 };
 
-export const ServerCSRPopoverContent: React.FC<NodePopoverContentProps<NodeStatusResources>> = ({
-  node,
-  resources,
-}) => {
+export const ServerCSRPopoverContent: React.FC<React.PropsWithChildren<
+  NodePopoverContentProps<NodeStatusResources>
+>> = ({ node, resources }) => {
   const [isExpanded, setExpanded] = React.useState(true);
   const serverCSR = getNodeServerCSR(resources.csrs.data, node);
   return (
@@ -161,7 +160,10 @@ type ClientCSRStatusProps = CSRPopoverContentProps & {
   title: string;
 };
 
-const ClientCSRStatus: React.FC<ClientCSRStatusProps> = ({ title, ...rest }) => {
+const ClientCSRStatus: React.FC<React.PropsWithChildren<ClientCSRStatusProps>> = ({
+  title,
+  ...rest
+}) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = React.useState(false);
 

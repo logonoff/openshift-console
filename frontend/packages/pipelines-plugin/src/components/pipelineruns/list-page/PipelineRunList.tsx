@@ -22,7 +22,7 @@ type PipelineRunListProps = {
   customData?: any;
 };
 
-export const PipelineRunList: React.FC<PipelineRunListProps> = (props) => {
+export const PipelineRunList: React.FC<React.PropsWithChildren<PipelineRunListProps>> = (props) => {
   const { t } = useTranslation();
   const { namespace, loaded, data, customData } = props;
   const operatorVersion = usePipelineOperatorVersion(namespace);

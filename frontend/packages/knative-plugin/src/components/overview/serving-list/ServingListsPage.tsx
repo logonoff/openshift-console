@@ -10,7 +10,7 @@ import RevisionsPage from '../../revisions/RevisionsPage';
 import RoutesPage from '../../routes/RoutesPage';
 import ServicesPage from '../../services/ServicesPage';
 
-const ServingListPage: React.FC = () => {
+const ServingListPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const [showTitle, canCreate] = [false, false];

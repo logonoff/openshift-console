@@ -10,12 +10,9 @@ interface OperatorGroupListViewNodeProps {
   onSelect: (ids: string[]) => void;
 }
 
-const OperatorGroupListViewNode: React.FC<OperatorGroupListViewNodeProps> = ({
-  item,
-  selectedIds,
-  onSelect,
-  children,
-}) => {
+const OperatorGroupListViewNode: React.FC<React.PropsWithChildren<
+  OperatorGroupListViewNodeProps
+>> = ({ item, selectedIds, onSelect, children }) => {
   const { data } = item.getData();
   const kind = data.operatorKind || getResourceKind(item);
   const typeIconClass = data?.builderImage;

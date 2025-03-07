@@ -16,7 +16,7 @@ import GroupByFilterGrid from './GroupByFilterGrid';
 import { Item, GroupedItems, GridChildrenProps } from './types';
 import { CellMeasurementContext } from './utils';
 
-const VirtualizedGrid: React.FC<VirtualizedGridProps> = ({
+const VirtualizedGrid: React.FC<React.PropsWithChildren<VirtualizedGridProps>> = ({
   items,
   className,
   isItemsGrouped = false,

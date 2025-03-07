@@ -4,7 +4,7 @@ import { Table, TableProps } from '@console/internal/components/factory';
 import ServiceHeader from './ServiceHeader';
 import ServiceRow from './ServiceRow';
 
-const ServiceList: React.FC<TableProps> = (props) => {
+const ServiceList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table

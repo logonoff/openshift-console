@@ -21,7 +21,7 @@ export interface SinkPubsubModalProps {
 
 type Props = FormikProps<FormikValues> & SinkPubsubModalProps;
 
-const SinkPubsubModal: React.FC<Props> = ({
+const SinkPubsubModal: React.FC<React.PropsWithChildren<Props>> = ({
   resourceName,
   resourceDropdown,
   labelTitle,
@@ -38,7 +38,7 @@ const SinkPubsubModal: React.FC<Props> = ({
   const { t } = useTranslation();
   const autocompleteFilter = (strText, item): boolean => fuzzy(strText, item?.props?.name);
   const onSinkChange = React.useCallback(
-    (selectedValue, target) => {
+    (selectedValue: any, target: any) => {
       const modelResource = target?.props?.model;
       if (selectedValue) {
         setFieldTouched('ref.name', true);

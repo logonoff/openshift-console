@@ -10,7 +10,7 @@ type HPAOverviewProps = {
   hpas?: HorizontalPodAutoscalerKind[];
 };
 
-export const HPAOverview: React.FC<HPAOverviewProps> = ({ hpas }) => {
+export const HPAOverview: React.FC<React.PropsWithChildren<HPAOverviewProps>> = ({ hpas }) => {
   if (!hpas?.length) {
     return null;
   }

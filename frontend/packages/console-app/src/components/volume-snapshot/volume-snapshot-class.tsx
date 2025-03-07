@@ -33,7 +33,7 @@ export const isDefaultSnapshotClass = (volumeSnapshotClass: VolumeSnapshotClassK
     defaultSnapshotClassAnnotation
   ] === 'true';
 
-const Row: React.FC<RowProps<VolumeSnapshotClassKind>> = ({ obj }) => {
+const Row: React.FC<React.PropsWithChildren<RowProps<VolumeSnapshotClassKind>>> = ({ obj }) => {
   const { name } = obj?.metadata || {};
   const { deletionPolicy, driver } = obj || {};
 
@@ -59,7 +59,9 @@ const Row: React.FC<RowProps<VolumeSnapshotClassKind>> = ({ obj }) => {
   );
 };
 
-const VolumeSnapshotClassTable: React.FC<VolumeSnapshotClassTableProps> = (props) => {
+const VolumeSnapshotClassTable: React.FC<React.PropsWithChildren<VolumeSnapshotClassTableProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const getTableColumns = (): TableColumn<VolumeSnapshotClassKind>[] => [
     {
@@ -101,7 +103,7 @@ const VolumeSnapshotClassTable: React.FC<VolumeSnapshotClassTableProps> = (props
   );
 };
 
-const VolumeSnapshotClassPage: React.FC<VolumeSnapshotClassPageProps> = ({
+const VolumeSnapshotClassPage: React.FC<React.PropsWithChildren<VolumeSnapshotClassPageProps>> = ({
   canCreate = true,
   showTitle = true,
   namespace,

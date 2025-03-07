@@ -6,10 +6,9 @@ type FeatureFlagExtensionHookResolverProps = {
   setFeatureFlag: SetFeatureFlag;
 };
 
-const FeatureFlagExtensionHookResolver: React.FC<FeatureFlagExtensionHookResolverProps> = ({
-  handler,
-  setFeatureFlag,
-}) => {
+const FeatureFlagExtensionHookResolver: React.FC<React.PropsWithChildren<
+  FeatureFlagExtensionHookResolverProps
+>> = ({ handler, setFeatureFlag }) => {
   handler(setFeatureFlag);
   return null;
 };

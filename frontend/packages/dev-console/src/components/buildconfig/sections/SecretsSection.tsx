@@ -16,7 +16,9 @@ export type SecretsSectionFormData = {
   };
 };
 
-const SecretsSection: React.FC<{ namespace: string }> = ({ namespace }) => {
+const SecretsSection: React.FC<React.PropsWithChildren<{ namespace: string }>> = ({
+  namespace,
+}) => {
   const { t } = useTranslation();
 
   const autocompleteFilter = (text: string, item: any): boolean => fuzzy(text, item?.props?.name);

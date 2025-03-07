@@ -27,7 +27,9 @@ const ProjectListPage = () => {
 
 const ProjectListPageWithStartGuide = withStartGuide(ProjectListPage);
 
-const PageContents: React.FC<SearchPageProps> = ({ noProjectsAvailable }) => {
+const PageContents: React.FC<React.PropsWithChildren<SearchPageProps>> = ({
+  noProjectsAvailable,
+}) => {
   const params = useParams();
   const namespace = params.ns;
   return namespace ? (
@@ -37,7 +39,7 @@ const PageContents: React.FC<SearchPageProps> = ({ noProjectsAvailable }) => {
   );
 };
 
-const Search: React.FC<SearchPageProps> = (props) => {
+const Search: React.FC<React.PropsWithChildren<SearchPageProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <>

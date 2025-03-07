@@ -22,7 +22,7 @@ interface MultiTabListPageProps {
   telemetryPrefix?: string;
 }
 
-const MultiTabListPage: React.FC<MultiTabListPageProps> = ({
+const MultiTabListPage: React.FC<React.PropsWithChildren<MultiTabListPageProps>> = ({
   title,
   badge,
   pages,

@@ -27,7 +27,7 @@ const EditYAMLComponent = DropTarget(NativeTypes.FILE, boxTarget, (connectObj, m
   connectDropTarget: connectObj.dropTarget(),
   isOver: monitor.isOver(),
   canDrop: monitor.canDrop(),
-}))(EditYAML as React.FC<EditYAMLProps>);
+}))(EditYAML as React.FC<React.PropsWithChildren<EditYAMLProps>>);
 
 type DroppableEditYAMLProps = ResourceYAMLEditorProps & {
   allowMultiple?: boolean;
@@ -35,7 +35,7 @@ type DroppableEditYAMLProps = ResourceYAMLEditorProps & {
 };
 
 // Prevents SDK users from passing additional props
-export const ResourceYAMLEditor: React.FC<ResourceYAMLEditorProps> = ({
+export const ResourceYAMLEditor: React.FC<React.PropsWithChildren<ResourceYAMLEditorProps>> = ({
   initialResource,
   header,
   onSave,

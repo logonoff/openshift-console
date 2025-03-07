@@ -8,11 +8,11 @@ import { getImageStreamResource } from '../../../utils/imagestream-utils';
 import { ImageStreamActions } from '../import-types';
 import { ImageStreamContext } from './ImageStreamContext';
 
-const ImageStreamDropdown: React.FC<{
+const ImageStreamDropdown: React.FC<React.PropsWithChildren<{
   disabled?: boolean;
   formContextField?: string;
   reloadCount?: number;
-}> = ({ disabled = false, formContextField, reloadCount }) => {
+}>> = ({ disabled = false, formContextField, reloadCount }) => {
   const { t } = useTranslation();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const imgCollection = {};

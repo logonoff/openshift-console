@@ -10,7 +10,7 @@ import { YellowExclamationTriangleIcon } from '@console/shared';
 import { REGEXP_K8S_RESOURCE_SUFFIX } from './const';
 import { CapabilityProps, SpecCapability, StatusCapability } from './types';
 
-export const Invalid: React.FC<{ path: string }> = ({ path }) => {
+export const Invalid: React.FC<React.PropsWithChildren<{ path: string }>> = ({ path }) => {
   return (
     <span className="text-muted olm-descriptors__invalid-pod-descriptor">
       <YellowExclamationTriangleIcon />
@@ -22,13 +22,9 @@ export const Invalid: React.FC<{ path: string }> = ({ path }) => {
   );
 };
 
-export const DefaultCapability: React.FC<CommonCapabilityProps<string | number | boolean>> = ({
-  description,
-  label,
-  obj,
-  fullPath,
-  value,
-}) => {
+export const DefaultCapability: React.FC<React.PropsWithChildren<
+  CommonCapabilityProps<string | number | boolean>
+>> = ({ description, label, obj, fullPath, value }) => {
   const { t } = useTranslation();
   const detail = React.useMemo(() => {
     if (_.isEmpty(value) && !_.isFinite(value) && !_.isBoolean(value)) {
@@ -44,15 +40,9 @@ export const DefaultCapability: React.FC<CommonCapabilityProps<string | number |
   );
 };
 
-export const K8sResourceLinkCapability: React.FC<CommonCapabilityProps<string>> = ({
-  capability,
-  description,
-  descriptor,
-  fullPath,
-  label,
-  obj,
-  value,
-}) => {
+export const K8sResourceLinkCapability: React.FC<React.PropsWithChildren<
+  CommonCapabilityProps<string>
+>> = ({ capability, description, descriptor, fullPath, label, obj, value }) => {
   const { t } = useTranslation();
   const detail = React.useMemo(() => {
     if (!value) {
@@ -79,7 +69,7 @@ export const K8sResourceLinkCapability: React.FC<CommonCapabilityProps<string>> 
   );
 };
 
-export const SecretCapability: React.FC<CommonCapabilityProps<string>> = ({
+export const SecretCapability: React.FC<React.PropsWithChildren<CommonCapabilityProps<string>>> = ({
   description,
   label,
   obj,

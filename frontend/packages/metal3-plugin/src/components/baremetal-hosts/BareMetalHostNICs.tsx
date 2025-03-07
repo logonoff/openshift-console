@@ -22,7 +22,9 @@ const getRowProps = (obj) => ({
   id: obj.ip,
 });
 
-const NICsTableRow: React.FC<RowFunctionArgs<BareMetalHostNIC>> = ({ obj: nic }) => {
+const NICsTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<BareMetalHostNIC>>> = ({
+  obj: nic,
+}) => {
   const { ip, mac, model, name, pxe, speedGbps, vlanId } = nic;
   return (
     <>
@@ -43,7 +45,11 @@ type BareMetalHostNICsProps = {
   loadError?: any;
 };
 
-const BareMetalHostNICs: React.FC<BareMetalHostNICsProps> = ({ obj: host, loadError, loaded }) => {
+const BareMetalHostNICs: React.FC<React.PropsWithChildren<BareMetalHostNICsProps>> = ({
+  obj: host,
+  loadError,
+  loaded,
+}) => {
   const { t } = useTranslation();
   const nics = getHostNICs(host);
   return (

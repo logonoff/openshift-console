@@ -28,7 +28,7 @@ export interface StateProps {
   perspective: string;
 }
 
-const EditApplication: React.FC<EditApplicationProps> = ({
+const EditApplication: React.FC<React.PropsWithChildren<EditApplicationProps>> = ({
   namespace,
   appName,
   resources: appResources,

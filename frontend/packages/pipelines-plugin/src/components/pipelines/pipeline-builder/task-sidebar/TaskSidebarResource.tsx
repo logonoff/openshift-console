@@ -17,7 +17,9 @@ interface ResourceLink {
   resource: string;
 }
 
-const TaskSidebarResource: React.FC<TaskSidebarResourceProps> = (props) => {
+const TaskSidebarResource: React.FC<React.PropsWithChildren<TaskSidebarResourceProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const { getFieldMeta, setFieldValue } = useFormikContext<PipelineBuilderFormikValues>();
   const {

@@ -11,7 +11,7 @@ import { ProjectModel } from '../../../models';
 import { ProjectDashboardContext } from './project-dashboard-context';
 import { Link } from 'react-router-dom-v5-compat';
 
-export const DetailsCard: React.FC = () => {
+export const DetailsCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { obj } = React.useContext(ProjectDashboardContext);
   const keys = _.keys(obj.metadata.labels).sort();
   const labelsSubset = _.take(keys, 3);

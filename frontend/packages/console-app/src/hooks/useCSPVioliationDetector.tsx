@@ -99,7 +99,7 @@ export const useCSPViolationDetector = () => {
   );
 
   const reportViolation = React.useCallback(
-    (event) => {
+    (event: any) => {
       // eslint-disable-next-line no-console
       console.warn('Content Security Policy violation detected', event);
 

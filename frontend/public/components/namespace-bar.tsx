@@ -30,13 +30,9 @@ export type NamespaceBarDropdownsProps = {
 
 const getModel = (useProjects) => (useProjects ? ProjectModel : NamespaceModel);
 
-export const NamespaceBarDropdowns: React.FC<NamespaceBarDropdownsProps> = ({
-  children,
-  isDisabled,
-  namespace,
-  onNamespaceChange,
-  useProjects,
-}) => {
+export const NamespaceBarDropdowns: React.FC<React.PropsWithChildren<
+  NamespaceBarDropdownsProps
+>> = ({ children, isDisabled, namespace, onNamespaceChange, useProjects }) => {
   const createNamespaceOrProjectModal = useCreateNamespaceOrProjectModal();
   const dispatch = useDispatch();
   const [activeNamespace, setActiveNamespace] = useActiveNamespace();
@@ -97,12 +93,9 @@ export const NamespaceBarDropdowns: React.FC<NamespaceBarDropdownsProps> = ({
   );
 };
 
-export const NamespaceBar: React.FC<NamespaceBarProps & { hideProjects?: boolean }> = ({
-  onNamespaceChange,
-  isDisabled,
-  children,
-  hideProjects = false,
-}) => {
+export const NamespaceBar: React.FC<React.PropsWithChildren<
+  NamespaceBarProps & { hideProjects?: boolean }
+>> = ({ onNamespaceChange, isDisabled, children, hideProjects = false }) => {
   const useProjects = useSelector<RootState, boolean>(({ k8s }) =>
     k8s.hasIn(['RESOURCES', 'models', ProjectModel.kind]),
   );

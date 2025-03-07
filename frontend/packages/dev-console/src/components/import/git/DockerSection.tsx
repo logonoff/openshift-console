@@ -9,7 +9,7 @@ import SecondaryHeading from '@console/shared/src/components/heading/SecondaryHe
 import { GitImportFormData } from '../import-types';
 import FormSection from '../section/FormSection';
 
-const DockerSection: React.FC = () => {
+const DockerSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { values, setFieldValue, setFieldTouched } = useFormikContext<
     FormikValues & GitImportFormData

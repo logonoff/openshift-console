@@ -29,7 +29,7 @@ export const updateThemeClass = (htmlTagElement: HTMLElement, theme: string): PR
 
 export const ThemeContext = React.createContext<string>('');
 
-export const ThemeProvider: React.FC<{}> = ({ children }) => {
+export const ThemeProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   const htmlTagElement = document.documentElement;
   const localTheme = localStorage.getItem(THEME_LOCAL_STORAGE_KEY);
   const [theme, , themeLoaded] = useUserSettings(
@@ -42,7 +42,7 @@ export const ThemeProvider: React.FC<{}> = ({ children }) => {
   );
 
   const mqListener = React.useCallback(
-    (e) => {
+    (e: any) => {
       if (e.matches) {
         htmlTagElement?.classList.add(THEME_DARK_CLASS);
         htmlTagElement?.classList.add(THEME_DARK_CLASS_LEGACY);

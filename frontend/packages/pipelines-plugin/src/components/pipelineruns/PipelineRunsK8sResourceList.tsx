@@ -12,10 +12,10 @@ interface PipelineRunsResourceListProps {
   canCreate?: boolean;
 }
 
-const PipelineRunsK8sResourceList: React.FC<
+const PipelineRunsK8sResourceList: React.FC<React.PropsWithChildren<
   Omit<React.ComponentProps<typeof ListPage>, 'kind' | 'ListComponent' | 'rowFilters'> &
     PipelineRunsResourceListProps
-> = (props) => {
+>> = (props) => {
   const { t } = useTranslation();
   const badge = usePipelineTechPreviewBadge(props.namespace);
   return (

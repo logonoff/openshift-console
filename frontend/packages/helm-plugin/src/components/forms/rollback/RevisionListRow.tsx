@@ -5,7 +5,7 @@ import { Status, RadioButtonField } from '@console/shared';
 import { HelmReleaseStatusLabels, releaseStatus } from '../../../utils/helm-utils';
 import { tableColumnClasses } from './RevisionListHeader';
 
-const RevisionListRow: React.FC<RowFunctionArgs> = ({ obj }) => {
+const RevisionListRow: React.FC<React.PropsWithChildren<RowFunctionArgs>> = ({ obj }) => {
   return (
     <>
       <TableData className={tableColumnClasses.input}>

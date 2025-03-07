@@ -9,7 +9,7 @@ import { SampleGettingStartedCard } from './SamplesGettingStartedCard';
 
 import './GettingStartedSection.scss';
 
-export const GettingStartedSection: React.FC = () => {
+export const GettingStartedSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
 
   const [isGettingStartedSectionOpen, setIsGettingStartedSectionOpen] = useUserSettings<boolean>(

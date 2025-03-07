@@ -8,7 +8,7 @@ import {
 } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
 
-export const CopyToClipboard: React.FC<CopyToClipboardProps> = React.memo(
+export const CopyToClipboard: React.FC<React.PropsWithChildren<CopyToClipboardProps>> = React.memo(
   ({ value, visibleValue, id = 'id' }) => {
     const [copied, setCopied] = React.useState(false);
     const { t } = useTranslation();

@@ -11,7 +11,10 @@ interface HelmChartSummaryProps {
   helmRelease: HelmRelease;
 }
 
-const HelmChartSummary: React.FC<HelmChartSummaryProps> = ({ obj, helmRelease }) => {
+const HelmChartSummary: React.FC<React.PropsWithChildren<HelmChartSummaryProps>> = ({
+  obj,
+  helmRelease,
+}) => {
   const { t } = useTranslation();
   if (!helmRelease) return null;
 

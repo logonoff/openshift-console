@@ -54,7 +54,9 @@ export const ResourceItemDeleting = () => {
   );
 };
 
-export const BreadCrumbs: React.SFC<BreadCrumbsProps> = ({ breadcrumbs }) => (
+export const BreadCrumbs: React.FC<React.PropsWithChildren<BreadCrumbsProps>> = ({
+  breadcrumbs,
+}) => (
   <Breadcrumb className="co-breadcrumb">
     {breadcrumbs.map((crumb, i, { length }) => {
       const isLast = i === length - 1;
@@ -78,7 +80,9 @@ export const BreadCrumbs: React.SFC<BreadCrumbsProps> = ({ breadcrumbs }) => (
   </Breadcrumb>
 );
 
-export const ActionButtons: React.SFC<ActionButtonsProps> = ({ actionButtons }) => (
+export const ActionButtons: React.FC<React.PropsWithChildren<ActionButtonsProps>> = ({
+  actionButtons,
+}) => (
   <div className="co-action-buttons">
     {_.map(actionButtons, (actionButton, i) => {
       if (!_.isEmpty(actionButton)) {
@@ -240,7 +244,7 @@ export const PageHeading = connectToModel((props: PageHeadingProps) => {
   );
 });
 
-export const SectionHeading: React.SFC<SectionHeadingProps> = ({
+export const SectionHeading: React.FC<React.PropsWithChildren<SectionHeadingProps>> = ({
   text,
   children,
   style,
@@ -259,23 +263,18 @@ export const SectionHeading: React.SFC<SectionHeadingProps> = ({
   </SecondaryHeading>
 );
 
-export const SidebarSectionHeading: React.SFC<SidebarSectionHeadingProps> = ({
-  text,
-  children,
-  style,
-  className,
-}) => (
+export const SidebarSectionHeading: React.FC<React.PropsWithChildren<
+  SidebarSectionHeadingProps
+>> = ({ text, children, style, className }) => (
   <Title headingLevel="h2" className={`sidebar__section-heading ${className}`} style={style}>
     {text}
     {children}
   </Title>
 );
 
-export const ResourceOverviewHeading: React.SFC<ResourceOverviewHeadingProps> = ({
-  kindObj,
-  actions,
-  resources,
-}) => {
+export const ResourceOverviewHeading: React.FC<React.PropsWithChildren<
+  ResourceOverviewHeadingProps
+>> = ({ kindObj, actions, resources }) => {
   const { obj: resource, ...otherResources } = resources;
   const ns = useSelector((state: RootState) => getActiveNamespace(state));
   const { csvData } = useCsvWatchResource(ns);
@@ -349,7 +348,7 @@ export type PageHeadingProps = {
   titleFunc?: (obj: K8sResourceKind) => string | JSX.Element;
   customData?: any;
   badge?: React.ReactNode;
-  icon?: React.ComponentType<{ obj?: K8sResourceKind }>;
+  icon?: React.ComponentType<React.PropsWithChildren<{ obj?: K8sResourceKind }>>;
   getResourceStatus?: (resource: K8sResourceKind) => string;
   className?: string;
   centerText?: boolean;

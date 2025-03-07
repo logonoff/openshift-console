@@ -17,7 +17,7 @@ import MultiColumnFieldHeader from './MultiColumnFieldHeader';
 import MultiColumnFieldRow from './MultiColumnFieldRow';
 import './MultiColumnField.scss';
 
-const MultiColumnField: React.FC<MultiColumnFieldProps> = ({
+const MultiColumnField: React.FC<React.PropsWithChildren<MultiColumnFieldProps>> = ({
   children,
   name,
   label,
@@ -91,7 +91,6 @@ const MultiColumnField: React.FC<MultiColumnFieldProps> = ({
                 onAdd={() => push(emptyValues)}
               />
             )}
-
             <FormHelperText>
               <HelperText>
                 <HelperTextItem>{helpText}</HelperTextItem>

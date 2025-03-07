@@ -27,7 +27,7 @@ import { useTranslation } from 'react-i18next';
 
 const tableColumnClasses = ['', '', 'pf-m-hidden pf-m-visible-on-md', Kebab.columnClass];
 
-const UserKebab: React.FC<UserKebabProps> = ({ user }) => {
+const UserKebab: React.FC<React.PropsWithChildren<UserKebabProps>> = ({ user }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ const UserKebab: React.FC<UserKebabProps> = ({ user }) => {
   );
 };
 
-const UserTableRow: React.FC<RowFunctionArgs<UserKind>> = ({ obj }) => {
+const UserTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<UserKind>>> = ({ obj }) => {
   return (
     <>
       <TableData className={tableColumnClasses[0]}>
@@ -128,7 +128,7 @@ const NoDataEmptyMsg = () => {
   );
 };
 
-export const UserList: React.FC = (props) => {
+export const UserList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const UserTableHeader = () => {
     return [
@@ -170,7 +170,7 @@ export const UserList: React.FC = (props) => {
   );
 };
 
-export const UserPage: React.FC<UserPageProps> = (props) => {
+export const UserPage: React.FC<React.PropsWithChildren<UserPageProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <ListPage
@@ -184,7 +184,7 @@ export const UserPage: React.FC<UserPageProps> = (props) => {
   );
 };
 
-const RoleBindingsTab: React.FC<RoleBindingsTabProps> = ({ obj }) => (
+const RoleBindingsTab: React.FC<React.PropsWithChildren<RoleBindingsTabProps>> = ({ obj }) => (
   <RoleBindingsPage
     showTitle={false}
     staticFilters={{ 'role-binding-user': obj.metadata.name }}
@@ -193,7 +193,7 @@ const RoleBindingsTab: React.FC<RoleBindingsTabProps> = ({ obj }) => (
   />
 );
 
-const UserDetails: React.FC<UserDetailsProps> = ({ obj }) => {
+const UserDetails: React.FC<React.PropsWithChildren<UserDetailsProps>> = ({ obj }) => {
   const { t } = useTranslation();
   return (
     <div className="co-m-pane__body">
@@ -216,7 +216,7 @@ type UserKebabProps = {
   user: UserKind;
 };
 
-export const UserDetailsPage: React.FC = (props) => {
+export const UserDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();

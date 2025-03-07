@@ -11,7 +11,9 @@ type TriggersOverviewProps = {
   pipeline: PipelineKind;
 };
 
-const TriggersOverview: React.FC<TriggersOverviewProps> = ({ pipeline }) => {
+const TriggersOverview: React.FC<React.PropsWithChildren<TriggersOverviewProps>> = ({
+  pipeline,
+}) => {
   const {
     metadata: { name, namespace },
   } = pipeline;

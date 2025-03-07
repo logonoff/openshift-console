@@ -7,7 +7,9 @@ import { EventingBrokerModel } from '../../../models';
 import { EventBrokerKind, BrokerConditionTypes } from '../../../types';
 import { getCondition, getConditionString } from '../../../utils/condition-utils';
 
-const BrokerRow: React.FC<RowFunctionArgs<EventBrokerKind>> = ({ obj }) => {
+const BrokerRow: React.FC<React.PropsWithChildren<RowFunctionArgs<EventBrokerKind>>> = ({
+  obj,
+}) => {
   const {
     metadata: { name, namespace, creationTimestamp, uid },
   } = obj;

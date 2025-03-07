@@ -8,7 +8,9 @@ import ContainerField from '../ContainerField';
 import AdvancedImageOptions from './AdvancedImageOptions';
 import ContainerImageField from './ContainerImageField';
 
-const ImagesSection: React.FC<{ resourceType: string }> = ({ resourceType }) => {
+const ImagesSection: React.FC<React.PropsWithChildren<{ resourceType: string }>> = ({
+  resourceType,
+}) => {
   const { t } = useTranslation();
   const {
     values: {

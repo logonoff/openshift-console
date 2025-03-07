@@ -3,7 +3,7 @@ import { Badge } from '@patternfly/react-core';
 import './Badge.scss';
 import { useTranslation } from 'react-i18next';
 
-export const InlineTechPreviewBadge: React.FC = () => {
+export const InlineTechPreviewBadge: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <Badge className="ocs-badge__inline" isRead>
@@ -12,7 +12,7 @@ export const InlineTechPreviewBadge: React.FC = () => {
   );
 };
 
-export const InlineDevPreviewBadge: React.FC = () => {
+export const InlineDevPreviewBadge: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <Badge className="ocs-badge__inline" isRead>

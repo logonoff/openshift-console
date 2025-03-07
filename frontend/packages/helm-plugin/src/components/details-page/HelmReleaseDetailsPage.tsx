@@ -14,7 +14,7 @@ const handleNamespaceChange = (newNamespace: string): void => {
   }
 };
 
-const HelmReleaseDetailsPage: React.FC = () => {
+const HelmReleaseDetailsPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   return (
     <NamespacedPage
       variant={NamespacedPageVariants.light}

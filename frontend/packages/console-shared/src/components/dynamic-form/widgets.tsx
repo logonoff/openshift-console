@@ -13,7 +13,7 @@ import { selectorFromString } from '@console/internal/module/k8s/selector';
 import { JSON_SCHEMA_NUMBER_TYPES } from './const';
 import { DynamicFormFieldOptionsList } from './types';
 
-export const TextWidget: React.FC<WidgetProps> = (props) => {
+export const TextWidget: React.FC<React.PropsWithChildren<WidgetProps>> = (props) => {
   const {
     disabled = false,
     id,
@@ -49,7 +49,11 @@ export const TextWidget: React.FC<WidgetProps> = (props) => {
   );
 };
 
-export const NumberWidget: React.FC<WidgetProps> = ({ value, id, onChange }) => {
+export const NumberWidget: React.FC<React.PropsWithChildren<WidgetProps>> = ({
+  value,
+  id,
+  onChange,
+}) => {
   const numberValue = _.toNumber(value);
   return (
     <span className="pf-v6-c-form-control">
@@ -66,7 +70,11 @@ export const NumberWidget: React.FC<WidgetProps> = ({ value, id, onChange }) => 
   );
 };
 
-export const PasswordWidget: React.FC<WidgetProps> = ({ value = '', id, onChange }) => {
+export const PasswordWidget: React.FC<React.PropsWithChildren<WidgetProps>> = ({
+  value = '',
+  id,
+  onChange,
+}) => {
   return (
     <span className="pf-v6-c-form-control">
       <input
@@ -80,7 +88,12 @@ export const PasswordWidget: React.FC<WidgetProps> = ({ value = '', id, onChange
   );
 };
 
-export const CheckboxWidget: React.FC<WidgetProps> = ({ value = false, id, label, onChange }) => {
+export const CheckboxWidget: React.FC<React.PropsWithChildren<WidgetProps>> = ({
+  value = false,
+  id,
+  label,
+  onChange,
+}) => {
   return (
     <Checkbox
       id={id}
@@ -93,7 +106,13 @@ export const CheckboxWidget: React.FC<WidgetProps> = ({ value = false, id, label
   );
 };
 
-export const SwitchWidget: React.FC<WidgetProps> = ({ value, id, label, onChange, options }) => {
+export const SwitchWidget: React.FC<React.PropsWithChildren<WidgetProps>> = ({
+  value,
+  id,
+  label,
+  onChange,
+  options,
+}) => {
   const { t } = useTranslation();
   const { labelOn = t('console-shared~true') } = options;
   return (
@@ -107,7 +126,11 @@ export const SwitchWidget: React.FC<WidgetProps> = ({ value, id, label, onChange
   );
 };
 
-export const PodCountWidget: React.FC<WidgetProps> = ({ value, id, onChange }) => {
+export const PodCountWidget: React.FC<React.PropsWithChildren<WidgetProps>> = ({
+  value,
+  id,
+  onChange,
+}) => {
   return (
     <NumberSpinner
       id={id}
@@ -120,7 +143,7 @@ export const PodCountWidget: React.FC<WidgetProps> = ({ value, id, onChange }) =
   );
 };
 
-export const K8sResourceWidget: React.FC<K8sResourceWidgetProps> = ({
+export const K8sResourceWidget: React.FC<React.PropsWithChildren<K8sResourceWidgetProps>> = ({
   value,
   id,
   label,
@@ -172,7 +195,11 @@ export const K8sResourceWidget: React.FC<K8sResourceWidgetProps> = ({
   );
 };
 
-export const ImagePullPolicyWidget: React.FC<WidgetProps> = ({ id, value, onChange }) => {
+export const ImagePullPolicyWidget: React.FC<React.PropsWithChildren<WidgetProps>> = ({
+  id,
+  value,
+  onChange,
+}) => {
   return (
     <RadioGroup
       id={id}
@@ -186,7 +213,7 @@ export const ImagePullPolicyWidget: React.FC<WidgetProps> = ({ id, value, onChan
   );
 };
 
-export const SelectWidget: React.FC<WidgetProps> = ({
+export const SelectWidget: React.FC<React.PropsWithChildren<WidgetProps>> = ({
   id,
   label,
   onChange,

@@ -23,9 +23,9 @@ import { useK8sModel } from '@console/dynamic-plugin-sdk/src/lib-core';
 
 const { common } = Kebab.factory;
 
-export const OverviewDetailsResourcesTab: React.SFC<OverviewDetailsResourcesTabProps> = ({
-  item,
-}) => {
+export const OverviewDetailsResourcesTab: React.FC<React.PropsWithChildren<
+  OverviewDetailsResourcesTabProps
+>> = ({ item }) => {
   const { hpas, obj } = item;
   const pluginComponents = usePluginsOverviewTabSection(item);
   const { loaded, loadError, buildConfigs } = useBuildConfigsWatcher(obj);
@@ -44,7 +44,9 @@ export const OverviewDetailsResourcesTab: React.SFC<OverviewDetailsResourcesTabP
   );
 };
 
-export const DefaultOverviewPage: React.FC<{ item: OverviewItem }> = ({ item }) => {
+export const DefaultOverviewPage: React.FC<React.PropsWithChildren<{ item: OverviewItem }>> = ({
+  item,
+}) => {
   return (
     <div className="overview__sidebar-pane resource-overview">
       <div className="overview__sidebar-pane-body resource-overview__body">
@@ -56,11 +58,11 @@ export const DefaultOverviewPage: React.FC<{ item: OverviewItem }> = ({ item }) 
   );
 };
 
-const DefaultSideBar: React.FC<{
+const DefaultSideBar: React.FC<React.PropsWithChildren<{
   kindObj: K8sModel;
   item: OverviewItem;
   customActions?: KebabAction[];
-}> = ({ kindObj, item, customActions }) => {
+}>> = ({ kindObj, item, customActions }) => {
   const { t } = useTranslation();
 
   const tabs = [

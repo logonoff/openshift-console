@@ -21,7 +21,7 @@ type HPAFormProps = {
   targetResource: K8sResourceCommon;
 };
 
-const HPAForm: React.FC<FormikProps<HPAFormValues> & HPAFormProps> = ({
+const HPAForm: React.FC<React.PropsWithChildren<FormikProps<HPAFormValues> & HPAFormProps>> = ({
   errors,
   handleReset,
   handleSubmit,

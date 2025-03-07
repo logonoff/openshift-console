@@ -13,7 +13,7 @@ import { getLimitWarning, VALID_HPA_TARGET_KINDS } from './hpa-utils';
 import HPAFormikForm from './HPAFormikForm';
 import HPAPageHeader from './HPAPageHeader';
 
-const HPAPage: React.FC<PageComponentProps> = () => {
+const HPAPage: React.FC<React.PropsWithChildren<PageComponentProps>> = () => {
   const { t } = useTranslation();
   const { ns, resourceRef, name } = useParams();
   const breakdown = getGroupVersionKind(resourceRef) || [];

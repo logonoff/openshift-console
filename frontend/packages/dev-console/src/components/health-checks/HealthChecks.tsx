@@ -9,7 +9,10 @@ interface HealthChecksProps {
   resourceType: Resources;
 }
 
-const HealthChecks: React.FC<HealthChecksProps> = ({ title, resourceType }) => (
+const HealthChecks: React.FC<React.PropsWithChildren<HealthChecksProps>> = ({
+  title,
+  resourceType,
+}) => (
   <FormSection title={title}>
     <HealthCheckProbe probeType={HealthChecksProbeType.ReadinessProbe} />
 

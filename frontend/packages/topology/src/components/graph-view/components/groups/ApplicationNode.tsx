@@ -20,7 +20,7 @@ type ApplicationGroupProps = {
   WithDndDropProps &
   WithContextMenuProps;
 
-const ApplicationNode: React.FC<ApplicationGroupProps> = ({
+const ApplicationNode: React.FC<React.PropsWithChildren<ApplicationGroupProps>> = ({
   element,
   badge,
   badgeColor,

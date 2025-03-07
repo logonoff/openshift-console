@@ -29,7 +29,9 @@ export type TriggersSectionFormData = {
   };
 };
 
-const TriggersSection: React.FC<{ namespace: string }> = ({ namespace }) => {
+const TriggersSection: React.FC<React.PropsWithChildren<{ namespace: string }>> = ({
+  namespace,
+}) => {
   const { t } = useTranslation();
   const [{ value: buildFromType }] = useField<ImageOptionType>('formData.images.buildFrom.type');
 

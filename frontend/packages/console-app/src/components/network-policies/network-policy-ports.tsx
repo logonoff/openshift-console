@@ -7,7 +7,9 @@ import { useTranslation } from 'react-i18next';
 import { Dropdown } from '@console/internal/components/utils';
 import { NetworkPolicyPort } from './network-policy-model';
 
-export const NetworkPolicyPorts: React.FunctionComponent<NetworkPolicyPortsProps> = (props) => {
+export const NetworkPolicyPorts: React.FunctionComponent<React.PropsWithChildren<
+  NetworkPolicyPortsProps
+>> = (props) => {
   const { ports, onChange } = props;
   const { t } = useTranslation();
 

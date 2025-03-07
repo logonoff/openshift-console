@@ -8,7 +8,7 @@ interface EventSourceAlertProps {
   createSourceAccess: boolean;
 }
 
-const EventSourceAlert: React.FC<EventSourceAlertProps> = ({
+const EventSourceAlert: React.FC<React.PropsWithChildren<EventSourceAlertProps>> = ({
   isValidSource,
   createSourceAccessLoading,
   createSourceAccess,

@@ -29,7 +29,7 @@ type PerspectiveDropdownItemProps = {
   onClick: (perspective: string) => void;
 };
 
-const PerspectiveDropdownItem: React.FC<PerspectiveDropdownItemProps> = ({
+const PerspectiveDropdownItem: React.FC<React.PropsWithChildren<PerspectiveDropdownItemProps>> = ({
   perspective,
   onClick,
 }) => {
@@ -56,7 +56,9 @@ const PerspectiveDropdownItem: React.FC<PerspectiveDropdownItemProps> = ({
   );
 };
 
-const NavHeader: React.FC<NavHeaderProps> = ({ onPerspectiveSelected }) => {
+const NavHeader: React.FC<React.PropsWithChildren<NavHeaderProps>> = ({
+  onPerspectiveSelected,
+}) => {
   const { t } = useTranslation();
   const [activePerspective, setActivePerspective] = useActivePerspective();
   const [isPerspectiveDropdownOpen, setPerspectiveDropdownOpen] = React.useState(false);

@@ -8,7 +8,11 @@ type SyncMarkdownProps = Omit<MarkdownProps, 'theme' | 'updateThemeClass' | 'emp
   theme?: string;
 };
 
-export const SyncMarkdownView: React.FC<SyncMarkdownProps> = ({ emptyMsg, theme, ...rest }) => {
+export const SyncMarkdownView: React.FC<React.PropsWithChildren<SyncMarkdownProps>> = ({
+  emptyMsg,
+  theme,
+  ...rest
+}) => {
   const { t } = useTranslation();
   emptyMsg = emptyMsg || t('public~Not available');
   const contextTheme = React.useContext(ThemeContext);

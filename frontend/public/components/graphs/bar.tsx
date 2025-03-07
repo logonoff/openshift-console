@@ -21,7 +21,7 @@ import { CustomDataSource } from '@console/dynamic-plugin-sdk/src/extensions/das
 const DEFAULT_BAR_WIDTH = 10;
 const PADDING_RATIO = 1 / 3;
 
-export const BarChart: React.FC<BarChartProps> = ({
+export const BarChart: React.FC<React.PropsWithChildren<BarChartProps>> = ({
   barSpacing = 15,
   barWidth = DEFAULT_BAR_WIDTH,
   data = [],
@@ -83,7 +83,7 @@ export const BarChart: React.FC<BarChartProps> = ({
   );
 };
 
-export const Bar: React.FC<BarProps> = ({
+export const Bar: React.FC<React.PropsWithChildren<BarProps>> = ({
   barSpacing,
   barWidth,
   delay = undefined,
@@ -130,7 +130,7 @@ type BarChartProps = {
   barSpacing?: number;
   barWidth?: number;
   data?: DataPoint[];
-  LabelComponent?: React.ComponentType<LabelComponentProps>;
+  LabelComponent?: React.ComponentType<React.PropsWithChildren<LabelComponentProps>>;
   loading?: boolean;
   noLink?: boolean;
   query?: string;
@@ -144,7 +144,7 @@ type BarProps = {
   barWidth?: number;
   delay?: number;
   humanize?: Humanize;
-  LabelComponent?: React.ComponentType<LabelComponentProps>;
+  LabelComponent?: React.ComponentType<React.PropsWithChildren<LabelComponentProps>>;
   metric: string;
   namespace?: string;
   noLink?: boolean;

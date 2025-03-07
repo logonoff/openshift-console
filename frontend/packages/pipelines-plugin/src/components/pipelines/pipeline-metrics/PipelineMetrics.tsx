@@ -30,7 +30,7 @@ import PipelineSuccessRatioDonut from './PipelineSuccessRatioDonut';
 
 import './PipelineMetrics.scss';
 
-const PipelineMetrics: React.FC<PipelineDetailsTabProps> = ({ obj }) => {
+const PipelineMetrics: React.FC<React.PropsWithChildren<PipelineDetailsTabProps>> = ({ obj }) => {
   const {
     metadata: { name, namespace },
   } = obj;

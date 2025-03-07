@@ -7,7 +7,7 @@ import NamespacedPage, { NamespacedPageVariants } from '../../NamespacedPage';
 import QueryFocusApplication from '../../QueryFocusApplication';
 import AddServerlessFunction from './AddServerlessFunction';
 
-const ServerlessFunctionPage: React.FC = () => {
+const ServerlessFunctionPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { ns: namespace } = useParams();
   const { t } = useTranslation();
   return (

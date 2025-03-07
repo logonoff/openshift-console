@@ -4,7 +4,7 @@ import { Checkbox } from '@patternfly/react-core';
 import { CheckboxFieldProps } from './field-types';
 import ToggleableFieldBase from './ToggleableFieldBase';
 
-const CheckboxField: React.FC<CheckboxFieldProps> = (baseProps) => (
+const CheckboxField: React.FC<React.PropsWithChildren<CheckboxFieldProps>> = (baseProps) => (
   <ToggleableFieldBase {...baseProps}>
     {(props) => <Checkbox {...props} data-checked-state={props.isChecked} />}
   </ToggleableFieldBase>

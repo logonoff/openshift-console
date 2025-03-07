@@ -54,7 +54,7 @@ export type KnativeServiceGroupProps = {
   WithCreateConnectorProps;
 
 const DECORATOR_RADIUS = 13;
-const KnativeServiceGroup: React.FC<KnativeServiceGroupProps> = ({
+const KnativeServiceGroup: React.FC<React.PropsWithChildren<KnativeServiceGroupProps>> = ({
   element,
   badge,
   badgeColor,

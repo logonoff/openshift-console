@@ -10,7 +10,7 @@ import { k8sGet } from '@console/internal/module/k8s';
 import { EnvironmentFieldProps } from './field-types';
 import { getFieldId } from './field-utils';
 
-const EnvironmentField: React.FC<EnvironmentFieldProps> = ({
+const EnvironmentField: React.FC<React.PropsWithChildren<EnvironmentFieldProps>> = ({
   label,
   helpText,
   required,
@@ -32,7 +32,7 @@ const EnvironmentField: React.FC<EnvironmentFieldProps> = ({
   const [configMaps, setConfigMaps] = React.useState({});
   const [secrets, setSecrets] = React.useState({});
   const handleNameValuePairs = React.useCallback(
-    ({ nameValuePairs }) => {
+    ({ nameValuePairs }: any) => {
       const updatedNameValuePairs = _.compact(
         nameValuePairs.map(([name, value]) => {
           if (_.isObject(value)) {

@@ -8,7 +8,10 @@ import { ExternalLink, Firehose, FirehoseResult } from './utils';
 import { referenceForModel } from '../module/k8s';
 import { ConsoleNotificationModel } from '../models/index';
 
-const ConsoleNotifier_: React.FC<ConsoleNotifierProps> = ({ obj, location }) => {
+const ConsoleNotifier_: React.FC<React.PropsWithChildren<ConsoleNotifierProps>> = ({
+  obj,
+  location,
+}) => {
   if (_.isEmpty(obj)) {
     return null;
   }

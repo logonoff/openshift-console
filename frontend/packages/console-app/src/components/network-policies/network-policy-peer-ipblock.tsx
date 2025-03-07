@@ -7,7 +7,9 @@ import { useTranslation } from 'react-i18next';
 import { useClusterNetworkFeatures } from '@console/internal/module/k8s/network';
 import { NetworkPolicyIPBlock } from './network-policy-model';
 
-export const NetworkPolicyPeerIPBlock: React.FunctionComponent<PeerIPBlockProps> = (props) => {
+export const NetworkPolicyPeerIPBlock: React.FunctionComponent<React.PropsWithChildren<
+  PeerIPBlockProps
+>> = (props) => {
   const { t } = useTranslation();
   const { onChange, ipBlock, direction } = props;
   const [networkFeatures, networkFeaturesLoaded] = useClusterNetworkFeatures();

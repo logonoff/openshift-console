@@ -12,7 +12,7 @@ import EventSourceListPage from './eventsource-list/EventSourceListPage';
 import SubscriptionListPage from './subscription-list/SubscriptionListPage';
 import TriggerListPage from './triggers-list/TriggerListPage';
 
-const EventingListPage: React.FC = () => {
+const EventingListPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const [showTitle, canCreate] = [false, false];

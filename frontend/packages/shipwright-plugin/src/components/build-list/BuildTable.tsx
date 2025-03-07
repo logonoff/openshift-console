@@ -85,7 +85,9 @@ export const BuildHeader = () => {
   ];
 };
 
-export const BuildRow: React.FC<RowFunctionArgs<Build>> = ({ obj: build }) => {
+export const BuildRow: React.FC<React.PropsWithChildren<RowFunctionArgs<Build>>> = ({
+  obj: build,
+}) => {
   const kindReference = referenceFor(build);
   const context = { [kindReference]: build };
   const buildRunKindReference = isV1Alpha1Resource(build)
@@ -150,7 +152,7 @@ type BuildTableProps = TableProps & {
   namespace: string;
 };
 
-export const BuildTable: React.FC<BuildTableProps> = (props) => {
+export const BuildTable: React.FC<React.PropsWithChildren<BuildTableProps>> = (props) => {
   const { t } = useTranslation();
   const buildRunModel = useFlag('SHIPWRIGHT_BUILDRUN')
     ? referenceForModel(BuildRunModel)

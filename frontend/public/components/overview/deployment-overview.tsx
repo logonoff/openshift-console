@@ -13,9 +13,9 @@ import { ResourceOverviewDetails } from './resource-overview-details';
 import PodRingSet from '@console/shared/src/components/pod/PodRingSet';
 import { OverviewItem } from '@console/shared';
 
-const DeploymentOverviewDetails: React.SFC<DeploymentOverviewDetailsProps> = ({
-  item: { obj: d },
-}) => {
+const DeploymentOverviewDetails: React.FC<React.PropsWithChildren<
+  DeploymentOverviewDetailsProps
+>> = ({ item: { obj: d } }) => {
   const { t } = useTranslation();
   return (
     <div className="overview__sidebar-pane-body resource-overview__body">
@@ -47,7 +47,7 @@ const DeploymentOverviewDetails: React.SFC<DeploymentOverviewDetailsProps> = ({
   );
 };
 
-export const DeploymentOverviewPage: React.SFC<DeploymentOverviewProps> = ({
+export const DeploymentOverviewPage: React.FC<React.PropsWithChildren<DeploymentOverviewProps>> = ({
   item,
   customActions,
 }) => {

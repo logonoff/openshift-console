@@ -55,7 +55,9 @@ import { OLMAnnotation } from './operator-hub';
 import { getInitializationResource } from './operator-hub/operator-hub-utils';
 import { iconFor, InstallPlanReview } from './index';
 
-const ViewInstalledOperatorsButton: React.FC<ViewOperatorButtonProps> = ({ namespace }) => {
+const ViewInstalledOperatorsButton: React.FC<React.PropsWithChildren<ViewOperatorButtonProps>> = ({
+  namespace,
+}) => {
   const { t } = useTranslation();
   const singleNamespaceText = t('olm~View installed Operators in Namespace {{namespace}}', {
     namespace,
@@ -73,7 +75,11 @@ const ViewInstalledOperatorsButton: React.FC<ViewOperatorButtonProps> = ({ names
   );
 };
 
-const InstallFailedMessage: React.FC<InstallFailedMessageProps> = ({ namespace, csvName, obj }) => {
+const InstallFailedMessage: React.FC<React.PropsWithChildren<InstallFailedMessageProps>> = ({
+  namespace,
+  csvName,
+  obj,
+}) => {
   const { t } = useTranslation();
   const hasInitializationResource =
     obj?.metadata?.annotations?.[OLMAnnotation.InitializationResource];
@@ -101,12 +107,9 @@ const InstallFailedMessage: React.FC<InstallFailedMessageProps> = ({ namespace, 
   );
 };
 
-const InstallNeedsApprovalMessage: React.FC<InstallNeedsApprovalMessageProps> = ({
-  namespace,
-  subscriptionObj,
-  installObj,
-  approve,
-}) => {
+const InstallNeedsApprovalMessage: React.FC<React.PropsWithChildren<
+  InstallNeedsApprovalMessageProps
+>> = ({ namespace, subscriptionObj, installObj, approve }) => {
   const { t } = useTranslation();
 
   const canPatchInstallPlans = useAccessReview({
@@ -152,11 +155,9 @@ const InstallNeedsApprovalMessage: React.FC<InstallNeedsApprovalMessageProps> = 
   );
 };
 
-export const CreateInitializationResourceButton: React.FC<InitializationResourceButtonProps> = ({
-  disabled,
-  initializationResource,
-  obj,
-}) => {
+export const CreateInitializationResourceButton: React.FC<React.PropsWithChildren<
+  InitializationResourceButtonProps
+>> = ({ disabled, initializationResource, obj }) => {
   const { t } = useTranslation();
   const reference = referenceFor(initializationResource);
   const kind = initializationResource?.kind;
@@ -181,10 +182,9 @@ export const CreateInitializationResourceButton: React.FC<InitializationResource
   );
 };
 
-const InitializationResourceRequiredMessage: React.FC<InitializationResourceRequiredMessageProps> = ({
-  initializationResource,
-  obj,
-}) => {
+const InitializationResourceRequiredMessage: React.FC<React.PropsWithChildren<
+  InitializationResourceRequiredMessageProps
+>> = ({ initializationResource, obj }) => {
   const { t } = useTranslation();
   const initializationResourceKind = initializationResource?.kind;
   const initializationResourceNamespace = initializationResource?.metadata?.namespace;
@@ -206,7 +206,7 @@ const InitializationResourceRequiredMessage: React.FC<InitializationResourceRequ
   );
 };
 
-const InstallSucceededMessage: React.FC<InstallSuccededMessageProps> = ({
+const InstallSucceededMessage: React.FC<React.PropsWithChildren<InstallSuccededMessageProps>> = ({
   namespace,
   csvName,
   obj,
@@ -251,7 +251,10 @@ const InstallSucceededMessage: React.FC<InstallSuccededMessageProps> = ({
   );
 };
 
-const InstallingMessage: React.FC<InstallingMessageProps> = ({ namespace, obj }) => {
+const InstallingMessage: React.FC<React.PropsWithChildren<InstallingMessageProps>> = ({
+  namespace,
+  obj,
+}) => {
   const { t } = useTranslation();
   const reason = (obj as ClusterServiceVersionKind)?.status?.reason || '';
   const message = (obj as ClusterServiceVersionKind)?.status?.message || '';
@@ -353,7 +356,9 @@ const OperatorInstallLogo = ({ subscription }) => {
   );
 };
 
-const OperatorInstallStatus: React.FC<OperatorInstallPageProps> = ({ resources }) => {
+const OperatorInstallStatus: React.FC<React.PropsWithChildren<OperatorInstallPageProps>> = ({
+  resources,
+}) => {
   const { t } = useTranslation();
   const { currentCSV, targetNamespace } = useParams<OperatorInstallStatusPageRouteParams>();
   let loading = true;
@@ -478,7 +483,9 @@ const OperatorInstallStatus: React.FC<OperatorInstallPageProps> = ({ resources }
   );
 };
 
-export const OperatorInstallStatusPage: React.FC<OperatorInstallPageProps> = () => {
+export const OperatorInstallStatusPage: React.FC<React.PropsWithChildren<
+  OperatorInstallPageProps
+>> = () => {
   const { pkg, currentCSV, targetNamespace } = useParams<OperatorInstallStatusPageRouteParams>();
 
   const installPageResources = [

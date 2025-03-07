@@ -13,7 +13,11 @@ type LoadingTaskProps = {
   name: string;
 };
 
-const LoadingTask: React.FC<LoadingTaskProps> = ({ width, height, name }) => {
+const LoadingTask: React.FC<React.PropsWithChildren<LoadingTaskProps>> = ({
+  width,
+  height,
+  name,
+}) => {
   const textRef = React.useRef();
   const truncatedName = React.useMemo(
     () => truncateMiddle(name, { length: 10, truncateEnd: true }),

@@ -22,7 +22,11 @@ type SpotlightProps = {
   interactive?: boolean;
 };
 
-const Spotlight: React.FC<SpotlightProps> = ({ expandableSelector, selector, interactive }) => {
+const Spotlight: React.FC<React.PropsWithChildren<SpotlightProps>> = ({
+  expandableSelector,
+  selector,
+  interactive,
+}) => {
   React.useEffect(() => {
     if (expandableSelector) {
       const expandableElemet = document.querySelector(expandableSelector);

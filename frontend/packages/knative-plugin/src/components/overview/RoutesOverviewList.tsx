@@ -14,7 +14,10 @@ export type RoutesOverviewListProps = {
   resource: K8sResourceKind;
 };
 
-const RoutesOverviewList: React.FC<RoutesOverviewListProps> = ({ ksroutes, resource }) => {
+const RoutesOverviewList: React.FC<React.PropsWithChildren<RoutesOverviewListProps>> = ({
+  ksroutes,
+  resource,
+}) => {
   const { t } = useTranslation();
   return (
     <>

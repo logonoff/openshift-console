@@ -18,7 +18,7 @@ type DynamicResourceLinkListProps = {
   removeSpaceBelow?: boolean;
 };
 
-const DynamicResourceLinkList: React.FC<DynamicResourceLinkListProps> = ({
+const DynamicResourceLinkList: React.FC<React.PropsWithChildren<DynamicResourceLinkListProps>> = ({
   links = [],
   namespace,
   title,

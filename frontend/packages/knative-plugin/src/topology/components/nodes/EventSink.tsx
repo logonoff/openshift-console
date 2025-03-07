@@ -46,7 +46,7 @@ export type EventSinkProps = {
   WithContextMenuProps &
   WithCreateConnectorProps;
 
-const EventSink: React.FC<EventSinkProps> = ({
+const EventSink: React.FC<React.PropsWithChildren<EventSinkProps>> = ({
   element,
   dragNodeRef,
   dndDropRef,

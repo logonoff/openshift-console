@@ -11,7 +11,10 @@ import { calculateRadius } from '@console/shared/';
 
 const colorScale = [blue300.value, blue200.value, blue100.value];
 
-export const PodStatusChart: React.FC<PodStatusChartProps> = ({ statuses, subTitle }) => {
+export const PodStatusChart: React.FC<React.PropsWithChildren<PodStatusChartProps>> = ({
+  statuses,
+  subTitle,
+}) => {
   const [ref, width] = useRefWidth();
   const data = _.map(statuses, (podList, status) => {
     const x = status;

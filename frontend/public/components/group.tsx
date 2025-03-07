@@ -70,7 +70,7 @@ const getImpersonateAction = (
   },
 });
 
-export const GroupKebab: React.FC<GroupKebabProps> = ({ group }) => {
+export const GroupKebab: React.FC<React.PropsWithChildren<GroupKebabProps>> = ({ group }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
@@ -85,7 +85,7 @@ export const GroupKebab: React.FC<GroupKebabProps> = ({ group }) => {
   );
 };
 
-const GroupTableRow: React.FC<RowFunctionArgs<GroupKind>> = ({ obj }) => {
+const GroupTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<GroupKind>>> = ({ obj }) => {
   return (
     <>
       <TableData className={tableColumnClasses[0]}>
@@ -102,7 +102,7 @@ const GroupTableRow: React.FC<RowFunctionArgs<GroupKind>> = ({ obj }) => {
   );
 };
 
-export const GroupList: React.FC = (props) => {
+export const GroupList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const GroupTableHeader = () => {
     return [
@@ -142,7 +142,7 @@ export const GroupList: React.FC = (props) => {
   );
 };
 
-export const GroupPage: React.FC<GroupPageProps> = (props) => {
+export const GroupPage: React.FC<React.PropsWithChildren<GroupPageProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <ListPage
@@ -155,12 +155,12 @@ export const GroupPage: React.FC<GroupPageProps> = (props) => {
   );
 };
 
-const UserKebab: React.FC<UserKebabProps> = ({ group, user }) => {
+const UserKebab: React.FC<React.PropsWithChildren<UserKebabProps>> = ({ group, user }) => {
   const options: KebabOption[] = [removeUser(group, user)];
   return <Kebab options={options} />;
 };
 
-const UsersTable: React.FC<UsersTableProps> = ({ group, users }) => {
+const UsersTable: React.FC<React.PropsWithChildren<UsersTableProps>> = ({ group, users }) => {
   const { t } = useTranslation();
   return _.isEmpty(users) ? (
     <EmptyBox label={t('public~Users')} />
@@ -188,7 +188,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ group, users }) => {
   );
 };
 
-const GroupDetails: React.FC<GroupDetailsProps> = ({ obj }) => {
+const GroupDetails: React.FC<React.PropsWithChildren<GroupDetailsProps>> = ({ obj }) => {
   const { t } = useTranslation();
   const users: string[] = obj.users ? [...obj.users].sort() : [];
   return (
@@ -209,7 +209,7 @@ const GroupDetails: React.FC<GroupDetailsProps> = ({ obj }) => {
   );
 };
 
-const RoleBindingsTab: React.FC<RoleBindingsTabProps> = ({ obj }) => (
+const RoleBindingsTab: React.FC<React.PropsWithChildren<RoleBindingsTabProps>> = ({ obj }) => (
   <RoleBindingsPage
     showTitle={false}
     staticFilters={{ 'role-binding-group': obj.metadata.name }}
@@ -218,7 +218,7 @@ const RoleBindingsTab: React.FC<RoleBindingsTabProps> = ({ obj }) => (
   />
 );
 
-export const GroupDetailsPage: React.FC = (props) => {
+export const GroupDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

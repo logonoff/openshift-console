@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { CopyToClipboard, EmptyBox, SectionHeading } from './utils';
 import * as ITOB from 'istextorbinary';
 
-export const MaskedData: React.FC<{}> = () => {
+export const MaskedData: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
   return (
     <>
@@ -29,7 +29,10 @@ const downloadBinary = (key, value) => {
   saveAs(blob, key);
 };
 
-const DownloadBinaryButton: React.FC<DownloadBinaryButtonProps> = ({ label, value }) => {
+const DownloadBinaryButton: React.FC<React.PropsWithChildren<DownloadBinaryButtonProps>> = ({
+  label,
+  value,
+}) => {
   const { t } = useTranslation();
   return (
     <Button
@@ -44,7 +47,9 @@ const DownloadBinaryButton: React.FC<DownloadBinaryButtonProps> = ({ label, valu
 };
 DownloadBinaryButton.displayName = 'DownloadBinaryButton';
 
-export const ConfigMapBinaryData: React.FC<DownloadValueProps> = ({ data }) => {
+export const ConfigMapBinaryData: React.FC<React.PropsWithChildren<DownloadValueProps>> = ({
+  data,
+}) => {
   const dl = [];
   const { t } = useTranslation();
   Object.keys(data || {})
@@ -66,7 +71,10 @@ export const ConfigMapBinaryData: React.FC<DownloadValueProps> = ({ data }) => {
 };
 ConfigMapBinaryData.displayName = 'ConfigMapBinaryData';
 
-export const ConfigMapData: React.FC<ConfigMapDataProps> = ({ data, label }) => {
+export const ConfigMapData: React.FC<React.PropsWithChildren<ConfigMapDataProps>> = ({
+  data,
+  label,
+}) => {
   const dl = [];
   Object.keys(data || {})
     .sort()
@@ -87,7 +95,12 @@ export const ConfigMapData: React.FC<ConfigMapDataProps> = ({ data, label }) => 
 };
 ConfigMapData.displayName = 'ConfigMapData';
 
-export const SecretValue: React.FC<SecretValueProps> = ({ value, reveal, encoded = true, id }) => {
+export const SecretValue: React.FC<React.PropsWithChildren<SecretValueProps>> = ({
+  value,
+  reveal,
+  encoded = true,
+  id,
+}) => {
   const { t } = useTranslation();
   if (!value) {
     return <span className="text-muted">{t('public~No value')}</span>;
@@ -99,7 +112,10 @@ export const SecretValue: React.FC<SecretValueProps> = ({ value, reveal, encoded
 };
 SecretValue.displayName = 'SecretValue';
 
-const SecretDataRevealButton: React.FC<SecretDataRevealButtonProps> = ({ reveal, onClick }) => {
+const SecretDataRevealButton: React.FC<React.PropsWithChildren<SecretDataRevealButtonProps>> = ({
+  reveal,
+  onClick,
+}) => {
   const { t } = useTranslation();
   return (
     <Button
@@ -124,7 +140,7 @@ const SecretDataRevealButton: React.FC<SecretDataRevealButtonProps> = ({ reveal,
   );
 };
 
-export const SecretData: React.FC<SecretDataProps> = ({ data }) => {
+export const SecretData: React.FC<React.PropsWithChildren<SecretDataProps>> = ({ data }) => {
   const [reveal, setReveal] = React.useState(false);
   const [hasRevealableContent, setHasRevealableContent] = React.useState(false);
   const { t } = useTranslation();

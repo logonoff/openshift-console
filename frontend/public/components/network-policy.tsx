@@ -40,7 +40,9 @@ const menuMultiNetworkActions = [
 
 const tableColumnClasses = ['', '', 'pf-m-hidden pf-m-visible-on-md', Kebab.columnClass];
 
-const NetworkPolicyTableRow: React.FC<RowFunctionArgs<NetworkPolicyKind>> = ({ obj: np }) => {
+const NetworkPolicyTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<NetworkPolicyKind>
+>> = ({ obj: np }) => {
   const isMulti = useIsMultiNetworkPolicy();
 
   const modelKind = isMulti ? MultiNetworkPolicyModel : NetworkPolicyModel;
@@ -185,7 +187,7 @@ type PeerRowProps = {
   mainPodSelector: K8SSelector;
 };
 
-const PeerRow: React.FunctionComponent<PeerRowProps> = ({
+const PeerRow: React.FunctionComponent<React.PropsWithChildren<PeerRowProps>> = ({
   row,
   ports,
   namespace,
@@ -302,7 +304,10 @@ type DetailsProps = {
   flags: FlagsObject;
 };
 
-const Details_: React.FunctionComponent<DetailsProps> = ({ obj: np, flags }) => {
+const Details_: React.FunctionComponent<React.PropsWithChildren<DetailsProps>> = ({
+  obj: np,
+  flags,
+}) => {
   const { t } = useTranslation();
   const isMulti = useIsMultiNetworkPolicy();
   // Note, the logic differs between ingress and egress, see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#networkpolicyspec-v1-networking-k8s-io

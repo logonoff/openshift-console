@@ -20,7 +20,9 @@ const rlValidationSchema = (t: TFunction) =>
     limits: limitsValidationSchema(t),
   });
 
-const ResourceLimitsModalLauncher: React.FC<ResourceLimitsModalLauncherProps> = (props) => {
+const ResourceLimitsModalLauncher: React.FC<React.PropsWithChildren<
+  ResourceLimitsModalLauncherProps
+>> = (props) => {
   const { t } = useTranslation();
 
   const handleSubmit = (values, actions) => {

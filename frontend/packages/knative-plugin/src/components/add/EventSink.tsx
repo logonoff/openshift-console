@@ -41,7 +41,7 @@ interface EventSinkProps {
   kameletSink?: K8sResourceKind;
 }
 
-const EventSink: React.FC<EventSinkProps> = ({
+const EventSink: React.FC<React.PropsWithChildren<EventSinkProps>> = ({
   namespace,
   normalizedSink,
   contextSource,

@@ -73,7 +73,9 @@ interface PipelineVisualizationTaskProp {
 
 const FILTER_ID = 'SvgTaskDropShadowFilterId';
 
-export const PipelineVisualizationTask: React.FC<PipelineVisualizationTaskProp> = ({
+export const PipelineVisualizationTask: React.FC<React.PropsWithChildren<
+  PipelineVisualizationTaskProp
+>> = ({
   pipelineRunName,
   task,
   namespace,
@@ -149,7 +151,7 @@ export const PipelineVisualizationTask: React.FC<PipelineVisualizationTaskProp> 
   }
   return <Firehose resources={resources}>{taskComponent}</Firehose>;
 };
-const TaskComponent: React.FC<TaskProps> = ({
+const TaskComponent: React.FC<React.PropsWithChildren<TaskProps>> = ({
   pipelineRunName,
   namespace,
   task,
@@ -305,7 +307,12 @@ interface SvgTaskStatusProps {
   width: number;
 }
 
-const SvgTaskStatus: React.FC<SvgTaskStatusProps> = ({ steps, x, y, width }) => {
+const SvgTaskStatus: React.FC<React.PropsWithChildren<SvgTaskStatusProps>> = ({
+  steps,
+  x,
+  y,
+  width,
+}) => {
   if (steps.length === 0) {
     return null;
   }

@@ -16,7 +16,7 @@ import { RedExclamationCircleIcon, GreenCheckCircleIcon, BlueInfoCircleIcon } fr
  * <ErrorStatus title={errorMsg} />
  * ```
  */
-export const ErrorStatus: React.FC<StatusComponentProps> = (props) => (
+export const ErrorStatus: React.FC<React.PropsWithChildren<StatusComponentProps>> = (props) => (
   <GenericStatus {...props} Icon={RedExclamationCircleIcon} />
 );
 ErrorStatus.displayName = 'ErrorStatus';
@@ -33,7 +33,7 @@ ErrorStatus.displayName = 'ErrorStatus';
  * <InfoStatus title={infoMsg} />
  * ```
  */
-export const InfoStatus: React.FC<StatusComponentProps> = (props) => (
+export const InfoStatus: React.FC<React.PropsWithChildren<StatusComponentProps>> = (props) => (
   <GenericStatus {...props} Icon={BlueInfoCircleIcon} />
 );
 InfoStatus.displayName = 'InfoStatus';
@@ -50,7 +50,7 @@ InfoStatus.displayName = 'InfoStatus';
  * <ProgressStatus title={progressMsg} />
  * ```
  */
-export const ProgressStatus: React.FC<StatusComponentProps> = (props) => (
+export const ProgressStatus: React.FC<React.PropsWithChildren<StatusComponentProps>> = (props) => (
   <GenericStatus {...props} Icon={InProgressIcon} />
 );
 ProgressStatus.displayName = 'ProgressStatus';
@@ -67,7 +67,7 @@ ProgressStatus.displayName = 'ProgressStatus';
  * <SuccessStatus title={successMsg} />
  * ```
  */
-export const SuccessStatus: React.FC<StatusComponentProps> = (props) => (
+export const SuccessStatus: React.FC<React.PropsWithChildren<StatusComponentProps>> = (props) => (
   <GenericStatus {...props} Icon={GreenCheckCircleIcon} />
 );
 SuccessStatus.displayName = 'SuccessStatus';

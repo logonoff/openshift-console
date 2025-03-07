@@ -9,7 +9,7 @@ type ToggleableFieldBaseProps = CheckboxFieldProps & {
   children: (props) => React.ReactNode;
 };
 
-const ToggleableFieldBase: React.FC<ToggleableFieldBaseProps> = ({
+const ToggleableFieldBase: React.FC<React.PropsWithChildren<ToggleableFieldBaseProps>> = ({
   label,
   formLabel,
   helpText,

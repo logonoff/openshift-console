@@ -37,7 +37,7 @@ type OptionItem = {
   key: string;
 };
 
-const NamespaceDropdown: React.FC = () => {
+const NamespaceDropdown: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
   const createNamespaceOrProjectModal = useCreateNamespaceOrProjectModal();

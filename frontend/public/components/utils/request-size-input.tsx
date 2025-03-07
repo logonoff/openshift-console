@@ -3,7 +3,7 @@ import { Dropdown } from './dropdown';
 import { useTranslation } from 'react-i18next';
 import { NumberSpinner } from './number-spinner';
 
-export const RequestSizeInput: React.FC<RequestSizeInputProps> = ({
+export const RequestSizeInput: React.FC<React.PropsWithChildren<RequestSizeInputProps>> = ({
   children,
   defaultRequestSizeUnit,
   defaultRequestSizeValue,

@@ -85,7 +85,7 @@ const useQueryParametersIfDefined = (handleSearch: (image: string) => void) => {
   }, []);
 };
 
-const ImageSearch: React.FC = () => {
+const ImageSearch: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const inputRef = React.useRef<HTMLInputElement>();
   const { values, setFieldValue, dirty, initialValues, touched } = useFormikContext<FormikValues>();

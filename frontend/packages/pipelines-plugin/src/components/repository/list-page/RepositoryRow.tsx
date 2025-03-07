@@ -24,7 +24,10 @@ import { RepositoryFields, RepositoryLabels } from '../consts';
 import { RepositoryKind } from '../types';
 import { repositoriesTableColumnClasses } from './RepositoryHeader';
 
-const RepositoryRow: React.FC<RowFunctionArgs<RepositoryKind>> = ({ obj, customData }) => {
+const RepositoryRow: React.FC<React.PropsWithChildren<RowFunctionArgs<RepositoryKind>>> = ({
+  obj,
+  customData,
+}) => {
   const {
     metadata: { name, namespace },
   } = obj;

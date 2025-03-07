@@ -13,7 +13,10 @@ interface TrafficSplittingFieldProps {
 
 type Props = FormikProps<FormikValues> & TrafficSplittingFieldProps;
 
-const TrafficSplittingFields: React.FC<Props> = ({ revisionItems, values }) => {
+const TrafficSplittingFields: React.FC<React.PropsWithChildren<Props>> = ({
+  revisionItems,
+  values,
+}) => {
   const { t } = useTranslation();
   const selectedRevisions: string[] = values.trafficSplitting.map(
     (traffic) => traffic.revisionName,

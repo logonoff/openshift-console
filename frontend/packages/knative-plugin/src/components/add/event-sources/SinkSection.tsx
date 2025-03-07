@@ -8,7 +8,10 @@ interface SinkSectionProps {
   fullWidth?: boolean;
 }
 
-const SinkSection: React.FC<SinkSectionProps> = ({ namespace, fullWidth }) => {
+const SinkSection: React.FC<React.PropsWithChildren<SinkSectionProps>> = ({
+  namespace,
+  fullWidth,
+}) => {
   const { t } = useTranslation();
   return (
     <FormSection

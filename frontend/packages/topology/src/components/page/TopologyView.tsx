@@ -101,7 +101,7 @@ export interface TopologyViewProps {
 
 type ComponentProps = TopologyViewProps & StateProps & DispatchProps;
 
-export const ConnectedTopologyView: React.FC<ComponentProps> = ({
+export const ConnectedTopologyView: React.FC<React.PropsWithChildren<ComponentProps>> = ({
   model,
   namespace,
   viewType,

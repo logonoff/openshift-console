@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AsyncComponent } from '@console/internal/components/utils';
 
-const QuickStartCatalogPageAsync: React.FC = () => (
+const QuickStartCatalogPageAsync: React.FC<React.PropsWithChildren<unknown>> = () => (
   <AsyncComponent
     loader={() =>
       import('./QuickStartCatalogPage' /* webpackChunkName: "quick-start" */).then((c) => c.default)

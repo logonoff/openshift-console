@@ -55,7 +55,9 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-export const DaemonSetDetailsList: React.FC<DaemonSetDetailsListProps> = ({ ds }) => {
+export const DaemonSetDetailsList: React.FC<React.PropsWithChildren<DaemonSetDetailsListProps>> = ({
+  ds,
+}) => {
   const { t } = useTranslation();
   return (
     <dl className="co-m-pane__details">
@@ -74,7 +76,9 @@ export const DaemonSetDetailsList: React.FC<DaemonSetDetailsListProps> = ({ ds }
   );
 };
 
-const DaemonSetDetails: React.FC<DaemonSetDetailsProps> = ({ obj: daemonset }) => {
+const DaemonSetDetails: React.FC<React.PropsWithChildren<DaemonSetDetailsProps>> = ({
+  obj: daemonset,
+}) => {
   const { t } = useTranslation();
   const { podData, loaded } = usePodsWatcher(daemonset);
   return (
@@ -117,7 +121,7 @@ const DaemonSetDetails: React.FC<DaemonSetDetailsProps> = ({ obj: daemonset }) =
   );
 };
 
-const EnvironmentPage: React.FC<EnvironmentPageProps> = (props) => (
+const EnvironmentPage: React.FC<React.PropsWithChildren<EnvironmentPageProps>> = (props) => (
   <AsyncComponent
     loader={() => import('./environment.jsx').then((c) => c.EnvironmentPage)}
     {...props}
@@ -125,7 +129,7 @@ const EnvironmentPage: React.FC<EnvironmentPageProps> = (props) => (
 );
 
 const envPath = ['spec', 'template', 'spec', 'containers'];
-const EnvironmentTab: React.FC<EnvironmentTabProps> = (props) => (
+const EnvironmentTab: React.FC<React.PropsWithChildren<EnvironmentTabProps>> = (props) => (
   <EnvironmentPage
     obj={props.obj}
     rawEnvData={props.obj.spec.template.spec}
@@ -134,7 +138,9 @@ const EnvironmentTab: React.FC<EnvironmentTabProps> = (props) => (
   />
 );
 
-const DaemonSetTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj: daemonset }) => {
+const DaemonSetTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<K8sResourceKind>>> = ({
+  obj: daemonset,
+}) => {
   const { t } = useTranslation();
   const resourceKind = referenceFor(daemonset);
   const context = { [resourceKind]: daemonset };
@@ -177,7 +183,7 @@ const DaemonSetTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj: da
   );
 };
 
-export const DaemonSets: React.FC = (props) => {
+export const DaemonSets: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const DaemonSetTableHeader = () => [
     {
@@ -228,15 +234,15 @@ export const DaemonSets: React.FC = (props) => {
   );
 };
 
-export const DaemonSetsPage: React.FC<DaemonSetsPageProps> = (props) => (
+export const DaemonSetsPage: React.FC<React.PropsWithChildren<DaemonSetsPageProps>> = (props) => (
   <ListPage canCreate={true} ListComponent={DaemonSets} kind={kind} {...props} />
 );
 
-const DaemonSetPods: React.FC<DaemonSetPodsProps> = (props) => (
+const DaemonSetPods: React.FC<React.PropsWithChildren<DaemonSetPodsProps>> = (props) => (
   <PodsComponent {...props} showNodes />
 );
 
-export const DaemonSetsDetailsPage: React.FC = (props) => {
+export const DaemonSetsDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const prometheusIsAvailable = usePrometheusGate();
   const customActionMenu = (kindObj, obj) => {
     const resourceKind = referenceForModel(kindObj);

@@ -17,7 +17,7 @@ type TriggerLastBuildButtonProps = {
   impersonate?;
 };
 
-const TriggerLastBuildButton: React.FC<TriggerLastBuildButtonProps> = ({
+const TriggerLastBuildButton: React.FC<React.PropsWithChildren<TriggerLastBuildButtonProps>> = ({
   buildRuns,
   resource,
   namespace,

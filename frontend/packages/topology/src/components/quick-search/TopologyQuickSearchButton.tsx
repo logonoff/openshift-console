@@ -7,7 +7,9 @@ interface QuickSearchButtonProps {
   onClick: () => void;
 }
 
-const TopologyQuickSearchButton: React.FC<QuickSearchButtonProps> = ({ onClick }) => {
+const TopologyQuickSearchButton: React.FC<React.PropsWithChildren<QuickSearchButtonProps>> = ({
+  onClick,
+}) => {
   const { t } = useTranslation();
 
   return (

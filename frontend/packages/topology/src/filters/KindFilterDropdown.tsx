@@ -21,7 +21,7 @@ type KindFilterDropdownProps = {
   opened?: boolean; // Use only for testing
 };
 
-const KindFilterDropdown: React.FC<KindFilterDropdownProps> = ({
+const KindFilterDropdown: React.FC<React.PropsWithChildren<KindFilterDropdownProps>> = ({
   filters,
   supportedKinds,
   onChange,

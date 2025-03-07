@@ -15,7 +15,10 @@ type PubSubSubscriberProps = {
   cancel?: () => void;
 };
 
-const PubSubSubscriber: React.FC<PubSubSubscriberProps> = ({ autoSelect = true, cancel }) => {
+const PubSubSubscriber: React.FC<React.PropsWithChildren<PubSubSubscriberProps>> = ({
+  autoSelect = true,
+  cancel,
+}) => {
   const { t } = useTranslation();
   const { values, setFieldValue, setFieldTouched, validateForm, setStatus } = useFormikContext<
     FormikValues
@@ -25,7 +28,7 @@ const PubSubSubscriber: React.FC<PubSubSubscriberProps> = ({ autoSelect = true, 
   const autocompleteFilter = (strText, item): boolean => fuzzy(strText, item?.props?.name);
 
   const onSubscriberChange = React.useCallback(
-    (selectedValue, target) => {
+    (selectedValue: any, target: any) => {
       const modelResource = target?.props?.model;
       if (selectedValue) {
         setFieldTouched('formData.spec.subscriber.ref.name', true);

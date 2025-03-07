@@ -75,7 +75,7 @@ type OperatorBackedServiceProps = {
   WithContextMenuProps &
   StateProps;
 
-const OperatorBackedService: React.FC<OperatorBackedServiceProps> = ({
+const OperatorBackedService: React.FC<React.PropsWithChildren<OperatorBackedServiceProps>> = ({
   serviceBinding,
   element,
   ...rest

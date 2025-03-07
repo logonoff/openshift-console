@@ -14,11 +14,9 @@ export interface PipelineBuildDecoratorTooltipProps {
   taskRuns: TaskRunKind[];
 }
 
-const PipelineBuildDecoratorTooltip: React.FC<PipelineBuildDecoratorTooltipProps> = ({
-  pipelineRun,
-  status,
-  taskRuns,
-}) => {
+const PipelineBuildDecoratorTooltip: React.FC<React.PropsWithChildren<
+  PipelineBuildDecoratorTooltipProps
+>> = ({ pipelineRun, status, taskRuns }) => {
   const { t } = useTranslation();
   const taskStatus = useTaskStatus(pipelineRun, taskRuns);
   if (!pipelineRun || !status) {

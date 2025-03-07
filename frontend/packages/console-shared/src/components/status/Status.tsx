@@ -3,7 +3,7 @@ import { StatusComponent as Status } from '@console/dynamic-plugin-sdk';
 
 export { StatusComponent as Status } from '@console/dynamic-plugin-sdk';
 
-export const StatusIcon: React.FC<StatusIconProps> = ({ status }) => (
+export const StatusIcon: React.FC<React.PropsWithChildren<StatusIconProps>> = ({ status }) => (
   <Status status={status} iconOnly />
 );
 

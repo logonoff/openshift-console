@@ -29,7 +29,7 @@ interface DispatchProps {
 
 type Props = NamespaceBarApplicationSelectorProps & StateProps & DispatchProps;
 
-const NamespaceBarApplicationSelector: React.FC<Props> = ({
+const NamespaceBarApplicationSelector: React.FC<React.PropsWithChildren<Props>> = ({
   namespace,
   application,
   onChange,

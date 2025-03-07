@@ -13,7 +13,7 @@ type TektonTaskRunLogProps = {
   setCurrentLogsGetter: (getter: () => string) => void;
 };
 
-export const TektonTaskRunLog: React.FC<TektonTaskRunLogProps> = ({
+export const TektonTaskRunLog: React.FC<React.PropsWithChildren<TektonTaskRunLogProps>> = ({
   taskRun,
   setCurrentLogsGetter,
 }) => {

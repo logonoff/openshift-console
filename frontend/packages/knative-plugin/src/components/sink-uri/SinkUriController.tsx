@@ -8,7 +8,7 @@ type SinkUriControllerProps = {
   eventSourceList: K8sResourceKind[];
 };
 
-const SinkUriController: React.FC<SinkUriControllerProps> = ({
+const SinkUriController: React.FC<React.PropsWithChildren<SinkUriControllerProps>> = ({
   source,
   eventSourceList,
   ...props

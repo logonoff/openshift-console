@@ -13,7 +13,7 @@ import { tableColumnClasses } from './revision-table';
 const revisionReference = referenceForModel(RevisionModel);
 const serviceReference = referenceForModel(ServiceModel);
 
-const RevisionRow: React.FC<RowFunctionArgs<RevisionKind>> = ({ obj }) => {
+const RevisionRow: React.FC<React.PropsWithChildren<RowFunctionArgs<RevisionKind>>> = ({ obj }) => {
   const readyCondition = obj.status
     ? getCondition(obj.status.conditions, ConditionTypes.Ready)
     : null;

@@ -12,7 +12,7 @@ import { FieldSet, FormField } from './fields';
 import { UiSchemaOptionsWithDependency } from './types';
 import { useSchemaLabel } from './utils';
 
-export const AtomicFieldTemplate: React.FC<FieldTemplateProps> = ({
+export const AtomicFieldTemplate: React.FC<React.PropsWithChildren<FieldTemplateProps>> = ({
   children,
   id,
   label,
@@ -37,9 +37,9 @@ export const AtomicFieldTemplate: React.FC<FieldTemplateProps> = ({
   );
 };
 
-const AdvancedProperties: React.FC<Pick<ObjectFieldTemplateProps, 'properties'>> = ({
-  properties,
-}) => {
+const AdvancedProperties: React.FC<React.PropsWithChildren<
+  Pick<ObjectFieldTemplateProps, 'properties'>
+>> = ({ properties }) => {
   const { t } = useTranslation();
   return (
     <ExpandCollapse
@@ -50,7 +50,7 @@ const AdvancedProperties: React.FC<Pick<ObjectFieldTemplateProps, 'properties'>>
     </ExpandCollapse>
   );
 };
-export const FieldTemplate: React.FC<FieldTemplateProps> = (props) => {
+export const FieldTemplate: React.FC<React.PropsWithChildren<FieldTemplateProps>> = (props) => {
   const { hidden, schema = {}, children, uiSchema = {}, formContext = {} } = props;
   const type = getSchemaType(schema);
   const [dependencyMet, setDependencyMet] = React.useState(true);
@@ -75,7 +75,7 @@ export const FieldTemplate: React.FC<FieldTemplateProps> = (props) => {
   return isGroup ? children : <AtomicFieldTemplate {...props} />;
 };
 
-export const ObjectFieldTemplate: React.FC<ObjectFieldTemplateProps> = ({
+export const ObjectFieldTemplate: React.FC<React.PropsWithChildren<ObjectFieldTemplateProps>> = ({
   idSchema,
   properties,
   required,
@@ -103,7 +103,7 @@ export const ObjectFieldTemplate: React.FC<ObjectFieldTemplateProps> = ({
   ) : null;
 };
 
-export const ArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = ({
+export const ArrayFieldTemplate: React.FC<React.PropsWithChildren<ArrayFieldTemplateProps>> = ({
   idSchema,
   items,
   onAddClick,
@@ -158,7 +158,9 @@ export const ArrayFieldTemplate: React.FC<ArrayFieldTemplateProps> = ({
   );
 };
 
-export const ErrorTemplate: React.FC<{ errors: string[] }> = ({ errors }) => {
+export const ErrorTemplate: React.FC<React.PropsWithChildren<{ errors: string[] }>> = ({
+  errors,
+}) => {
   const { t } = useTranslation();
   return (
     <Alert

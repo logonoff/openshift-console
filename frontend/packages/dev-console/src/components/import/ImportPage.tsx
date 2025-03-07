@@ -31,7 +31,7 @@ const ImportFlows = (t: TFunction): { [name: string]: ImportData } => ({
   },
 });
 
-const ImportPage: React.FunctionComponent = () => {
+const ImportPage: React.FunctionComponent<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const location = useLocation();

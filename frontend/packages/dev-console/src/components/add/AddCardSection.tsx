@@ -20,7 +20,7 @@ type AddCardSectionProps = {
 
 const COLUMN_WIDTH = 300;
 
-const AddCardSection: React.FC<AddCardSectionProps> = ({
+const AddCardSection: React.FC<React.PropsWithChildren<AddCardSectionProps>> = ({
   namespace,
   addActionExtensions,
   addActionGroupExtensions,

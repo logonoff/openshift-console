@@ -71,7 +71,7 @@ const getTop3Groups = (
   return groupIDs.sort((a, b) => groupStatuses.indexOf(a) - groupStatuses.indexOf(b)).slice(0, 3);
 };
 
-export const InventoryItem: React.FC<InventoryItemProps> = React.memo(
+export const InventoryItem: React.FC<React.PropsWithChildren<InventoryItemProps>> = React.memo(
   ({
     isLoading,
     title,
@@ -138,7 +138,7 @@ export const InventoryItem: React.FC<InventoryItemProps> = React.memo(
   },
 );
 
-export const Status: React.FC<StatusProps> = ({ groupID, count }) => {
+export const Status: React.FC<React.PropsWithChildren<StatusProps>> = ({ groupID, count }) => {
   const groupExtensions = useExtensions<DashboardsInventoryItemGroup>(
     isDashboardsInventoryItemGroup,
   );
@@ -162,7 +162,7 @@ export const Status: React.FC<StatusProps> = ({ groupID, count }) => {
   return <InventoryItemStatus count={count} icon={groupIcon} />;
 };
 
-const StatusLink: React.FC<StatusLinkProps> = ({
+const StatusLink: React.FC<React.PropsWithChildren<StatusLinkProps>> = ({
   groupID,
   count,
   statusIDs,
@@ -199,19 +199,17 @@ const StatusLink: React.FC<StatusLinkProps> = ({
   return <InventoryItemStatus count={count} icon={groupIcon} linkTo={to} />;
 };
 
-const ResourceTitleComponent: React.FC<ResourceTitleComponentComponent> = ({
-  kind,
-  namespace,
-  children,
-  basePath,
-  dataTest,
-}) => (
+const ResourceTitleComponent: React.FC<React.PropsWithChildren<
+  ResourceTitleComponentComponent
+>> = ({ kind, namespace, children, basePath, dataTest }) => (
   <Link to={basePath || resourcePathFromModel(kind, null, namespace)} data-test={dataTest}>
     {children}
   </Link>
 );
 
-export const ResourceInventoryItem: React.FC<ResourceInventoryItemProps> = ({
+export const ResourceInventoryItem: React.FC<React.PropsWithChildren<
+  ResourceInventoryItemProps
+>> = ({
   kind,
   TitleComponent,
   title,
@@ -228,7 +226,7 @@ export const ResourceInventoryItem: React.FC<ResourceInventoryItemProps> = ({
   dataTest,
 }) => {
   const { t } = useTranslation();
-  let Title: React.ComponentType = React.useCallback(
+  let Title: React.ComponentType<React.PropsWithChildren<unknown>> = React.useCallback(
     (props) => (
       <ResourceTitleComponent
         kind={kind}
@@ -332,8 +330,8 @@ type InventoryItemProps = {
   count: number;
   children?: React.ReactNode;
   error?: boolean;
-  TitleComponent?: React.ComponentType<{}>;
-  ExpandedComponent?: React.ComponentType<{}>;
+  TitleComponent?: React.ComponentType<React.PropsWithChildren<{}>>;
+  ExpandedComponent?: React.ComponentType<React.PropsWithChildren<{}>>;
   dataTest?: string;
 };
 

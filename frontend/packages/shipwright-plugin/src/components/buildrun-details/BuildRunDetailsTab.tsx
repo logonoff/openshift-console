@@ -12,7 +12,9 @@ type BuildRunDetailsTabProps = {
   obj: BuildRun;
 };
 
-const BuildRunDetailsTab: React.FC<BuildRunDetailsTabProps> = ({ obj: buildRun }) => {
+const BuildRunDetailsTab: React.FC<React.PropsWithChildren<BuildRunDetailsTabProps>> = ({
+  obj: buildRun,
+}) => {
   const { t } = useTranslation();
 
   return (

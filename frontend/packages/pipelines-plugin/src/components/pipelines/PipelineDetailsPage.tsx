@@ -20,7 +20,7 @@ import { useDevPipelinesBreadcrumbsFor, useLatestPipelineRun } from './hooks';
 import { usePipelineMetricsLevel } from './utils/pipeline-operator';
 import { usePipelineTriggerTemplateNames } from './utils/triggers';
 
-const PipelineDetailsPage: React.FC<DetailsPageProps> = (props) => {
+const PipelineDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const { name, namespace, kindObj } = props;
   const templateNames = usePipelineTriggerTemplateNames(name, namespace) || [];
   const breadcrumbsFor = useDevPipelinesBreadcrumbsFor(kindObj);

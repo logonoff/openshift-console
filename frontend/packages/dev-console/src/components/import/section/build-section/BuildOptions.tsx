@@ -39,7 +39,10 @@ export const usePipelineAccessReview = (): boolean => {
   return canListPipelines && canCreatePipelines;
 };
 
-export const BuildOption: React.FC<BuildOptionProps> = ({ isDisabled, importStrategy }) => {
+export const BuildOption: React.FC<React.PropsWithChildren<BuildOptionProps>> = ({
+  isDisabled,
+  importStrategy,
+}) => {
   const { t } = useTranslation();
   const { setFieldValue } = useFormikContext<FormikValues>();
   const isBuildV1Enabled = useFlag(FLAG_OPENSHIFT_BUILDCONFIG);

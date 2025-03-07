@@ -9,7 +9,9 @@ import { BareMetalHostKind } from '../../../types';
 
 import './status-activity.scss';
 
-const BareMetalStatusActivity: React.FC<BareMetalStatusActivityProps> = ({ resource }) => (
+const BareMetalStatusActivity: React.FC<React.PropsWithChildren<BareMetalStatusActivityProps>> = ({
+  resource,
+}) => (
   <ActivityItem>
     {getHostPowerStatus(resource)}{' '}
     <ResourceLink

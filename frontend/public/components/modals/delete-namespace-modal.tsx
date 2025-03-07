@@ -22,7 +22,7 @@ import { usePromiseHandler } from '@console/shared/src/hooks/promise-handler';
 import { getActiveNamespace } from '../../reducers/ui';
 import { setActiveNamespace, formatNamespaceRoute } from '../../actions/ui';
 
-export const DeleteNamespaceModal: React.FC<DeleteNamespaceModalProps> = ({
+export const DeleteNamespaceModal: React.FC<React.PropsWithChildren<DeleteNamespaceModalProps>> = ({
   cancel,
   close,
   kind,

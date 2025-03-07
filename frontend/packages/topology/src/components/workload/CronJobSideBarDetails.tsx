@@ -12,7 +12,9 @@ type CronJobSideBarDetailsProps = {
   cronjob: CronJobKind;
 };
 
-const CronJobSideBarDetails: React.FC<CronJobSideBarDetailsProps> = ({ cronjob }) => {
+const CronJobSideBarDetails: React.FC<React.PropsWithChildren<CronJobSideBarDetailsProps>> = ({
+  cronjob,
+}) => {
   const { t } = useTranslation();
 
   return (

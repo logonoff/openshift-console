@@ -15,8 +15,8 @@ export const withUserSettingsCompatibility = <
   defaultvalue?: T,
   sync: boolean = false,
 ) => (
-  WrappedComponent: React.ComponentType<Props>,
-): React.FC<Omit<Props, keyof WithUserSettingsCompatibilityProps<T>>> => {
+  WrappedComponent: React.ComponentType<React.PropsWithChildren<Props>>,
+): React.FC<React.PropsWithChildren<Omit<Props, keyof WithUserSettingsCompatibilityProps<T>>>> => {
   const Component = (props: Props) => {
     const [state, setState, loaded] = useUserSettingsCompatibility(
       configStorageKey,

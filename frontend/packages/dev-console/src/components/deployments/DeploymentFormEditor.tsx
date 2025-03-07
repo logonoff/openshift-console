@@ -15,10 +15,9 @@ export type EditDeploymentFormEditorProps = {
   resourceObj: K8sResourceKind;
 };
 
-const EditDeploymentFormEditor: React.FC<EditDeploymentFormEditorProps> = ({
-  resourceType,
-  resourceObj,
-}) => {
+const EditDeploymentFormEditor: React.FC<React.PropsWithChildren<
+  EditDeploymentFormEditorProps
+>> = ({ resourceType, resourceObj }) => {
   const [showYAMLAlert, setShowYAMLAlert] = React.useState<boolean>(true);
   return (
     <>

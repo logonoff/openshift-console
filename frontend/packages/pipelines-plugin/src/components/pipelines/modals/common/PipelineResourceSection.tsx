@@ -34,7 +34,7 @@ const reduceToSections = (
   };
 };
 
-const PipelineResourceSection: React.FC = () => {
+const PipelineResourceSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const [{ value: resources }] = useField<PipelineModalFormResource[]>('resources');
 

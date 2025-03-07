@@ -8,11 +8,9 @@ type TopologyGroupResourceListProps = {
   linkForResource?: (obj: K8sResourceKind) => React.ReactElement;
 };
 
-const TopologyGroupResourceList: React.FC<TopologyGroupResourceListProps> = ({
-  resources,
-  releaseNamespace,
-  linkForResource,
-}) => {
+const TopologyGroupResourceList: React.FC<React.PropsWithChildren<
+  TopologyGroupResourceListProps
+>> = ({ resources, releaseNamespace, linkForResource }) => {
   return (
     <ul className="list-group">
       {resources

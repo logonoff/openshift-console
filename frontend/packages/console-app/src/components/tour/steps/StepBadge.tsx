@@ -7,7 +7,10 @@ type StepBadgeProps = {
   totalSteps: number;
 };
 
-const StepBadge: React.FC<StepBadgeProps> = ({ stepNumber, totalSteps }) => {
+const StepBadge: React.FC<React.PropsWithChildren<StepBadgeProps>> = ({
+  stepNumber,
+  totalSteps,
+}) => {
   const { t } = useTranslation();
   return (
     <span className="co-step-badge">

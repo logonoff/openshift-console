@@ -18,7 +18,11 @@ type StateProps = {
 
 type Props = StateProps & DispatchProps & { className?: string };
 
-const ClouldShellMastheadAction: React.FC<Props> = ({ onClick, className, open }) => {
+const ClouldShellMastheadAction: React.FC<React.PropsWithChildren<Props>> = ({
+  onClick,
+  className,
+  open,
+}) => {
   const terminalAvailable = useCloudShellAvailable();
   const { t } = useTranslation();
   if (!terminalAvailable) {

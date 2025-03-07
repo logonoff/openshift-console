@@ -78,7 +78,9 @@ class PodsComponentWithTranslation extends React.PureComponent<
 
 export const PodsComponent = withTranslation()(PodsComponentWithTranslation);
 
-type NavFactory = { [name: string]: (c?: React.ComponentType<any>) => Page };
+type NavFactory = {
+  [name: string]: (c?: React.ComponentType<React.PropsWithChildren<any>>) => Page;
+};
 export const navFactory: NavFactory = {
   details: (component) => ({
     href: '',
@@ -178,7 +180,7 @@ export const navFactory: NavFactory = {
   }),
 };
 
-export const NavBar: React.FC<NavBarProps> = ({ pages }) => {
+export const NavBar: React.FC<React.PropsWithChildren<NavBarProps>> = ({ pages }) => {
   const { t } = useTranslation();
   const { telemetryPrefix, titlePrefix } = React.useContext(PageTitleContext);
   const location = useLocation();
@@ -390,7 +392,7 @@ export const HorizontalNav = React.memo((props: HorizontalNavProps) => {
  * Component consumed by the dynamic plugin SDK
  * Changes to the underlying component has to support props used in this facade
  */
-export const HorizontalNavFacade: React.FC<HorizontalNavFacadeProps> = ({
+export const HorizontalNavFacade: React.FC<React.PropsWithChildren<HorizontalNavFacadeProps>> = ({
   resource,
   pages,
   customData,
@@ -427,7 +429,7 @@ export type PageComponentProps<R extends K8sResourceCommon = K8sResourceKind> = 
 };
 
 export type Page<D = any> = Partial<Omit<NavPage, 'component'>> & {
-  component?: React.ComponentType<PageComponentProps & D>;
+  component?: React.ComponentType<React.PropsWithChildren<PageComponentProps & D>>;
   badge?: React.ReactNode;
   pageData?: D;
   nameKey?: string;
@@ -448,7 +450,7 @@ export type HorizontalNavProps = Omit<HorizontalNavFacadeProps, 'pages' | 'resou
   pagesFor?: (obj: K8sResourceKind) => Page[];
   resourceKeys?: string[];
   hideNav?: boolean;
-  EmptyMsg?: React.ComponentType<any>;
+  EmptyMsg?: React.ComponentType<React.PropsWithChildren<any>>;
   customData?: any;
   noStatusBox?: boolean;
 };

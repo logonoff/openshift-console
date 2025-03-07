@@ -13,7 +13,9 @@ import {
 } from '@console/shared';
 import { serverlessTab } from '../../utils/serverless-tab-utils';
 
-const RevisionDetailsPage: React.FC<React.ComponentProps<typeof DetailsPage>> = (props) => {
+const RevisionDetailsPage: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof DetailsPage>
+>> = (props) => {
   const location = useLocation();
   const params = useParams();
   const { kindObj } = props;

@@ -21,9 +21,9 @@ type NetworkPolicyConditionalSelectorProps = {
   dataTest?: string;
 };
 
-export const NetworkPolicyConditionalSelector: React.FunctionComponent<NetworkPolicyConditionalSelectorProps> = (
-  props,
-) => {
+export const NetworkPolicyConditionalSelector: React.FunctionComponent<React.PropsWithChildren<
+  NetworkPolicyConditionalSelectorProps
+>> = (props) => {
   const { t } = useTranslation();
   const { selectorType, helpText, values, onChange, dataTest } = props;
   const [isVisible, setVisible] = React.useState(values.length > 0);

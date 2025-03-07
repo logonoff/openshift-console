@@ -6,7 +6,7 @@ type StepContentProps = {
   children: StepContentType;
 };
 
-const StepContent: React.FC<StepContentProps> = ({ children }) => (
+const StepContent: React.FC<React.PropsWithChildren<StepContentProps>> = ({ children }) => (
   <div className="co-step-content">{children}</div>
 );
 

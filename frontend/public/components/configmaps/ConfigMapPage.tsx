@@ -8,7 +8,7 @@ import { StatusBox } from '../utils/status-box';
 import ConfigMapForm from './ConfigMapForm';
 import { ConfigMap } from './types';
 
-const ConfigMapPage: React.FC = () => {
+const ConfigMapPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace, name } = useParams();
   const isCreateFlow: boolean = !name;

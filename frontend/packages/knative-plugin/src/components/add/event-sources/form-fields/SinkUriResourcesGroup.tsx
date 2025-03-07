@@ -5,7 +5,10 @@ import { sourceSinkType } from '../../import-types';
 import SinkResources, { SinkResourcesProps } from './SinkResources';
 import SinkUri from './SinkUri';
 
-const SinkUriResourcesGroup: React.FC<SinkResourcesProps> = ({ namespace, isMoveSink }) => {
+const SinkUriResourcesGroup: React.FC<React.PropsWithChildren<SinkResourcesProps>> = ({
+  namespace,
+  isMoveSink,
+}) => {
   const { t } = useTranslation();
   return (
     <RadioGroupField

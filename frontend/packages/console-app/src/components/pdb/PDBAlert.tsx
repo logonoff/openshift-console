@@ -13,7 +13,7 @@ export interface PDBAlertProps {
   namespace: string;
 }
 
-export const PDBAlert: React.FC<PDBAlertProps> = ({ namespace }) => {
+export const PDBAlert: React.FC<React.PropsWithChildren<PDBAlertProps>> = ({ namespace }) => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
 

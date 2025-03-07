@@ -12,9 +12,9 @@ import { BuildOptions, GitImportFormData, SourceToImageFormProps } from './impor
 import { BuildSection } from './section/build-section/BuildSection';
 import { DeploySection } from './section/deploy-section/DeploySection';
 
-const SourceToImageForm: React.FC<
+const SourceToImageForm: React.FC<React.PropsWithChildren<
   FormikProps<FormikValues & GitImportFormData> & SourceToImageFormProps
-> = ({
+>> = ({
   values,
   errors,
   handleSubmit,

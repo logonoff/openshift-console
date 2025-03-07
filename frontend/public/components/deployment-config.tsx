@@ -215,7 +215,7 @@ export const DeploymentConfigDetailsList = ({ dc }) => {
   );
 };
 
-export const DeploymentConfigDeprecationAlert: React.FC = () => {
+export const DeploymentConfigDeprecationAlert: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <Alert
@@ -244,7 +244,9 @@ export const DeploymentConfigDeprecationAlert: React.FC = () => {
   );
 };
 
-export const DeploymentConfigsDetails: React.FC<{ obj: K8sResourceKind }> = ({ obj: dc }) => {
+export const DeploymentConfigsDetails: React.FC<React.PropsWithChildren<{
+  obj: K8sResourceKind;
+}>> = ({ obj: dc }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -300,7 +302,9 @@ const environmentComponent = (props) => (
   />
 );
 
-const ReplicationControllersTab: React.FC<ReplicationControllersTabProps> = ({ obj }) => {
+const ReplicationControllersTab: React.FC<React.PropsWithChildren<
+  ReplicationControllersTabProps
+>> = ({ obj }) => {
   const {
     metadata: { namespace, name },
   } = obj;
@@ -331,7 +335,10 @@ const pages = [
   navFactory.events(ResourceEventStream),
 ];
 
-const DetailsActionMenu: React.FC<DetailsActionMenuProps> = ({ kindObj, obj }) => {
+const DetailsActionMenu: React.FC<React.PropsWithChildren<DetailsActionMenuProps>> = ({
+  kindObj,
+  obj,
+}) => {
   const resourceKind = referenceForModel(kindObj);
   const context = { [resourceKind]: obj };
 
@@ -348,7 +355,7 @@ const DetailsActionMenu: React.FC<DetailsActionMenuProps> = ({ kindObj, obj }) =
   );
 };
 
-export const DeploymentConfigsDetailsPage: React.FC = (props) => {
+export const DeploymentConfigsDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const customActionMenu = (kindObj, obj) => {
     return <DetailsActionMenu kindObj={kindObj} obj={obj} />;
   };
@@ -368,10 +375,9 @@ DeploymentConfigsDetailsPage.displayName = 'DeploymentConfigsDetailsPage';
 
 const kind = 'DeploymentConfig';
 
-const DeploymentConfigTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({
-  obj,
-  ...props
-}) => {
+const DeploymentConfigTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<K8sResourceKind>
+>> = ({ obj, ...props }) => {
   const resourceKind = referenceFor(obj);
   const context = { [resourceKind]: obj };
   const customActionMenu = <LazyActionMenu context={context} />;
@@ -383,7 +389,7 @@ const DeploymentConfigTableHeader = () => {
 };
 DeploymentConfigTableHeader.displayName = 'DeploymentConfigTableHeader';
 
-export const DeploymentConfigsList: React.FC = (props) => {
+export const DeploymentConfigsList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table
@@ -397,7 +403,9 @@ export const DeploymentConfigsList: React.FC = (props) => {
 };
 DeploymentConfigsList.displayName = 'DeploymentConfigsList';
 
-export const DeploymentConfigsPage: React.FC<DeploymentConfigsPageProps> = (props) => {
+export const DeploymentConfigsPage: React.FC<React.PropsWithChildren<
+  DeploymentConfigsPageProps
+>> = (props) => {
   const createProps = {
     to: `/k8s/ns/${props.namespace || 'default'}/deploymentconfigs/~new/form`,
   };

@@ -203,7 +203,7 @@ export const numberOfIncompleteReceivers = (config: AlertmanagerConfig): number 
     : numIncompleteReceivers;
 };
 
-const RoutingLabels: React.FC<RoutingLabelsProps> = ({ data }) => {
+const RoutingLabels: React.FC<React.PropsWithChildren<RoutingLabelsProps>> = ({ data }) => {
   const { labels, matchers } = data;
   const lbls = _.map(labels || {}, (value, key) => `${key}=${value}`);
   const values = [...lbls, ...(matchers ?? [])];
@@ -238,14 +238,16 @@ const deleteReceiver = (
   });
 };
 
-const ReceiverTableRow: React.FC<RowFunctionArgs<
-  AlertmanagerReceiver,
-  {
-    routingLabelsByReceivers: RoutingLabelsByReceivers[];
-    defaultReceiverName: string;
-    config: any;
-    secret: any;
-  }
+const ReceiverTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<
+    AlertmanagerReceiver,
+    {
+      routingLabelsByReceivers: RoutingLabelsByReceivers[];
+      defaultReceiverName: string;
+      config: any;
+      secret: any;
+    }
+  >
 >> = ({
   obj: receiver,
   customData: { routingLabelsByReceivers, defaultReceiverName, config, secret },
@@ -334,7 +336,7 @@ interface ReceiversTableProps {
   filterValue?: string;
 }
 
-const ReceiversTable: React.FC<ReceiversTableProps> = (props) => {
+const ReceiversTable: React.FC<React.PropsWithChildren<ReceiversTableProps>> = (props) => {
   const { secret, config, filterValue } = props;
   const { route } = config;
   const { receiver: defaultReceiverName, routes } = route;
@@ -399,7 +401,7 @@ const ReceiversTable: React.FC<ReceiversTableProps> = (props) => {
 };
 ReceiversTable.displayName = 'ReceiversTable';
 
-const ReceiversEmptyState: React.FC<{}> = () => {
+const ReceiversEmptyState: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
   return (
     <EmptyState
@@ -479,7 +481,9 @@ const Receivers = ({ secret, config }: ReceiversProps) => {
   );
 };
 
-const AlertmanagerConfiguration: React.FC<AlertmanagerConfigurationProps> = ({ obj: secret }) => {
+const AlertmanagerConfiguration: React.FC<React.PropsWithChildren<
+  AlertmanagerConfigurationProps
+>> = ({ obj: secret }) => {
   const { t } = useTranslation();
   const { config, errorMessage } = getAlertmanagerConfig(secret);
 
@@ -504,23 +508,23 @@ const AlertmanagerConfiguration: React.FC<AlertmanagerConfigurationProps> = ({ o
   );
 };
 
-const AlertmanagerConfigWrapper: React.FC<AlertmanagerConfigWrapperProps> = React.memo(
-  ({ obj, ...props }) => {
-    const { t } = useTranslation();
-    return (
-      <>
-        <Helmet>
-          <title>{t('public~Alerting')}</title>
-        </Helmet>
-        <StatusBox {...obj}>
-          <AlertmanagerConfiguration {...props} obj={obj.data} />
-        </StatusBox>
-      </>
-    );
-  },
-);
+const AlertmanagerConfigWrapper: React.FC<React.PropsWithChildren<
+  AlertmanagerConfigWrapperProps
+>> = React.memo(({ obj, ...props }) => {
+  const { t } = useTranslation();
+  return (
+    <>
+      <Helmet>
+        <title>{t('public~Alerting')}</title>
+      </Helmet>
+      <StatusBox {...obj}>
+        <AlertmanagerConfiguration {...props} obj={obj.data} />
+      </StatusBox>
+    </>
+  );
+});
 
-export const AlertmanagerConfig: React.FC = () => {
+export const AlertmanagerConfig: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
 
   const configPath = 'alertmanagerconfig';

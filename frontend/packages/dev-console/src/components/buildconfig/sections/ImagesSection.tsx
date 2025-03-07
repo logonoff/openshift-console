@@ -27,14 +27,14 @@ export type ImagesSectionFormData = {
   };
 };
 
-const ImageOption: React.FC<{
+const ImageOption: React.FC<React.PropsWithChildren<{
   fieldPrefix: string;
   label: string;
   fallbackTitle: string;
   items: Record<string, string>;
   dataTest: string;
   required?: boolean;
-}> = ({ fieldPrefix, label, fallbackTitle, items, dataTest, required }) => {
+}>> = ({ fieldPrefix, label, fallbackTitle, items, dataTest, required }) => {
   const { t } = useTranslation();
   const [{ value: type }] = useField<ImageOptionType>(`${fieldPrefix}.type`);
 
@@ -81,7 +81,7 @@ const ImageOption: React.FC<{
   );
 };
 
-const ImagesSection: React.FC<{}> = () => {
+const ImagesSection: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
   const [{ value: strategyType }] = useField<BuildStrategyType>('formData.images.strategyType');
 

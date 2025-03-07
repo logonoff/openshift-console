@@ -22,11 +22,9 @@ type PipelineStartButtonProps = {
   namespace: string;
 };
 
-const PipelineStartButton: React.FC<PipelineStartButtonProps & StateProps> = ({
-  pipeline,
-  namespace,
-  impersonate,
-}) => {
+const PipelineStartButton: React.FC<React.PropsWithChildren<
+  PipelineStartButtonProps & StateProps
+>> = ({ pipeline, namespace, impersonate }) => {
   const { t } = useTranslation();
   const openPipelineModal = () =>
     startPipelineModal({

@@ -16,7 +16,9 @@ interface HealthCheckProbeProps {
   probeType: string;
 }
 
-const HealthCheckProbe: React.FC<HealthCheckProbeProps> = ({ probeType }) => {
+const HealthCheckProbe: React.FC<React.PropsWithChildren<HealthCheckProbeProps>> = ({
+  probeType,
+}) => {
   const { t } = useTranslation();
   const {
     values: { healthChecks },

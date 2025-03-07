@@ -28,7 +28,7 @@ class ResizeObserver {
 
 window.ResizeObserver = ResizeObserver;
 
-const mockContainerField: React.FC = () => {
+const mockContainerField: React.FC<React.PropsWithChildren<unknown>> = () => {
   return <div>Container: xyz</div>;
 };
 
@@ -49,7 +49,9 @@ jest.mock(
   }),
 );
 
-const mockedContainerField = ContainerField as jest.Mock<React.FC>;
+const mockedContainerField = ContainerField as jest.Mock<
+  React.FC<React.PropsWithChildren<unknown>>
+>;
 
 const handleSubmit = jest.fn();
 const handleCancel = jest.fn();

@@ -14,7 +14,7 @@ type LogSnippetFromPodProps = {
   title: string;
 };
 
-const LogSnippetFromPod: React.FC<LogSnippetFromPodProps> = ({
+const LogSnippetFromPod: React.FC<React.PropsWithChildren<LogSnippetFromPodProps>> = ({
   children,
   containerName,
   namespace,

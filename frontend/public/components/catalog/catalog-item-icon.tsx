@@ -244,7 +244,10 @@ export const getTemplateIcon = (template: TemplateKind | PartialObjectMetadata):
   return _.get(template, 'metadata.annotations.iconClass');
 };
 
-export const ImageStreamIcon: React.FC<ImageStreamIconProps> = ({ tag, iconSize }) => {
+export const ImageStreamIcon: React.FC<React.PropsWithChildren<ImageStreamIconProps>> = ({
+  tag,
+  iconSize,
+}) => {
   const { t } = useTranslation();
   const iconClass = getImageStreamIcon(tag);
   const iconClassImg = getImageForIconClass(iconClass);

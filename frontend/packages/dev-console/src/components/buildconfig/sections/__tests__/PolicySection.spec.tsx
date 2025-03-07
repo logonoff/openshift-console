@@ -9,7 +9,10 @@ import PolicySection, { PolicySectionFormData } from '../PolicySection';
 
 configure({ testIdAttribute: 'data-test' });
 
-const Wrapper: React.FC<FormikConfig<PolicySectionFormData>> = ({ children, ...formikConfig }) => (
+const Wrapper: React.FC<React.PropsWithChildren<FormikConfig<PolicySectionFormData>>> = ({
+  children,
+  ...formikConfig
+}) => (
   <Provider store={store}>
     <Formik {...formikConfig}>
       {(formikProps) => (

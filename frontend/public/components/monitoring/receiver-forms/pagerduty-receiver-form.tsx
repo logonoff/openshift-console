@@ -19,7 +19,11 @@ const GLOBAL_FIELDS = [
   'pagerduty_severity',
 ];
 
-export const Form: React.FC<FormProps> = ({ globals, formValues, dispatchFormChange }) => {
+export const Form: React.FC<React.PropsWithChildren<FormProps>> = ({
+  globals,
+  formValues,
+  dispatchFormChange,
+}) => {
   const { t } = useTranslation();
   return (
     <div data-test-id="pagerduty-receiver-form">

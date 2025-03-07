@@ -55,7 +55,10 @@ type PipelineTemplateProps = {
   existingPipeline?: PipelineKind;
 };
 
-const PipelineTemplate: React.FC<PipelineTemplateProps> = ({ builderImages, existingPipeline }) => {
+const PipelineTemplate: React.FC<React.PropsWithChildren<PipelineTemplateProps>> = ({
+  builderImages,
+  existingPipeline,
+}) => {
   const { t } = useTranslation();
   const [noTemplateForRuntime, setNoTemplateForRuntime] = React.useState(false);
   const [isPacRepo, setIsPacRepo] = React.useState(false);

@@ -59,7 +59,12 @@ const isColumnVisible = <D extends any>(
   return true;
 };
 
-export const TableData: React.FC<TableDataProps> = ({ className, id, activeColumnIDs, children }) =>
+export const TableData: React.FC<React.PropsWithChildren<TableDataProps>> = ({
+  className,
+  id,
+  activeColumnIDs,
+  children,
+}) =>
   (activeColumnIDs.has(id) || id === '') && (
     <Td data-label={id} className={className} role="gridcell">
       {children}
@@ -105,7 +110,7 @@ const VirtualizedTable: VirtualizedTableFC = ({
   }, [windowWidth, allColumns]);
 
   const applySort = React.useCallback(
-    (index, direction) => {
+    (index: any, direction: any) => {
       const url = new URL(window.location.href);
       const sp = new URLSearchParams(window.location.search);
 
@@ -161,7 +166,7 @@ const VirtualizedTable: VirtualizedTableFC = ({
   }, []);
 
   const onSort = React.useCallback(
-    (event, index, direction) => {
+    (event: any, index: any, direction: any) => {
       event.preventDefault();
       applySort(index, direction);
     },

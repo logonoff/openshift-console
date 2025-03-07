@@ -86,10 +86,9 @@ const getAPIResourceLink = (activeNamespace: string, model: K8sKind) => {
   return `/api-resource/ns/${activeNamespace}/${ref}`;
 };
 
-const APIResourceLink_: React.FC<APIResourceLinkStateProps & APIResourceLinkOwnProps> = ({
-  activeNamespace,
-  model,
-}) => {
+const APIResourceLink_: React.FC<React.PropsWithChildren<
+  APIResourceLinkStateProps & APIResourceLinkOwnProps
+>> = ({ activeNamespace, model }) => {
   const { t } = useTranslation();
   const to = getAPIResourceLink(activeNamespace, model);
   return (
@@ -107,12 +106,12 @@ const APIResourceLink = connect<APIResourceLinkStateProps, {}, APIResourceLinkOw
   mapStateToProps,
 )(APIResourceLink_);
 
-const EmptyAPIResourcesMsg: React.FC<{}> = () => {
+const EmptyAPIResourcesMsg: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
   return <EmptyBox label={t('public~API resources')} />;
 };
 
-const Group: React.FC<{ value: string }> = ({ value }) => {
+const Group: React.FC<React.PropsWithChildren<{ value: string }>> = ({ value }) => {
   if (!value) {
     return <>-</>;
   }
@@ -376,7 +375,7 @@ const APIResourcesList = compose(
 });
 APIResourcesList.displayName = 'APIResourcesList';
 
-export const APIExplorerPage: React.FC<{}> = () => {
+export const APIExplorerPage: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
   const title = t('public~API Explorer');
   return (
@@ -391,7 +390,9 @@ export const APIExplorerPage: React.FC<{}> = () => {
 };
 APIExplorerPage.displayName = 'APIExplorerPage';
 
-const APIResourceDetails: React.FC<APIResourceTabProps> = ({ customData: { kindObj } }) => {
+const APIResourceDetails: React.FC<React.PropsWithChildren<APIResourceTabProps>> = ({
+  customData: { kindObj },
+}) => {
   const { kind, apiGroup, apiVersion, namespaced, verbs, shortNames } = kindObj;
   const description = getResourceDescription(kindObj);
   const { t } = useTranslation();
@@ -434,7 +435,9 @@ const APIResourceDetails: React.FC<APIResourceTabProps> = ({ customData: { kindO
 };
 
 const scrollTop = () => (document.getElementById('content-scrollable').scrollTop = 0);
-const APIResourceSchema: React.FC<APIResourceTabProps> = ({ customData: { kindObj } }) => {
+const APIResourceSchema: React.FC<React.PropsWithChildren<APIResourceTabProps>> = ({
+  customData: { kindObj },
+}) => {
   return (
     <div className="co-m-pane__body">
       <ExploreType kindObj={kindObj} scrollTop={scrollTop} />
@@ -442,7 +445,7 @@ const APIResourceSchema: React.FC<APIResourceTabProps> = ({ customData: { kindOb
   );
 };
 
-const APIResourceInstances: React.FC<APIResourceTabProps> = ({
+const APIResourceInstances: React.FC<React.PropsWithChildren<APIResourceTabProps>> = ({
   customData: { kindObj, namespace },
 }) => {
   const resourceListPageExtensions = useExtensions<ResourceListPage>(isResourceListPage);
@@ -466,7 +469,7 @@ const APIResourceInstances: React.FC<APIResourceTabProps> = ({
   );
 };
 
-const Subject: React.FC<{ value: string }> = ({ value }) => {
+const Subject: React.FC<React.PropsWithChildren<{ value: string }>> = ({ value }) => {
   const [first, ...rest] = value.split(':');
   return first === 'system' && !_.isEmpty(rest) ? (
     <>
@@ -478,12 +481,12 @@ const Subject: React.FC<{ value: string }> = ({ value }) => {
   );
 };
 
-const EmptyAccessReviewMsg: React.FC<{}> = () => {
+const EmptyAccessReviewMsg: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
   return <EmptyBox label={t('public~Subjects')} />;
 };
 
-const APIResourceAccessReview: React.FC<APIResourceTabProps> = ({
+const APIResourceAccessReview: React.FC<React.PropsWithChildren<APIResourceTabProps>> = ({
   customData: { kindObj, namespace },
 }) => {
   const { apiGroup, apiVersion, namespaced, plural, verbs } = kindObj;

@@ -28,7 +28,7 @@ type PipelinesOverviewProps = {
   };
 };
 
-const PipelinesOverview: React.FC<PipelinesOverviewProps> = ({
+const PipelinesOverview: React.FC<React.PropsWithChildren<PipelinesOverviewProps>> = ({
   item: {
     pipelines: [pipeline],
     pipelineRuns,

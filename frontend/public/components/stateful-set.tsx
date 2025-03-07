@@ -42,7 +42,9 @@ export const menuActions: KebabAction[] = [
 
 const kind = 'StatefulSet';
 
-const StatefulSetTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj }) => {
+const StatefulSetTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<K8sResourceKind>>> = ({
+  obj,
+}) => {
   const resourceKind = referenceFor(obj);
   const context = { [resourceKind]: obj };
   const customActionMenu = <LazyActionMenu context={context} />;
@@ -54,7 +56,9 @@ const StatefulSetTableHeader = () => {
 };
 StatefulSetTableHeader.displayName = 'StatefulSetTableHeader';
 
-const StatefulSetDetails: React.FC<StatefulSetDetailsProps> = ({ obj: ss }) => {
+const StatefulSetDetails: React.FC<React.PropsWithChildren<StatefulSetDetailsProps>> = ({
+  obj: ss,
+}) => {
   const { t } = useTranslation();
   return (
     <>
@@ -83,7 +87,7 @@ const StatefulSetDetails: React.FC<StatefulSetDetailsProps> = ({ obj: ss }) => {
   );
 };
 
-const EnvironmentPage: React.FC<EnvironmentPageProps> = (props) => (
+const EnvironmentPage: React.FC<React.PropsWithChildren<EnvironmentPageProps>> = (props) => (
   <AsyncComponent
     loader={() => import('./environment.jsx').then((c) => c.EnvironmentPage)}
     {...props}
@@ -91,7 +95,7 @@ const EnvironmentPage: React.FC<EnvironmentPageProps> = (props) => (
 );
 
 const envPath = ['spec', 'template', 'spec', 'containers'];
-const EnvironmentTab: React.FC<EnvironmentTabProps> = (props) => (
+const EnvironmentTab: React.FC<React.PropsWithChildren<EnvironmentTabProps>> = (props) => (
   <EnvironmentPage
     obj={props.obj}
     rawEnvData={props.obj.spec.template.spec}
@@ -100,7 +104,7 @@ const EnvironmentTab: React.FC<EnvironmentTabProps> = (props) => (
   />
 );
 
-export const StatefulSetsList: React.FC = (props) => {
+export const StatefulSetsList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table
@@ -112,15 +116,15 @@ export const StatefulSetsList: React.FC = (props) => {
     />
   );
 };
-export const StatefulSetsPage: React.FC<StatefulSetsPageProps> = (props) => (
-  <ListPage {...props} ListComponent={StatefulSetsList} kind={kind} canCreate={true} />
-);
+export const StatefulSetsPage: React.FC<React.PropsWithChildren<StatefulSetsPageProps>> = (
+  props,
+) => <ListPage {...props} ListComponent={StatefulSetsList} kind={kind} canCreate={true} />;
 
-const StatefulSetPods: React.FC<StatefulSetPodsProps> = (props) => (
+const StatefulSetPods: React.FC<React.PropsWithChildren<StatefulSetPodsProps>> = (props) => (
   <PodsComponent {...props} showNodes />
 );
 
-export const StatefulSetsDetailsPage: React.FC = (props) => {
+export const StatefulSetsDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const prometheusIsAvailable = usePrometheusGate();
   const customActionMenu = (kindObj, obj) => {
     const resourceKind = referenceForModel(kindObj);

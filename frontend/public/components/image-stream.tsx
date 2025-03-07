@@ -77,7 +77,7 @@ export const isBuilder = (imageStream: K8sResourceKind) => !_.isEmpty(getBuilder
 const { common } = Kebab.factory;
 const menuActions = [...Kebab.getExtensionsActionsForKind(ImageStreamModel), ...common];
 
-const ImageStreamTagsRow: React.SFC<ImageStreamTagsRowProps> = ({
+const ImageStreamTagsRow: React.FC<React.PropsWithChildren<ImageStreamTagsRowProps>> = ({
   imageStream,
   specTag,
   statusTag,
@@ -143,10 +143,9 @@ const ImageStreamTagsRow: React.SFC<ImageStreamTagsRowProps> = ({
   );
 };
 
-export const ExampleDockerCommandPopover: React.FC<ImageStreamManipulationHelpProps> = ({
-  imageStream,
-  tag,
-}) => {
+export const ExampleDockerCommandPopover: React.FC<React.PropsWithChildren<
+  ImageStreamManipulationHelpProps
+>> = ({ imageStream, tag }) => {
   const publicImageRepository = _.get(imageStream, 'status.publicDockerImageRepository');
   const { t } = useTranslation();
   if (!publicImageRepository) {
@@ -200,7 +199,9 @@ export const ExampleDockerCommandPopover: React.FC<ImageStreamManipulationHelpPr
   );
 };
 
-export const ImageStreamsDetails: React.SFC<ImageStreamsDetailsProps> = ({ obj: imageStream }) => {
+export const ImageStreamsDetails: React.FC<React.PropsWithChildren<ImageStreamsDetailsProps>> = ({
+  obj: imageStream,
+}) => {
   const { t } = useTranslation();
 
   const getImportErrors = (): string[] => {
@@ -282,7 +283,9 @@ export const ImageStreamsDetails: React.SFC<ImageStreamsDetailsProps> = ({ obj: 
   );
 };
 
-const ImageStreamHistory: React.FC<ImageStreamHistoryProps> = ({ obj: imageStream }) => {
+const ImageStreamHistory: React.FC<React.PropsWithChildren<ImageStreamHistoryProps>> = ({
+  obj: imageStream,
+}) => {
   const imageStreamStatusTags = _.get(imageStream, 'status.tags');
   return (
     <ImageStreamTimeline
@@ -299,7 +302,7 @@ const pages = [
   navFactory.editYaml(),
   navFactory.history(ImageStreamHistory),
 ];
-export const ImageStreamsDetailsPage: React.SFC = (props) => (
+export const ImageStreamsDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => (
   <DetailsPage {...props} kind={ImageStreamsReference} menuActions={menuActions} pages={pages} />
 );
 ImageStreamsDetailsPage.displayName = 'ImageStreamsDetailsPage';
@@ -312,7 +315,9 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const ImageStreamsTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj }) => {
+const ImageStreamsTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<K8sResourceKind>>> = ({
+  obj,
+}) => {
   return (
     <>
       <TableData className={tableColumnClasses[0]}>
@@ -341,7 +346,7 @@ const ImageStreamsTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj 
   );
 };
 
-export const ImageStreamsList: React.SFC = (props) => {
+export const ImageStreamsList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const ImageStreamsTableHeader = () => {
     return [
@@ -393,7 +398,9 @@ ImageStreamsList.displayName = 'ImageStreamsList';
 
 export const buildPhase = (build) => build.status.phase;
 
-export const ImageStreamsPage: React.SFC<ImageStreamsPageProps> = (props) => {
+export const ImageStreamsPage: React.FC<React.PropsWithChildren<ImageStreamsPageProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   return (
     <ListPage

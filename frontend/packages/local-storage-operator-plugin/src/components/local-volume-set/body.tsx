@@ -50,7 +50,7 @@ const getDiskTypeValidationError = (state: State, t: TFunction) => {
   return validationError;
 };
 
-export const LocalVolumeSetBody: React.FC<LocalVolumeSetBodyProps> = ({
+export const LocalVolumeSetBody: React.FC<React.PropsWithChildren<LocalVolumeSetBodyProps>> = ({
   dispatch,
   state,
   taintsFilter,

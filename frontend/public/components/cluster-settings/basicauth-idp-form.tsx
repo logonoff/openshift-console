@@ -18,7 +18,7 @@ export const DroppableFileInput = (props: any) => (
     {...props}
   />
 );
-export const AddBasicAuthPage: React.FC = () => {
+export const AddBasicAuthPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const navigate = useNavigate();
   const [inProgress, setInProgress] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');

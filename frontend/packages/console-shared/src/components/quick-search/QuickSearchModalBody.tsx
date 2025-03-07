@@ -26,7 +26,7 @@ interface QuickSearchModalBodyProps {
   detailsRenderer?: DetailsRendererFunction;
 }
 
-const QuickSearchModalBody: React.FC<QuickSearchModalBodyProps> = ({
+const QuickSearchModalBody: React.FC<React.PropsWithChildren<QuickSearchModalBodyProps>> = ({
   searchCatalog,
   namespace,
   closeModal,
@@ -101,7 +101,7 @@ const QuickSearchModalBody: React.FC<QuickSearchModalBodyProps> = ({
   );
 
   const onEnter = React.useCallback(
-    (e) => {
+    (e: any) => {
       const { id } = document.activeElement;
       const activeViewAllLink = viewAll?.find((link) => link.catalogType === id);
       if (activeViewAllLink) {

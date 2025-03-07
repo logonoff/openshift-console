@@ -19,13 +19,13 @@ import OperatorBackedService from './OperatorBackedService';
 export const getOperatorsComponentFactory = (
   kind,
   type,
-): React.ComponentType<{ element: GraphElement }> | undefined => {
+): React.ComponentType<React.PropsWithChildren<{ element: GraphElement }>> | undefined => {
   switch (type) {
     case TYPE_OPERATOR_BACKED_SERVICE:
       return withSelection({ controlled: true })(
         withContextMenu(contextMenuActions)(
           withNoDrop()(withDragNode(noRegroupDragSourceSpec)(OperatorBackedService)) as React.FC<
-            WithContextMenuProps
+            React.PropsWithChildren<WithContextMenuProps>
           >,
         ),
       );

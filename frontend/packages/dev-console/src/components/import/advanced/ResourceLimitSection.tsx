@@ -12,7 +12,9 @@ export type ResourceLimitSectionProps = {
   hideTitle?: boolean;
 };
 
-const ResourceLimitSection: React.FC<ResourceLimitSectionProps> = ({ hideTitle }) => {
+const ResourceLimitSection: React.FC<React.PropsWithChildren<ResourceLimitSectionProps>> = ({
+  hideTitle,
+}) => {
   const { t } = useTranslation();
   const {
     values: { container },

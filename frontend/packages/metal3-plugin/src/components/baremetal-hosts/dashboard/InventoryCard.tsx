@@ -15,7 +15,7 @@ import { BareMetalHostModel } from '../../../models';
 import { getHostStorage, getHostNICs, getHostCPU } from '../../../selectors';
 import { BareMetalHostDashboardContext } from './BareMetalHostDashboardContext';
 
-const PodInventoryItem: React.FC = () => {
+const PodInventoryItem: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { node, loaded } = React.useContext(BareMetalHostDashboardContext);
   const nodeName = getName(node);
 
@@ -51,7 +51,7 @@ const PodInventoryItem: React.FC = () => {
   );
 };
 
-const InventoryCard: React.FC = () => {
+const InventoryCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { obj } = React.useContext(BareMetalHostDashboardContext);
 
@@ -59,7 +59,7 @@ const InventoryCard: React.FC = () => {
   const hostName = getName(obj);
 
   const NICTitleComponent = React.useCallback(
-    ({ children }) => (
+    ({ children }: any) => (
       <Link to={`${resourcePathFromModel(BareMetalHostModel, hostName, namespace)}/nics`}>
         {children}
       </Link>
@@ -68,7 +68,7 @@ const InventoryCard: React.FC = () => {
   );
 
   const DiskTitleComponent = React.useCallback(
-    ({ children }) => (
+    ({ children }: any) => (
       <Link to={`${resourcePathFromModel(BareMetalHostModel, hostName, namespace)}/disks`}>
         {children}
       </Link>

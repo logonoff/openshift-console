@@ -17,7 +17,9 @@ export interface RepositoryDetailsProps {
   obj: RepositoryKind;
 }
 
-const RepositoryDetails: React.FC<RepositoryDetailsProps> = ({ obj: repository }) => {
+const RepositoryDetails: React.FC<React.PropsWithChildren<RepositoryDetailsProps>> = ({
+  obj: repository,
+}) => {
   const { t } = useTranslation();
   const { spec } = repository;
   const [pac, loaded] = usePacInfo();

@@ -16,10 +16,9 @@ type BuildStrategySelectorProps = {
   importStrategy: ImportStrategy;
 };
 
-export const BuildStrategySelector: React.FC<BuildStrategySelectorProps> = ({
-  formType,
-  importStrategy,
-}) => {
+export const BuildStrategySelector: React.FC<React.PropsWithChildren<
+  BuildStrategySelectorProps
+>> = ({ formType, importStrategy }) => {
   const { t } = useTranslation();
   const [strategy, strategyLoaded] = useClusterBuildStrategy();
   const { setFieldValue } = useFormikContext<FormikValues>();

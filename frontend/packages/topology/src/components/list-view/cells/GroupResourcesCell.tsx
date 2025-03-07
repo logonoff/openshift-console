@@ -10,7 +10,9 @@ interface GroupResourcesCellProps {
   group: Node;
 }
 
-const GroupResourcesCell: React.FC<GroupResourcesCellProps> = ({ group }) => {
+const GroupResourcesCell: React.FC<React.PropsWithChildren<GroupResourcesCellProps>> = ({
+  group,
+}) => {
   const displayFilters = useDisplayFilters();
   const { groupResources } = group.getData();
   const shownResources = groupResources.filter((res) =>

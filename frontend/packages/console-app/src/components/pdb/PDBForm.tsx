@@ -63,7 +63,7 @@ function checkAvailabilityRequirementValue(formValues: FormValues, replicasCount
   );
 }
 
-const PDBForm: React.FC<PodDisruptionBudgetFormProps> = ({
+const PDBForm: React.FC<React.PropsWithChildren<PodDisruptionBudgetFormProps>> = ({
   formData,
   onChange,
   existingResource,
@@ -89,7 +89,7 @@ const PDBForm: React.FC<PodDisruptionBudgetFormProps> = ({
   const selectedRequirement = getSelectedRequirement(formValues.requirement, items);
 
   const onFormValuesChange = React.useCallback(
-    (values) => {
+    (values: any) => {
       setFormValues(values);
       onChange(pdbToK8sResource(values, existingResource));
     },

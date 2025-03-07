@@ -71,7 +71,7 @@ type FilterContextType = {
 
 export const FilterContext = React.createContext<FilterContextType>({});
 
-export const FilterProvider: React.FC = ({ children }) => {
+export const FilterProvider: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   const [filters, appliedFilters, loaded, setTopologyFilters] = useFilterContextValues();
   return (
     <FilterContext.Provider value={{ filters, appliedFilters, setTopologyFilters }}>

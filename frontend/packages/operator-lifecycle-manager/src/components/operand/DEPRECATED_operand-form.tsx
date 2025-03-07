@@ -450,7 +450,12 @@ const pathToArray = (path: string): (string | number)[] =>
     return /^\d+$/.test(subPath) ? _.parseInt(subPath) : subPath;
   });
 
-const FieldGroup: React.FC<FieldGroupProps> = ({ children, isExpanded = false, id, label }) => {
+const FieldGroup: React.FC<React.PropsWithChildren<FieldGroupProps>> = ({
+  children,
+  isExpanded = false,
+  id,
+  label,
+}) => {
   const [expanded, setExpanded] = React.useState<boolean>(isExpanded);
 
   const onToggle = (event) => {
@@ -471,7 +476,10 @@ const FieldGroup: React.FC<FieldGroupProps> = ({ children, isExpanded = false, i
 };
 
 // Wrapper for individual operand form inputs
-const OperandFormInputGroup: React.FC<OperandFormInputGroupProps> = ({ field, input }) => {
+const OperandFormInputGroup: React.FC<React.PropsWithChildren<OperandFormInputGroupProps>> = ({
+  field,
+  input,
+}) => {
   const { description, displayName, path, required } = field;
   const id = idFromPath(path);
   return input ? (
@@ -494,7 +502,7 @@ const OperandFormInputGroup: React.FC<OperandFormInputGroupProps> = ({ field, in
 };
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export const DEPRECATED_CreateOperandForm: React.FC<OperandFormProps> = ({
+export const DEPRECATED_CreateOperandForm: React.FC<React.PropsWithChildren<OperandFormProps>> = ({
   formData,
   csv,
   schema,

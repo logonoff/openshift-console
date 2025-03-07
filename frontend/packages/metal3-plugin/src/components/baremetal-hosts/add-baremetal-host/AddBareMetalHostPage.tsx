@@ -5,7 +5,7 @@ import { useParams, useLocation } from 'react-router-dom-v5-compat';
 import PrimaryHeading from '@console/shared/src/components/heading/PrimaryHeading';
 import AddBareMetalHost from './AddBareMetalHost';
 
-const AddBareMetalHostPage: React.FunctionComponent = () => {
+const AddBareMetalHostPage: React.FunctionComponent<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const { name, ns: namespace } = useParams();

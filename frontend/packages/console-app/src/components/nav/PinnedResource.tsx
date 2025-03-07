@@ -38,7 +38,7 @@ export type DragItem = {
   type: string;
 };
 
-const DraggableButton: React.FC<DraggableButtonProps> = ({ dragRef }) => {
+const DraggableButton: React.FC<React.PropsWithChildren<DraggableButtonProps>> = ({ dragRef }) => {
   const { t } = useTranslation();
   return (
     <Button
@@ -52,7 +52,11 @@ const DraggableButton: React.FC<DraggableButtonProps> = ({ dragRef }) => {
   );
 };
 
-const RemoveButton: React.FC<RemoveButtonProps> = ({ resourceRef, navResources, onChange }) => {
+const RemoveButton: React.FC<React.PropsWithChildren<RemoveButtonProps>> = ({
+  resourceRef,
+  navResources,
+  onChange,
+}) => {
   const { t } = useTranslation();
   const unPin = (e: React.MouseEvent<HTMLButtonElement>, navItem: string) => {
     e.preventDefault();
@@ -77,7 +81,7 @@ const reorder = (list: string[], startIndex: number, destIndex: number) => {
   return result;
 };
 
-const PinnedResource: React.FC<PinnedResourceProps> = ({
+const PinnedResource: React.FC<React.PropsWithChildren<PinnedResourceProps>> = ({
   resourceRef,
   onChange,
   navResources,

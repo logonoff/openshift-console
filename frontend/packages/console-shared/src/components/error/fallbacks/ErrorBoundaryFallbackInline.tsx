@@ -8,7 +8,9 @@ import ErrorDetailsBlock from './ErrorDetailsBlock';
 /**
  * Support for error boundary content that won't consume the whole page.
  */
-const ErrorBoundaryFallbackInline: React.FC<ErrorBoundaryFallbackProps> = (props) => {
+const ErrorBoundaryFallbackInline: React.FC<React.PropsWithChildren<ErrorBoundaryFallbackProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const [isOpen, setOpen] = React.useState(false);
   return (

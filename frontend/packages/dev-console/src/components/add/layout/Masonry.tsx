@@ -8,7 +8,10 @@ type MasonryProps = {
   children: React.ReactElement[];
 };
 
-export const Masonry: React.FC<MasonryProps> = ({ columnCount, children }) => {
+export const Masonry: React.FC<React.PropsWithChildren<MasonryProps>> = ({
+  columnCount,
+  children,
+}) => {
   const [heights, setHeights] = React.useState<Record<string, number>>({});
   const columns = columnCount || 1;
   const setHeight = (key: string, height: number) => {

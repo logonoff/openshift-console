@@ -59,7 +59,7 @@ const ItemRow = ({ item, showAPIGroup }) => {
   );
 };
 
-export const GlobalConfigPage: React.FC = () => {
+export const GlobalConfigPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const canClusterUpgrade = useCanClusterUpgrade();
   const [globalConfigs] = useResolvedExtensions<ClusterGlobalConfig>(isClusterGlobalConfig);

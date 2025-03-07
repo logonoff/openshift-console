@@ -12,7 +12,7 @@ import {
 import { TableRow } from '../table';
 
 type VirtualizedTableBodyProps<D, R = {}> = {
-  Row: React.ComponentType<RowProps<D, R>>;
+  Row: React.ComponentType<React.PropsWithChildren<RowProps<D, R>>>;
   data: D[];
   height: number;
   isScrolling: boolean;

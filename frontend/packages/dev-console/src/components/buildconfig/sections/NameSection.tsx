@@ -11,7 +11,7 @@ export type NameSectionFormData = {
   };
 };
 
-const NameSection: React.FC<{}> = () => {
+const NameSection: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
 
   const [, meta] = useField<string>('formData.name');

@@ -17,7 +17,7 @@ type WatchResource = {
   [key: string]: K8sResourceKind[] | K8sResourceKind;
 };
 
-const UploadJarPage: React.FunctionComponent = () => {
+const UploadJarPage: React.FunctionComponent<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const location = useLocation();

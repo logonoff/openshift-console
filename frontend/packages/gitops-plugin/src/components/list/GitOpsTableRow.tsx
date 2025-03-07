@@ -32,7 +32,9 @@ const getMatchingEnvs = (envs: string[], desiredStatus: string) => (
     ? [...acc, envs[idx]] // 1:1 between a status and an env
     : acc;
 
-const GitOpsTableRow: React.FC<RowFunctionArgs<GitOpsAppGroupData>> = (props) => {
+const GitOpsTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<GitOpsAppGroupData>>> = (
+  props,
+) => {
   const { obj: appGroup } = props;
   const {
     name,

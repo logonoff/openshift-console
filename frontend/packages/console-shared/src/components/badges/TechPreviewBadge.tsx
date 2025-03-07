@@ -3,7 +3,7 @@ import { Label } from '@patternfly/react-core';
 import './Badge.scss';
 import { useTranslation } from 'react-i18next';
 
-const TechPreviewBadge: React.FC = () => {
+const TechPreviewBadge: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return <Label className="ocs-preview-badge">{t('console-shared~Tech preview')}</Label>;
 };

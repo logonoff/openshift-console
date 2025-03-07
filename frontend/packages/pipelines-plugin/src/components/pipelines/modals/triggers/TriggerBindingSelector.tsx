@@ -16,7 +16,9 @@ type TriggerBindingSelectorProps = {
 
 const KEY_DIVIDER = '~';
 
-const TriggerBindingSelector: React.FC<TriggerBindingSelectorProps> = (props) => {
+const TriggerBindingSelector: React.FC<React.PropsWithChildren<TriggerBindingSelectorProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const { description, label = t(TriggerBindingModel.labelKey), onChange } = props;
   const { values } = useFormikContext<AddTriggerFormValues>();

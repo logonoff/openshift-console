@@ -14,7 +14,7 @@ interface ExportViewLogButtonProps {
   onViewLog?: () => void;
 }
 
-const ExportViewLogButton: React.FC<ExportViewLogButtonProps> = ({
+const ExportViewLogButton: React.FC<React.PropsWithChildren<ExportViewLogButtonProps>> = ({
   name,
   namespace,
   onViewLog,

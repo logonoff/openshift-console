@@ -15,11 +15,13 @@ import { ContainerModel } from '@console/internal/models';
 import { ContainerSpec } from '@console/internal/module/k8s';
 import { ResourceName } from './resource-icon';
 
-export const ContainerLabel: React.FC<ContainerLabelProps> = ({ name }) => (
-  <ResourceName name={name} kind={ContainerModel.kind} />
-);
+export const ContainerLabel: React.FC<React.PropsWithChildren<ContainerLabelProps>> = ({
+  name,
+}) => <ResourceName name={name} kind={ContainerModel.kind} />;
 
-const ContainerSelectOptions: React.FC<ContainerSelectOptionsProps> = ({ containers }) => (
+const ContainerSelectOptions: React.FC<React.PropsWithChildren<ContainerSelectOptionsProps>> = ({
+  containers,
+}) => (
   <>
     {Object.values(containers ?? {}).map(({ name }) => (
       <SelectOption key={name} value={name}>
@@ -29,7 +31,7 @@ const ContainerSelectOptions: React.FC<ContainerSelectOptionsProps> = ({ contain
   </>
 );
 
-export const ContainerSelect: React.FC<ContainerSelectProps> = ({
+export const ContainerSelect: React.FC<React.PropsWithChildren<ContainerSelectProps>> = ({
   containers,
   currentKey,
   initContainers,

@@ -55,7 +55,7 @@ const AlertTooltip = ({ alerts, severity, isMobile }) => {
   );
 };
 
-const AlertsCell: React.FC<AlertsProps> = ({ item }) => {
+const AlertsCell: React.FC<React.PropsWithChildren<AlertsProps>> = ({ item }) => {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
   const resource = getResource(item);

@@ -45,16 +45,9 @@ export const DescriptorDetailsItem = withFallback<DescriptorDetailsItemProps>(
   },
 );
 
-const DescriptorDetailsItemArrayGroup: React.FC<DescriptorDetailsItemGroupProps> = ({
-  className,
-  group,
-  groupPath,
-  model,
-  obj,
-  onError,
-  schema,
-  type,
-}) => {
+const DescriptorDetailsItemArrayGroup: React.FC<React.PropsWithChildren<
+  DescriptorDetailsItemGroupProps
+>> = ({ className, group, groupPath, model, obj, onError, schema, type }) => {
   const { t } = useTranslation();
   const { arrayGroupPath, elementDescriptor, descriptor, nested } = group;
   const arrayGroupSchema = getSchemaAtPath(schema, `${type}.${arrayGroupPath}`);
@@ -99,15 +92,9 @@ const DescriptorDetailsItemArrayGroup: React.FC<DescriptorDetailsItemGroupProps>
   );
 };
 
-const DescriptorDetailsItemGroup: React.FC<DescriptorDetailsItemGroupProps> = ({
-  group,
-  groupPath,
-  model,
-  obj,
-  onError,
-  schema,
-  type,
-}) => {
+const DescriptorDetailsItemGroup: React.FC<React.PropsWithChildren<
+  DescriptorDetailsItemGroupProps
+>> = ({ group, groupPath, model, obj, onError, schema, type }) => {
   const { descriptor, nested } = group;
   const groupSchema = getSchemaAtPath(schema, `${type}.${groupPath}`);
   const description = descriptor?.description || groupSchema?.description;
@@ -156,15 +143,9 @@ const DescriptorDetailsItemGroup: React.FC<DescriptorDetailsItemGroupProps> = ({
   );
 };
 
-export const DescriptorDetailsItemList: React.FC<DescriptorDetailsItemListProps> = ({
-  descriptors,
-  model,
-  obj,
-  onError,
-  schema,
-  type,
-  itemClassName,
-}) => {
+export const DescriptorDetailsItemList: React.FC<React.PropsWithChildren<
+  DescriptorDetailsItemListProps
+>> = ({ descriptors, model, obj, onError, schema, type, itemClassName }) => {
   const groupedDescriptors = React.useMemo(() => groupDescriptorDetails(descriptors), [
     descriptors,
   ]);

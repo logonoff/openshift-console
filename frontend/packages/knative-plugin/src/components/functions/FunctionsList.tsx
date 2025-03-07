@@ -10,7 +10,7 @@ import FunctionRow from './FunctionRow';
 
 import './FunctionsPage.scss';
 
-const FunctionsList: React.FC<TableProps> = (props) => {
+const FunctionsList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
   const { ns } = useParams();
   const EmptyMsg = () => (

@@ -10,7 +10,7 @@ import { PageHeading } from '@console/internal/components/utils';
 import { useChannelList } from '../../utils/create-channel-utils';
 import AddChannel from './channels/AddChannel';
 
-const EventingChannelPage: React.FC = () => {
+const EventingChannelPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { ns: namespace } = useParams();
   const location = useLocation();
   const channels = useChannelList(namespace);

@@ -33,7 +33,7 @@ import { getHelmActionValidationSchema } from '../../../utils/helm-validation-ut
 import HelmChartMetaDescription from './HelmChartMetaDescription';
 import HelmInstallUpgradeForm, { HelmInstallUpgradeFormData } from './HelmInstallUpgradeForm';
 
-const HelmInstallUpgradePage: React.FunctionComponent = () => {
+const HelmInstallUpgradePage: React.FunctionComponent<React.PropsWithChildren<unknown>> = () => {
   const location = useLocation();
   const params = useParams();
   const searchParams = new URLSearchParams(location.search);

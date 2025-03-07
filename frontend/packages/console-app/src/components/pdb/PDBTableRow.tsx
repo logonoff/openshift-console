@@ -20,10 +20,9 @@ import { isDisruptionViolated } from './utils/get-pdb-resources';
 const { common } = Kebab.factory;
 const menuActions = [...Kebab.getExtensionsActionsForKind(PodDisruptionBudgetModel), ...common];
 
-const PodDisruptionBudgetTableRow: React.FC<RowProps<PodDisruptionBudgetKind>> = ({
-  obj,
-  activeColumnIDs,
-}) => {
+const PodDisruptionBudgetTableRow: React.FC<React.PropsWithChildren<
+  RowProps<PodDisruptionBudgetKind>
+>> = ({ obj, activeColumnIDs }) => {
   const { t } = useTranslation();
   const isPDBViolated = isDisruptionViolated(obj);
   return (

@@ -157,106 +157,108 @@ type WorkloadPodsNodeProps = WorkloadNodeProps & {
   donutStatus: PodRCData;
 };
 
-const WorkloadPodsNode: React.FC<WorkloadPodsNodeProps> = observer(function WorkloadPodsNode({
-  donutStatus,
-  element,
-  children,
-  urlAnchorRef,
-  canDrop,
-  dropTarget,
-  dropTooltip,
-  contextMenuOpen,
-  ...rest
-}) {
-  const { t } = useTranslation();
-  const { width, height } = element.getDimensions();
-  const workloadData = element.getData().data;
-  const filters = useDisplayFilters();
-  const [hover, hoverRef] = useHover();
-  const size = Math.min(width, height);
-  const { radius, decoratorRadius } = calculateRadius(size);
-  const cx = width / 2;
-  const cy = height / 2;
-  const tipContent = dropTooltip || t('topology~Create a visual connector');
-  const showPodCountFilter = getFilterById(SHOW_POD_COUNT_FILTER_ID, filters);
-  const showPodCount = showPodCountFilter?.value ?? false;
-  const { decorators } = element.getGraph().getData();
-  const controller = useVisualizationController();
-  const detailsLevel = controller.getGraph().getDetailsLevel();
-  const iconImageUrl = getImageForIconClass(workloadData.builderImage) ?? workloadData.builderImage;
-  const showDetails = hover || contextMenuOpen || detailsLevel !== ScaleDetailsLevel.low;
-  const nodeDecorators = showDetails
-    ? getNodeDecorators(element, decorators, cx, cy, radius, decoratorRadius)
-    : null;
-  const { monitoringAlerts } = workloadData;
-  const firingAlerts = getFiringAlerts(monitoringAlerts);
-  const severityAlertType = getSeverityAlertType(firingAlerts);
-  const resource = getResource(element);
-  const { buildConfigs } = useBuildConfigsWatcher(resource);
-  const buildStatus = buildConfigs?.[0]?.builds?.[0]?.status?.phase;
-  const pipelineStatus = element.getData()?.resources?.pipelineRunStatus ?? 'Unknown';
-  const workloadRqAlert = useResourceQuotaAlert(element);
-  const workloadRqAlertVariant = (workloadRqAlert?.variant as NodeStatus) || NodeStatus.default;
+const WorkloadPodsNode: React.FC<React.PropsWithChildren<WorkloadPodsNodeProps>> = observer(
+  function WorkloadPodsNode({
+    donutStatus,
+    element,
+    children,
+    urlAnchorRef,
+    canDrop,
+    dropTarget,
+    dropTooltip,
+    contextMenuOpen,
+    ...rest
+  }) {
+    const { t } = useTranslation();
+    const { width, height } = element.getDimensions();
+    const workloadData = element.getData().data;
+    const filters = useDisplayFilters();
+    const [hover, hoverRef] = useHover();
+    const size = Math.min(width, height);
+    const { radius, decoratorRadius } = calculateRadius(size);
+    const cx = width / 2;
+    const cy = height / 2;
+    const tipContent = dropTooltip || t('topology~Create a visual connector');
+    const showPodCountFilter = getFilterById(SHOW_POD_COUNT_FILTER_ID, filters);
+    const showPodCount = showPodCountFilter?.value ?? false;
+    const { decorators } = element.getGraph().getData();
+    const controller = useVisualizationController();
+    const detailsLevel = controller.getGraph().getDetailsLevel();
+    const iconImageUrl =
+      getImageForIconClass(workloadData.builderImage) ?? workloadData.builderImage;
+    const showDetails = hover || contextMenuOpen || detailsLevel !== ScaleDetailsLevel.low;
+    const nodeDecorators = showDetails
+      ? getNodeDecorators(element, decorators, cx, cy, radius, decoratorRadius)
+      : null;
+    const { monitoringAlerts } = workloadData;
+    const firingAlerts = getFiringAlerts(monitoringAlerts);
+    const severityAlertType = getSeverityAlertType(firingAlerts);
+    const resource = getResource(element);
+    const { buildConfigs } = useBuildConfigsWatcher(resource);
+    const buildStatus = buildConfigs?.[0]?.builds?.[0]?.status?.phase;
+    const pipelineStatus = element.getData()?.resources?.pipelineRunStatus ?? 'Unknown';
+    const workloadRqAlert = useResourceQuotaAlert(element);
+    const workloadRqAlertVariant = (workloadRqAlert?.variant as NodeStatus) || NodeStatus.default;
 
-  return (
-    <g className="odc-workload-node">
-      <Tooltip
-        content={tipContent}
-        trigger="manual"
-        isVisible={dropTarget && canDrop}
-        animationDuration={0}
-      >
-        <BaseNode
-          className="odc-workload-node"
-          hoverRef={hoverRef}
-          innerRadius={podSetInnerRadius(size, donutStatus)}
-          icon={showDetails && !showPodCount ? iconImageUrl : undefined}
-          kind={workloadData.kind}
-          element={element}
-          dropTarget={dropTarget}
-          canDrop={canDrop}
-          nodeStatus={
-            !showDetails &&
-            getAggregateStatus(
-              donutStatus,
-              severityAlertType,
-              buildStatus,
-              pipelineStatus,
-              workloadRqAlertVariant,
-            )
-          }
-          attachments={nodeDecorators}
-          contextMenuOpen={contextMenuOpen}
-          alertVariant={workloadRqAlertVariant}
-          {...rest}
+    return (
+      <g className="odc-workload-node">
+        <Tooltip
+          content={tipContent}
+          trigger="manual"
+          isVisible={dropTarget && canDrop}
+          animationDuration={0}
         >
-          {donutStatus && showDetails ? (
-            <PodSet size={size} x={cx} y={cy} data={donutStatus} showPodCount={showPodCount} />
-          ) : null}
-          {children}
-        </BaseNode>
-      </Tooltip>
-    </g>
-  );
-});
+          <BaseNode
+            className="odc-workload-node"
+            hoverRef={hoverRef}
+            innerRadius={podSetInnerRadius(size, donutStatus)}
+            icon={showDetails && !showPodCount ? iconImageUrl : undefined}
+            kind={workloadData.kind}
+            element={element}
+            dropTarget={dropTarget}
+            canDrop={canDrop}
+            nodeStatus={
+              !showDetails &&
+              getAggregateStatus(
+                donutStatus,
+                severityAlertType,
+                buildStatus,
+                pipelineStatus,
+                workloadRqAlertVariant,
+              )
+            }
+            attachments={nodeDecorators}
+            contextMenuOpen={contextMenuOpen}
+            alertVariant={workloadRqAlertVariant}
+            {...rest}
+          >
+            {donutStatus && showDetails ? (
+              <PodSet size={size} x={cx} y={cy} data={donutStatus} showPodCount={showPodCount} />
+            ) : null}
+            {children}
+          </BaseNode>
+        </Tooltip>
+      </g>
+    );
+  },
+);
 
-const WorkloadNode: React.FC<WorkloadNodeProps> = observer(function WorkloadNode({
-  element,
-  ...rest
-}) {
-  const resource = getTopologyResourceObject(element.getData());
-  const { podData, loadError, loaded } = usePodsWatcher(
-    resource,
-    resource.kind,
-    resource.metadata.namespace,
-  );
-  return (
-    <WorkloadPodsNode
-      element={element}
-      donutStatus={loaded && !loadError ? podData : null}
-      {...rest}
-    />
-  );
-});
+const WorkloadNode: React.FC<React.PropsWithChildren<WorkloadNodeProps>> = observer(
+  function WorkloadNode({ element, ...rest }) {
+    const resource = getTopologyResourceObject(element.getData());
+    const { podData, loadError, loaded } = usePodsWatcher(
+      resource,
+      resource.kind,
+      resource.metadata.namespace,
+    );
+    return (
+      <WorkloadPodsNode
+        element={element}
+        donutStatus={loaded && !loadError ? podData : null}
+        {...rest}
+      />
+    );
+  },
+);
 
 export { WorkloadNode, WorkloadPodsNode };

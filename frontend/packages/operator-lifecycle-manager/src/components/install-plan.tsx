@@ -69,7 +69,11 @@ const componentsTableColumnClasses = [
   classNames('pf-m-hidden', 'pf-m-visible-on-lg', 'pf-v6-c-table__td'),
 ];
 
-export const InstallPlanHint: React.FC<InstallPlanHintProps> = ({ title, body, footer }) => {
+export const InstallPlanHint: React.FC<React.PropsWithChildren<InstallPlanHintProps>> = ({
+  title,
+  body,
+  footer,
+}) => {
   return (
     <Hint>
       <HintTitle className="pf-v6-u-font-size-md">{title}</HintTitle>
@@ -79,7 +83,9 @@ export const InstallPlanHint: React.FC<InstallPlanHintProps> = ({ title, body, f
   );
 };
 
-export const InstallPlanTableRow: React.FC<RowFunctionArgs> = ({ obj }) => {
+export const InstallPlanTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   const phaseFor = (phase: InstallPlanKind['status']['phase']) => <Status status={phase} />;
   return (
@@ -156,7 +162,7 @@ export const InstallPlanTableRow: React.FC<RowFunctionArgs> = ({ obj }) => {
   );
 };
 
-const EmptyMsg: React.FC = () => {
+const EmptyMsg: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <ConsoleEmptyState title={t('olm~No InstallPlans found')}>
@@ -223,7 +229,9 @@ const getCatalogSources = (
     ImmutableSet(),
   ).toJS();
 
-export const InstallPlansPage: React.FC<InstallPlansPageProps> = (props) => {
+export const InstallPlansPage: React.FC<React.PropsWithChildren<InstallPlansPageProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const params = useParams();
   const namespace = props.namespace || params?.ns;
@@ -260,9 +268,9 @@ const updateUser = (isOpenShift: boolean, user: UserInfo): string => {
   return user?.username;
 };
 
-export const NeedInstallPlanPermissions: React.FC<NeedInstallPlanPermissionsProps> = ({
-  installPlan,
-}) => {
+export const NeedInstallPlanPermissions: React.FC<React.PropsWithChildren<
+  NeedInstallPlanPermissionsProps
+>> = ({ installPlan }) => {
   const isOpenShift = useFlag(FLAGS.OPENSHIFT);
   const user: UserInfo = useSelector<RootState, object>(getUser);
 
@@ -295,7 +303,9 @@ export const NeedInstallPlanPermissions: React.FC<NeedInstallPlanPermissionsProp
   );
 };
 
-export const InstallPlanDetails: React.FC<InstallPlanDetailsProps> = ({ obj }) => {
+export const InstallPlanDetails: React.FC<React.PropsWithChildren<InstallPlanDetailsProps>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   const needsApproval =
     obj.spec.approval === InstallPlanApproval.Manual && obj.spec.approved === false;
@@ -388,7 +398,7 @@ export const InstallPlanDetails: React.FC<InstallPlanDetailsProps> = ({ obj }) =
   );
 };
 
-export const InstallPlanPreview: React.FC<InstallPlanPreviewProps> = ({
+export const InstallPlanPreview: React.FC<React.PropsWithChildren<InstallPlanPreviewProps>> = ({
   obj,
   hideApprovalBlock,
 }) => {
@@ -527,7 +537,7 @@ export const InstallPlanPreview: React.FC<InstallPlanPreviewProps> = ({
   );
 };
 
-export const InstallPlanDetailsPage: React.FC = (props) => {
+export const InstallPlanDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const params = useParams();
   return (
     <DetailsPage

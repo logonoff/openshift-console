@@ -5,7 +5,7 @@ import { usePipelineTechPreviewBadge } from '../../utils/hooks';
 import { useTasksBreadcrumbsFor } from '../pipelines/hooks';
 import TaskDetails from './TaskDetails';
 
-const TaskDetailsPage: React.FC<DetailsPageProps> = (props) => {
+const TaskDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const { kindObj } = props;
   const breadcrumbsFor = useTasksBreadcrumbsFor(kindObj);
   const badge = usePipelineTechPreviewBadge(props.namespace);

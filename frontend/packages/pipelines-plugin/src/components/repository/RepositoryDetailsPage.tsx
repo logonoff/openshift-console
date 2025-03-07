@@ -8,7 +8,7 @@ import { pipelinesTab } from '../../utils/pipeline-utils';
 import RepositoryDetails from './RepositoryDetails';
 import RepositoryPipelineRunListPage from './RepositoryPipelineRunListPage';
 
-const RepositoryDetailsPage: React.FC<DetailsPageProps> = (props) => {
+const RepositoryDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const { kindObj } = props;
   const params = useParams();
   const location = useLocation();

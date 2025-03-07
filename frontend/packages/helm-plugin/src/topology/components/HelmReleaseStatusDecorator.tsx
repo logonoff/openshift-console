@@ -13,12 +13,9 @@ type HelmReleaseStatusDecoratorProps = {
   y: number;
 };
 
-const HelmReleaseStatusDecorator: React.FC<HelmReleaseStatusDecoratorProps> = ({
-  element,
-  radius,
-  x,
-  y,
-}) => {
+const HelmReleaseStatusDecorator: React.FC<React.PropsWithChildren<
+  HelmReleaseStatusDecoratorProps
+>> = ({ element, radius, x, y }) => {
   const ref = React.useRef();
   const { t } = useTranslation();
   const { data } = element.getData();

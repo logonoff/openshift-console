@@ -16,7 +16,7 @@ type TaskSidebarParamProps = {
   selectedData?: SelectedBuilderTask;
 };
 
-const TaskSidebarParam: React.FC<TaskSidebarParamProps> = (props) => {
+const TaskSidebarParam: React.FC<React.PropsWithChildren<TaskSidebarParamProps>> = (props) => {
   const { setFieldValue } = useFormikContext<PipelineBuilderFormikValues>();
   const { hasParam, name, resourceParam, selectedData } = props;
   const autoCompleteOptions = useBuilderParams(selectedData);

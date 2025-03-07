@@ -94,7 +94,9 @@ const cvResource: WatchK8sResource = {
   isList: false,
 };
 
-export const DashboardAlerts: React.FC<DashboardAlertsProps> = ({ labelSelector }) => {
+export const DashboardAlerts: React.FC<React.PropsWithChildren<DashboardAlertsProps>> = ({
+  labelSelector,
+}) => {
   const { t } = useTranslation();
   const hasCVResource = useFlag(FLAGS.CLUSTER_VERSION);
   const [alerts, , loadError] = useNotificationAlerts(labelSelector);

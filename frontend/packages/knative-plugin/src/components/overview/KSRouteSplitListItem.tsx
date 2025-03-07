@@ -7,7 +7,9 @@ type KSRouteSplitListItemProps = {
   route: RoutesOverviewListItem;
 };
 
-const KSRouteSplitListItem: React.FC<KSRouteSplitListItemProps> = ({ route: { percent, url } }) =>
+const KSRouteSplitListItem: React.FC<React.PropsWithChildren<KSRouteSplitListItemProps>> = ({
+  route: { percent, url },
+}) =>
   url.length > 0 && percent.length > 0 ? (
     <li className="list-group-item">
       <div className="odc-ksroute-split-list-item">

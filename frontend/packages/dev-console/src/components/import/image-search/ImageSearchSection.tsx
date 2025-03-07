@@ -11,7 +11,9 @@ import FormSection from '../section/FormSection';
 import ImageSearch from './ImageSearch';
 import ImageStream from './ImageStream';
 
-const ImageSearchSection: React.FC<{ disabled?: boolean }> = ({ disabled = false }) => {
+const ImageSearchSection: React.FC<React.PropsWithChildren<{ disabled?: boolean }>> = ({
+  disabled = false,
+}) => {
   const { t } = useTranslation();
   const { values, setFieldValue, initialValues } = useFormikContext<FormikValues>();
   const [registry, setRegistry] = React.useState(values.registry);

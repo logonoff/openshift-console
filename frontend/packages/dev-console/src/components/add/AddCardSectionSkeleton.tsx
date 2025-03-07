@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Card, Skeleton } from '@patternfly/react-core';
 import './AddCardSectionSkeleton.scss';
 
-const AddCardSectionSkeleton: React.FC = () => {
+const AddCardSectionSkeleton: React.FC<React.PropsWithChildren<unknown>> = () => {
   return (
     <Card className="odc-add-section-skeleton-placeholder__container">
       <Skeleton width="75%" height="30px" />

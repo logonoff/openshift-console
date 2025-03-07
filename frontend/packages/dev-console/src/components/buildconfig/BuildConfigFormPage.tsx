@@ -7,7 +7,7 @@ import { useK8sWatchResource } from '@console/internal/components/utils/k8s-watc
 import EditBuildConfig from './EditBuildConfig';
 import { BuildConfig, BuildConfigModel } from './types';
 
-const BuildConfigFormPage: React.FC = () => {
+const BuildConfigFormPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace, name } = useParams();
 

@@ -18,7 +18,7 @@ type CodeEditorSidebarProps = {
   toggleSidebar: () => void;
 };
 
-const CodeEditorSidebar: React.FC<CodeEditorSidebarProps> = ({
+const CodeEditorSidebar: React.FC<React.PropsWithChildren<CodeEditorSidebarProps>> = ({
   editorRef,
   model,
   samples,
@@ -31,7 +31,7 @@ const CodeEditorSidebar: React.FC<CodeEditorSidebarProps> = ({
   const editor = editorRef.current?.editor;
 
   const insertYamlContent = React.useCallback(
-    (id: string = 'default', yamlContent: string = '', kind) => {
+    (id: string = 'default', yamlContent: string = '', kind: any) => {
       const yaml = sanitizeYamlContent ? sanitizeYamlContent(id, yamlContent, kind) : yamlContent;
 
       const selection = editor?.getSelection();

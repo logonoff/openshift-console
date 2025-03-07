@@ -29,7 +29,7 @@ import {
 import redHatFedoraImg from '../imgs/red-hat-fedora.svg';
 import redHatFedoraWatermarkImg from '../imgs/red-hat-fedora-watermark.svg';
 
-const DynamicPlugins: React.FC = () => {
+const DynamicPlugins: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const [pluginInfoEntries] = useDynamicPluginInfo();
   const [items, setItems] = React.useState([]);
@@ -61,7 +61,9 @@ const DynamicPlugins: React.FC = () => {
   );
 };
 
-const AboutModalItems: React.FC<AboutModalItemsProps> = ({ closeAboutModal }) => {
+const AboutModalItems: React.FC<React.PropsWithChildren<AboutModalItemsProps>> = ({
+  closeAboutModal,
+}) => {
   const [kubernetesVersion, setKubernetesVersion] = React.useState('');
   const { t } = useTranslation();
   React.useEffect(() => {
@@ -159,7 +161,7 @@ const AboutModalItems: React.FC<AboutModalItemsProps> = ({ closeAboutModal }) =>
 };
 AboutModalItems.displayName = 'AboutModalItems';
 
-export const AboutModal: React.FC<AboutModalProps> = (props) => {
+export const AboutModal: React.FC<React.PropsWithChildren<AboutModalProps>> = (props) => {
   const { isOpen, closeAboutModal } = props;
   const { t } = useTranslation();
   const details = getBrandingDetails();

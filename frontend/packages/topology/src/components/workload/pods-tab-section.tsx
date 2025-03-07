@@ -14,18 +14,18 @@ import TopologySideBarTabSection from '../side-bar/TopologySideBarTabSection';
 import ResolveAdapter from './ResolveAdapter';
 import { getDataFromAdapter } from './utils';
 
-const PodsTabSection: React.FC<{
+const PodsTabSection: React.FC<React.PropsWithChildren<{
   id: string;
   podAdapter: AdapterDataType<PodsAdapterDataType<PodKind>>;
   podAdapterExtensionResolved: boolean;
-}> = ({ id, podAdapter, podAdapterExtensionResolved }) => {
+}>> = ({ id, podAdapter, podAdapterExtensionResolved }) => {
   const [{ data: podsData, loaded: podsDataLoaded }, setPodData] = React.useState<{
     data?: PodsAdapterDataType<PodKind>;
     loaded: boolean;
   }>({ loaded: false });
 
   const handleAdapterResolved = React.useCallback(
-    (data) => {
+    (data: any) => {
       if (podAdapter?.resource?.kind === 'CronJob') {
         // Fixes the issue of Topology page crashing.
         setTimeout(() => setPodData({ data, loaded: true }), 3000);

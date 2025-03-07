@@ -8,11 +8,13 @@ type AddCardSectionEmptyStateProps = {
   accessCheckFailed?: boolean;
 };
 
-const AddCardSectionEmptyState: React.FC<AddCardSectionEmptyStateProps> = ({
-  accessCheckFailed,
-}) => {
+const AddCardSectionEmptyState: React.FC<React.PropsWithChildren<
+  AddCardSectionEmptyStateProps
+>> = ({ accessCheckFailed }) => {
   const { t } = useTranslation();
-  const Icon: React.ComponentType<any> = accessCheckFailed ? LockIcon : ExclamationCircleIcon;
+  const Icon: React.ComponentType<React.PropsWithChildren<any>> = accessCheckFailed
+    ? LockIcon
+    : ExclamationCircleIcon;
   const title: string = accessCheckFailed
     ? t('devconsole~Access permissions needed')
     : t('devconsole~Unable to load');

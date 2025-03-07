@@ -82,7 +82,7 @@ interface TopologyGraphViewProps {
   dragHint?: string;
 }
 
-const TopologyGraphView: React.FC<TopologyGraphViewProps> = React.memo(
+const TopologyGraphView: React.FC<React.PropsWithChildren<TopologyGraphViewProps>> = React.memo(
   ({ visualizationReady, visualization, controlsDisabled, selectedId, dragHint }) => {
     if (!visualizationReady) {
       return null;
@@ -129,9 +129,9 @@ interface TopologyProps {
   setVisualization: (vis: Visualization) => void;
 }
 
-const Topology: React.FC<
+const Topology: React.FC<React.PropsWithChildren<
   TopologyProps & StateProps & DispatchProps & WithUserSettingsCompatibilityProps<object>
-> = ({
+>> = ({
   model,
   application,
   namespace,

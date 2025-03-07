@@ -19,7 +19,7 @@ interface PushSecretDropdownProps {
   name: string;
 }
 
-const PushSecretDropdown: React.FC<PushSecretDropdownProps> = (props) => {
+const PushSecretDropdown: React.FC<React.PropsWithChildren<PushSecretDropdownProps>> = (props) => {
   const { t } = useTranslation();
   const autocompleteFilter = (strText, item): boolean => fuzzy(strText, item?.props?.name);
   const filterData = (item) => {

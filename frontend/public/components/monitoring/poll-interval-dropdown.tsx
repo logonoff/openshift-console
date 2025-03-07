@@ -23,7 +23,11 @@ type Props = {
   id?: string;
 };
 
-const IntervalDropdown: React.FC<Props> = ({ id, interval, setInterval }) => {
+const IntervalDropdown: React.FC<React.PropsWithChildren<Props>> = ({
+  id,
+  interval,
+  setInterval,
+}) => {
   const [isOpen, toggleIsOpen, setOpen, setClosed] = useBoolean(false);
   const { t } = useTranslation();
 

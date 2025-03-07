@@ -3,7 +3,7 @@ import { QuickStartDrawer as PfQuickStartDrawer } from '@patternfly/quickstarts'
 import { LoadingBox } from '@console/internal/components/utils';
 import QuickStartsLoader from './loader/QuickStartsLoader';
 
-const QuickStartDrawer: React.FC = ({ children, ...props }) => (
+const QuickStartDrawer: React.FC<React.PropsWithChildren<unknown>> = ({ children, ...props }) => (
   <QuickStartsLoader>
     {(quickStarts, loaded) =>
       loaded ? (

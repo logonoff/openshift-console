@@ -28,7 +28,9 @@ const k8sWatchMock = k8sWatch as jest.Mock;
 
 // Redux wrapper
 let store;
-const Wrapper: React.FC = ({ children }) => <Provider store={store}>{children}</Provider>;
+const Wrapper: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
+  <Provider store={store}>{children}</Provider>
+);
 
 describe('processReduxId', () => {
   const k8s = ImmutableMap({
@@ -177,7 +179,7 @@ describe('processReduxId', () => {
 describe('Firehose', () => {
   // Object under test
   const resourceUpdate = jest.fn();
-  const Child: React.FC = (props) => {
+  const Child: React.FC<React.PropsWithChildren<unknown>> = (props) => {
     resourceUpdate(props);
     return null;
   };
@@ -915,15 +917,15 @@ describe('Firehose', () => {
 describe('Firehose together with useK8sWatchResources', () => {
   // Objects under test
   const firehoseUpdate = jest.fn();
-  const Child: React.FC = (props) => {
+  const Child: React.FC<React.PropsWithChildren<unknown>> = (props) => {
     firehoseUpdate(props);
     return null;
   };
 
   const resourcesUpdate = jest.fn();
-  const WatchResources: React.FC<{ initResources: WatchK8sResources<{}> }> = ({
-    initResources,
-  }) => {
+  const WatchResources: React.FC<React.PropsWithChildren<{
+    initResources: WatchK8sResources<{}>;
+  }>> = ({ initResources }) => {
     resourcesUpdate(useK8sWatchResources(initResources));
     return null;
   };

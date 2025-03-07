@@ -12,7 +12,10 @@ import { ResourceLink, CopyToClipboard } from '@console/internal/components/util
 import { StepResource } from '../../types';
 import { referenceForStepResource } from '../index';
 
-const InstallPlanPreview: React.FC<InstallPlanPreviewModalProps> = ({ cancel, stepResource }) => {
+const InstallPlanPreview: React.FC<React.PropsWithChildren<InstallPlanPreviewModalProps>> = ({
+  cancel,
+  stepResource,
+}) => {
   const { t } = useTranslation();
   return (
     <div className="modal-content">

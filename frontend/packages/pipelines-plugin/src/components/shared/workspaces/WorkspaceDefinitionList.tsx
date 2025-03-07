@@ -6,7 +6,9 @@ export interface WorkspaceDefinitionListProps {
   workspaces: TektonWorkspace[];
 }
 
-const WorkspaceDefinitionList: React.FC<WorkspaceDefinitionListProps> = ({ workspaces }) => {
+const WorkspaceDefinitionList: React.FC<React.PropsWithChildren<WorkspaceDefinitionListProps>> = ({
+  workspaces,
+}) => {
   const { t } = useTranslation();
 
   if (!workspaces || workspaces.length === 0) return null;

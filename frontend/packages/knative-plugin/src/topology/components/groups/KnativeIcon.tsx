@@ -12,7 +12,12 @@ type KnativeIconProps = {
 
 const FILTER_ID = 'KnativeIconOutlineFilterId';
 
-const KnativeIcon: React.FC<KnativeIconProps> = ({ x, y, width, height }) => (
+const KnativeIcon: React.FC<React.PropsWithChildren<KnativeIconProps>> = ({
+  x,
+  y,
+  width,
+  height,
+}) => (
   <>
     <SVGDefs id={FILTER_ID}>
       <filter id={FILTER_ID}>

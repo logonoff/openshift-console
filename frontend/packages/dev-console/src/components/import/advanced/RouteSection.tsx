@@ -10,7 +10,10 @@ interface RouteSectionProps {
   resources: Resources;
 }
 
-const RouteSection: React.FC<RouteSectionProps> = ({ route, resources }) => {
+const RouteSection: React.FC<React.PropsWithChildren<RouteSectionProps>> = ({
+  route,
+  resources,
+}) => {
   const { t } = useTranslation();
   const { defaultUnknownPort, disable, create } = route;
 

@@ -16,7 +16,12 @@ interface DefaultDecoratorProps {
   y: number;
 }
 
-const EditDecorator: React.FC<DefaultDecoratorProps> = ({ element, radius, x, y }) => {
+const EditDecorator: React.FC<React.PropsWithChildren<DefaultDecoratorProps>> = ({
+  element,
+  radius,
+  x,
+  y,
+}) => {
   const ref = React.useRef();
   const { t } = useTranslation();
   const [consoleLinks] = useK8sWatchResource<K8sResourceKind[]>({

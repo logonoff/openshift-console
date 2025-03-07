@@ -14,7 +14,9 @@ type BareMetalHostSecondaryStatusProps = {
   host: BareMetalHostKind;
 };
 
-const BareMetalHostSecondaryStatus: React.FC<BareMetalHostSecondaryStatusProps> = ({ host }) => {
+const BareMetalHostSecondaryStatus: React.FC<React.PropsWithChildren<
+  BareMetalHostSecondaryStatusProps
+>> = ({ host }) => {
   const { t } = useTranslation();
   const powerStatus = getHostPowerStatus(host);
   const provisioningState = getHostProvisioningState(host);

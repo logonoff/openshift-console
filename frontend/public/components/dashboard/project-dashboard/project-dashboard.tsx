@@ -48,7 +48,9 @@ export const getNamespaceDashboardConsoleLinks = (
   });
 };
 
-export const ProjectDashboard: React.FC<ProjectDashboardProps> = ({ obj }) => {
+export const ProjectDashboard: React.FC<React.PropsWithChildren<ProjectDashboardProps>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   const [perspective] = useActivePerspective();
   const [consoleLinks] = useK8sWatchResource<K8sResourceKind[]>({

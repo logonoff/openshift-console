@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { EmptyBox } from '@console/internal/components/utils';
 import { IdentityProvider } from '@console/internal/module/k8s';
 
-export const IdentityProviders: React.FC<IdentityProvidersProps> = ({ identityProviders }) => {
+export const IdentityProviders: React.FC<React.PropsWithChildren<IdentityProvidersProps>> = ({
+  identityProviders,
+}) => {
   const { t } = useTranslation();
   return _.isEmpty(identityProviders) ? (
     <EmptyBox label={t('console-app~Identity providers')} />

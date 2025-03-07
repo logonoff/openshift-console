@@ -8,9 +8,10 @@ type SinkPubsubControllerProps = {
   resourceType: string;
 };
 
-const SinkPubsubController: React.FC<SinkPubsubControllerProps> = ({ source, ...props }) => (
-  <SinkPubsub {...props} source={source} />
-);
+const SinkPubsubController: React.FC<React.PropsWithChildren<SinkPubsubControllerProps>> = ({
+  source,
+  ...props
+}) => <SinkPubsub {...props} source={source} />;
 
 type Props = SinkPubsubControllerProps & ModalComponentProps;
 

@@ -31,15 +31,9 @@ type EditApplicationModalProps = EditApplicationFormProps & {
   close?: () => void;
 };
 
-const EditApplicationForm: React.FC<FormikProps<FormikValues> & EditApplicationFormProps> = ({
-  resource,
-  handleSubmit,
-  isSubmitting,
-  cancel,
-  values,
-  initialApplication,
-  status,
-}) => {
+const EditApplicationForm: React.FC<React.PropsWithChildren<
+  FormikProps<FormikValues> & EditApplicationFormProps
+>> = ({ resource, handleSubmit, isSubmitting, cancel, values, initialApplication, status }) => {
   const { t } = useTranslation();
   const dirty = _.get(values, 'application.selectedKey') !== initialApplication;
   return (

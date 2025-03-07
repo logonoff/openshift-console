@@ -25,7 +25,7 @@ type TippyProps = {
   onHide?: (event: Event) => void;
 };
 
-export const Tippy: React.FC<TippyProps> = ({
+export const Tippy: React.FC<React.PropsWithChildren<TippyProps>> = ({
   placement = 'top',
   reference,
   children,
@@ -55,7 +55,7 @@ export const Tippy: React.FC<TippyProps> = ({
   }, [popperRef]);
 
   const nodeRefCallback = React.useCallback(
-    (node) => {
+    (node: any) => {
       nodeRef.current = node;
       initialize();
     },
@@ -63,7 +63,7 @@ export const Tippy: React.FC<TippyProps> = ({
   );
 
   const show = React.useCallback(
-    (e) => {
+    (e: any) => {
       if (!isOpen) {
         setOpen(true);
         onShow?.(e);
@@ -72,7 +72,7 @@ export const Tippy: React.FC<TippyProps> = ({
     [setOpen, onShow, isOpen],
   );
   const hide = React.useCallback(
-    (e) => {
+    (e: any) => {
       if (isOpen) {
         setOpen(false);
         destroy();

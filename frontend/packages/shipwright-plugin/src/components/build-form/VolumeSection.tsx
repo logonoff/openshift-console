@@ -34,7 +34,7 @@ export const GetVolumeTypeFields = (volumeType, namePrefix: string, namespace: s
   const { values, setFieldValue } = useFormikContext<FormikValues>();
   const configMap: string = _.get(values, `${namePrefix}.resource`);
   const handleConfigMapChange = React.useCallback(
-    (key) => {
+    (key: any) => {
       setFieldValue(`${namePrefix}.resource`, key);
     },
     [namePrefix, setFieldValue],
@@ -65,7 +65,11 @@ export const GetVolumeTypeFields = (volumeType, namePrefix: string, namespace: s
   }
 };
 
-const VolumeForm: React.FC<VolumeFormProps> = ({ namePrefix, onDelete, namespace }) => {
+const VolumeForm: React.FC<React.PropsWithChildren<VolumeFormProps>> = ({
+  namePrefix,
+  onDelete,
+  namespace,
+}) => {
   const { t } = useTranslation();
   const { values, setFieldValue } = useFormikContext<FormikValues>();
   const resourceType: string = _.get(values, `${namePrefix}.resourceType`);
@@ -116,7 +120,7 @@ const VolumeForm: React.FC<VolumeFormProps> = ({ namePrefix, onDelete, namespace
   );
 };
 
-const VolumeSection: React.FC<VolumeSectionProps> = ({ namespace }) => {
+const VolumeSection: React.FC<React.PropsWithChildren<VolumeSectionProps>> = ({ namespace }) => {
   const { t } = useTranslation();
   const { values } = useFormikContext<FormikValues>();
   const { volumes } = values.formData;

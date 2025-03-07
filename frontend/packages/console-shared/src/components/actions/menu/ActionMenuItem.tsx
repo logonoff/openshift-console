@@ -8,27 +8,22 @@ import { useAccessReview, history } from '@console/internal/components/utils';
 
 export type ActionMenuItemProps = {
   action: Action;
-  component?: React.ComponentType<DropdownItemProps>;
+  component?: React.ComponentType<React.PropsWithChildren<DropdownItemProps>>;
   autoFocus?: boolean;
   onClick?: () => void;
   onEscape?: () => void;
 };
 
-const ActionItem: React.FC<ActionMenuItemProps & { isAllowed: boolean }> = ({
-  action,
-  onClick,
-  onEscape,
-  autoFocus,
-  isAllowed,
-  component,
-}) => {
+const ActionItem: React.FC<React.PropsWithChildren<
+  ActionMenuItemProps & { isAllowed: boolean }
+>> = ({ action, onClick, onEscape, autoFocus, isAllowed, component }) => {
   const { label, icon, disabled, cta } = action;
   const { href, external } = cta as { href: string; external?: boolean };
   const isDisabled = !isAllowed || disabled;
   const classes = classNames({ 'pf-m-disabled': isDisabled });
 
   const handleClick = React.useCallback(
-    (event) => {
+    (event: any) => {
       event.preventDefault();
       if (_.isFunction(cta)) {
         cta();
@@ -84,7 +79,7 @@ const AccessReviewActionItem = connect(impersonateStateToProps)(
   },
 );
 
-const ActionMenuItem: React.FC<ActionMenuItemProps> = (props) => {
+const ActionMenuItem: React.FC<React.PropsWithChildren<ActionMenuItemProps>> = (props) => {
   const { action } = props;
   let item;
 

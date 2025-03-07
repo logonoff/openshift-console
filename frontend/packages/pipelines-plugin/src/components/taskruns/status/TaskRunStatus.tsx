@@ -13,7 +13,10 @@ type TaskRunStatusProps = {
   status: string;
   taskRun: TaskRunKind;
 };
-const TaskRunStatus: React.FC<TaskRunStatusProps> = ({ status, taskRun }) => {
+const TaskRunStatus: React.FC<React.PropsWithChildren<TaskRunStatusProps>> = ({
+  status,
+  taskRun,
+}) => {
   const { t } = useTranslation();
   return (
     <PipelineResourceStatus status={status} title={taskRunFilterTitleReducer(taskRun)}>

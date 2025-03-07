@@ -68,12 +68,12 @@ type PerspectiveVisibilitySelectOptions = {
   isSelected: boolean;
 };
 
-const PerspectiveVisibilitySelect: React.FC<{
+const PerspectiveVisibilitySelect: React.FC<React.PropsWithChildren<{
   toggleId: string;
   disabled: boolean;
   value?: PerspectiveVisibility;
   onChange: (selectedOption: PerspectiveVisibilitySelectOptions) => void;
-}> = ({ toggleId, disabled, value, onChange }) => {
+}>> = ({ toggleId, disabled, value, onChange }) => {
   const { t } = useTranslation();
 
   const options: PerspectiveVisibilitySelectOptions[] = [
@@ -196,7 +196,9 @@ const PerspectiveVisibilitySelect: React.FC<{
   );
 };
 
-const PerspectiveConfiguration: React.FC<{ readonly: boolean }> = ({ readonly }) => {
+const PerspectiveConfiguration: React.FC<React.PropsWithChildren<{ readonly: boolean }>> = ({
+  readonly,
+}) => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
 

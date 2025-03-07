@@ -9,7 +9,9 @@ type NodeDetailsConditionsProps = {
   node: NodeKind;
 };
 
-const NodeDetailsConditions: React.FC<NodeDetailsConditionsProps> = ({ node }) => {
+const NodeDetailsConditions: React.FC<React.PropsWithChildren<NodeDetailsConditionsProps>> = ({
+  node,
+}) => {
   const { t } = useTranslation();
   return (
     <div className="co-m-pane__body">

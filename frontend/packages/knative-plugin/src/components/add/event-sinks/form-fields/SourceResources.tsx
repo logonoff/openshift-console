@@ -21,7 +21,10 @@ export interface SourceResourcesProps {
   isMoveSink?: boolean;
 }
 
-const SourceResources: React.FC<SourceResourcesProps> = ({ namespace, isMoveSink }) => {
+const SourceResources: React.FC<React.PropsWithChildren<SourceResourcesProps>> = ({
+  namespace,
+  isMoveSink,
+}) => {
   const { t } = useTranslation();
   const [resourceAlert, setResourceAlert] = React.useState(false);
   const { setFieldValue, setFieldTouched, validateForm, initialValues } = useFormikContext<
@@ -37,7 +40,7 @@ const SourceResources: React.FC<SourceResourcesProps> = ({ namespace, isMoveSink
     fuzzy(strText, item?.props?.name);
   const fieldId = getFieldId('source-name', 'dropdown');
   const onChange = React.useCallback(
-    (selectedValue, valueObj) => {
+    (selectedValue: any, valueObj: any) => {
       const modelData = valueObj?.props?.model;
       const name = valueObj?.props?.name;
       if (name && modelData) {

@@ -16,7 +16,7 @@ type LazyMenuRendererProps = {
   toggleRef: React.RefObject<HTMLButtonElement>;
 } & React.ComponentProps<typeof ActionMenuContent>;
 
-const LazyMenuRenderer: React.FC<LazyMenuRendererProps> = ({
+const LazyMenuRenderer: React.FC<React.PropsWithChildren<LazyMenuRendererProps>> = ({
   isOpen,
   actions,
   menuRef,
@@ -49,7 +49,7 @@ const LazyMenuRenderer: React.FC<LazyMenuRendererProps> = ({
   return <Popper triggerRef={toggleRef} popper={menu} placement="bottom-end" isVisible={isOpen} />;
 };
 
-const LazyActionMenu: React.FC<LazyActionMenuProps> = ({
+const LazyActionMenu: React.FC<React.PropsWithChildren<LazyActionMenuProps>> = ({
   context,
   variant = ActionMenuVariant.KEBAB,
   label,

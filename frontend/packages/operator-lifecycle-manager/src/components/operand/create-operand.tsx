@@ -43,7 +43,7 @@ import { DEPRECATED_CreateOperandForm } from './DEPRECATED_operand-form';
 import { OperandForm } from './operand-form';
 import { OperandYAML } from './operand-yaml';
 
-export const CreateOperand: React.FC<CreateOperandProps> = ({
+export const CreateOperand: React.FC<React.PropsWithChildren<CreateOperandProps>> = ({
   initialEditorType,
   csv,
   loaded,
@@ -107,10 +107,10 @@ export const CreateOperand: React.FC<CreateOperandProps> = ({
 
   const sample = React.useMemo<K8sResourceKind>(() => exampleForModel(csv, model), [csv, model]);
 
-  const pruneFunc = React.useCallback((data) => prune(data, sample), [sample]);
+  const pruneFunc = React.useCallback((data: any) => prune(data, sample), [sample]);
 
   const onChangeEditorType = React.useCallback(
-    (newMethod) => {
+    (newMethod: any) => {
       setHelpText(
         newMethod === EditorType.Form
           ? formHelpText
@@ -150,7 +150,7 @@ export const CreateOperand: React.FC<CreateOperandProps> = ({
 
 type CreateOperandPageRouteParams = RouteParams<'csvName' | 'ns'>;
 
-const CreateOperandPage: React.FC = () => {
+const CreateOperandPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const params = useParams();
   const createResourceExtension = useCreateResourceExtension(params.plural);

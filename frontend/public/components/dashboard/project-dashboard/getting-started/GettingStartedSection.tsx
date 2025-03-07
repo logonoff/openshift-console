@@ -16,7 +16,9 @@ type GettingStartedSectionProps = {
   userSettingKey: string;
 };
 
-export const GettingStartedSection: React.FC<GettingStartedSectionProps> = ({ userSettingKey }) => {
+export const GettingStartedSection: React.FC<React.PropsWithChildren<
+  GettingStartedSectionProps
+>> = ({ userSettingKey }) => {
   const openshiftFlag = useFlag(FLAGS.OPENSHIFT);
 
   const [showState, setShowState, showStateLoaded] = useGettingStartedShowState(userSettingKey);

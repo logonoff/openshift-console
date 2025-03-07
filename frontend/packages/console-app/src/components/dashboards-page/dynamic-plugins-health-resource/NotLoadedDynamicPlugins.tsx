@@ -6,7 +6,10 @@ import { referenceForModel } from '@console/internal/module/k8s';
 import { NotLoadedDynamicPluginInfo } from '@console/plugin-sdk/src';
 import { StatusPopupSection } from '@console/shared/src/components/dashboard/status-card/StatusPopup';
 
-const NotLoadedDynamicPlugins: React.FC<NotLoadedDynamicPluginsProps> = ({ plugins, label }) => (
+const NotLoadedDynamicPlugins: React.FC<React.PropsWithChildren<NotLoadedDynamicPluginsProps>> = ({
+  plugins,
+  label,
+}) => (
   <StackItem>
     <StatusPopupSection firstColumn={label}>
       <Content component="ul">

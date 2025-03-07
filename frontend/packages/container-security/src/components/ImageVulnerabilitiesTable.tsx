@@ -17,7 +17,9 @@ const getRowProps = (vulnerability: Vulnerability) => ({
   id: vulnerability.name,
 });
 
-const ImageVulnerabilitiesTable: React.FC<ImageVulnerabilitiesTableProps> = (props) => {
+const ImageVulnerabilitiesTable: React.FC<React.PropsWithChildren<
+  ImageVulnerabilitiesTableProps
+>> = (props) => {
   const { t } = useTranslation();
   const EmptyMsg = () => (
     <ConsoleEmptyState title={t('container-security~No Image vulnerabilities found')} />

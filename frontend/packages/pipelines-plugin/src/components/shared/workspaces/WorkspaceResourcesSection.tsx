@@ -14,10 +14,9 @@ type WorkspaceResourcesSectionProps = {
   workspaces: PipelineRunWorkspace[];
 };
 
-const WorkspaceResourcesSection: React.FC<WorkspaceResourcesSectionProps> = ({
-  namespace,
-  workspaces,
-}) => {
+const WorkspaceResourcesSection: React.FC<React.PropsWithChildren<
+  WorkspaceResourcesSectionProps
+>> = ({ namespace, workspaces }) => {
   const { t } = useTranslation();
 
   if (!namespace || !workspaces || workspaces.length === 0) return null;

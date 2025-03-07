@@ -17,7 +17,9 @@ type DeploymentSideBarDetailsProps = {
   deployment: DeploymentKind;
 };
 
-const DeploymentSideBarDetails: React.FC<DeploymentSideBarDetailsProps> = ({ deployment: d }) => {
+const DeploymentSideBarDetails: React.FC<React.PropsWithChildren<
+  DeploymentSideBarDetailsProps
+>> = ({ deployment: d }) => {
   const { t } = useTranslation();
   return (
     <div className="overview__sidebar-pane-body resource-overview__body">

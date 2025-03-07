@@ -24,7 +24,11 @@ type DropdownItemProps = {
   namespace?: string;
 };
 
-const DropdownItem: React.FC<DropdownItemProps> = ({ model, name, namespace }) => (
+const DropdownItem: React.FC<React.PropsWithChildren<DropdownItemProps>> = ({
+  model,
+  name,
+  namespace,
+}) => (
   <span className="co-resource-item">
     <span className="co-resource-icon--fixed-width">
       <ResourceIcon kind={referenceForModel(model)} />

@@ -10,7 +10,7 @@ interface DynamicResourceLinkProps {
   kind: string;
 }
 
-const DynamicResourceLink: React.FC<DynamicResourceLinkProps> = ({
+const DynamicResourceLink: React.FC<React.PropsWithChildren<DynamicResourceLinkProps>> = ({
   title,
   name,
   namespace,

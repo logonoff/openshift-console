@@ -29,7 +29,7 @@ export interface ResourceDropdownFieldProps extends DropdownFieldProps {
   menuClassName?: string;
 }
 
-const ResourceDropdownField: React.FC<ResourceDropdownFieldProps> = ({
+const ResourceDropdownField: React.FC<React.PropsWithChildren<ResourceDropdownFieldProps>> = ({
   label,
   helpText,
   required,

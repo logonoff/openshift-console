@@ -27,7 +27,9 @@ interface StateProps {
   namespace: string;
 }
 
-const MultipleResourceKeySelector: React.FC<StateProps & MultipleResourceKeySelectorProps> = ({
+const MultipleResourceKeySelector: React.FC<React.PropsWithChildren<
+  StateProps & MultipleResourceKeySelectorProps
+>> = ({
   label,
   namespace,
   resourceModel,

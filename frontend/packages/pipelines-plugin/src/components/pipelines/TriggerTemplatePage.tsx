@@ -5,7 +5,7 @@ import { useTriggersTechPreviewBadge } from '../../utils/hooks';
 import TriggerTemplateDetails from './detail-page-tabs/TriggerTemplateDetails';
 import { useTriggersBreadcrumbsFor } from './hooks';
 
-const TriggerTemplatePage: React.FC<DetailsPageProps> = (props) => {
+const TriggerTemplatePage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const { kindObj } = props;
   const breadcrumbsFor = useTriggersBreadcrumbsFor(kindObj);
   const badge = useTriggersTechPreviewBadge(props.namespace);

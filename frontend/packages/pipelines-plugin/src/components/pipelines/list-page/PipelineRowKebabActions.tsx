@@ -12,7 +12,9 @@ type PipelineRowKebabActionsProps = {
 
 const pipelineReference = referenceForModel(PipelineModel);
 
-const PipelineRowKebabActions: React.FC<PipelineRowKebabActionsProps> = ({ pipeline }) => {
+const PipelineRowKebabActions: React.FC<React.PropsWithChildren<PipelineRowKebabActionsProps>> = ({
+  pipeline,
+}) => {
   const {
     metadata: { name, namespace },
   } = pipeline;

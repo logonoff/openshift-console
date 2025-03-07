@@ -12,7 +12,12 @@ export interface SinkUriProps {
   close?: () => void;
 }
 
-const SinkUri: React.FC<SinkUriProps> = ({ source, eventSourceList, cancel, close }) => {
+const SinkUri: React.FC<React.PropsWithChildren<SinkUriProps>> = ({
+  source,
+  eventSourceList,
+  cancel,
+  close,
+}) => {
   const { t } = useTranslation();
   const initialValues = {
     uri: source.spec?.sinkUri ?? '',

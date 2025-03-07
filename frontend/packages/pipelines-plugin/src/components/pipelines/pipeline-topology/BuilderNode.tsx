@@ -17,7 +17,7 @@ type BuilderNodeProps = {
   element: Node<NodeModel, BuilderNodeModelData>;
 };
 
-const BuilderNode: React.FC<BuilderNodeProps> = ({ element }) => {
+const BuilderNode: React.FC<React.PropsWithChildren<BuilderNodeProps>> = ({ element }) => {
   const { t } = useTranslation();
   const [showAdd, hoverRef] = useHover();
   const { width, height } = element.getBounds();

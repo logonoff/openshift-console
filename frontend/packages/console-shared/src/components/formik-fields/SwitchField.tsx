@@ -3,7 +3,7 @@ import { Switch } from '@patternfly/react-core';
 import { CheckboxFieldProps } from './field-types';
 import ToggleableFieldBase from './ToggleableFieldBase';
 
-const SwitchField: React.FC<CheckboxFieldProps> = (baseProps) => (
+const SwitchField: React.FC<React.PropsWithChildren<CheckboxFieldProps>> = (baseProps) => (
   <ToggleableFieldBase {...baseProps}>
     {({ isValid, ...props }) => <Switch {...props} />}
   </ToggleableFieldBase>

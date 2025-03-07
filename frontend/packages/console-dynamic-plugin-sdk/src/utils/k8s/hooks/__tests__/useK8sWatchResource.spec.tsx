@@ -26,11 +26,15 @@ const k8sWatchMock = k8sWatch as jest.Mock;
 
 // Redux wrapper
 let store;
-const Wrapper: React.FC = ({ children }) => <Provider store={store}>{children}</Provider>;
+const Wrapper: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
+  <Provider store={store}>{children}</Provider>
+);
 
 // Object under test
 const resourceUpdate = jest.fn();
-const WatchResource: React.FC<{ initResource: WatchK8sResource }> = ({ initResource }) => {
+const WatchResource: React.FC<React.PropsWithChildren<{ initResource: WatchK8sResource }>> = ({
+  initResource,
+}) => {
   resourceUpdate(...useK8sWatchResource(initResource));
   return null;
 };

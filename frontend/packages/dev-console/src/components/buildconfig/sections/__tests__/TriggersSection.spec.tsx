@@ -6,7 +6,7 @@ import TriggersSection, { TriggersSectionFormData } from '../TriggersSection';
 
 configure({ testIdAttribute: 'data-test' });
 
-const Wrapper: React.FC<FormikConfig<TriggersSectionFormData>> = ({
+const Wrapper: React.FC<React.PropsWithChildren<FormikConfig<TriggersSectionFormData>>> = ({
   children,
   ...formikConfig
 }) => (

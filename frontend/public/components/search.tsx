@@ -86,7 +86,7 @@ const ResourceList = ({ kind, mock, namespace, selector, nameFilter }) => {
   );
 };
 
-const SearchPage_: React.FC<SearchProps> = (props) => {
+const SearchPage_: React.FC<React.PropsWithChildren<SearchProps>> = (props) => {
   const [perspective] = useActivePerspective();
   const [selectedItems, setSelectedItems] = React.useState(new Set<string>([]));
   const [collapsedKinds, setCollapsedKinds] = React.useState(new Set<string>([]));

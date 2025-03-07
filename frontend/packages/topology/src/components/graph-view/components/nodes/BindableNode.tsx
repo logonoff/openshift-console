@@ -23,7 +23,7 @@ type BindableNodeProps = {
   WithContextMenuProps &
   WithCreateConnectorProps;
 
-const BindableNode: React.FC<BindableNodeProps> = ({
+const BindableNode: React.FC<React.PropsWithChildren<BindableNodeProps>> = ({
   element,
   selected,
   onSelect,

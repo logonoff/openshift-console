@@ -17,7 +17,7 @@ export type PVCAlert = ExtensionDeclaration<
   'console.pvc/alert',
   {
     /** The alert component. */
-    alert: CodeRef<React.ComponentType<{ pvc: K8sResourceCommon }>>;
+    alert: CodeRef<React.ComponentType<React.PropsWithChildren<{ pvc: K8sResourceCommon }>>>;
   }
 >;
 
@@ -28,7 +28,7 @@ export type PVCStatus = ExtensionDeclaration<
     /** Priority for the status component. Bigger value means higher priority. */
     priority: number;
     /** The status component. */
-    status: CodeRef<React.ComponentType<{ pvc: K8sResourceCommon }>>;
+    status: CodeRef<React.ComponentType<React.PropsWithChildren<{ pvc: K8sResourceCommon }>>>;
     /** Predicate that tells whether to render the status component or not. */
     predicate: CodeRef<(pvc: K8sResourceCommon) => boolean>;
   }
@@ -43,7 +43,7 @@ export type PVCDelete = ExtensionDeclaration<
     /** Method for the PVC delete operation. */
     onPVCKill: CodeRef<(pvc: K8sResourceCommon) => Promise<void>>;
     /** Alert component to show additional information. */
-    alert: CodeRef<React.ComponentType<{ pvc: K8sResourceCommon }>>;
+    alert: CodeRef<React.ComponentType<React.PropsWithChildren<{ pvc: K8sResourceCommon }>>>;
   }
 >;
 

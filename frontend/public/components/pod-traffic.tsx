@@ -15,7 +15,11 @@ export type PodTrafficProp = {
   tooltipFlag?: boolean;
 };
 
-export const PodTraffic: React.FC<PodTrafficProp> = ({ podName, namespace, tooltipFlag }) => {
+export const PodTraffic: React.FC<React.PropsWithChildren<PodTrafficProp>> = ({
+  podName,
+  namespace,
+  tooltipFlag,
+}) => {
   const { t } = useTranslation();
   const [data, loaded, loadError] = useK8sWatchResource<EndpointSliceKind[]>({
     groupVersionKind: {

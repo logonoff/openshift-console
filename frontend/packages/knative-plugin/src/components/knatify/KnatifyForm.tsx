@@ -10,16 +10,9 @@ import IconSection from '@console/dev-console/src/components/import/section/Icon
 import { usePreventDataLossLock } from '@console/internal/components/utils';
 import { FormFooter, FlexForm, FormBody } from '@console/shared/src/components/form-utils';
 
-const KnatifyForm: React.FC<FormikProps<FormikValues> & DeployImageFormProps> = ({
-  values,
-  errors,
-  handleSubmit,
-  handleReset,
-  status,
-  isSubmitting,
-  dirty,
-  projects,
-}) => {
+const KnatifyForm: React.FC<React.PropsWithChildren<
+  FormikProps<FormikValues> & DeployImageFormProps
+>> = ({ values, errors, handleSubmit, handleReset, status, isSubmitting, dirty, projects }) => {
   const { t } = useTranslation();
   usePreventDataLossLock(isSubmitting);
 

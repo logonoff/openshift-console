@@ -45,7 +45,7 @@ const makeLocalVolumeDiscoverRequest = async (
   }
 };
 
-export const CreateLocalVolumeDiscovery: React.FC = () => {
+export const CreateLocalVolumeDiscovery: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { appName, ns } = useParams();
   const { t } = useTranslation();
 

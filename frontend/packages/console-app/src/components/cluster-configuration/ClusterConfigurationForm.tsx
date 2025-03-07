@@ -7,7 +7,9 @@ type ClusterConfigurationFormProps = {
   items: ResolvedClusterConfigurationItem[];
 };
 
-const ClusterConfigurationForm: React.FC<ClusterConfigurationFormProps> = ({ items }) =>
+const ClusterConfigurationForm: React.FC<React.PropsWithChildren<
+  ClusterConfigurationFormProps
+>> = ({ items }) =>
   items?.length > 0 ? (
     <Form onSubmit={(event) => event.preventDefault()}>
       {items.map((item) => (

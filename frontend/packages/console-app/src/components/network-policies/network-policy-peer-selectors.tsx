@@ -4,7 +4,9 @@ import { Trans, useTranslation } from 'react-i18next';
 import { NetworkPolicyConditionalSelector } from './network-policy-conditional-selector';
 import { NetworkPolicySelectorPreview } from './network-policy-selector-preview';
 
-export const NetworkPolicyPeerSelectors: React.FC<PeerSelectorProps> = (props) => {
+export const NetworkPolicyPeerSelectors: React.FC<React.PropsWithChildren<PeerSelectorProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const { policyNamespace, direction, onChange, podSelector, namespaceSelector } = props;
 

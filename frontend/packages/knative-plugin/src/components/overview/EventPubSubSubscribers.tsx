@@ -14,7 +14,7 @@ type EventPubSubSubscribersProps = {
   subscribers?: Subscriber[];
 };
 
-const EventPubSubSubscribers: React.FC<EventPubSubSubscribersProps> = ({
+const EventPubSubSubscribers: React.FC<React.PropsWithChildren<EventPubSubSubscribersProps>> = ({
   subscribers,
   title = 'Subscribers',
 }) => {

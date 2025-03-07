@@ -65,11 +65,9 @@ type PinnedResourcesConfigurationProps = {
   allK8sModels: ImmutableMap<string, K8sModel>;
 };
 
-const PinnedResourcesConfiguration: React.FC<PinnedResourcesConfigurationProps> = ({
-  readonly,
-  allK8sModels,
-  groupVersionMap,
-}) => {
+const PinnedResourcesConfiguration: React.FC<React.PropsWithChildren<
+  PinnedResourcesConfigurationProps
+>> = ({ readonly, allK8sModels, groupVersionMap }) => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
   const perspectiveExtensions = usePerspectives();
@@ -121,7 +119,7 @@ const PinnedResourcesConfiguration: React.FC<PinnedResourcesConfigurationProps> 
 
   type ItemProps = { title?: string; model?: K8sKind };
 
-  const Item: React.FC<ItemProps> = React.memo(({ model }) => (
+  const Item: React.FC<React.PropsWithChildren<ItemProps>> = React.memo(({ model }) => (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <span className="co-resource-item">
         <span className="co-resource-icon--fixed-width">
@@ -144,7 +142,7 @@ const PinnedResourcesConfiguration: React.FC<PinnedResourcesConfigurationProps> 
     </div>
   ));
 
-  const InvalidItem: React.FC<ItemProps> = React.memo(({ title }) => (
+  const InvalidItem: React.FC<React.PropsWithChildren<ItemProps>> = React.memo(({ title }) => (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <span className="co-resource-icon--fixed-width">
         <Tooltip position="top" content={t('devconsole~Resource not found')}>

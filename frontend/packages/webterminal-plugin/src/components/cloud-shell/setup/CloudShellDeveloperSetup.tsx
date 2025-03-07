@@ -29,7 +29,7 @@ type Props = StateProps & {
   operatorNamespace: string;
 };
 
-const CloudShellDeveloperSetup: React.FunctionComponent<Props> = ({
+const CloudShellDeveloperSetup: React.FunctionComponent<React.PropsWithChildren<Props>> = ({
   activeNamespace,
   workspaceModel,
   operatorNamespace,

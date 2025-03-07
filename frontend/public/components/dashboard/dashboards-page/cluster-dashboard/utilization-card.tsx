@@ -213,11 +213,9 @@ export const PrometheusMultilineUtilizationItem = withDashboardResources<
   },
 );
 
-const UtilizationCardNodeFilter: React.FC<UtilizationCardNodeFilterProps> = ({
-  machineConfigPools,
-  onNodeSelect,
-  selectedNodes,
-}) => {
+const UtilizationCardNodeFilter: React.FC<React.PropsWithChildren<
+  UtilizationCardNodeFilterProps
+>> = ({ machineConfigPools, onNodeSelect, selectedNodes }) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const sortedMCPs = machineConfigPools.sort((a, b) => {
@@ -421,14 +419,14 @@ type PrometheusUtilizationItemProps = DashboardItemProps &
     totalQuery?: string;
     limitQuery?: string;
     requestQuery?: string;
-    TopConsumerPopover?: React.ComponentType<TopConsumerPopoverProps>;
+    TopConsumerPopover?: React.ComponentType<React.PropsWithChildren<TopConsumerPopoverProps>>;
     setLimitReqState?: (state: LimitRequested) => void;
   };
 
 type PrometheusMultilineUtilizationItemProps = DashboardItemProps &
   PrometheusCommonProps & {
     queries: QueryWithDescription[];
-    TopConsumerPopovers?: React.ComponentType<TopConsumerPopoverProps>[];
+    TopConsumerPopovers?: React.ComponentType<React.PropsWithChildren<TopConsumerPopoverProps>>[];
   };
 
 type UtilizationCardNodeFilterProps = {

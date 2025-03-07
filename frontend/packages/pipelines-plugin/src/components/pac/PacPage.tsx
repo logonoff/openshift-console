@@ -14,7 +14,7 @@ import { usePacData } from './hooks/usePacData';
 import PacForm from './PacForm';
 import PacOverview from './PacOverview';
 
-const PacPage: React.FC = () => {
+const PacPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   // const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();

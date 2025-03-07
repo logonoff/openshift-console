@@ -30,13 +30,9 @@ interface MonitoringAlertsDecoratorProps {
 
 type MonitoringAlertsDecoratorType = MonitoringAlertsDecoratorProps & DispatchProps;
 
-const MonitoringAlertsDecorator: React.FC<MonitoringAlertsDecoratorType> = ({
-  element,
-  radius,
-  x,
-  y,
-  showMonitoringOverview,
-}) => {
+const MonitoringAlertsDecorator: React.FC<React.PropsWithChildren<
+  MonitoringAlertsDecoratorType
+>> = ({ element, radius, x, y, showMonitoringOverview }) => {
   const ref = React.useRef();
   const { t } = useTranslation();
   const workloadData = element.getData().data;

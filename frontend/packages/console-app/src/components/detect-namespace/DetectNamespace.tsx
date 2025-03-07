@@ -5,7 +5,7 @@ type DetectNamespaceProps = {
   children: React.ReactNode;
 };
 
-const DetectNamespace: React.FC<DetectNamespaceProps> = ({ children }) => {
+const DetectNamespace: React.FC<React.PropsWithChildren<DetectNamespaceProps>> = ({ children }) => {
   const { namespace, setNamespace, loaded } = useValuesForNamespaceContext();
   return loaded ? (
     <NamespaceContext.Provider value={{ namespace, setNamespace }}>

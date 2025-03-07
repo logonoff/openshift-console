@@ -57,7 +57,7 @@ type AddBareMetalHostProps = {
   enablePowerMgmt: boolean;
 };
 
-const AddBareMetalHost: React.FC<AddBareMetalHostProps> = ({
+const AddBareMetalHost: React.FC<React.PropsWithChildren<AddBareMetalHostProps>> = ({
   namespace,
   name,
   enablePowerMgmt,

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import StepComponent from './StepComponent';
 import { TourContext } from './tour-context';
 
-const GuidedTour: React.FC = () => {
+const GuidedTour: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { tourState, tour, totalSteps, onComplete } = React.useContext(TourContext);
   const { t } = useTranslation();
   if (!tour) return null;

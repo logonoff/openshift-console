@@ -7,10 +7,9 @@ interface PipelineMetricsRefreshDropdownProps {
   setInterval: (v: number) => void;
 }
 
-const PipelineMetricsRefreshDropdown: React.FC<PipelineMetricsRefreshDropdownProps> = ({
-  interval,
-  setInterval,
-}) => {
+const PipelineMetricsRefreshDropdown: React.FC<React.PropsWithChildren<
+  PipelineMetricsRefreshDropdownProps
+>> = ({ interval, setInterval }) => {
   const { t } = useTranslation();
   return (
     <div className="form-group">

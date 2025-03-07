@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { PersistentVolumeClaimModel } from '../../models';
 import { PersistentVolumeClaimKind } from '../../../public/module/k8s/types';
 
-export const PVCDropdown: React.FC<PVCDropdownProps> = (props) => {
+export const PVCDropdown: React.FC<React.PropsWithChildren<PVCDropdownProps>> = (props) => {
   const kind = PersistentVolumeClaimModel.kind;
   const { namespace, selectedKey, desc } = props;
   const resources = [{ kind, namespace }];

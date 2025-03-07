@@ -9,7 +9,9 @@ export interface EventListenerDetailsProps {
   obj: EventListenerKind;
 }
 
-const EventListenerDetails: React.FC<EventListenerDetailsProps> = ({ obj: eventListener }) => {
+const EventListenerDetails: React.FC<React.PropsWithChildren<EventListenerDetailsProps>> = ({
+  obj: eventListener,
+}) => {
   const { t } = useTranslation();
   const triggers =
     eventListener.spec.triggers?.filter(

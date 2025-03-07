@@ -3,7 +3,7 @@ import { NavItem } from '@patternfly/react-core';
 import { NavLink } from 'react-router-dom';
 import { ResourceNSNavItem } from '@console/dynamic-plugin-sdk';
 
-export const FavoriteNavItem: React.FC<FavoriteNavItemProps> = ({
+export const FavoriteNavItem: React.FC<React.PropsWithChildren<FavoriteNavItemProps>> = ({
   className,
   dataAttributes,
   isActive,

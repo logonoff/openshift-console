@@ -56,7 +56,7 @@ interface StateProps {
 
 type Props = EventSourceProps & StateProps;
 
-export const EventSource: React.FC<Props> = ({
+export const EventSource: React.FC<React.PropsWithChildren<Props>> = ({
   namespace,
   normalizedSource,
   activeApplication,

@@ -15,7 +15,7 @@ import { FormFooter, FormBody, InputField, FlexForm } from '@console/shared';
 import { PAC_GH_APP_DOC, PAC_GH_APP_NEW } from './const';
 import PacPermissions from './PacPermissions';
 
-const PacAppForm: React.FC<FormikProps<FormikValues>> = ({
+const PacAppForm: React.FC<React.PropsWithChildren<FormikProps<FormikValues>>> = ({
   errors,
   handleReset,
   status,

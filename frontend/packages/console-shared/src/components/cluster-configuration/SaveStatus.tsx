@@ -7,7 +7,10 @@ export type SaveStatusProps = {
   error?: Error;
 };
 
-export const SaveStatus: React.FC<SaveStatusProps> = ({ status, error }) => {
+export const SaveStatus: React.FC<React.PropsWithChildren<SaveStatusProps>> = ({
+  status,
+  error,
+}) => {
   const { t } = useTranslation();
   if (status === 'successful') {
     return (

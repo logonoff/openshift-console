@@ -15,7 +15,9 @@ import { PodDisruptionBudgetKind } from './types';
 const { common } = Kebab.factory;
 const menuActions = [...Kebab.getExtensionsActionsForKind(PodDisruptionBudgetModel), ...common];
 
-const PodDisruptionBudgetDetails: React.FC<PodDisruptionBudgetDetailsProps> = ({ obj }) => {
+const PodDisruptionBudgetDetails: React.FC<React.PropsWithChildren<
+  PodDisruptionBudgetDetailsProps
+>> = ({ obj }) => {
   const { t } = useTranslation();
   return (
     <div className="co-m-pane__body">
@@ -53,9 +55,9 @@ const PodDisruptionBudgetDetails: React.FC<PodDisruptionBudgetDetailsProps> = ({
   );
 };
 
-export const PodDisruptionBudgetDetailsPage: React.FC<PodDisruptionBudgetDetailsPageProps> = (
-  props,
-) => (
+export const PodDisruptionBudgetDetailsPage: React.FC<React.PropsWithChildren<
+  PodDisruptionBudgetDetailsPageProps
+>> = (props) => (
   <DetailsPage
     {...props}
     kind={props.kind}

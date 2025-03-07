@@ -13,7 +13,7 @@ import { k8sPatch, K8sKind } from '@console/internal/module/k8s';
 import { YellowExclamationTriangleIcon } from '@console/shared';
 import { OperatorHubKind } from '../operator-hub';
 
-const DisableDefaultSourceModal: React.FC<DisableSourceModalProps> = ({
+const DisableDefaultSourceModal: React.FC<React.PropsWithChildren<DisableSourceModalProps>> = ({
   kind,
   operatorHub,
   sourceName,

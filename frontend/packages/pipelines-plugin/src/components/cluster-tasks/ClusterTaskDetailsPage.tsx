@@ -5,7 +5,7 @@ import { usePipelineTechPreviewBadge } from '../../utils/hooks';
 import { useTasksBreadcrumbsFor } from '../pipelines/hooks';
 import ClusterTaskDetails from './ClusterTaskDetails';
 
-const ClusterTaskDetailsPage: React.FC<DetailsPageProps> = (props) => {
+const ClusterTaskDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const { kindObj } = props;
   const breadcrumbsFor = useTasksBreadcrumbsFor(kindObj);
   const badge = usePipelineTechPreviewBadge(props.namespace);

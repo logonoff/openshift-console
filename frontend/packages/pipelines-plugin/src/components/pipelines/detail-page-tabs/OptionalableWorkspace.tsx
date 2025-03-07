@@ -8,7 +8,10 @@ type OptionalableWorkspace = {
   isReadOnly?: boolean;
 };
 
-const OptionalableWorkspace: React.FC<OptionalableWorkspace> = ({ namePrefix, isReadOnly }) => {
+const OptionalableWorkspace: React.FC<React.PropsWithChildren<OptionalableWorkspace>> = ({
+  namePrefix,
+  isReadOnly,
+}) => {
   const { t } = useTranslation();
 
   return (

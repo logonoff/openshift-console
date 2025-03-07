@@ -14,7 +14,7 @@ import {
 import { K8sKind, k8sPatch, K8sResourceKind, Patch } from '@console/internal/module/k8s';
 import { usePromiseHandler } from '@console/shared/src/hooks/promise-handler';
 
-export const UpdateStrategyModal: React.FC<UpdateStrategyModalProps> = ({
+export const UpdateStrategyModal: React.FC<React.PropsWithChildren<UpdateStrategyModalProps>> = ({
   cancel,
   close,
   path,

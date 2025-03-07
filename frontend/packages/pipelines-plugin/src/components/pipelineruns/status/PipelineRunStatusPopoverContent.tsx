@@ -12,7 +12,9 @@ import './StatusPopoverContent.scss';
 type StatusPopoverContentProps = {
   pipelineRun: PipelineRunKind;
 };
-const PipelineRunStatusPopoverContent: React.FC<StatusPopoverContentProps> = ({ pipelineRun }) => {
+const PipelineRunStatusPopoverContent: React.FC<React.PropsWithChildren<
+  StatusPopoverContentProps
+>> = ({ pipelineRun }) => {
   const { t } = useTranslation();
   const [PLRTaskRuns, taskRunsLoaded] = useTaskRuns(
     pipelineRun.metadata.namespace,

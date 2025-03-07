@@ -10,10 +10,9 @@ import EnvironmentVariablesSection, {
 
 configure({ testIdAttribute: 'data-test' });
 
-const Wrapper: React.FC<FormikConfig<EnvironmentVariablesSectionFormData>> = ({
-  children,
-  ...formikConfig
-}) => (
+const Wrapper: React.FC<React.PropsWithChildren<
+  FormikConfig<EnvironmentVariablesSectionFormData>
+>> = ({ children, ...formikConfig }) => (
   <Provider store={store}>
     <Formik {...formikConfig}>
       {(formikProps) => (

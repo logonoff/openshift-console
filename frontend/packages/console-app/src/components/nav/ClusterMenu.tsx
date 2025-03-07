@@ -6,9 +6,9 @@ import { usePerspectiveExtension } from '@console/shared';
 import { ACM_PERSPECTIVE_ID } from '../../consts';
 import ClusterMenuToggle from './ClusterMenuToggle';
 
-const ClusterGroup: React.FC<{
+const ClusterGroup: React.FC<React.PropsWithChildren<{
   clusters: ClusterMenuItem[];
-}> = ({ clusters }) => {
+}>> = ({ clusters }) => {
   const [activePerspective] = useActivePerspective();
 
   return clusters.length === 0 ? null : (

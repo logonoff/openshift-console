@@ -9,9 +9,9 @@ export type ConfigurationsOverviewListProps = {
   configurations: K8sResourceKind[];
 };
 
-const ConfigurationsOverviewList: React.FC<ConfigurationsOverviewListProps> = ({
-  configurations,
-}) => {
+const ConfigurationsOverviewList: React.FC<React.PropsWithChildren<
+  ConfigurationsOverviewListProps
+>> = ({ configurations }) => {
   const { t } = useTranslation();
   return (
     <>

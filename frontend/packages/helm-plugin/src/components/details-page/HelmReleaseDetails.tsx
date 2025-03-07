@@ -37,10 +37,9 @@ interface LoadedHelmReleaseDetailsProps extends HelmReleaseDetailsProps {
   };
 }
 
-export const LoadedHelmReleaseDetails: React.FC<LoadedHelmReleaseDetailsProps> = ({
-  helmRelease,
-  secrets,
-}) => {
+export const LoadedHelmReleaseDetails: React.FC<React.PropsWithChildren<
+  LoadedHelmReleaseDetailsProps
+>> = ({ helmRelease, secrets }) => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const location = useLocation();
@@ -144,7 +143,7 @@ export const LoadedHelmReleaseDetails: React.FC<LoadedHelmReleaseDetailsProps> =
   );
 };
 
-const HelmReleaseDetails: React.FC<HelmReleaseDetailsProps> = () => {
+const HelmReleaseDetails: React.FC<React.PropsWithChildren<HelmReleaseDetailsProps>> = () => {
   const params = useParams();
   const namespace = params.ns;
   const helmReleaseName = params.name;

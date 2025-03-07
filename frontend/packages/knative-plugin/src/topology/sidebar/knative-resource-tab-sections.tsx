@@ -14,7 +14,9 @@ import { getResource } from '@console/topology/src/utils';
 import { usePodsForRevisions } from '../../utils/usePodsForRevisions';
 import { NodeType } from '../topology-types';
 
-export const EventSinkSourceSection: React.FC<{ resource: K8sResourceKind }> = ({ resource }) => {
+export const EventSinkSourceSection: React.FC<React.PropsWithChildren<{
+  resource: K8sResourceKind;
+}>> = ({ resource }) => {
   const { t } = useTranslation();
   const target = resource?.spec?.source?.ref;
   const reference = target && referenceFor(target);

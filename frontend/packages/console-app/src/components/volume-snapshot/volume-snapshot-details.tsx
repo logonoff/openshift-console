@@ -25,7 +25,7 @@ const { editYaml, events } = navFactory;
 const { common, RestorePVC } = Kebab.factory;
 const menuActions = [RestorePVC, ...common];
 
-const Details: React.FC<DetailsProps> = ({ obj }) => {
+const Details: React.FC<React.PropsWithChildren<DetailsProps>> = ({ obj }) => {
   const { t } = useTranslation();
   const { namespace } = obj.metadata || {};
   const sourceModel = obj?.spec?.source?.persistentVolumeClaimName
@@ -97,7 +97,7 @@ const Details: React.FC<DetailsProps> = ({ obj }) => {
   );
 };
 
-const VolumeSnapshotDetailsPage: React.FC<DetailsPageProps> = (props) => {
+const VolumeSnapshotDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const pages = [
     {
       href: '',

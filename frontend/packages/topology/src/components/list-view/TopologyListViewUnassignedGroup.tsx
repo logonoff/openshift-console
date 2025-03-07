@@ -18,12 +18,9 @@ interface TopologyListViewUnassignedGroupProps {
   onSelect: (ids: string[]) => void;
 }
 
-const TopologyListViewUnassignedGroup: React.FC<TopologyListViewUnassignedGroupProps> = ({
-  items,
-  showCategory,
-  selectedIds,
-  onSelect,
-}) => {
+const TopologyListViewUnassignedGroup: React.FC<React.PropsWithChildren<
+  TopologyListViewUnassignedGroupProps
+>> = ({ items, showCategory, selectedIds, onSelect }) => {
   const { t } = useTranslation();
   if (!items?.length) {
     return null;

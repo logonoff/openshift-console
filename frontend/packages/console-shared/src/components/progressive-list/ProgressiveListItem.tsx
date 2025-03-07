@@ -6,7 +6,9 @@ export interface ProgressiveListItemProps {
   name: string;
 }
 
-const ProgressiveListItem: React.FC<ProgressiveListItemProps> = ({ children }) => {
+const ProgressiveListItem: React.FC<React.PropsWithChildren<ProgressiveListItemProps>> = ({
+  children,
+}) => {
   const element = React.useRef<HTMLDivElement>();
   React.useEffect(() => {
     element.current.scrollIntoView({ behavior: 'smooth' });

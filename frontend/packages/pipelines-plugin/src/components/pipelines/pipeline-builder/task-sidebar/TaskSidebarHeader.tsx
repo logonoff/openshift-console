@@ -14,7 +14,10 @@ type TaskSidebarHeaderProps = {
   taskResource: TaskKind;
 };
 
-const TaskSidebarHeader: React.FC<TaskSidebarHeaderProps> = ({ removeThisTask, taskResource }) => {
+const TaskSidebarHeader: React.FC<React.PropsWithChildren<TaskSidebarHeaderProps>> = ({
+  removeThisTask,
+  taskResource,
+}) => {
   const { t } = useTranslation();
 
   return (

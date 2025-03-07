@@ -16,7 +16,7 @@ import { DataPoint } from '.';
 
 const DEFAULT_THRESHOLDS = [{ value: 67 }, { value: 92 }];
 
-export const GaugeChart: React.FC<GaugeChartProps> = ({
+export const GaugeChart: React.FC<React.PropsWithChildren<GaugeChartProps>> = ({
   data,
   error,
   humanize = humanizePercentage,
@@ -77,7 +77,7 @@ export const GaugeChart: React.FC<GaugeChartProps> = ({
   );
 };
 
-export const Gauge: React.FC<GaugeProps> = ({
+export const Gauge: React.FC<React.PropsWithChildren<GaugeProps>> = ({
   humanize = humanizePercentage,
   invert,
   namespace,

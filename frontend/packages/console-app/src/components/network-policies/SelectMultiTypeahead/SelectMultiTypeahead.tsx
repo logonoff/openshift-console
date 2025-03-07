@@ -17,7 +17,7 @@ type SelectMultiTypeaheadProps = {
   setSelected: (newSelection: string[]) => void;
 };
 
-const SelectMultiTypeahead: React.FC<SelectMultiTypeaheadProps> = ({
+const SelectMultiTypeahead: React.FC<React.PropsWithChildren<SelectMultiTypeaheadProps>> = ({
   options,
   placeholder,
   selected,

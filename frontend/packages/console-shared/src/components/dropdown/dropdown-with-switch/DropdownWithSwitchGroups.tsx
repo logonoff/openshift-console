@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { Divider, MenuGroup, MenuItem, MenuList } from '@patternfly/react-core';
 
-const DropdownWithSwitchGroups: React.FC<DropdownWithSwitchGroupsProps> = ({
-  options,
-  selectedKey,
-}) => {
+const DropdownWithSwitchGroups: React.FC<React.PropsWithChildren<
+  DropdownWithSwitchGroupsProps
+>> = ({ options, selectedKey }) => {
   const renderedOptions = options.filter(({ items }) => items.length > 0);
   return renderedOptions.length === 0 ? null : (
     <>

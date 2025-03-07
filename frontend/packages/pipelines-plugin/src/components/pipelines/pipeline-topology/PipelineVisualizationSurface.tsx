@@ -34,12 +34,9 @@ type PipelineVisualizationSurfaceProps = {
   noScrollbar?: boolean;
 };
 
-const PipelineVisualizationSurface: React.FC<PipelineVisualizationSurfaceProps> = ({
-  model,
-  componentFactory,
-  showControlBar = false,
-  noScrollbar = false,
-}) => {
+const PipelineVisualizationSurface: React.FC<React.PropsWithChildren<
+  PipelineVisualizationSurfaceProps
+>> = ({ model, componentFactory, showControlBar = false, noScrollbar = false }) => {
   const [vis, setVis] = React.useState<Controller>(null);
   const [maxSize, setMaxSize] = React.useState(null);
   const [width, setWidth] = React.useState(null);

@@ -17,11 +17,11 @@ import {
 } from '../../../utils/imagestream-utils';
 import { ImageStreamContext } from './ImageStreamContext';
 
-const ImageStreamTagDropdown: React.FC<{
+const ImageStreamTagDropdown: React.FC<React.PropsWithChildren<{
   disabled?: boolean;
   formContextField?: string;
   reloadCount?: number;
-}> = ({ disabled = false, formContextField, reloadCount }) => {
+}>> = ({ disabled = false, formContextField, reloadCount }) => {
   const { t } = useTranslation();
   const unmounted = React.useRef(false);
   let imageStreamTagList = {};

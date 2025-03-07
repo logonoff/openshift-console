@@ -21,11 +21,9 @@ export interface StartPipelineModalProps {
   pipeline: PipelineKind;
   onSubmit?: (pipelineRun: PipelineRunKind) => void;
 }
-const StartPipelineModal: React.FC<StartPipelineModalProps & ModalComponentProps> = ({
-  pipeline,
-  close,
-  onSubmit,
-}) => {
+const StartPipelineModal: React.FC<React.PropsWithChildren<
+  StartPipelineModalProps & ModalComponentProps
+>> = ({ pipeline, close, onSubmit }) => {
   const { t } = useTranslation();
   const userStartedAnnotation = useUserAnnotationForManualStart();
   const [pipelinePVC, pipelinePVCLoaded] = usePipelinePVC(

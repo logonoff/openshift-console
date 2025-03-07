@@ -16,7 +16,10 @@ type ConfigTypeSectionProps = {
   formContextField?: string;
 };
 
-const ConfigTypeSection: React.FC<ConfigTypeSectionProps> = ({ pac, formContextField }) => {
+const ConfigTypeSection: React.FC<React.PropsWithChildren<ConfigTypeSectionProps>> = ({
+  pac,
+  formContextField,
+}) => {
   const { values, setFieldValue } = useFormikContext<FormikValues & RepositoryFormValues>();
   const fieldPrefix = formContextField ? `${formContextField}.` : '';
   const { method } = _.get(values, formContextField) || values;

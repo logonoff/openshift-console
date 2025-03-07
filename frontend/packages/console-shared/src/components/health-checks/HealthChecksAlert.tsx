@@ -37,7 +37,9 @@ const addHealthChecksRefs = [
   referenceForModel(KnativeServiceModel),
 ];
 
-const HealthChecksAlert: React.FC<HealthChecksAlertProps> = ({ resource }) => {
+const HealthChecksAlert: React.FC<React.PropsWithChildren<HealthChecksAlertProps>> = ({
+  resource,
+}) => {
   const {
     kind,
     metadata: { name, namespace, uid },

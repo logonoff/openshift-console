@@ -17,7 +17,7 @@ export interface QuickSearchDetailsProps extends QuickSearchDetailsRendererProps
   detailsRenderer: DetailsRendererFunction;
 }
 
-const QuickSearchDetails: React.FC<QuickSearchDetailsProps> = ({
+const QuickSearchDetails: React.FC<React.PropsWithChildren<QuickSearchDetailsProps>> = ({
   selectedItem,
   closeModal,
   detailsRenderer,

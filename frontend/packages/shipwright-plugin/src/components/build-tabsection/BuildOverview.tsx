@@ -26,7 +26,9 @@ type BuildsOverviewProps = {
   };
 };
 
-const BuildsOverview: React.FC<BuildsOverviewProps> = ({ item: { builds, buildRuns, obj } }) => {
+const BuildsOverview: React.FC<React.PropsWithChildren<BuildsOverviewProps>> = ({
+  item: { builds, buildRuns, obj },
+}) => {
   const { t } = useTranslation();
   const resourceLabel = obj.metadata?.labels?.[BUILDRUN_TO_RESOURCE_MAP_LABEL];
   const buildRunModel = useFlag('SHIPWRIGHT_BUILDRUN')

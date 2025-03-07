@@ -166,7 +166,10 @@ const getReleaseImageVersion = (obj: K8sResourceKind): string => {
 const calculatePercentage = (numerator: number, denominator: number): number =>
   Math.round((numerator / denominator) * 100);
 
-export const CurrentChannel: React.FC<CurrentChannelProps> = ({ cv, canUpgrade }) => {
+export const CurrentChannel: React.FC<React.PropsWithChildren<CurrentChannelProps>> = ({
+  cv,
+  canUpgrade,
+}) => {
   const { t } = useTranslation();
   const label = cv.spec.channel || t('public~Not configured');
   return canUpgrade ? (
@@ -186,7 +189,7 @@ export const CurrentChannel: React.FC<CurrentChannelProps> = ({ cv, canUpgrade }
   );
 };
 
-export const CurrentVersion: React.FC<CurrentVersionProps> = ({ cv }) => {
+export const CurrentVersion: React.FC<React.PropsWithChildren<CurrentVersionProps>> = ({ cv }) => {
   const desiredVersion = getDesiredClusterVersion(cv);
   const lastVersion = getLastCompletedUpdate(cv);
   const status = getClusterUpdateStatus(cv);
@@ -224,7 +227,10 @@ export const CurrentVersion: React.FC<CurrentVersionProps> = ({ cv }) => {
   );
 };
 
-export const UpdateLink: React.FC<CurrentVersionProps> = ({ cv, canUpgrade }) => {
+export const UpdateLink: React.FC<React.PropsWithChildren<CurrentVersionProps>> = ({
+  cv,
+  canUpgrade,
+}) => {
   // assume if 'worker' is editable, others are too
   const workerMachineConfigPoolIsEditable = useAccessReview({
     group: MachineConfigPoolModel.apiGroup,
@@ -256,7 +262,9 @@ export const UpdateLink: React.FC<CurrentVersionProps> = ({ cv, canUpgrade }) =>
   ) : null;
 };
 
-export const CurrentVersionHeader: React.FC<CurrentVersionProps> = ({ cv }) => {
+export const CurrentVersionHeader: React.FC<React.PropsWithChildren<CurrentVersionProps>> = ({
+  cv,
+}) => {
   const status = getClusterUpdateStatus(cv);
   const { t } = useTranslation();
   return (
@@ -268,7 +276,7 @@ export const CurrentVersionHeader: React.FC<CurrentVersionProps> = ({ cv }) => {
   );
 };
 
-export const ChannelDocLink: React.FC<{}> = () => {
+export const ChannelDocLink: React.FC<React.PropsWithChildren<{}>> = () => {
   const upgradeURL = getDocumentationURL(documentationURLs.understandingUpgradeChannels);
   const { t } = useTranslation();
   return (
@@ -276,7 +284,7 @@ export const ChannelDocLink: React.FC<{}> = () => {
   );
 };
 
-const ChannelHeader: React.FC<{}> = () => {
+const ChannelHeader: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
   return (
     <>
@@ -299,7 +307,7 @@ const ChannelHeader: React.FC<{}> = () => {
   );
 };
 
-const Channel: React.FC<ChannelProps> = ({ children, endOfLife }) => {
+const Channel: React.FC<React.PropsWithChildren<ChannelProps>> = ({ children, endOfLife }) => {
   return (
     <div
       className={classNames('co-channel', {
@@ -312,13 +320,16 @@ const Channel: React.FC<ChannelProps> = ({ children, endOfLife }) => {
   );
 };
 
-const ChannelLine: React.FC<ChannelLineProps> = ({ children, start }) => {
+const ChannelLine: React.FC<React.PropsWithChildren<ChannelLineProps>> = ({ children, start }) => {
   return (
     <li className={classNames('co-channel-line', { 'co-channel-start': start })}>{children}</li>
   );
 };
 
-export const ChannelName: React.FC<ChannelNameProps> = ({ children, current }) => {
+export const ChannelName: React.FC<React.PropsWithChildren<ChannelNameProps>> = ({
+  children,
+  current,
+}) => {
   return (
     <span
       className={classNames('co-channel-name', {
@@ -331,7 +342,10 @@ export const ChannelName: React.FC<ChannelNameProps> = ({ children, current }) =
   );
 };
 
-const ChannelPath: React.FC<ChannelPathProps> = ({ children, current }) => {
+const ChannelPath: React.FC<React.PropsWithChildren<ChannelPathProps>> = ({
+  children,
+  current,
+}) => {
   return (
     <ul
       className={classNames('co-channel-path', {
@@ -343,7 +357,7 @@ const ChannelPath: React.FC<ChannelPathProps> = ({ children, current }) => {
   );
 };
 
-export const ChannelVersion: React.FC<ChannelVersionProps> = ({
+export const ChannelVersion: React.FC<React.PropsWithChildren<ChannelVersionProps>> = ({
   children,
   current,
   updateBlocked,
@@ -380,7 +394,7 @@ export const UpdateBlockedLabel = () => {
   );
 };
 
-const ChannelVersionDot: React.FC<ChannelVersionDotProps> = ({
+const ChannelVersionDot: React.FC<React.PropsWithChildren<ChannelVersionDotProps>> = ({
   current,
   updateBlocked,
   version,
@@ -430,11 +444,14 @@ const ChannelVersionDot: React.FC<ChannelVersionDotProps> = ({
   );
 };
 
-const UpdatesBar: React.FC<UpdatesBarProps> = ({ children }) => {
+const UpdatesBar: React.FC<React.PropsWithChildren<UpdatesBarProps>> = ({ children }) => {
   return <div className="co-cluster-settings__updates-bar">{children}</div>;
 };
 
-export const UpdatesGroup: React.FC<UpdatesGroupProps> = ({ children, divided }) => {
+export const UpdatesGroup: React.FC<React.PropsWithChildren<UpdatesGroupProps>> = ({
+  children,
+  divided,
+}) => {
   return (
     <div
       className={classNames('co-cluster-settings__updates-group', {
@@ -447,7 +464,9 @@ export const UpdatesGroup: React.FC<UpdatesGroupProps> = ({ children, divided })
   );
 };
 
-export const UpdatesProgress: React.FC<UpdatesProgressProps> = ({ children }) => {
+export const UpdatesProgress: React.FC<React.PropsWithChildren<UpdatesProgressProps>> = ({
+  children,
+}) => {
   return (
     <div className="co-cluster-settings__updates-progress" data-test="cv-updates-progress">
       {children}
@@ -455,11 +474,11 @@ export const UpdatesProgress: React.FC<UpdatesProgressProps> = ({ children }) =>
   );
 };
 
-const UpdatesType: React.FC<UpdatesTypeProps> = ({ children }) => {
+const UpdatesType: React.FC<React.PropsWithChildren<UpdatesTypeProps>> = ({ children }) => {
   return <div className="co-cluster-settings__updates-type">{children}</div>;
 };
 
-export const NodesUpdatesGroup: React.FC<NodesUpdatesGroupProps> = ({
+export const NodesUpdatesGroup: React.FC<React.PropsWithChildren<NodesUpdatesGroupProps>> = ({
   divided,
   desiredVersion,
   hideIfComplete,
@@ -553,7 +572,7 @@ export const NodesUpdatesGroup: React.FC<NodesUpdatesGroupProps> = ({
       );
 };
 
-const OtherNodes: React.FC<OtherNodesProps> = ({
+const OtherNodes: React.FC<React.PropsWithChildren<OtherNodesProps>> = ({
   desiredVersion,
   hideIfComplete,
   machineConfigPools,
@@ -581,7 +600,7 @@ const OtherNodes: React.FC<OtherNodesProps> = ({
   );
 };
 
-export const UpdatesGraph: React.FC<UpdatesGraphProps> = ({ cv }) => {
+export const UpdatesGraph: React.FC<React.PropsWithChildren<UpdatesGraphProps>> = ({ cv }) => {
   const availableUpdates = getSortedAvailableUpdates(cv);
   const lastVersion = getLastCompletedUpdate(cv);
   const newestVersion = availableUpdates[0]?.version;
@@ -668,7 +687,7 @@ const MachineConfigPoolsResource: WatchK8sResource = {
   kind: referenceForModel(MachineConfigPoolModel),
 };
 
-export const ClusterOperatorsLink: React.FC<ClusterOperatorsLinkProps> = ({
+export const ClusterOperatorsLink: React.FC<React.PropsWithChildren<ClusterOperatorsLinkProps>> = ({
   onCancel,
   children,
   queryString,
@@ -685,7 +704,7 @@ export const ClusterOperatorsLink: React.FC<ClusterOperatorsLinkProps> = ({
   </Link>
 );
 
-export const UpdateInProgress: React.FC<UpdateInProgressProps> = ({
+export const UpdateInProgress: React.FC<React.PropsWithChildren<UpdateInProgressProps>> = ({
   desiredVersion,
   machineConfigPools,
   workerMachineConfigPool,
@@ -749,10 +768,9 @@ const ClusterServiceVersionResource: WatchK8sResource = {
   kind: referenceForModel(ClusterServiceVersionModel),
 };
 
-export const ClusterNotUpgradeableAlert: React.FC<ClusterNotUpgradeableAlertProps> = ({
-  cv,
-  onCancel,
-}) => {
+export const ClusterNotUpgradeableAlert: React.FC<React.PropsWithChildren<
+  ClusterNotUpgradeableAlertProps
+>> = ({ cv, onCancel }) => {
   const [clusterOperators] = useK8sWatchResource<ClusterOperator[]>(ClusterOperatorsResource);
   const [clusterServiceVersions] = useK8sWatchResource<ClusterServiceVersionKind[]>(
     ClusterServiceVersionResource,
@@ -822,9 +840,9 @@ export const ClusterNotUpgradeableAlert: React.FC<ClusterNotUpgradeableAlertProp
   );
 };
 
-export const MachineConfigPoolsArePausedAlert: React.FC<MachineConfigPoolsArePausedAlertProps> = ({
-  machineConfigPools,
-}) => {
+export const MachineConfigPoolsArePausedAlert: React.FC<React.PropsWithChildren<
+  MachineConfigPoolsArePausedAlertProps
+>> = ({ machineConfigPools }) => {
   const { t } = useTranslation();
   const [clusterVersion] = useK8sWatchResource<ClusterVersionKind>({
     kind: clusterVersionReference,
@@ -864,10 +882,9 @@ export const MachineConfigPoolsArePausedAlert: React.FC<MachineConfigPoolsArePau
   ) : null;
 };
 
-export const ClusterSettingsAlerts: React.FC<ClusterSettingsAlertsProps> = ({
-  cv,
-  machineConfigPools,
-}) => {
+export const ClusterSettingsAlerts: React.FC<React.PropsWithChildren<
+  ClusterSettingsAlertsProps
+>> = ({ cv, machineConfigPools }) => {
   const { t } = useTranslation();
 
   if (isClusterExternallyManaged()) {
@@ -889,10 +906,9 @@ export const ClusterSettingsAlerts: React.FC<ClusterSettingsAlertsProps> = ({
   );
 };
 
-export const ClusterVersionDetailsTable: React.FC<ClusterVersionDetailsTableProps> = ({
-  obj: cv,
-  autoscalers,
-}) => {
+export const ClusterVersionDetailsTable: React.FC<React.PropsWithChildren<
+  ClusterVersionDetailsTableProps
+>> = ({ obj: cv, autoscalers }) => {
   const { history = [] } = cv.status;
   const clusterID = getClusterID(cv);
   const desiredImage: string = _.get(cv, 'status.desired.image') || '';
@@ -1156,11 +1172,11 @@ export const ClusterVersionDetailsTable: React.FC<ClusterVersionDetailsTableProp
   );
 };
 
-export const ClusterOperatorTabPage: React.FC<ClusterOperatorTabPageProps> = ({ obj: cv }) => (
-  <ClusterOperatorPage cv={cv} autoFocus={false} showTitle={false} />
-);
+export const ClusterOperatorTabPage: React.FC<React.PropsWithChildren<
+  ClusterOperatorTabPageProps
+>> = ({ obj: cv }) => <ClusterOperatorPage cv={cv} autoFocus={false} showTitle={false} />;
 
-export const ClusterSettingsPage: React.FC = () => {
+export const ClusterSettingsPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const hasClusterAutoscaler = useFlag(FLAGS.CLUSTER_AUTOSCALER);
   const title = t('public~Cluster Settings');

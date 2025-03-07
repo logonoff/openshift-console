@@ -25,11 +25,11 @@ type TelemetryAnalyticsSelectOptions = {
   isSelected: boolean;
 };
 
-const TelemetryAnalyticsSelect: React.FC<{
+const TelemetryAnalyticsSelect: React.FC<React.PropsWithChildren<{
   disabled: boolean;
   value?: string;
   onChange: (selectedOption: TelemetryAnalyticsSelectOptions) => void;
-}> = ({ disabled, value, onChange }) => {
+}>> = ({ disabled, value, onChange }) => {
   const { t } = useTranslation();
   const options: TelemetryAnalyticsSelectOptions[] = [
     {
@@ -93,7 +93,7 @@ const TelemetryAnalyticsSelect: React.FC<{
   );
 };
 
-const TelemetryUserPreferenceDropdown: React.FC = () => {
+const TelemetryUserPreferenceDropdown: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
 

@@ -35,11 +35,11 @@ interface QuickSearchProps {
   taskGroup: PipelineBuilderTaskGroup;
 }
 
-const Contents: React.FC<
+const Contents: React.FC<React.PropsWithChildren<
   {
     catalogService: CatalogService;
   } & QuickSearchProps
-> = ({
+>> = ({
   catalogService,
   namespace,
   viewContainer,
@@ -153,7 +153,7 @@ const Contents: React.FC<
   );
 };
 
-const PipelineQuickSearch: React.FC<QuickSearchProps> = ({
+const PipelineQuickSearch: React.FC<React.PropsWithChildren<QuickSearchProps>> = ({
   namespace,
   viewContainer,
   isOpen,

@@ -6,7 +6,7 @@ type PipelineResourceStatusProps = {
   children?: React.ReactNode;
   title?: string;
 };
-const PipelineResourceStatus: React.FC<PipelineResourceStatusProps> = ({
+const PipelineResourceStatus: React.FC<React.PropsWithChildren<PipelineResourceStatusProps>> = ({
   status,
   children,
   title,

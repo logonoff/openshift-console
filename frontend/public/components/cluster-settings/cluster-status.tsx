@@ -25,9 +25,9 @@ import {
 import { errorModal } from '../modals';
 import { resourcePathFromModel, truncateMiddle } from '../utils';
 
-export const ClusterVersionConditionsLink: React.FC<ClusterVersionConditionsLinkProps> = ({
-  cv,
-}) => {
+export const ClusterVersionConditionsLink: React.FC<React.PropsWithChildren<
+  ClusterVersionConditionsLinkProps
+>> = ({ cv }) => {
   const { t } = useTranslation();
   return (
     <HashLink
@@ -48,7 +48,10 @@ const cancelUpdate = (cv: ClusterVersionKind) => {
   );
 };
 
-const StatusMessagePopover: React.FC<CVStatusMessagePopoverProps> = ({ bodyContent, children }) => {
+const StatusMessagePopover: React.FC<React.PropsWithChildren<CVStatusMessagePopoverProps>> = ({
+  bodyContent,
+  children,
+}) => {
   return (
     <Popover bodyContent={truncateMiddle(bodyContent, { length: 256 })}>
       <Button variant="link" isInline>
@@ -58,7 +61,7 @@ const StatusMessagePopover: React.FC<CVStatusMessagePopoverProps> = ({ bodyConte
   );
 };
 
-const InvalidMessage: React.FC<CVStatusMessageProps> = ({ cv }) => {
+const InvalidMessage: React.FC<React.PropsWithChildren<CVStatusMessageProps>> = ({ cv }) => {
   const { t } = useTranslation();
   return (
     <div data-test="cv-update-status-invalid">
@@ -72,7 +75,9 @@ const InvalidMessage: React.FC<CVStatusMessageProps> = ({ cv }) => {
   );
 };
 
-const ReleaseNotAcceptedMessage: React.FC<CVStatusMessageProps> = ({ cv }) => {
+const ReleaseNotAcceptedMessage: React.FC<React.PropsWithChildren<CVStatusMessageProps>> = ({
+  cv,
+}) => {
   const releaseNotAcceptedCondition = getClusterVersionCondition(
     cv,
     ClusterVersionConditionType.ReleaseAccepted,
@@ -91,7 +96,7 @@ const ReleaseNotAcceptedMessage: React.FC<CVStatusMessageProps> = ({ cv }) => {
   );
 };
 
-const UpdatesAvailableMessage: React.FC<CVStatusMessageProps> = () => {
+const UpdatesAvailableMessage: React.FC<React.PropsWithChildren<CVStatusMessageProps>> = () => {
   const { t } = useTranslation();
   return (
     <div className="co-update-status" data-test="cv-update-status-available-updates">
@@ -100,7 +105,7 @@ const UpdatesAvailableMessage: React.FC<CVStatusMessageProps> = () => {
   );
 };
 
-const FailingMessageText: React.FC<CVStatusMessageProps> = ({ cv }) => {
+const FailingMessageText: React.FC<React.PropsWithChildren<CVStatusMessageProps>> = ({ cv }) => {
   const failingCondition = getClusterVersionCondition(
     cv,
     ClusterVersionConditionType.Failing,
@@ -116,13 +121,18 @@ const FailingMessageText: React.FC<CVStatusMessageProps> = ({ cv }) => {
   );
 };
 
-export const UpdatingMessageText: React.FC<CVStatusMessageProps> = ({ cv }) => {
+export const UpdatingMessageText: React.FC<React.PropsWithChildren<CVStatusMessageProps>> = ({
+  cv,
+}) => {
   const version = getDesiredClusterVersion(cv);
   const { t } = useTranslation();
   return <>{t('public~Update to {{version}} in progress', { version })}</>;
 };
 
-const UpdatingMessage: React.FC<CVStatusMessageProps> = ({ cv, isFailing }) => {
+const UpdatingMessage: React.FC<React.PropsWithChildren<CVStatusMessageProps>> = ({
+  cv,
+  isFailing,
+}) => {
   return (
     <>
       <div data-test="cv-update-status-updating">
@@ -135,7 +145,9 @@ const UpdatingMessage: React.FC<CVStatusMessageProps> = ({ cv, isFailing }) => {
   );
 };
 
-const ErrorRetrievingMessage: React.FC<CVStatusMessageProps> = ({ cv }) => {
+const ErrorRetrievingMessage: React.FC<React.PropsWithChildren<CVStatusMessageProps>> = ({
+  cv,
+}) => {
   const retrievedUpdatesCondition = getClusterVersionCondition(
     cv,
     ClusterVersionConditionType.RetrievedUpdates,
@@ -158,7 +170,7 @@ const ErrorRetrievingMessage: React.FC<CVStatusMessageProps> = ({ cv }) => {
   );
 };
 
-const FailingMessage: React.FC<CVStatusMessageProps> = ({ cv }) => {
+const FailingMessage: React.FC<React.PropsWithChildren<CVStatusMessageProps>> = ({ cv }) => {
   return (
     <>
       <FailingMessageText cv={cv} />
@@ -167,7 +179,7 @@ const FailingMessage: React.FC<CVStatusMessageProps> = ({ cv }) => {
   );
 };
 
-export const UpToDateMessage: React.FC<{}> = () => {
+export const UpToDateMessage: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
   return (
     <span data-test="cv-update-status-up-to-date">
@@ -176,7 +188,7 @@ export const UpToDateMessage: React.FC<{}> = () => {
   );
 };
 
-export const UpdateStatus: React.FC<UpdateStatusProps> = ({ cv }) => {
+export const UpdateStatus: React.FC<React.PropsWithChildren<UpdateStatusProps>> = ({ cv }) => {
   const status = getClusterUpdateStatus(cv);
   switch (status) {
     case ClusterUpdateStatus.Invalid:

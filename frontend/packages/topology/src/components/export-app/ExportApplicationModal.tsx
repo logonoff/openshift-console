@@ -36,7 +36,9 @@ export type ExportApplicationModalProps = ModalComponentProps & {
   exportResource?: K8sResourceKind;
 };
 
-export const ExportApplicationModal: React.FC<ExportApplicationModalProps> = (props) => {
+export const ExportApplicationModal: React.FC<React.PropsWithChildren<
+  ExportApplicationModalProps
+>> = (props) => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
   const { cancel, name, namespace, exportResource, toast } = props;

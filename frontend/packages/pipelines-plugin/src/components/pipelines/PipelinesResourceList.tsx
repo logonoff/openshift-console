@@ -19,7 +19,9 @@ type PipelinesResourceListProps = {
   title: FireManProps['title'];
 };
 
-const PipelinesResourceList: React.FC<PipelinesResourceListProps> = (props) => {
+const PipelinesResourceList: React.FC<React.PropsWithChildren<PipelinesResourceListProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const { namespace, showTitle = true, selector, name, nameFilter } = props;
   const badge = usePipelineTechPreviewBadge(namespace);

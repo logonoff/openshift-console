@@ -17,7 +17,7 @@ import { getSortedNavExtensions, isTopLevelNavItem } from './utils';
 
 import './PerspectiveNav.scss';
 
-const PerspectiveNav: React.FC<{}> = () => {
+const PerspectiveNav: React.FC<React.PropsWithChildren<{}>> = () => {
   const [activePerspective] = useActivePerspective();
   const allNavExtensions = useNavExtensionsForPerspective(activePerspective);
   const [pinnedResources, setPinnedResources, pinnedResourcesLoaded] = usePinnedResources();

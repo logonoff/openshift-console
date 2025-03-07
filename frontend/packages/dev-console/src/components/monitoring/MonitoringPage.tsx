@@ -17,7 +17,7 @@ const handleNamespaceChange = (newNamespace: string): void => {
   }
 };
 
-export const PageContents: React.FC = () => {
+export const PageContents: React.FC<React.PropsWithChildren<unknown>> = () => {
   const params = useParams();
   const { t } = useTranslation();
   const activeNamespace = params.ns;

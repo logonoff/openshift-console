@@ -9,7 +9,7 @@ import { withStartGuide } from '@console/internal/components/start-guide';
 import { usePipelineTechPreviewBadge } from '../../utils/hooks';
 import PipelinesResourceList from './PipelinesResourceList';
 
-export const PipelinesPage: React.FC = (props) => {
+export const PipelinesPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const badge = usePipelineTechPreviewBadge(namespace);

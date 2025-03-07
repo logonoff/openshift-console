@@ -4,7 +4,7 @@ import { Table, TableProps } from '@console/internal/components/factory';
 import RevisionHeader from './RevisionHeader';
 import RevisionRow from './RevisionRow';
 
-const RevisionList: React.FC<TableProps> = (props) => {
+const RevisionList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table

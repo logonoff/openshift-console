@@ -19,7 +19,7 @@ interface QuickSearchModalProps {
   detailsRenderer?: DetailsRendererFunction;
 }
 
-const QuickSearchModal: React.FC<QuickSearchModalProps> = ({
+const QuickSearchModal: React.FC<React.PropsWithChildren<QuickSearchModalProps>> = ({
   isOpen,
   namespace,
   closeModal,

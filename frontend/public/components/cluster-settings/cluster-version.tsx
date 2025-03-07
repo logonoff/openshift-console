@@ -20,7 +20,9 @@ import { breadcrumbsForGlobalConfig } from './global-config';
 
 const clusterVersionReference: K8sResourceKindReference = referenceForModel(ClusterVersionModel);
 
-const ClusterVersionDetails: React.FC<ClusterVersionDetailsProps> = ({ obj }) => {
+const ClusterVersionDetails: React.FC<React.PropsWithChildren<ClusterVersionDetailsProps>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   const canUpgrade = useCanClusterUpgrade();
   const conditions = _.get(obj, 'status.conditions', []);
@@ -40,7 +42,7 @@ const ClusterVersionDetails: React.FC<ClusterVersionDetailsProps> = ({ obj }) =>
   );
 };
 
-export const ClusterVersionDetailsPage: React.FC = (props) => {
+export const ClusterVersionDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const canUpgrade = useCanClusterUpgrade();
   const location = useLocation();
   return (

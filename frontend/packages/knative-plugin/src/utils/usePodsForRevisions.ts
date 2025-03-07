@@ -46,7 +46,7 @@ export const usePodsForRevisions = (
   const resources = useK8sWatchResources<{ [key: string]: K8sResourceCommon[] }>(watchedResources);
 
   const updateResults = React.useCallback(
-    (updatedResources) => {
+    (updatedResources: any) => {
       const errorKey = Object.keys(updatedResources).find((key) => updatedResources[key].loadError);
       if (errorKey) {
         setLoadError(updatedResources[errorKey].loadError?.message);

@@ -27,9 +27,9 @@ interface AddBrokerFormProps {
   namespace: string;
 }
 
-const AddBrokerForm: React.FC<FormikProps<AddBrokerFormYamlValues> & AddBrokerFormProps> = (
-  formikProps,
-) => {
+const AddBrokerForm: React.FC<React.PropsWithChildren<
+  FormikProps<AddBrokerFormYamlValues> & AddBrokerFormProps
+>> = (formikProps) => {
   const { t } = useTranslation();
   const {
     values,

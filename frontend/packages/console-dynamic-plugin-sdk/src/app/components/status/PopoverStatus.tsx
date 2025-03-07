@@ -30,7 +30,7 @@ type PopoverStatusProps = {
  * </PopoverStatus>
  * ```
  */
-const PopoverStatus: React.FC<PopoverStatusProps> = ({
+const PopoverStatus: React.FC<React.PropsWithChildren<PopoverStatusProps>> = ({
   hideHeader,
   children,
   isVisible = null,

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ButtonProps, NumberInput } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
 
-export const NumberSpinner: React.FC<NumberSpinnerProps> = ({
+export const NumberSpinner: React.FC<React.PropsWithChildren<NumberSpinnerProps>> = ({
   className,
   changeValueBy,
   min,

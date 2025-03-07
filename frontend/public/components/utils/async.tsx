@@ -6,8 +6,8 @@ import { LoadingBox } from './status-box';
 /**
  * FIXME: Comparing two functions is not the *best* solution, but we can handle false negatives.
  */
-const sameLoader = (a: () => Promise<React.ComponentType>) => (
-  b: () => Promise<React.ComponentType>,
+const sameLoader = (a: () => Promise<React.ComponentType<React.PropsWithChildren<unknown>>>) => (
+  b: () => Promise<React.ComponentType<React.PropsWithChildren<unknown>>>,
 ) => a?.name === b?.name && (a || 'a').toString() === (b || 'b').toString();
 
 enum AsyncComponentError {
@@ -80,10 +80,10 @@ export class AsyncComponent extends React.Component<AsyncComponentProps, AsyncCo
 }
 
 export type AsyncComponentProps = {
-  loader: () => Promise<React.ComponentType>;
+  loader: () => Promise<React.ComponentType<React.PropsWithChildren<unknown>>>;
   LoadingComponent?: React.ReactNode;
 } & any;
 export type AsyncComponentState = {
-  Component: React.ComponentType;
-  loader: () => Promise<React.ComponentType>;
+  Component: React.ComponentType<React.PropsWithChildren<unknown>>;
+  loader: () => Promise<React.ComponentType<React.PropsWithChildren<unknown>>>;
 };

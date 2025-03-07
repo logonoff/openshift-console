@@ -7,7 +7,7 @@ import {
 import { featureFlagController } from '@console/internal/actions/features';
 import FeatureFlagExtensionHookResolver from './FeatureFlagExtensionHookResolver';
 
-const FeatureFlagExtensionLoader: React.FC = () => {
+const FeatureFlagExtensionLoader: React.FC<React.PropsWithChildren<unknown>> = () => {
   const [flagProvider, flagProviderResolved] = useResolvedExtensions<FeatureFlagHookProvider>(
     isFeatureFlagHookProvider,
   );

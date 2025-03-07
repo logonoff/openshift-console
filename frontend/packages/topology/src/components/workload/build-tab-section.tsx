@@ -13,11 +13,11 @@ import { BuildOverview } from './BuildOverview';
 import ResolveAdapter from './ResolveAdapter';
 import { getDataFromAdapter } from './utils';
 
-const BuildTabSection: React.FC<{
+const BuildTabSection: React.FC<React.PropsWithChildren<{
   id: string;
   buildAdapter: AdapterDataType<BuildConfigData>;
   extensionsResolved: boolean;
-}> = ({ id, buildAdapter, extensionsResolved }) => {
+}>> = ({ id, buildAdapter, extensionsResolved }) => {
   const [
     { data: buildConfigs, loaded: buildConfigsDataLoaded },
     setBuildConfigsData,
@@ -25,7 +25,7 @@ const BuildTabSection: React.FC<{
     data?: BuildConfigData;
     loaded: boolean;
   }>({ loaded: false });
-  const handleAdapterResolved = React.useCallback((data) => {
+  const handleAdapterResolved = React.useCallback((data: any) => {
     setBuildConfigsData({ data, loaded: true });
   }, []);
 

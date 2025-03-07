@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { K8sResourceKind, OwnerReference, referenceForOwnerRef } from '../../module/k8s';
 import { ResourceLink } from './resource-link';
 
-export const OwnerReferences: React.FC<OwnerReferencesProps> = ({ resource }) => {
+export const OwnerReferences: React.FC<React.PropsWithChildren<OwnerReferencesProps>> = ({
+  resource,
+}) => {
   const { t } = useTranslation();
   const owners = (_.get(resource.metadata, 'ownerReferences') || []).map((o: OwnerReference) => (
     <ResourceLink

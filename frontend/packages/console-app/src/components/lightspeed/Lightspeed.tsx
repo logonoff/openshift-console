@@ -38,7 +38,7 @@ const getLightspeedInstallationStatus = async () => {
 export const lightspeedOperatorURL =
   '/operatorhub/all-namespaces?keyword=lightspeed&details-item=lightspeed-operator-redhat-operators-openshift-marketplace';
 
-const Lightspeed: React.FC = () => {
+const Lightspeed: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const [hideLightspeed] = useHideLightspeed();
   const [isReady, setIsReady] = React.useState(false);

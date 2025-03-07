@@ -29,7 +29,7 @@ const getRowProps = (obj) => ({
   id: obj.name,
 });
 
-const HelmReleaseList: React.FC = () => {
+const HelmReleaseList: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const params = useParams();
   const namespace = params.ns;

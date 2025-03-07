@@ -23,7 +23,7 @@ interface PodRingProps {
   enableScaling?: boolean;
 }
 
-const PodRing: React.FC<PodRingProps> = ({
+const PodRing: React.FC<React.PropsWithChildren<PodRingProps>> = ({
   pods,
   obj,
   resourceKind,

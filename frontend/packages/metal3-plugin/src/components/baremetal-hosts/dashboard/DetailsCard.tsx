@@ -13,7 +13,7 @@ import BareMetalHostRole from '../BareMetalHostRole';
 import NodeLink from '../NodeLink';
 import { BareMetalHostDashboardContext } from './BareMetalHostDashboardContext';
 
-const DetailsCard: React.FC<DetailsCardProps> = () => {
+const DetailsCard: React.FC<React.PropsWithChildren<DetailsCardProps>> = () => {
   const { t } = useTranslation();
   const { obj, machine, node } = React.useContext(BareMetalHostDashboardContext);
   const hostName = getName(obj);

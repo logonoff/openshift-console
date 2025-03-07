@@ -4,7 +4,9 @@ import { QuickStartsLoaderProps } from '@console/dynamic-plugin-sdk/src/api/inte
 import { useQuickStarts } from '../utils/useQuickStarts';
 import QuickStartPermissionChecker from './QuickStartPermissionChecker';
 
-const QuickStartsLoader: React.FC<QuickStartsLoaderProps> = ({ children }) => {
+const QuickStartsLoader: React.FC<React.PropsWithChildren<QuickStartsLoaderProps>> = ({
+  children,
+}) => {
   const [quickStarts, quickStartsLoaded] = useQuickStarts();
 
   const [allowedQuickStarts, setAllowedQuickStarts] = React.useState<QuickStart[]>([]);
@@ -12,7 +14,7 @@ const QuickStartsLoader: React.FC<QuickStartsLoaderProps> = ({ children }) => {
   const permissionChecks = React.useRef<{ [name: string]: boolean }>({});
 
   const handlePermissionCheck = React.useCallback(
-    (quickStart, hasPermission) => {
+    (quickStart: any, hasPermission: any) => {
       permissionChecks.current[quickStart.metadata.name] = hasPermission;
       if (Object.keys(permissionChecks.current).length === quickStarts.length) {
         const filteredQuickStarts = quickStarts.filter(

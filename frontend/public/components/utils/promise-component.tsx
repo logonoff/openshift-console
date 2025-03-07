@@ -89,8 +89,8 @@ export type HandlePromiseProps = {
 };
 
 export type WithHandlePromise = <P extends HandlePromiseProps>(
-  C: React.ComponentType<P>,
-) => React.FC<Diff<P, HandlePromiseProps>>;
+  C: React.ComponentType<React.PropsWithChildren<P>>,
+) => React.FC<React.PropsWithChildren<Diff<P, HandlePromiseProps>>>;
 
 export type PromiseComponentState = {
   inProgress: boolean;

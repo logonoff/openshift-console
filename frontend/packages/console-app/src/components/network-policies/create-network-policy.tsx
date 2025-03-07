@@ -22,7 +22,7 @@ import useIsMultiNetworkPolicy from './useIsMultiNetworkPolicy';
 
 const LAST_VIEWED_EDITOR_TYPE_USERSETTING_KEY = 'console.createNetworkPolicy.editor.lastView';
 
-export const CreateNetworkPolicy: React.FC<{}> = () => {
+export const CreateNetworkPolicy: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
   const isMulti = useIsMultiNetworkPolicy();
   const params = useParams();
@@ -50,7 +50,10 @@ export const CreateNetworkPolicy: React.FC<{}> = () => {
 
   const k8sObj = networkPolicyToK8sResource(initialPolicy, isMulti);
 
-  const YAMLEditor: React.FC<YAMLEditorProps> = ({ onChange, initialYAML = '' }) => {
+  const YAMLEditor: React.FC<React.PropsWithChildren<YAMLEditorProps>> = ({
+    onChange,
+    initialYAML = '',
+  }) => {
     return (
       <AsyncResourceYAMLEditor
         create

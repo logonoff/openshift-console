@@ -8,11 +8,9 @@ type TopologyGroupResourceItemProps = {
   linkForResource?: (obj: K8sResourceKind) => React.ReactElement;
 };
 
-const TopologyGroupResourceItem: React.FC<TopologyGroupResourceItemProps> = ({
-  item,
-  releaseNamespace,
-  linkForResource,
-}) => {
+const TopologyGroupResourceItem: React.FC<React.PropsWithChildren<
+  TopologyGroupResourceItemProps
+>> = ({ item, releaseNamespace, linkForResource }) => {
   const {
     metadata: { name, namespace },
   } = item;

@@ -20,13 +20,13 @@ import {
   CreateConnectorProps,
 } from '../extensions/topology-types';
 
-export const CpuCellComponent: React.FC<CpuCellComponentProps> = require('@console/topology/src/components/list-view/cells/CpuCell')
+export const CpuCellComponent: React.FC<React.PropsWithChildren<CpuCellComponentProps>> = require('@console/topology/src/components/list-view/cells/CpuCell')
   .CpuCellComponent;
 
-export const MemoryCellComponent: React.FC<MemoryCellComponentProps> = require('@console/topology/src/components/list-view/cells/MemoryCell')
+export const MemoryCellComponent: React.FC<React.PropsWithChildren<MemoryCellComponentProps>> = require('@console/topology/src/components/list-view/cells/MemoryCell')
   .MemoryCellComponent;
 
-export const TopologyListViewNode: React.FC<TopologyListViewNodeProps> = require('@console/topology/src/components/list-view/TopologyListViewNode')
+export const TopologyListViewNode: React.FC<React.PropsWithChildren<TopologyListViewNodeProps>> = require('@console/topology/src/components/list-view/TopologyListViewNode')
   .default;
 
 export const useOverviewMetrics: UseOverviewMetrics = require('@console/topology/src/utils/useOverviewMetrics')

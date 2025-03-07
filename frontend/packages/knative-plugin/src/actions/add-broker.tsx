@@ -5,7 +5,9 @@ import { Action } from '@console/dynamic-plugin-sdk/src';
 import { UNASSIGNED_KEY } from '@console/topology/src/const';
 import { ChannelIcon } from '../utils/icons';
 
-const EventBrokerIcon: React.FC = () => <ChannelIcon title="Eventing Broker" />;
+const EventBrokerIcon: React.FC<React.PropsWithChildren<unknown>> = () => (
+  <ChannelIcon title="Eventing Broker" />
+);
 
 export const AddBrokerAction = (namespace: string, application?: string, path?: string): Action => {
   const params = new URLSearchParams();

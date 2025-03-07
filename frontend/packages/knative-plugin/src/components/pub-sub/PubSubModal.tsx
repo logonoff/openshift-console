@@ -21,7 +21,7 @@ export interface PubSubModalProps {
 
 type Props = FormikProps<FormikValues> & PubSubModalProps;
 
-const PubSubModal: React.FC<Props> = ({
+const PubSubModal: React.FC<React.PropsWithChildren<Props>> = ({
   filterEnabled,
   labelTitle,
   handleSubmit,

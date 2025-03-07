@@ -72,7 +72,7 @@ export const reducer = (state: NodeDashboardState, action: NodeDashboardAction) 
   }
 };
 
-const NodeDashboard: React.FC<NodeDashboardProps> = ({ obj }) => {
+const NodeDashboard: React.FC<React.PropsWithChildren<NodeDashboardProps>> = ({ obj }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState(obj));
 
   if (obj !== state.obj) {

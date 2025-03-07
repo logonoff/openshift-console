@@ -14,7 +14,7 @@ interface SelectorInputFieldProps extends FieldProps {
  *
  * Values are saved as string dictionary (Record<string, string>).
  */
-const SelectorInputField: React.FC<SelectorInputFieldProps> = ({
+const SelectorInputField: React.FC<React.PropsWithChildren<SelectorInputFieldProps>> = ({
   name,
   label,
   helpText,

@@ -10,9 +10,9 @@ type UnderMaintenancePopoverContentProps = {
   nodeMaintenance: K8sResourceKind;
 };
 
-const UnderMaintenancePopoverContent: React.FC<UnderMaintenancePopoverContentProps> = ({
-  nodeMaintenance,
-}) => {
+const UnderMaintenancePopoverContent: React.FC<React.PropsWithChildren<
+  UnderMaintenancePopoverContentProps
+>> = ({ nodeMaintenance }) => {
   const { t } = useTranslation();
   const reason = getNodeMaintenanceReason(nodeMaintenance);
   const creationTimestamp = getNodeMaintenanceCreationTimestamp(nodeMaintenance);

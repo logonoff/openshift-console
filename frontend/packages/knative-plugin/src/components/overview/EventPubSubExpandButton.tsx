@@ -11,7 +11,7 @@ type EventPubSubExpandButtonProps = {
   rowSelected: boolean;
 };
 
-const EventPubSubExpandButton: React.FC<EventPubSubExpandButtonProps> = ({
+const EventPubSubExpandButton: React.FC<React.PropsWithChildren<EventPubSubExpandButtonProps>> = ({
   rowSelected,
   onClick,
 }) => {

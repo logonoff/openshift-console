@@ -23,7 +23,10 @@ interface SubscribeProps {
   target?: K8sResourceKind;
 }
 
-const Subscribe: React.FC<SubscribeProps> = ({ source, target = { metadata: { name: '' } } }) => {
+const Subscribe: React.FC<React.PropsWithChildren<SubscribeProps>> = ({
+  source,
+  target = { metadata: { name: '' } },
+}) => {
   const { t } = useTranslation();
   const {
     apiVersion: sourceApiVersion,

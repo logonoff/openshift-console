@@ -6,7 +6,9 @@ import { ResourceLink } from '@console/internal/components/utils/resource-link';
 import { K8sResourceKind } from '@console/internal/module/k8s';
 import { getVerticalPodAutoscalersForResource } from '@console/shared/src';
 
-const Recommendations: React.FC<VerticalPodAutoscalerRecommendationsProps> = ({ obj }) => {
+const Recommendations: React.FC<React.PropsWithChildren<
+  VerticalPodAutoscalerRecommendationsProps
+>> = ({ obj }) => {
   const { t } = useTranslation();
   const recommendations = obj?.status?.recommendation?.containerRecommendations ?? [];
   return (
@@ -29,9 +31,9 @@ const Recommendations: React.FC<VerticalPodAutoscalerRecommendationsProps> = ({ 
   );
 };
 
-export const VerticalPodAutoscalerRecommendations: React.FC<VerticalPodAutoscalerRecommendationsProps> = ({
-  obj,
-}) => {
+export const VerticalPodAutoscalerRecommendations: React.FC<React.PropsWithChildren<
+  VerticalPodAutoscalerRecommendationsProps
+>> = ({ obj }) => {
   const { t } = useTranslation();
   const [vpas] = useK8sWatchResource<K8sResourceKind[]>({
     groupVersionKind: {

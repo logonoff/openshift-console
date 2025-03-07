@@ -12,7 +12,10 @@ type ExportApplicationProps = {
   isDisabled: boolean;
 };
 
-const ExportApplication: React.FC<ExportApplicationProps> = ({ namespace, isDisabled }) => {
+const ExportApplication: React.FC<React.PropsWithChildren<ExportApplicationProps>> = ({
+  namespace,
+  isDisabled,
+}) => {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
   const toast = useToast();

@@ -10,7 +10,7 @@ import StatusItem, { StatusPopupSection } from './StatusPopup';
 
 import './operator-body.scss';
 
-export const OperatorsSection: React.FC<OperatorsSectionProps> = ({
+export const OperatorsSection: React.FC<React.PropsWithChildren<OperatorsSectionProps>> = ({
   resources,
   getOperatorsWithStatuses,
   title,
@@ -78,13 +78,19 @@ type OperatorsSectionProps = {
   title: string;
   linkTo: string;
   Row: React.ComponentType<
-    OperatorRowProps & {
-      LoadingComponent: () => JSX.Element;
-      Component: React.ComponentType<OperatorRowProps> | LazyLoader<OperatorRowProps>;
-      key: string;
-      isResolved: boolean;
-    }
+    React.PropsWithChildren<
+      OperatorRowProps & {
+        LoadingComponent: () => JSX.Element;
+        Component:
+          | React.ComponentType<React.PropsWithChildren<OperatorRowProps>>
+          | LazyLoader<OperatorRowProps>;
+        key: string;
+        isResolved: boolean;
+      }
+    >
   >;
   isResolved: boolean;
-  Component: React.ComponentType<OperatorRowProps> | LazyLoader<OperatorRowProps>;
+  Component:
+    | React.ComponentType<React.PropsWithChildren<OperatorRowProps>>
+    | LazyLoader<OperatorRowProps>;
 };

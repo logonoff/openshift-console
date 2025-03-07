@@ -39,7 +39,7 @@ export type SingleTypeaheadDropdownProps = {
   /** Whether to enable creating new items */
   enableCreateNew?: boolean;
   /** The component to use render the dropdown options */
-  OptionComponent?: React.FC<SelectOptionProps>;
+  OptionComponent?: React.FC<React.PropsWithChildren<SelectOptionProps>>;
 
   /** Additional props to pass to MenuToggle */
   menuToggleProps?: Partial<MenuToggleProps>;
@@ -66,7 +66,9 @@ const getTextWidth = (text: string, font: string): number => {
 };
 
 /** A PF Select with typeahead filtering and single selection */
-export const SingleTypeaheadDropdown: React.FC<SingleTypeaheadDropdownProps> = ({
+export const SingleTypeaheadDropdown: React.FC<React.PropsWithChildren<
+  SingleTypeaheadDropdownProps
+>> = ({
   items,
   onChange,
   onClear,

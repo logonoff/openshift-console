@@ -11,11 +11,9 @@ type TriggerTemplateResourceLinkProps = {
   model: K8sKind;
   links: RouteTemplate[];
 };
-const TriggerTemplateResourceLink: React.FC<TriggerTemplateResourceLinkProps> = ({
-  links = [],
-  namespace,
-  model,
-}) => {
+const TriggerTemplateResourceLink: React.FC<React.PropsWithChildren<
+  TriggerTemplateResourceLinkProps
+>> = ({ links = [], namespace, model }) => {
   const { t } = useTranslation();
   const title = t(model.labelPluralKey);
   const kind = referenceForModel(model);

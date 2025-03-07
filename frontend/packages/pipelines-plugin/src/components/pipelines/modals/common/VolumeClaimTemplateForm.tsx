@@ -29,7 +29,7 @@ interface RequestSize {
   unit: string;
 }
 
-const VolumeClaimTemplateForm: React.FC<VolumeClaimTemplateFormProps> = ({
+const VolumeClaimTemplateForm: React.FC<React.PropsWithChildren<VolumeClaimTemplateFormProps>> = ({
   name,
   initialSizeValue = '1',
   initialSizeUnit = 'Gi',

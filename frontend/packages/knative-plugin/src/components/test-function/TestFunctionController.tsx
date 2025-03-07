@@ -10,7 +10,7 @@ type ControllerProps = {
   obj: ServiceKind;
 };
 
-const Controller: React.FC<ControllerProps> = (props) => {
+const Controller: React.FC<React.PropsWithChildren<ControllerProps>> = (props) => {
   const { loaded, obj } = props;
   return loaded ? <TestFunction {...props} service={obj} /> : null;
 };
@@ -19,7 +19,9 @@ type TestFunctionControllerProps = {
   obj: ServiceKind;
 };
 
-const TestFunctionController: React.FC<TestFunctionControllerProps> = (props) => {
+const TestFunctionController: React.FC<React.PropsWithChildren<TestFunctionControllerProps>> = (
+  props,
+) => {
   const { obj } = props;
 
   const serverlessResources = [

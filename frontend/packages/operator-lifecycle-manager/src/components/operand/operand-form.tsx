@@ -16,7 +16,7 @@ import { ClusterServiceVersionKind, CRDDescription, APIServiceDefinition } from 
 import { ClusterServiceVersionLogo } from '../cluster-service-version-logo';
 import { getUISchema } from './utils';
 
-export const OperandForm: React.FC<OperandFormProps> = ({
+export const OperandForm: React.FC<React.PropsWithChildren<OperandFormProps>> = ({
   csv,
   formData,
   model,

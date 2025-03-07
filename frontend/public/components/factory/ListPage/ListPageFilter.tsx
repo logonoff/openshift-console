@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import { ListPageFilterProps } from '@console/dynamic-plugin-sdk/src/extensions/console-types';
 import { FilterToolbar } from '../../filter-toolbar';
 
-const ListPageFilter: React.FC<ListPageFilterProps> = ({
+const ListPageFilter: React.FC<React.PropsWithChildren<ListPageFilterProps>> = ({
   data,
   loaded,
   rowFilters,

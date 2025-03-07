@@ -6,7 +6,7 @@ import {
   GettingStartedCard,
 } from '@console/shared/src/components/getting-started';
 
-export const FunctionsDocsGettingStartedCard: React.FC = () => {
+export const FunctionsDocsGettingStartedCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const links: GettingStartedLink[] = [];
 

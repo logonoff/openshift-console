@@ -16,10 +16,10 @@ import { getPropertyDescription, K8sResourceKind, referenceFor } from '../../mod
 import { LinkifyExternal } from './link';
 import { useK8sModel } from '@console/shared/src/hooks/useK8sModel';
 
-export const PropertyPath: React.FC<{ kind: string; path: string | string[] }> = ({
-  kind,
-  path,
-}) => {
+export const PropertyPath: React.FC<React.PropsWithChildren<{
+  kind: string;
+  path: string | string[];
+}>> = ({ kind, path }) => {
   const pathArray: string[] = _.toPath(path);
   return (
     <Breadcrumb className="co-breadcrumb">
@@ -36,7 +36,7 @@ export const PropertyPath: React.FC<{ kind: string; path: string | string[] }> =
   );
 };
 
-const EditButton: React.SFC<EditButtonProps> = (props) => {
+const EditButton: React.FC<React.PropsWithChildren<EditButtonProps>> = (props) => {
   return (
     <Button
       icon={<PencilAltIcon />}
@@ -55,7 +55,7 @@ const EditButton: React.SFC<EditButtonProps> = (props) => {
   );
 };
 
-export const DetailsItem: React.FC<DetailsItemProps> = ({
+export const DetailsItem: React.FC<React.PropsWithChildren<DetailsItemProps>> = ({
   children,
   defaultValue = '-',
   description,

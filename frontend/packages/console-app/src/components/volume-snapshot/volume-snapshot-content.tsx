@@ -42,7 +42,7 @@ export const tableColumnInfo = [
   { className: Kebab.columnClass, id: '' },
 ];
 
-const Row: React.FC<RowProps<VolumeSnapshotContentKind>> = ({ obj }) => {
+const Row: React.FC<React.PropsWithChildren<RowProps<VolumeSnapshotContentKind>>> = ({ obj }) => {
   const { name, creationTimestamp } = obj?.metadata || {};
   const { name: snapshotName, namespace: snapshotNamespace } = obj?.spec?.volumeSnapshotRef || {};
   const size = obj.status?.restoreSize;
@@ -84,7 +84,9 @@ const Row: React.FC<RowProps<VolumeSnapshotContentKind>> = ({ obj }) => {
   );
 };
 
-const VolumeSnapshotContentTable: React.FC<VolumeSnapshotContentTableProps> = (props) => {
+const VolumeSnapshotContentTable: React.FC<React.PropsWithChildren<
+  VolumeSnapshotContentTableProps
+>> = (props) => {
   const { t } = useTranslation();
   const getTableColumns = (): TableColumn<VolumeSnapshotContentKind>[] => [
     {
@@ -147,10 +149,9 @@ const VolumeSnapshotContentTable: React.FC<VolumeSnapshotContentTableProps> = (p
   );
 };
 
-const VolumeSnapshotContentPage: React.FC<VolumeSnapshotContentPageProps> = ({
-  showTitle = true,
-  canCreate = true,
-}) => {
+const VolumeSnapshotContentPage: React.FC<React.PropsWithChildren<
+  VolumeSnapshotContentPageProps
+>> = ({ showTitle = true, canCreate = true }) => {
   const { t } = useTranslation();
 
   const [resources, loaded, loadError] = useK8sWatchResource<VolumeSnapshotContentKind[]>({

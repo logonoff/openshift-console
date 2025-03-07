@@ -8,7 +8,7 @@ import { RootState } from '@console/internal/redux';
 import { useQueryParams } from '@console/shared/src';
 import SideBarTabLoader from '../providers/SideBarTabLoader';
 
-const SimpleTabNavWrapper: React.FC<{ tabs: Tab[] }> = ({ tabs }) => {
+const SimpleTabNavWrapper: React.FC<React.PropsWithChildren<{ tabs: Tab[] }>> = ({ tabs }) => {
   const { t } = useTranslation();
   const selectedTab = useSelector<RootState, string>(({ UI }) =>
     UI.getIn(['overview', 'selectedDetailsTab']),
@@ -17,7 +17,7 @@ const SimpleTabNavWrapper: React.FC<{ tabs: Tab[] }> = ({ tabs }) => {
   const queryParams = useQueryParams();
   const selectTabParam = queryParams.get('selectTab');
   const handleClickTab = React.useCallback(
-    (name) => {
+    (name: any) => {
       dispatch(UIActions.selectOverviewDetailsTab(name));
     },
     [dispatch],
@@ -32,7 +32,7 @@ const SimpleTabNavWrapper: React.FC<{ tabs: Tab[] }> = ({ tabs }) => {
   );
 };
 
-const SideBarBody: React.FC<{ element: GraphElement }> = ({ element }) => {
+const SideBarBody: React.FC<React.PropsWithChildren<{ element: GraphElement }>> = ({ element }) => {
   const uid = element.getId();
   return (
     <SideBarTabLoader key={uid} element={element}>

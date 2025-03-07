@@ -72,7 +72,7 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const JobTableRow: React.FC<RowFunctionArgs<JobKind>> = ({ obj: job }) => {
+const JobTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<JobKind>>> = ({ obj: job }) => {
   const { type, completions } = getJobTypeAndCompletions(job);
   const resourceKind = referenceFor(job);
   const context = { [resourceKind]: job };
@@ -110,7 +110,7 @@ const JobTableRow: React.FC<RowFunctionArgs<JobKind>> = ({ obj: job }) => {
   );
 };
 
-export const JobDetails: React.FC<JobsDetailsProps> = ({ obj: job }) => {
+export const JobDetails: React.FC<React.PropsWithChildren<JobsDetailsProps>> = ({ obj: job }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -190,10 +190,12 @@ export const JobDetails: React.FC<JobsDetailsProps> = ({ obj: job }) => {
   );
 };
 
-const JobPods: React.FC<JobPodsProps> = (props) => <PodsComponent {...props} showNodes />;
+const JobPods: React.FC<React.PropsWithChildren<JobPodsProps>> = (props) => (
+  <PodsComponent {...props} showNodes />
+);
 
 const { details, pods, editYaml, events } = navFactory;
-const JobsDetailsPage: React.FC = (props) => {
+const JobsDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const customActionMenu = (kindObj, obj) => {
     const resourceKind = referenceForModel(kindObj);
     const context = { [resourceKind]: obj };
@@ -219,7 +221,7 @@ const JobsDetailsPage: React.FC = (props) => {
     />
   );
 };
-const JobsList: React.FC = (props) => {
+const JobsList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const JobTableHeader = () => [
     {
@@ -276,7 +278,7 @@ const JobsList: React.FC = (props) => {
   );
 };
 
-const JobsPage: React.FC<JobsPageProps> = (props) => (
+const JobsPage: React.FC<React.PropsWithChildren<JobsPageProps>> = (props) => (
   <ListPage ListComponent={JobsList} kind={kind} canCreate={true} {...props} />
 );
 export { JobsList, JobsPage, JobsDetailsPage };

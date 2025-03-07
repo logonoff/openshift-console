@@ -13,7 +13,7 @@ import { getRangeVectorData, PipelineMetricsGraphProps } from './pipeline-metric
 
 import './pipeline-chart.scss';
 
-const PipelineRunDurationGraph: React.FC<PipelineMetricsGraphProps> = ({
+const PipelineRunDurationGraph: React.FC<React.PropsWithChildren<PipelineMetricsGraphProps>> = ({
   pipeline,
   timespan,
   interval,

@@ -12,7 +12,9 @@ interface NoStatusListViewNodeProps {
   onSelect: (ids: string[]) => void;
 }
 
-const NoStatusListViewNode: React.FC<NoStatusListViewNodeProps> = (props) => {
+const NoStatusListViewNode: React.FC<React.PropsWithChildren<NoStatusListViewNodeProps>> = (
+  props,
+) => {
   const kind = getResourceKind(props.item);
   const badgeCell = (
     <TypedResourceBadgeCell key="type-icon" kind={kind} typeIcon={<EventSourceIcon />} />

@@ -43,7 +43,12 @@ export type PopoverProps = TopConsumerPopoverProps & {
   position?: PopoverPosition;
 };
 
-export const CPUPopover: React.FC<PopoverProps> = ({ current, position, title, ...rest }) => {
+export const CPUPopover: React.FC<React.PropsWithChildren<PopoverProps>> = ({
+  current,
+  position,
+  title,
+  ...rest
+}) => {
   const consumers = useConsumers(NodeQueries.PROJECTS_BY_CPU, NodeQueries.PODS_BY_CPU);
   const { t } = useTranslation();
   return (
@@ -59,7 +64,12 @@ export const CPUPopover: React.FC<PopoverProps> = ({ current, position, title, .
   );
 };
 
-export const MemoryPopover: React.FC<PopoverProps> = ({ current, position, title, ...rest }) => {
+export const MemoryPopover: React.FC<React.PropsWithChildren<PopoverProps>> = ({
+  current,
+  position,
+  title,
+  ...rest
+}) => {
   const consumers = useConsumers(NodeQueries.PROJECTS_BY_MEMORY, NodeQueries.PODS_BY_MEMORY);
   const { t } = useTranslation();
   return (
@@ -75,7 +85,9 @@ export const MemoryPopover: React.FC<PopoverProps> = ({ current, position, title
   );
 };
 
-export const FilesystemPopover: React.FC<TopConsumerPopoverProps> = ({ current }) => {
+export const FilesystemPopover: React.FC<React.PropsWithChildren<TopConsumerPopoverProps>> = ({
+  current,
+}) => {
   const { t } = useTranslation();
   const consumers = useConsumers(
     NodeQueries.PROJECTS_BY_FILESYSTEM,
@@ -91,7 +103,9 @@ export const FilesystemPopover: React.FC<TopConsumerPopoverProps> = ({ current }
   );
 };
 
-export const NetworkInPopover: React.FC<TopConsumerPopoverProps> = ({ current }) => {
+export const NetworkInPopover: React.FC<React.PropsWithChildren<TopConsumerPopoverProps>> = ({
+  current,
+}) => {
   const { t } = useTranslation();
   const consumers = useConsumers(
     NodeQueries.PROJECTS_BY_NETWORK_IN,
@@ -107,7 +121,9 @@ export const NetworkInPopover: React.FC<TopConsumerPopoverProps> = ({ current })
   );
 };
 
-export const NetworkOutPopover: React.FC<TopConsumerPopoverProps> = ({ current }) => {
+export const NetworkOutPopover: React.FC<React.PropsWithChildren<TopConsumerPopoverProps>> = ({
+  current,
+}) => {
   const { t } = useTranslation();
   const consumers = useConsumers(
     NodeQueries.PROJECTS_BY_NETWORK_OUT,

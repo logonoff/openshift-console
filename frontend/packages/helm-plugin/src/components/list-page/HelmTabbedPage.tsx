@@ -16,7 +16,7 @@ import HelmReleaseList from './HelmReleaseList';
 import HelmReleaseListPage from './HelmReleaseListPage';
 import RepositoriesPage from './RepositoriesListPage';
 
-export const PageContents: React.FC = () => {
+export const PageContents: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const isHelmVisible = useFlag('HELM_CHARTS_CATALOG_TYPE');
@@ -124,7 +124,7 @@ export const PageContents: React.FC = () => {
 
 const PageContentsWithStartGuide = withStartGuide(PageContents);
 
-const HelmTabbedPage: React.FC = (props) => {
+const HelmTabbedPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   return (
     <NamespacedPage variant={NamespacedPageVariants.light} hideApplications>
       <PageContentsWithStartGuide {...props} />

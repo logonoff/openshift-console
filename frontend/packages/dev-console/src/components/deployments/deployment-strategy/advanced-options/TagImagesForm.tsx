@@ -6,7 +6,9 @@ import { DropdownField } from '@console/shared/src';
 import ImageStream from '../../../import/image-search/ImageStream';
 import { getContainerNames } from '../../utils/deployment-utils';
 
-const TagImagesForm: React.FC<{ lifecycleHook: string }> = ({ lifecycleHook }) => {
+const TagImagesForm: React.FC<React.PropsWithChildren<{ lifecycleHook: string }>> = ({
+  lifecycleHook,
+}) => {
   const { t } = useTranslation();
   const {
     values: {

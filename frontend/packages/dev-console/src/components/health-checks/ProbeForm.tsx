@@ -33,7 +33,11 @@ interface ProbeFormProps {
   probeType: string;
 }
 
-const ProbeForm: React.FC<ProbeFormProps> = ({ onSubmit, onClose, probeType }) => {
+const ProbeForm: React.FC<React.PropsWithChildren<ProbeFormProps>> = ({
+  onSubmit,
+  onClose,
+  probeType,
+}) => {
   const { t } = useTranslation();
   const {
     values: { healthChecks },

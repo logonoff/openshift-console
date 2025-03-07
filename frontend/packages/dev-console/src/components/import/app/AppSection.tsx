@@ -15,7 +15,7 @@ export interface AppSectionProps {
   fullWidth?: boolean;
 }
 
-const AppSection: React.FC<AppSectionProps> = ({
+const AppSection: React.FC<React.PropsWithChildren<AppSectionProps>> = ({
   project,
   noProjectsAvailable,
   extraMargin,

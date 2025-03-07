@@ -12,7 +12,7 @@ type ExecuteSnippetProps = {
   docContext: HTMLDocument;
 };
 
-export const ExecuteSnippet: React.FC<ExecuteSnippetProps> = ({
+export const ExecuteSnippet: React.FC<React.PropsWithChildren<ExecuteSnippetProps>> = ({
   element,
   rootSelector,
   docContext,
@@ -60,7 +60,7 @@ type MarkdownExecuteCommandProps = {
   rootSelector: string;
 };
 
-const MarkdownExecuteSnippet: React.FC<MarkdownExecuteCommandProps> = ({
+const MarkdownExecuteSnippet: React.FC<React.PropsWithChildren<MarkdownExecuteCommandProps>> = ({
   docContext,
   rootSelector,
 }) => {

@@ -7,9 +7,10 @@ type SinkSourceControllerProps = {
   source: K8sResourceKind;
 };
 
-const SinkSourceController: React.FC<SinkSourceControllerProps> = ({ source, ...props }) => (
-  <SinkSource {...props} source={source} />
-);
+const SinkSourceController: React.FC<React.PropsWithChildren<SinkSourceControllerProps>> = ({
+  source,
+  ...props
+}) => <SinkSource {...props} source={source} />;
 
 type Props = SinkSourceControllerProps & ModalComponentProps;
 

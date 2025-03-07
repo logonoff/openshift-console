@@ -51,7 +51,7 @@ type TextFilterProps = Omit<TextInputProps, 'type' | 'tabIndex'> & {
   parentClassName?: string;
 };
 
-export const TextFilter: React.FC<TextFilterProps> = (props) => {
+export const TextFilter: React.FC<React.PropsWithChildren<TextFilterProps>> = (props) => {
   const {
     label,
     className,
@@ -88,7 +88,7 @@ TextFilter.displayName = 'TextFilter';
 // TODO (jon) make this into "withListPageFilters" HOC
 
 type ListPageWrapperProps<L = any, C = any> = {
-  ListComponent: React.ComponentType<L>;
+  ListComponent: React.ComponentType<React.PropsWithChildren<L>>;
   kinds: string[];
   filters?: any;
   flatten?: Flatten;
@@ -111,7 +111,7 @@ type ListPageWrapperProps<L = any, C = any> = {
   data?: any;
 };
 
-export const ListPageWrapper: React.FC<ListPageWrapperProps> = (props) => {
+export const ListPageWrapper: React.FC<React.PropsWithChildren<ListPageWrapperProps>> = (props) => {
   const {
     flatten,
     ListComponent,
@@ -186,7 +186,9 @@ export type FireManProps = {
   cluster?: string; // TODO remove multicluster
 };
 
-export const FireMan: React.FC<FireManProps & { filterList?: typeof filterList }> = (props) => {
+export const FireMan: React.FC<React.PropsWithChildren<
+  FireManProps & { filterList?: typeof filterList }
+>> = (props) => {
   const {
     cluster,
     resources,
@@ -483,7 +485,7 @@ type PageCommonProps<L = any, C = any> = {
   filterLabel?: string;
   textFilter?: string;
   rowFilters?: RowFilter[];
-  ListComponent: React.ComponentType<L>;
+  ListComponent: React.ComponentType<React.PropsWithChildren<L>>;
   namespace?: string;
   customData?: C;
   badge?: React.ReactNode;
@@ -511,7 +513,7 @@ export type MultiListPageProps<L = any, C = any> = PageCommonProps<L, C> & {
   nameFilter?: string;
 };
 
-export const MultiListPage: React.FC<MultiListPageProps> = (props) => {
+export const MultiListPage: React.FC<React.PropsWithChildren<MultiListPageProps>> = (props) => {
   const {
     autoFocus,
     canCreate,

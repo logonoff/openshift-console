@@ -19,7 +19,11 @@ import { NavItemResource } from './NavItemResource';
 import { useNavExtensionsForSection } from './useNavExtensionsForSection';
 import { navItemHrefIsActive, navItemResourceIsActive } from './utils';
 
-export const NavSection: React.FC<NavSectionProps> = ({ id, name, dataAttributes }) => {
+export const NavSection: React.FC<React.PropsWithChildren<NavSectionProps>> = ({
+  id,
+  name,
+  dataAttributes,
+}) => {
   const { t } = useTranslation();
   const location = useLocation();
   const [k8sModels] = useK8sModels();

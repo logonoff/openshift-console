@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { K8sResourceKind } from '../../module/k8s';
 import { SectionHeading } from './headings';
 
-export const BuildHooks: React.SFC<BuildHooksProps> = ({ resource }) => {
+export const BuildHooks: React.FC<React.PropsWithChildren<BuildHooksProps>> = ({ resource }) => {
   const postCommitArgs = _.get(resource, 'spec.postCommit.args');
   const postCommitCommand = _.get(resource, 'spec.postCommit.command');
   const postCommitScript = _.get(resource, 'spec.postCommit.script');

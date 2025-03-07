@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ResourceIcon } from '@console/internal/components/utils';
 
-export const EndpointRow: React.FC<EndpointRowProps> = ({ endpoint }) => {
+export const EndpointRow: React.FC<React.PropsWithChildren<EndpointRowProps>> = ({ endpoint }) => {
   const detail = ['scheme', 'honorLabels', 'targetPort'].reduce(
     (element, field) =>
       endpoint?.[field] ? (
@@ -34,7 +34,7 @@ export const EndpointRow: React.FC<EndpointRowProps> = ({ endpoint }) => {
   );
 };
 
-export const EndpointList: React.FC<EndpointListProps> = (props) => {
+export const EndpointList: React.FC<React.PropsWithChildren<EndpointListProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <div className="service-ips">

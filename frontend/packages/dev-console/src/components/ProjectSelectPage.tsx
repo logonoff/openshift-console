@@ -22,7 +22,7 @@ export interface ProjectSelectPageProps {
 
 const allParams = (props, params) => Object.assign({}, params, props);
 
-const ProjectSelectPage: React.FC<ProjectSelectPageProps> = (props) => {
+const ProjectSelectPage: React.FC<React.PropsWithChildren<ProjectSelectPageProps>> = (props) => {
   const { t } = useTranslation();
   const params = useParams();
   const { kindObj, kindsInFlight, plural } = allParams(props, params);

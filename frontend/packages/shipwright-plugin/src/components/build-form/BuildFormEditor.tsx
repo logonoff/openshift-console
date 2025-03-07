@@ -12,7 +12,9 @@ type BuildFormEditorProps = {
   namespace: string;
 };
 
-const BuildFormEditor: React.FC<BuildFormEditorProps> = ({ namespace }) => {
+const BuildFormEditor: React.FC<React.PropsWithChildren<BuildFormEditorProps>> = ({
+  namespace,
+}) => {
   const [showYAMLAlert, setShowYAMLAlert] = React.useState<boolean>(true);
   return (
     <>

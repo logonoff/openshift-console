@@ -31,14 +31,9 @@ type StateProps = {
   };
 };
 
-export const ConnectedPipelineRunDecorator: React.FC<PipelineRunDecoratorProps & StateProps> = ({
-  pipeline,
-  pipelineRuns,
-  radius,
-  x,
-  y,
-  impersonate,
-}) => {
+export const ConnectedPipelineRunDecorator: React.FC<React.PropsWithChildren<
+  PipelineRunDecoratorProps & StateProps
+>> = ({ pipeline, pipelineRuns, radius, x, y, impersonate }) => {
   const ref = React.useRef();
   const { t } = useTranslation();
   const { latestPipelineRun, status } = getLatestPipelineRunStatus(pipelineRuns);

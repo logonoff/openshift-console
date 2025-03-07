@@ -14,7 +14,10 @@ interface SinkBindingSectionProps {
   fullWidth?: boolean;
 }
 
-const SinkBindingSection: React.FC<SinkBindingSectionProps> = ({ title, fullWidth }) => {
+const SinkBindingSection: React.FC<React.PropsWithChildren<SinkBindingSectionProps>> = ({
+  title,
+  fullWidth,
+}) => {
   const { t } = useTranslation();
   const { values, setFieldValue } = useFormikContext<FormikValues>();
   const initVal =
@@ -24,7 +27,7 @@ const SinkBindingSection: React.FC<SinkBindingSectionProps> = ({ title, fullWidt
     : [['', '']];
   const [nameValue, setNameValue] = React.useState(initialValueResources);
   const handleNameValuePairs = React.useCallback(
-    ({ nameValuePairs }) => {
+    ({ nameValuePairs }: any) => {
       let updatedNameValuePairs = {};
       _.forEach(nameValuePairs, ([name, value]) => {
         if (value.length) {

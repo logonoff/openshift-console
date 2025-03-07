@@ -7,7 +7,9 @@ import { usePipelineTechPreviewBadge } from '../../../utils/hooks';
 
 import './PipelineBuilderHeader.scss';
 
-const PipelineBuilderHeader: React.FC<{ namespace: string }> = ({ namespace }) => {
+const PipelineBuilderHeader: React.FC<React.PropsWithChildren<{ namespace: string }>> = ({
+  namespace,
+}) => {
   const { t } = useTranslation();
   const badge = usePipelineTechPreviewBadge(namespace);
 

@@ -46,7 +46,7 @@ interface CustomTaskProps {
 
 const FILTER_ID = 'SvgTaskDropShadowFilterId';
 
-const CustomTaskComponent: React.FC<CustomTaskProps> = ({
+const CustomTaskComponent: React.FC<React.PropsWithChildren<CustomTaskProps>> = ({
   pipelineRunName,
   namespace,
   task,
@@ -148,7 +148,10 @@ const CustomTaskComponent: React.FC<CustomTaskProps> = ({
   );
 };
 
-const CustomTaskNode: React.FC<CustomTaskNodeProps> = ({ element, disableTooltip }) => {
+const CustomTaskNode: React.FC<React.PropsWithChildren<CustomTaskNodeProps>> = ({
+  element,
+  disableTooltip,
+}) => {
   const { height, width } = element.getBounds();
 
   const { pipeline, pipelineRun, task } = element.getData();

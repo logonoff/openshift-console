@@ -6,7 +6,7 @@ import LauncherBody from '@console/shared/src/components/dashboard/launcher-card
 import LauncherItem from '@console/shared/src/components/dashboard/launcher-card/LauncherItem';
 import { ProjectDashboardContext } from './project-dashboard-context';
 
-export const LauncherCard: React.FC = () => {
+export const LauncherCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { namespaceLinks } = React.useContext(ProjectDashboardContext);
   const { t } = useTranslation();
   return (

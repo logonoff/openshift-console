@@ -14,7 +14,7 @@ export interface DeploymentConfigSectionProps {
   showHeader?: boolean;
 }
 
-const DeploymentConfigSection: React.FC<DeploymentConfigSectionProps> = ({
+const DeploymentConfigSection: React.FC<React.PropsWithChildren<DeploymentConfigSectionProps>> = ({
   namespace,
   resource,
   showHeader,

@@ -6,11 +6,13 @@ import { ResolvedUserPreferenceItem } from './types';
 
 type UserPreferenceFieldProps = { item: ResolvedUserPreferenceItem };
 
-const UserPreferenceField: React.FC<UserPreferenceFieldProps> = ({ item }) => {
+const UserPreferenceField: React.FC<React.PropsWithChildren<UserPreferenceFieldProps>> = ({
+  item,
+}) => {
   const { id, label, field, description } = item;
 
-  const FieldComponent: React.FC<React.ComponentProps<
-    typeof componentForFieldType[UserPreferenceFieldType]
+  const FieldComponent: React.FC<React.PropsWithChildren<
+    React.ComponentProps<typeof componentForFieldType[UserPreferenceFieldType]>
   >> = componentForFieldType[field.type];
 
   return (

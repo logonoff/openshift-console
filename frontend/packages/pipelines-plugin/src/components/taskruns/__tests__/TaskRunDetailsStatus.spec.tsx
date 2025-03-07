@@ -10,7 +10,7 @@ configure({ testIdAttribute: 'data-test' });
 
 type TaskRunDetailsStatusProps = React.ComponentProps<typeof TaskRunDetailsStatus>;
 
-const Wrapper: React.FC = ({ children }) => (
+const Wrapper: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
   <BrowserRouter>
     <Provider store={store}>{children}</Provider>
   </BrowserRouter>

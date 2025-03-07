@@ -88,7 +88,7 @@ export const kebabOptionsToMenu = (options: KebabOption[]): KebabMenuOption[] =>
   return menuOptions;
 };
 
-const KebabItem_: React.FC<KebabItemProps & { isAllowed: boolean }> = ({
+const KebabItem_: React.FC<React.PropsWithChildren<KebabItemProps & { isAllowed: boolean }>> = ({
   option,
   onClick,
   onEscape,
@@ -139,14 +139,17 @@ type KebabSubMenuProps = {
   onClick: KebabItemProps['onClick'];
 };
 
-const KebabSubMenu: React.FC<KebabSubMenuProps> = ({ option, onClick }) => {
+const KebabSubMenu: React.FC<React.PropsWithChildren<KebabSubMenuProps>> = ({
+  option,
+  onClick,
+}) => {
   const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const nodeRef = React.useRef(null);
   const subMenuRef = React.useRef(null);
   const referenceCb = React.useCallback(() => nodeRef.current, []);
   // use a callback ref because FocusTrap is old and doesn't support non-function refs
-  const subMenuCbRef = React.useCallback((node) => (subMenuRef.current = node), []);
+  const subMenuCbRef = React.useCallback((node: any) => (subMenuRef.current = node), []);
 
   return (
     <>
@@ -229,7 +232,7 @@ export const isKebabSubMenu = (option: KebabMenuOption): option is KebabSubMenu 
   return Array.isArray((option as KebabSubMenu).children);
 };
 
-export const KebabItem: React.FC<KebabItemProps> = (props) => {
+export const KebabItem: React.FC<React.PropsWithChildren<KebabItemProps>> = (props) => {
   const { option } = props;
   let item;
 
@@ -256,7 +259,7 @@ type KebabMenuItemsProps = {
   className?: string;
 };
 
-export const KebabMenuItems: React.FC<KebabMenuItemsProps> = ({
+export const KebabMenuItems: React.FC<React.PropsWithChildren<KebabMenuItemsProps>> = ({
   className,
   options,
   onClick,
@@ -282,7 +285,10 @@ export const KebabMenuItems: React.FC<KebabMenuItemsProps> = ({
   </ul>
 );
 
-export const KebabItems: React.FC<KebabItemsProps> = ({ options, ...props }) => {
+export const KebabItems: React.FC<React.PropsWithChildren<KebabItemsProps>> = ({
+  options,
+  ...props
+}) => {
   const menuOptions = kebabOptionsToMenu(options);
   return <KebabMenuItems {...props} options={menuOptions} />;
 };
@@ -683,6 +689,6 @@ type KebabStaticProperties = {
   getExtensionsActionsForKind: (kind: K8sKind) => KebabAction[];
 };
 
-type KebabComponent = React.FC<KebabProps> & KebabStaticProperties;
+type KebabComponent = React.FC<React.PropsWithChildren<KebabProps>> & KebabStaticProperties;
 KebabItems.displayName = 'KebabItems';
 ResourceKebab.displayName = 'ResourceKebab';

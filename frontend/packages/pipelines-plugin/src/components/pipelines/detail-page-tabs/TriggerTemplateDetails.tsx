@@ -13,7 +13,7 @@ export interface TriggerTemplateDetailsProps {
   obj: TriggerTemplateKind;
 }
 
-const TriggerTemplateDetails: React.FC<TriggerTemplateDetailsProps> = ({
+const TriggerTemplateDetails: React.FC<React.PropsWithChildren<TriggerTemplateDetailsProps>> = ({
   obj: triggerTemplate,
 }) => {
   const { t } = useTranslation();

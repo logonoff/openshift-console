@@ -12,7 +12,7 @@ import { useDevfileServer, useDevfileSource, useSelectedDevfileSample } from './
 import DevfileInfo from './DevfileInfo';
 import './DevfileStrategySection.scss';
 
-const DevfileStrategySection: React.FC = () => {
+const DevfileStrategySection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { values, setFieldValue, setFieldTouched } = useFormikContext<FormikValues>();
   const fireTelemetryEvent = useTelemetry();

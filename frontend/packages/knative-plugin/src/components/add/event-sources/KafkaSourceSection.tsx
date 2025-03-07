@@ -17,7 +17,11 @@ interface KafkaSourceSectionProps {
   fullWidth?: boolean;
 }
 
-const KafkaSourceSection: React.FC<KafkaSourceSectionProps> = ({ title, namespace, fullWidth }) => {
+const KafkaSourceSection: React.FC<React.PropsWithChildren<KafkaSourceSectionProps>> = ({
+  title,
+  namespace,
+  fullWidth,
+}) => {
   const { t } = useTranslation();
   const [bootstrapServers, bsPlaceholder] = useBootstrapServers(namespace);
   const { kafkatopics } = useK8sWatchResources<{

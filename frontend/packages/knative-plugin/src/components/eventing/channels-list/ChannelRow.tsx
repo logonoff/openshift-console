@@ -8,7 +8,9 @@ import { EventChannelKind, ChannelConditionTypes } from '../../../types';
 import { getCondition, getConditionStats } from '../../../utils/condition-utils';
 import { getDynamicChannelModel } from '../../../utils/fetch-dynamic-eventsources-utils';
 
-const ChannelRow: React.FC<RowFunctionArgs<EventChannelKind>> = ({ obj }) => {
+const ChannelRow: React.FC<React.PropsWithChildren<RowFunctionArgs<EventChannelKind>>> = ({
+  obj,
+}) => {
   const {
     metadata: { name, namespace, creationTimestamp, uid },
   } = obj;

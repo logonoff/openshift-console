@@ -9,7 +9,9 @@ type NodeLogsUnitFilterProps = {
   unit: string;
 };
 
-const NodeLogsUnitFilter: React.FC<NodeLogsUnitFilterProps> = ({ onChangeUnit }) => {
+const NodeLogsUnitFilter: React.FC<React.PropsWithChildren<NodeLogsUnitFilterProps>> = ({
+  onChangeUnit,
+}) => {
   const firstRender = React.useRef(true);
   const inputRef = React.useRef<HTMLInputElement>();
   const [values, setValues] = React.useState<string[]>(getQueryArgument('unit')?.split(',') || []);

@@ -8,7 +8,10 @@ export enum EditorType {
   YAML = 'yaml',
 }
 
-export const EditorToggle: React.FC<EditorToggleProps> = ({ value, onChange }) => {
+export const EditorToggle: React.FC<React.PropsWithChildren<EditorToggleProps>> = ({
+  value,
+  onChange,
+}) => {
   const { t } = useTranslation();
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     onChange(event?.currentTarget?.value as EditorType);

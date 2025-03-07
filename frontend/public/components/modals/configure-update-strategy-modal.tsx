@@ -21,7 +21,9 @@ export const getNumberOrPercent = (value) => {
   return _.toInteger(value);
 };
 
-export const ConfigureUpdateStrategy: React.FC<ConfigureUpdateStrategyProps> = (props) => {
+export const ConfigureUpdateStrategy: React.FC<React.PropsWithChildren<
+  ConfigureUpdateStrategyProps
+>> = (props) => {
   const { showDescription = true } = props;
   const { t } = useTranslation();
   const strategyIsNotRollingUpdate = props.strategyType !== 'RollingUpdate';

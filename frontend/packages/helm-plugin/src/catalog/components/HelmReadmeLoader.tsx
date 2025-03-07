@@ -10,7 +10,7 @@ type HelmReadmeLoaderProps = {
   chartIndexEntry: string;
 };
 
-const HelmReadmeLoader: React.FC<HelmReadmeLoaderProps> = ({
+const HelmReadmeLoader: React.FC<React.PropsWithChildren<HelmReadmeLoaderProps>> = ({
   chartURL,
   namespace,
   chartIndexEntry,

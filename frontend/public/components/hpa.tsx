@@ -29,7 +29,11 @@ const HorizontalPodAutoscalersReference: K8sResourceKindReference = 'HorizontalP
 const { common } = Kebab.factory;
 const menuActions = [...Kebab.getExtensionsActionsForKind(HorizontalPodAutoscalerModel), ...common];
 
-const MetricsRow: React.FC<MetricsRowProps> = ({ type, current, target }) => (
+const MetricsRow: React.FC<React.PropsWithChildren<MetricsRowProps>> = ({
+  type,
+  current,
+  target,
+}) => (
   <div className="row">
     <div className="col-xs-6">{type}</div>
     <div className="col-xs-3">{current || '-'}</div>
@@ -62,7 +66,7 @@ const getResourceUtilization = (currentMetric) => {
     : `${currentUtilization}%`;
 };
 
-const MetricsTable: React.FC<MetricsTableProps> = ({ obj: hpa }) => {
+const MetricsTable: React.FC<React.PropsWithChildren<MetricsTableProps>> = ({ obj: hpa }) => {
   const { t } = useTranslation();
   const resourceRow = (metric, current, key) => {
     const { resource } = metric;
@@ -158,9 +162,9 @@ const MetricsTable: React.FC<MetricsTableProps> = ({ obj: hpa }) => {
   );
 };
 
-export const HorizontalPodAutoscalersDetails: React.FC<HorizontalPodAutoscalersDetailsProps> = ({
-  obj: hpa,
-}) => {
+export const HorizontalPodAutoscalersDetails: React.FC<React.PropsWithChildren<
+  HorizontalPodAutoscalersDetailsProps
+>> = ({ obj: hpa }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -219,7 +223,9 @@ const pages = [
   navFactory.editYaml(),
   navFactory.events(ResourceEventStream),
 ];
-export const HorizontalPodAutoscalersDetailsPage: React.FC = (props) => (
+export const HorizontalPodAutoscalersDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (
+  props,
+) => (
   <DetailsPage
     {...props}
     kind={HorizontalPodAutoscalersReference}
@@ -241,7 +247,9 @@ const tableColumnClasses = [
 
 const kind = 'HorizontalPodAutoscaler';
 
-const HorizontalPodAutoscalersTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj }) => {
+const HorizontalPodAutoscalersTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<K8sResourceKind>
+>> = ({ obj }) => {
   return (
     <>
       <TableData className={tableColumnClasses[0]}>
@@ -281,7 +289,7 @@ const HorizontalPodAutoscalersTableRow: React.FC<RowFunctionArgs<K8sResourceKind
   );
 };
 
-const HorizontalPodAutoscalersList: React.FC = (props) => {
+const HorizontalPodAutoscalersList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const HorizontalPodAutoscalersTableHeader = () => [
     {
@@ -339,9 +347,9 @@ const HorizontalPodAutoscalersList: React.FC = (props) => {
 };
 HorizontalPodAutoscalersList.displayName = 'HorizontalPodAutoscalersList';
 
-export const HorizontalPodAutoscalersPage: React.FC<HorizontalPodAutoscalersPageProps> = (
-  props,
-) => (
+export const HorizontalPodAutoscalersPage: React.FC<React.PropsWithChildren<
+  HorizontalPodAutoscalersPageProps
+>> = (props) => (
   <ListPage
     {...props}
     kind={HorizontalPodAutoscalersReference}

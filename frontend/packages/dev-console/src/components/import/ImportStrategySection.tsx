@@ -25,7 +25,9 @@ export interface ImportStrategySectionProps {
   builderImages: NormalizedBuilderImages;
 }
 
-const ImportStrategySection: React.FC<ImportStrategySectionProps> = ({ builderImages }) => {
+const ImportStrategySection: React.FC<React.PropsWithChildren<ImportStrategySectionProps>> = ({
+  builderImages,
+}) => {
   const { t } = useTranslation();
   const { values, setFieldValue, setValues } = useFormikContext<FormikValues>();
   const {

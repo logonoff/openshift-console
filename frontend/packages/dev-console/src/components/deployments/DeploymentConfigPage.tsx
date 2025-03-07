@@ -9,7 +9,7 @@ import { DeploymentKind, K8sResourceKind } from '@console/internal/module/k8s';
 import EditDeployment from './EditDeployment';
 import { getDefaultDeploymentConfig } from './utils/deployment-utils';
 
-const DeploymentConfigPage: React.FC = () => {
+const DeploymentConfigPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace, name } = useParams();
 

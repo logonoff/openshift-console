@@ -3,11 +3,9 @@ import { DraggableCore, DraggableEvent, DraggableData } from 'react-draggable';
 
 import './DraggableCoreIFrameFix.scss';
 
-const DraggableCoreIFrameFix: React.FC<React.ComponentProps<typeof DraggableCore>> = ({
-  onStart,
-  onStop,
-  ...other
-}) => {
+const DraggableCoreIFrameFix: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof DraggableCore>
+>> = ({ onStart, onStop, ...other }) => {
   const onStartFn =
     // rule is inconsistent with typescript return type
     // eslint-disable-next-line consistent-return

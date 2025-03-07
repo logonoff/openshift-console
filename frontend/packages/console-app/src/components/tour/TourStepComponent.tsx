@@ -25,7 +25,7 @@ type TourStepComponentProps = {
   onClose?: () => void;
 };
 
-const TourStepComponent: React.FC<TourStepComponentProps> = ({
+const TourStepComponent: React.FC<React.PropsWithChildren<TourStepComponentProps>> = ({
   placement,
   heading,
   content,

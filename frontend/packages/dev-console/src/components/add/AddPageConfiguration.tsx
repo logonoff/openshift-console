@@ -33,7 +33,7 @@ type DeveloperCatalogAddPageConfig = K8sResourceKind & {
 
 type ItemProps = { id: string; addAction?: ResolvedExtension<AddAction> };
 
-const Item: React.FC<ItemProps> = ({ id, addAction }) => (
+const Item: React.FC<React.PropsWithChildren<ItemProps>> = ({ id, addAction }) => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
     {typeof addAction?.properties.icon === 'string' ? (
       <img
@@ -53,7 +53,9 @@ const Item: React.FC<ItemProps> = ({ id, addAction }) => (
   </div>
 );
 
-const AddPageConfiguration: React.FC<{ readonly: boolean }> = ({ readonly }) => {
+const AddPageConfiguration: React.FC<React.PropsWithChildren<{ readonly: boolean }>> = ({
+  readonly,
+}) => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
 

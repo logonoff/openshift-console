@@ -13,7 +13,7 @@ import {
 import { RepositoryForm } from './RepositoryForm';
 import { RepositoryFormValues } from './types';
 
-const RepositoryFormPage: React.FC = () => {
+const RepositoryFormPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const [pac, loaded] = usePacInfo();
 

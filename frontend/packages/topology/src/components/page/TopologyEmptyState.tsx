@@ -14,7 +14,9 @@ type TopologyEmptyStateProps = {
   setIsQuickSearchOpen: (isOpen: boolean) => void;
 };
 
-const TopologyEmptyState: React.FC<TopologyEmptyStateProps> = ({ setIsQuickSearchOpen }) => {
+const TopologyEmptyState: React.FC<React.PropsWithChildren<TopologyEmptyStateProps>> = ({
+  setIsQuickSearchOpen,
+}) => {
   const { t } = useTranslation();
 
   return (

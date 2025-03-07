@@ -11,7 +11,7 @@ import { getPipelinesBaseURI, getApplicationsBaseURI } from './utils/gitops-util
 import useDefaultSecret from './utils/useDefaultSecret';
 import useEnvDetails from './utils/useEnvDetails';
 
-export const GitOpsDetailsPageTabs: React.FC = () => {
+export const GitOpsDetailsPageTabs: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const [secretNS, secretName] = useDefaultSecret();
   const { appName } = useParams();

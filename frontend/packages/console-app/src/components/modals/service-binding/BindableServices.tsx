@@ -26,7 +26,9 @@ type BindableServiceProps = {
   resource: K8sResourceKind;
 };
 
-const BindableServices: React.FC<BindableServiceProps> = ({ resource }) => {
+const BindableServices: React.FC<React.PropsWithChildren<BindableServiceProps>> = ({
+  resource,
+}) => {
   const { t } = useTranslation();
   const { setFieldValue, setFieldTouched, setStatus } = useFormikContext<FormikValues>();
   const [resourceAlert, setResourceAlert] = React.useState(false);
@@ -44,7 +46,7 @@ const BindableServices: React.FC<BindableServiceProps> = ({ resource }) => {
     watchedResources,
   );
   const onServiceChange = React.useCallback(
-    (selectedValue, name, obj) => {
+    (selectedValue: any, name: any, obj: any) => {
       if (!_.isEmpty(obj)) {
         setFieldTouched('service', true);
         setFieldValue('bindableService', obj);

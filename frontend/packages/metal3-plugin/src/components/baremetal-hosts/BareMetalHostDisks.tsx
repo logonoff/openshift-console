@@ -21,7 +21,9 @@ const getRowProps = (obj) => ({
   id: obj.name,
 });
 
-const DisksTableRow: React.FC<RowFunctionArgs<BareMetalHostDisk>> = ({ obj }) => {
+const DisksTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<BareMetalHostDisk>>> = ({
+  obj,
+}) => {
   const { hctl, model, name, rotational, serialNumber, sizeBytes, vendor } = obj;
   const { string: size } = humanizeDecimalBytes(sizeBytes);
   return (
@@ -43,7 +45,7 @@ type BareMetalHostDisksProps = {
   loadError?: any;
 };
 
-const BareMetalHostDisks: React.FC<BareMetalHostDisksProps> = ({
+const BareMetalHostDisks: React.FC<React.PropsWithChildren<BareMetalHostDisksProps>> = ({
   obj: host,
   loadError,
   loaded,

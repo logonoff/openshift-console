@@ -22,7 +22,7 @@ const NetworkAttachmentDefinitionModelGroupVersionKind = getGroupVersionKindForM
   NetworkAttachmentDefinitionModel,
 );
 
-const NADsSelector: React.FC<NADsSelectorProps> = ({
+const NADsSelector: React.FC<React.PropsWithChildren<NADsSelectorProps>> = ({
   namespace,
   networkPolicy,
   onPolicyChange,

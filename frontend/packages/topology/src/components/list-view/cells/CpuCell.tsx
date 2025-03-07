@@ -10,28 +10,30 @@ import MetricsTooltip from './MetricsTooltip';
 
 import './MetricsCell.scss';
 
-const CpuCellComponent: React.FC<CpuCellComponentProps> = React.memo(({ cpuByPod, totalCores }) => {
-  const { t } = useTranslation();
-  return (
-    <div className="odc-topology-list-view__metrics-cell__detail--cpu">
-      <MetricsTooltip metricLabel={t('topology~CPU')} byPod={cpuByPod}>
-        <span>
-          <span className="odc-topology-list-view__metrics-cell__metric-value">
-            {formatCores(totalCores)}
+const CpuCellComponent: React.FC<React.PropsWithChildren<CpuCellComponentProps>> = React.memo(
+  ({ cpuByPod, totalCores }) => {
+    const { t } = useTranslation();
+    return (
+      <div className="odc-topology-list-view__metrics-cell__detail--cpu">
+        <MetricsTooltip metricLabel={t('topology~CPU')} byPod={cpuByPod}>
+          <span>
+            <span className="odc-topology-list-view__metrics-cell__metric-value">
+              {formatCores(totalCores)}
+            </span>
+            &nbsp;
+            <span className="odc-topology-list-view__metrics-cell__metric-unit">cores</span>
           </span>
-          &nbsp;
-          <span className="odc-topology-list-view__metrics-cell__metric-unit">cores</span>
-        </span>
-      </MetricsTooltip>
-    </div>
-  );
-});
+        </MetricsTooltip>
+      </div>
+    );
+  },
+);
 
 type CpuCellProps = {
   item: Node;
 };
 
-const CpuCell: React.FC<CpuCellProps> = ({ item }) => {
+const CpuCell: React.FC<React.PropsWithChildren<CpuCellProps>> = ({ item }) => {
   const resource = getTopologyResourceObject(item.getData());
   const memoryStats = useMetricStats(resource);
 

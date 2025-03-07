@@ -71,7 +71,10 @@ export const getPluginTabPages = (
   });
 };
 
-const DashboardsPage_: React.FC<DashboardsPageProps> = ({ kindsInFlight, k8sModels }) => {
+const DashboardsPage_: React.FC<React.PropsWithChildren<DashboardsPageProps>> = ({
+  kindsInFlight,
+  k8sModels,
+}) => {
   const { t } = useTranslation();
   const title = t('public~Overview');
   const tabExtensions = useExtensions<DashboardsTab>(isDashboardsTab);

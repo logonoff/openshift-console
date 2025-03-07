@@ -13,7 +13,7 @@ interface ListElementWrapperProps {
 }
 
 // in a separate component so that changes to behaviors do not re-render children
-const ListElementComponent: React.FC<ListElementWrapperProps> = observer(
+const ListElementComponent: React.FC<React.PropsWithChildren<ListElementWrapperProps>> = observer(
   function ListElementComponent({ item, selectedIds, onSelect, children }) {
     const type = item.getType();
 
@@ -26,7 +26,7 @@ const ListElementComponent: React.FC<ListElementWrapperProps> = observer(
   },
 );
 
-const ListElementChildren: React.FC<ListElementWrapperProps> = observer(
+const ListElementChildren: React.FC<React.PropsWithChildren<ListElementWrapperProps>> = observer(
   function ListElementChildren({ item, selectedIds, onSelect }) {
     return (
       <>
@@ -51,20 +51,18 @@ const ListElementChildren: React.FC<ListElementWrapperProps> = observer(
   },
 );
 
-const ListElementWrapper: React.FC<ListElementWrapperProps> = observer(function ListElementWrapper({
-  item,
-  selectedIds,
-  onSelect,
-}) {
-  if (!item.isVisible()) {
-    return null;
-  }
+const ListElementWrapper: React.FC<React.PropsWithChildren<ListElementWrapperProps>> = observer(
+  function ListElementWrapper({ item, selectedIds, onSelect }) {
+    if (!item.isVisible()) {
+      return null;
+    }
 
-  return (
-    <ListElementComponent item={item} onSelect={onSelect} selectedIds={selectedIds}>
-      <ListElementChildren item={item} onSelect={onSelect} selectedIds={selectedIds} />
-    </ListElementComponent>
-  );
-});
+    return (
+      <ListElementComponent item={item} onSelect={onSelect} selectedIds={selectedIds}>
+        <ListElementChildren item={item} onSelect={onSelect} selectedIds={selectedIds} />
+      </ListElementComponent>
+    );
+  },
+);
 
 export default ListElementWrapper;

@@ -2,14 +2,9 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Base64 } from 'js-base64';
 
-export const PullSecretCredentialEntry: React.FC<PullSecretCredentialEntryProps> = ({
-  id,
-  address,
-  email,
-  password,
-  username,
-  onChange,
-}) => {
+export const PullSecretCredentialEntry: React.FC<React.PropsWithChildren<
+  PullSecretCredentialEntryProps
+>> = ({ id, address, email, password, username, onChange }) => {
   const { t } = useTranslation();
 
   const updateEntry = React.useCallback(

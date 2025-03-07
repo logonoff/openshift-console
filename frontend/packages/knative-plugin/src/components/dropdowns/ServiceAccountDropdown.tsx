@@ -17,11 +17,9 @@ interface StateProps {
   namespace: string;
 }
 
-const ServiceAccountDropdown: React.FC<ServiceAccountDropdownProps & StateProps> = ({
-  name,
-  onLoad,
-  namespace,
-}) => {
+const ServiceAccountDropdown: React.FC<React.PropsWithChildren<
+  ServiceAccountDropdownProps & StateProps
+>> = ({ name, onLoad, namespace }) => {
   const { t } = useTranslation();
   const autocompleteFilter = (strText, item): boolean => fuzzy(strText, item?.props?.name);
   const resources = [

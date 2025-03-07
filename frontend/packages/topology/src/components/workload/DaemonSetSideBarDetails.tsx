@@ -12,7 +12,9 @@ type DaemonSetOverviewDetailsProps = {
   ds: DaemonSetKind;
 };
 
-const DaemonSetSideBarDetails: React.FC<DaemonSetOverviewDetailsProps> = ({ ds }) => {
+const DaemonSetSideBarDetails: React.FC<React.PropsWithChildren<DaemonSetOverviewDetailsProps>> = ({
+  ds,
+}) => {
   const { namespace } = ds.metadata;
   const { podData, loaded, loadError } = usePodsWatcher(ds, 'DaemonSet', namespace);
 

@@ -51,7 +51,9 @@ import {
 import { k8sCreateResource, k8sUpdateResource } from '@console/dynamic-plugin-sdk/src/utils/k8s';
 import { RootState } from '../redux';
 
-const TemplateResourceDetails: React.FC<TemplateResourceDetailsProps> = ({ template }) => {
+const TemplateResourceDetails: React.FC<React.PropsWithChildren<TemplateResourceDetailsProps>> = ({
+  template,
+}) => {
   const resources = _.uniq(_.compact(_.map(template.objects, 'kind'))).sort();
   if (_.isEmpty(resources)) {
     return null;
@@ -71,7 +73,7 @@ const TemplateResourceDetails: React.FC<TemplateResourceDetailsProps> = ({ templ
 };
 TemplateResourceDetails.displayName = 'TemplateResourceDetails';
 
-const TemplateInfo: React.FC<TemplateInfoProps> = ({ template }) => {
+const TemplateInfo: React.FC<React.PropsWithChildren<TemplateInfoProps>> = ({ template }) => {
   const { t } = useTranslation();
   const annotations = template.metadata.annotations || {};
   const { description } = annotations;
@@ -145,7 +147,7 @@ const stateToProps = (state: RootState) => ({
   models: state.k8s.getIn(['RESOURCES', 'models']),
 });
 
-const TemplateFormField: React.FC<TemplateFormFieldProps> = ({
+const TemplateFormField: React.FC<React.PropsWithChildren<TemplateFormFieldProps>> = ({
   name,
   value,
   displayName,
@@ -207,7 +209,7 @@ const TemplateFormField: React.FC<TemplateFormFieldProps> = ({
   );
 };
 
-const TemplateForm_: React.FC<TemplateFormProps> = (props) => {
+const TemplateForm_: React.FC<React.PropsWithChildren<TemplateFormProps>> = (props) => {
   const { preselectedNamespace: ns = '', activePerspective, perspectiveExtensions, obj } = props;
 
   const [namespace, setNamespace] = React.useState(ns);
@@ -398,7 +400,7 @@ const TemplateForm = connect(stateToProps)(
   ),
 );
 
-export const InstantiateTemplatePage: React.FC<{}> = (props) => {
+export const InstantiateTemplatePage: React.FC<React.PropsWithChildren<{}>> = (props) => {
   const title = 'Instantiate Template';
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);

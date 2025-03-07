@@ -30,10 +30,9 @@ type EventPubSubResourcesProps = {
   };
 };
 
-export const PubSubResourceOverviewList: React.FC<PubSubResourceOverviewListProps> = ({
-  items,
-  title,
-}) => {
+export const PubSubResourceOverviewList: React.FC<React.PropsWithChildren<
+  PubSubResourceOverviewListProps
+>> = ({ items, title }) => {
   const { t } = useTranslation();
   return (
     <>
@@ -59,7 +58,9 @@ export const PubSubResourceOverviewList: React.FC<PubSubResourceOverviewListProp
   );
 };
 
-const EventPubSubResources: React.FC<EventPubSubResourcesProps> = ({ item }) => {
+const EventPubSubResources: React.FC<React.PropsWithChildren<EventPubSubResourcesProps>> = ({
+  item,
+}) => {
   const { t } = useTranslation();
   const {
     obj,

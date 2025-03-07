@@ -33,7 +33,7 @@ type DisabledQuickStartsConsoleConfig = K8sResourceKind & {
 
 type ItemProps = { id: string; quickStart?: QuickStart };
 
-const Item: React.FC<ItemProps> = ({ id, quickStart }) => (
+const Item: React.FC<React.PropsWithChildren<ItemProps>> = ({ id, quickStart }) => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
     {quickStart ? (
       <>
@@ -49,7 +49,9 @@ const Item: React.FC<ItemProps> = ({ id, quickStart }) => (
   </div>
 );
 
-const QuickStartConfiguration: React.FC<{ readonly: boolean }> = ({ readonly }) => {
+const QuickStartConfiguration: React.FC<React.PropsWithChildren<{ readonly: boolean }>> = ({
+  readonly,
+}) => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
 

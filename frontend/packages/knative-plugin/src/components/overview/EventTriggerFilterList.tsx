@@ -7,7 +7,9 @@ type EventTriggerFilterListProps = {
   filters: FilterTableRowProps;
 };
 
-const EventTriggerFilterList: React.FC<EventTriggerFilterListProps> = ({ filters }) => {
+const EventTriggerFilterList: React.FC<React.PropsWithChildren<EventTriggerFilterListProps>> = ({
+  filters,
+}) => {
   const { t } = useTranslation();
   return filters.length > 0 ? (
     <>

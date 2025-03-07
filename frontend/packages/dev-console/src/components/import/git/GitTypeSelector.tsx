@@ -20,7 +20,9 @@ type GitTypeSelectorProps = {
   fieldPrefix: string;
 };
 
-const GitTypeSelector: React.FC<GitTypeSelectorProps> = ({ fieldPrefix }) => {
+const GitTypeSelector: React.FC<React.PropsWithChildren<GitTypeSelectorProps>> = ({
+  fieldPrefix,
+}) => {
   const { values, setFieldValue, setFieldTouched } = useFormikContext<FormikValues>();
   const { t } = useTranslation();
 

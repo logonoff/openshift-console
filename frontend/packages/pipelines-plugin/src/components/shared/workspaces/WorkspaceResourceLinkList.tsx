@@ -11,12 +11,9 @@ export interface WorkspaceResourceLinkListProps {
   ownerResourceKind?: string;
 }
 
-const WorkspaceResourceLinkList: React.FC<WorkspaceResourceLinkListProps> = ({
-  workspaces,
-  namespace,
-  ownerResourceName,
-  ownerResourceKind,
-}) => {
+const WorkspaceResourceLinkList: React.FC<React.PropsWithChildren<
+  WorkspaceResourceLinkListProps
+>> = ({ workspaces, namespace, ownerResourceName, ownerResourceKind }) => {
   if (!workspaces || workspaces.length === 0) return null;
 
   return (

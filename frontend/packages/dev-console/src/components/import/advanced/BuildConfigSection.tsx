@@ -8,7 +8,9 @@ export interface BuildConfigSectionProps {
   showHeader?: boolean;
 }
 
-const BuildConfigSection: React.FC<BuildConfigSectionProps> = ({ showHeader }) => {
+const BuildConfigSection: React.FC<React.PropsWithChildren<BuildConfigSectionProps>> = ({
+  showHeader,
+}) => {
   const { t } = useTranslation();
   const {
     values: { build },

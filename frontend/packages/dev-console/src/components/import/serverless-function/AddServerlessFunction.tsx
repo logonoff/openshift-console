@@ -43,7 +43,7 @@ type AddServerlessFunctionProps = {
   forApplication: string;
 };
 
-const AddServerlessFunction: React.FC<AddServerlessFunctionProps> = ({
+const AddServerlessFunction: React.FC<React.PropsWithChildren<AddServerlessFunctionProps>> = ({
   namespace,
   forApplication,
 }) => {

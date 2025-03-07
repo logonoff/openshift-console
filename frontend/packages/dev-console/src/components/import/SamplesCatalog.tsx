@@ -7,7 +7,7 @@ import { CatalogController, CatalogServiceProvider } from '@console/shared';
 import NamespacedPage, { NamespacedPageVariants } from '../NamespacedPage';
 import CreateProjectListPage, { CreateAProjectButton } from '../projects/CreateProjectListPage';
 
-const SampleCatalog: React.FC = () => {
+const SampleCatalog: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const params = new URLSearchParams(window.location.search);

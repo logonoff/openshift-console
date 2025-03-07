@@ -37,7 +37,7 @@ type BaseEdgeProps = {
   Partial<WithTargetDragProps> &
   Partial<WithContextMenuProps>;
 
-const BaseEdge: React.FC<BaseEdgeProps> = ({
+const BaseEdge: React.FC<React.PropsWithChildren<BaseEdgeProps>> = ({
   className,
   element,
   endTerminalType = EdgeTerminalType.directional,

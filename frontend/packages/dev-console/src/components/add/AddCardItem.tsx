@@ -12,7 +12,7 @@ type AddCardItemProps = {
   namespace: string;
 };
 
-const AddCardItem: React.FC<AddCardItemProps> = ({
+const AddCardItem: React.FC<React.PropsWithChildren<AddCardItemProps>> = ({
   action: {
     properties: { id, label, icon, href, callback, description },
   },

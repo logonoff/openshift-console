@@ -7,13 +7,13 @@ import { PipelineModel } from '../../../models';
 import { sanitizePipelineParams } from './utils';
 
 export interface PipelineFormProps {
-  PipelineFormComponent: React.ComponentType<any>;
+  PipelineFormComponent: React.ComponentType<React.PropsWithChildren<any>>;
   formName: string;
   validationSchema: any;
   obj: K8sResourceKind;
 }
 
-const PipelineForm: React.FC<PipelineFormProps> = ({
+const PipelineForm: React.FC<React.PropsWithChildren<PipelineFormProps>> = ({
   PipelineFormComponent,
   formName,
   validationSchema,

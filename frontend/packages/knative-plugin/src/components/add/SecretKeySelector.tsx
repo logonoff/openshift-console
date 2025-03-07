@@ -20,7 +20,7 @@ interface StateProps {
   namespace: string;
 }
 
-const SecretKeySelector: React.FC<SecretKeySelectorProps & StateProps> = ({
+const SecretKeySelector: React.FC<React.PropsWithChildren<SecretKeySelectorProps & StateProps>> = ({
   name,
   label,
   namespace,

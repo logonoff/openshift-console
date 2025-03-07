@@ -15,7 +15,9 @@ interface TimestampWrapperProps {
   resModels: GitOpsResource[];
 }
 
-const TimestampWrapper: React.FC<TimestampWrapperProps> = ({ resModels }) => {
+const TimestampWrapper: React.FC<React.PropsWithChildren<TimestampWrapperProps>> = ({
+  resModels,
+}) => {
   const [lastUpdatedTimestamp, setLastUpdatedTimestamp] = React.useState<number>(null);
   const { t } = useTranslation();
   const memoResources = React.useMemo(() => {

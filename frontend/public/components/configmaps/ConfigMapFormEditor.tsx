@@ -24,7 +24,9 @@ interface ConfigMapFormEditorProps {
   handleCancel: () => void;
 }
 
-export const ConfigMapFormEditor: React.FC<FormikProps<any> & ConfigMapFormEditorProps> = ({
+export const ConfigMapFormEditor: React.FC<React.PropsWithChildren<
+  FormikProps<any> & ConfigMapFormEditorProps
+>> = ({
   values,
   status,
   handleSubmit,

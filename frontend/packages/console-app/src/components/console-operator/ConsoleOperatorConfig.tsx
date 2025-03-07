@@ -91,15 +91,14 @@ export const useConsoleOperatorConfigData = () => {
   );
 };
 
-export const ConsolePluginStatus: React.FC<ConsolePluginStatusProps> = ({
+export const ConsolePluginStatus: React.FC<React.PropsWithChildren<ConsolePluginStatusProps>> = ({
   status,
   errorMessage,
 }) => <Status status={status} title={status === 'Failed' ? errorMessage : undefined} />;
 
-export const ConsolePluginEnabledStatus: React.FC<ConsolePluginEnabledStatusProps> = ({
-  pluginName,
-  enabled,
-}) => {
+export const ConsolePluginEnabledStatus: React.FC<React.PropsWithChildren<
+  ConsolePluginEnabledStatusProps
+>> = ({ pluginName, enabled }) => {
   const { t } = useTranslation();
 
   const {
@@ -137,9 +136,9 @@ export const ConsolePluginEnabledStatus: React.FC<ConsolePluginEnabledStatusProp
   );
 };
 
-export const ConsolePluginCSPStatus: React.FC<ConsolePluginCSPStatusProps> = ({
-  hasViolations,
-}) => {
+export const ConsolePluginCSPStatus: React.FC<React.PropsWithChildren<
+  ConsolePluginCSPStatusProps
+>> = ({ hasViolations }) => {
   const { t } = useTranslation();
 
   return hasViolations ? (
@@ -159,7 +158,11 @@ export const ConsolePluginCSPStatus: React.FC<ConsolePluginCSPStatusProps> = ({
   );
 };
 
-const ConsolePluginsTable: React.FC<ConsolePluginsTableProps> = ({ obj, rows, loaded }) => {
+const ConsolePluginsTable: React.FC<React.PropsWithChildren<ConsolePluginsTableProps>> = ({
+  obj,
+  rows,
+  loaded,
+}) => {
   const { t } = useTranslation();
 
   const [sortBy, setSortBy] = React.useState<ISortBy>(() => ({
@@ -313,7 +316,7 @@ const DevPluginsPage: React.FCC<ConsoleOperatorConfigPageProps> = (props) => {
   return <ConsolePluginsTable {...props} rows={rows} loaded={pluginInfoLoaded} />;
 };
 
-const PluginsPage: React.FC<ConsoleOperatorConfigPageProps> = (props) => {
+const PluginsPage: React.FC<React.PropsWithChildren<ConsoleOperatorConfigPageProps>> = (props) => {
   const [pluginInfo] = useDynamicPluginInfo();
   const [consolePlugins, consolePluginsLoaded] = useK8sWatchResource<ConsolePluginKind[]>({
     isList: true,
@@ -361,12 +364,12 @@ const PluginsPage: React.FC<ConsoleOperatorConfigPageProps> = (props) => {
   return <ConsolePluginsTable {...props} rows={rows} loaded={consolePluginsLoaded} />;
 };
 
-const ConsoleOperatorConfigPluginsPage: React.FC<ConsoleOperatorConfigPageProps> = developmentMode
-  ? DevPluginsPage
-  : PluginsPage;
+const ConsoleOperatorConfigPluginsPage: React.FC<React.PropsWithChildren<
+  ConsoleOperatorConfigPageProps
+>> = developmentMode ? DevPluginsPage : PluginsPage;
 
-export const ConsoleOperatorConfigDetailsPage: React.FC<React.ComponentProps<
-  typeof DetailsPage
+export const ConsoleOperatorConfigDetailsPage: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof DetailsPage>
 >> = (props) => {
   const location = useLocation();
 

@@ -7,7 +7,9 @@ type CreateActionDropdownProps = {
   namespace: string;
 };
 
-export const CreateActionDropdown: React.FC<CreateActionDropdownProps> = ({ namespace }) => {
+export const CreateActionDropdown: React.FC<React.PropsWithChildren<CreateActionDropdownProps>> = ({
+  namespace,
+}) => {
   const { t } = useTranslation();
 
   const menuActions: MenuActions = {

@@ -22,7 +22,7 @@ import Status from '../status-card/StatusPopup';
 
 import './top-consumer-popover.scss';
 
-const ConsumerPopover: React.FC<ConsumerPopoverProps> = React.memo(
+const ConsumerPopover: React.FC<React.PropsWithChildren<ConsumerPopoverProps>> = React.memo(
   ({
     current,
     title,
@@ -88,7 +88,7 @@ const getResourceToWatch = (model: K8sKind, namespace: string, fieldSelector: st
   namespace,
 });
 
-export const LimitsBody: React.FC<LimitsBodyProps> = ({
+export const LimitsBody: React.FC<React.PropsWithChildren<LimitsBodyProps>> = ({
   limitState,
   requestedState,
   total,
@@ -191,7 +191,7 @@ export const PopoverBody = withDashboardResources<DashboardItemProps & PopoverBo
       );
 
       const onDropdownChange = React.useCallback(
-        (key) => setCurrentConsumer(consumers.find((c) => referenceForModel(c.model) === key)),
+        (key: any) => setCurrentConsumer(consumers.find((c) => referenceForModel(c.model) === key)),
         [consumers],
       );
 
@@ -271,7 +271,7 @@ export const PopoverBody = withDashboardResources<DashboardItemProps & PopoverBo
   ),
 );
 
-const ListItem: React.FC<ListItemProps> = ({ children, value }) => (
+const ListItem: React.FC<React.PropsWithChildren<ListItemProps>> = ({ children, value }) => (
   <li className="co-utilization-card-popover__consumer-item">
     {children}
     <div className="co-utilization-card-popover__consumer-value">{value}</div>

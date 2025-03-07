@@ -68,7 +68,7 @@ export interface StateProps {
   activeApplication: string;
 }
 
-const ImportForm: React.FC<ImportFormProps & StateProps> = ({
+const ImportForm: React.FC<React.PropsWithChildren<ImportFormProps & StateProps>> = ({
   namespace,
   imageStreams,
   importData,

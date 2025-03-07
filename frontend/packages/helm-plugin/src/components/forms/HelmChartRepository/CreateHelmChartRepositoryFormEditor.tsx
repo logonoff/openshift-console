@@ -30,10 +30,9 @@ type CreateHelmChartRepositoryFormEditorProps = {
   existingRepo: HelmChartRepositoryType;
 };
 
-const CreateHelmChartRepositoryFormEditor: React.FC<CreateHelmChartRepositoryFormEditorProps> = ({
-  showScopeType,
-  existingRepo,
-}) => {
+const CreateHelmChartRepositoryFormEditor: React.FC<React.PropsWithChildren<
+  CreateHelmChartRepositoryFormEditorProps
+>> = ({ showScopeType, existingRepo }) => {
   const { t } = useTranslation();
   const {
     values: { formData },

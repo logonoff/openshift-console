@@ -22,7 +22,7 @@ const PipelineChangeAlert = (alertMessage: string) => (
   </>
 );
 
-const BuilderImageSelector: React.FC<BuilderImageSelectorProps> = ({
+const BuilderImageSelector: React.FC<React.PropsWithChildren<BuilderImageSelectorProps>> = ({
   loadingImageStream,
   builderImages,
   existingPipeline,

@@ -7,10 +7,9 @@ import { AppliedClusterResourceQuotaModel } from '@console/internal/models';
 import { AppliedClusterResourceQuotaKind } from '@console/internal/module/k8s';
 import QuotaSummary from './QuotaSummary';
 
-const AppliedClusterResourceQuotaItem: React.FC<AppliedClusterResourceQuotaItemProps> = ({
-  resourceQuota,
-  namespace,
-}) => {
+const AppliedClusterResourceQuotaItem: React.FC<React.PropsWithChildren<
+  AppliedClusterResourceQuotaItemProps
+>> = ({ resourceQuota, namespace }) => {
   const resources = Object.keys(resourceQuota.status?.total?.hard ?? {});
   const [isExpanded, setExpanded] = React.useState(resources.length <= 4);
   const scopes = resourceQuota?.spec?.quota?.scopes;

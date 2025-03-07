@@ -4,7 +4,7 @@ import { InProgressIcon } from '@patternfly/react-icons/dist/esm/icons/in-progre
 import classNames from 'classnames';
 import { ActivityItemProps } from '@console/dynamic-plugin-sdk/src/api/internal-types';
 
-export const ActivityProgress: React.FC<ActivityProgressProps> = ({
+export const ActivityProgress: React.FC<React.PropsWithChildren<ActivityProgressProps>> = ({
   title,
   progress,
   children,
@@ -20,7 +20,10 @@ export const ActivityProgress: React.FC<ActivityProgressProps> = ({
   </>
 );
 
-const ActivityItem: React.FC<ActivityItemProps> = ({ children, className }) => (
+const ActivityItem: React.FC<React.PropsWithChildren<ActivityItemProps>> = ({
+  children,
+  className,
+}) => (
   <>
     <div className={classNames('co-activity-item', className)}>
       <InProgressIcon className="co-dashboard-icon co-activity-item__icon" />

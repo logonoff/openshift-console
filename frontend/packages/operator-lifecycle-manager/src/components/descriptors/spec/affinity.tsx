@@ -59,7 +59,7 @@ export const DEFAULT_POD_AFFINITY: PodAffinityType = {
   ],
 };
 
-const NodeAffinityRule: React.FC<NodeAffinityRuleProps> = ({
+const NodeAffinityRule: React.FC<React.PropsWithChildren<NodeAffinityRuleProps>> = ({
   key,
   type,
   showRemoveButton = false,
@@ -119,7 +119,11 @@ const NodeAffinityRule: React.FC<NodeAffinityRuleProps> = ({
   );
 };
 
-export const NodeAffinity: React.FC<NodeAffinityProps> = ({ affinity, onChange, uid = '' }) => {
+export const NodeAffinity: React.FC<React.PropsWithChildren<NodeAffinityProps>> = ({
+  affinity,
+  onChange,
+  uid = '',
+}) => {
   const { t } = useTranslation();
   const requiredRules =
     affinity?.requiredDuringSchedulingIgnoredDuringExecution?.nodeSelectorTerms || [];
@@ -244,7 +248,7 @@ export const NodeAffinity: React.FC<NodeAffinityProps> = ({ affinity, onChange, 
   );
 };
 
-const PodAffinityRule: React.FC<PodAffinityRuleProps> = ({
+const PodAffinityRule: React.FC<React.PropsWithChildren<PodAffinityRuleProps>> = ({
   key,
   onChange = () => {},
   onClickRemove = () => {},
@@ -333,7 +337,11 @@ const PodAffinityRule: React.FC<PodAffinityRuleProps> = ({
   ) : null;
 };
 
-export const PodAffinity: React.FC<PodAffinityProps> = ({ affinity, onChange, uid = '' }) => {
+export const PodAffinity: React.FC<React.PropsWithChildren<PodAffinityProps>> = ({
+  affinity,
+  onChange,
+  uid = '',
+}) => {
   const {
     requiredDuringSchedulingIgnoredDuringExecution: requiredRules = [],
     preferredDuringSchedulingIgnoredDuringExecution: preferredRules = [],

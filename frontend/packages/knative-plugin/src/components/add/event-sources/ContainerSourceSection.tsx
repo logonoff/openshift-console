@@ -29,7 +29,10 @@ interface ContainerSourceSectionProps {
   fullWidth?: boolean;
 }
 
-const ContainerSourceSection: React.FC<ContainerSourceSectionProps> = ({ title, fullWidth }) => {
+const ContainerSourceSection: React.FC<React.PropsWithChildren<ContainerSourceSectionProps>> = ({
+  title,
+  fullWidth,
+}) => {
   const { t } = useTranslation();
   const { values, setFieldValue } = useFormikContext<FormikValues>();
   const {
@@ -48,7 +51,7 @@ const ContainerSourceSection: React.FC<ContainerSourceSectionProps> = ({ title, 
   const initialEnvValues = !_.isEmpty(envs) ? _.map(envs, (env) => _.values(env)) : [['', '']];
   const [nameValue, setNameValue] = React.useState(initialEnvValues);
   const handleNameValuePairs = React.useCallback(
-    ({ nameValuePairs }) => {
+    ({ nameValuePairs }: any) => {
       const updatedNameValuePairs = _.compact(
         nameValuePairs.map(([name, value]) => (value.length ? { name, value } : null)),
       );

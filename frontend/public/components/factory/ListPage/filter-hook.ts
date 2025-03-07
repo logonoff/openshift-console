@@ -35,7 +35,7 @@ export const useListPageFilter: UseListPageFilter = (data, rowFilters, staticFil
   }, [filter, location]);
 
   const onFilterChange = React.useCallback(
-    (type, value) => setFilter((state) => ({ ...state, [type]: value })),
+    (type: any, value: any) => setFilter((state) => ({ ...state, [type]: value })),
     [],
   );
 

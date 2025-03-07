@@ -29,7 +29,7 @@ interface StateProps {
 
 type Props = DeployImageProps & StateProps;
 
-const DeployImage: React.FC<Props> = ({
+const DeployImage: React.FC<React.PropsWithChildren<Props>> = ({
   namespace,
   projects,
   activeApplication,

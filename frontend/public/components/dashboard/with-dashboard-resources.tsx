@@ -42,7 +42,7 @@ type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;
 
 export const withDashboardResources = <P extends DashboardItemProps>(
-  WrappedComponent: React.ComponentType<P>,
+  WrappedComponent: React.ComponentType<React.PropsWithChildren<P>>,
 ) =>
   connect<StateProps, DispatchProps, Diff<P, DashboardItemProps>>(
     mapStateToProps,

@@ -7,10 +7,10 @@ import { getProjectResource, BuilderImagesNamespace } from '../../../utils/image
 import { ImageStreamActions as Action } from '../import-types';
 import { ImageStreamContext } from './ImageStreamContext';
 
-const ImageStreamNsDropdown: React.FC<{ disabled?: boolean; formContextField?: string }> = ({
-  disabled = false,
-  formContextField,
-}) => {
+const ImageStreamNsDropdown: React.FC<React.PropsWithChildren<{
+  disabled?: boolean;
+  formContextField?: string;
+}>> = ({ disabled = false, formContextField }) => {
   const { t } = useTranslation();
   const { values, setFieldValue, initialValues } = useFormikContext<FormikValues>();
   const { imageStream } = _.get(values, formContextField) || values;

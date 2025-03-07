@@ -157,7 +157,7 @@ const showDebugAction = (pod: PodKind, containerName: string) => {
 };
 
 // Component for log stream controls
-export const LogControls: React.FC<LogControlsProps> = ({
+export const LogControls: React.FC<React.PropsWithChildren<LogControlsProps>> = ({
   dropdown,
   toggleFullscreen,
   currentLogURL,
@@ -519,7 +519,7 @@ export const LogControls: React.FC<LogControlsProps> = ({
 };
 
 // Resource agnostic log component
-export const ResourceLog: React.FC<ResourceLogProps> = ({
+export const ResourceLog: React.FC<React.PropsWithChildren<ResourceLogProps>> = ({
   bufferSize = DEFAULT_BUFFER_SIZE,
   containerName,
   dropdown,

@@ -36,7 +36,7 @@ export type EventingPubSubNodeProps = {
   WithContextMenuProps &
   WithCreateConnectorProps;
 
-const EventingPubSubNode: React.FC<EventingPubSubNodeProps> = ({
+const EventingPubSubNode: React.FC<React.PropsWithChildren<EventingPubSubNodeProps>> = ({
   element,
   canDrop,
   dropTarget,

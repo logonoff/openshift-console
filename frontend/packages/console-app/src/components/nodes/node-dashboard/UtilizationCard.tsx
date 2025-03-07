@@ -33,7 +33,7 @@ import {
 
 const networkPopovers = [NetworkInPopover, NetworkOutPopover];
 
-const UtilizationCard: React.FC = () => {
+const UtilizationCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { obj, setCPULimit, setMemoryLimit } = React.useContext(NodeDashboardContext);
 

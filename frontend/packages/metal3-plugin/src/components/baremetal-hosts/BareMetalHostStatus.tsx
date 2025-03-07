@@ -40,7 +40,7 @@ export const hostStatusActions = (t: TFunction) => ({
   ),
 });
 
-const BareMetalHostStatus: React.FC<BareMetalHostStatusProps> = ({
+const BareMetalHostStatus: React.FC<React.PropsWithChildren<BareMetalHostStatusProps>> = ({
   status,
   titleKey,
   descriptionKey,

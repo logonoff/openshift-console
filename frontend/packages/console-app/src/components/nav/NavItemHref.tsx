@@ -7,7 +7,7 @@ import { useLocation } from '@console/shared/src/hooks/useLocation';
 import { NavLinkProps, NavLink } from './NavLink';
 import { navItemHrefIsActive, stripScopeFromPath } from './utils';
 
-export const NavItemHref: React.FC<NavItemHrefProps> = ({
+export const NavItemHref: React.FC<React.PropsWithChildren<NavItemHrefProps>> = ({
   children,
   href,
   namespaced,

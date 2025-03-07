@@ -10,7 +10,7 @@ interface HelmReleaseListViewNodeProps {
   onSelect: (ids: string[]) => void;
 }
 
-const HelmReleaseListViewNode: React.FC<HelmReleaseListViewNodeProps> = ({
+const HelmReleaseListViewNode: React.FC<React.PropsWithChildren<HelmReleaseListViewNodeProps>> = ({
   item,
   selectedIds,
   onSelect,

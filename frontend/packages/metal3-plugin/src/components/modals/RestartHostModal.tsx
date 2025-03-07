@@ -30,7 +30,7 @@ const RestartHostModal = ({
 }: RestartHostModalProps) => {
   const { t } = useTranslation();
   const onSubmit = React.useCallback(
-    async (event) => {
+    async (event: any) => {
       event.preventDefault();
       const promise = restartHost(host);
       await handlePromise(promise);

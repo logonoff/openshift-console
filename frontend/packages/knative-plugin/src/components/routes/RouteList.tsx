@@ -4,7 +4,7 @@ import { Table, TableProps } from '@console/internal/components/factory';
 import RouteHeader from './RouteHeader';
 import RouteRow from './RouteRow';
 
-const RouteList: React.FC<TableProps> = (props) => {
+const RouteList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table

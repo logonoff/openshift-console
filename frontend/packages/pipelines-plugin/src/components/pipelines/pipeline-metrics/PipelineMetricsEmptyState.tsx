@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 
 import './PipelineMetrics.scss';
 
-const PipelineMetricsEmptyState: React.FC = () => {
+const PipelineMetricsEmptyState: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <Stack className="pipeline-metrics-empty-state">

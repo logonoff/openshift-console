@@ -58,7 +58,10 @@ const tableColumnInfo = [
 const getMachineProviderState = (obj: MachineKind): string =>
   obj?.status?.providerStatus?.instanceState;
 
-const MachineTableRow: React.FC<RowProps<MachineKind>> = ({ obj, activeColumnIDs }) => {
+const MachineTableRow: React.FC<React.PropsWithChildren<RowProps<MachineKind>>> = ({
+  obj,
+  activeColumnIDs,
+}) => {
   const nodeName = getMachineNodeName(obj);
   const region = getMachineRegion(obj);
   const zone = getMachineZone(obj);
@@ -105,7 +108,11 @@ const MachineTableRow: React.FC<RowProps<MachineKind>> = ({ obj, activeColumnIDs
   );
 };
 
-const MachineDetails: React.SFC<MachineDetailsProps> = ({ obj }: { obj: MachineKind }) => {
+const MachineDetails: React.FC<React.PropsWithChildren<MachineDetailsProps>> = ({
+  obj,
+}: {
+  obj: MachineKind;
+}) => {
   const nodeName = getMachineNodeName(obj);
   const machineRole = getMachineRole(obj);
   const instanceType = getMachineInstanceType(obj);
@@ -190,7 +197,7 @@ type MachineListProps = {
   loadError: any;
 };
 
-export const MachineList: React.FC<MachineListProps> = (props) => {
+export const MachineList: React.FC<React.PropsWithChildren<MachineListProps>> = (props) => {
   const { t } = useTranslation();
 
   const machineTableColumns = React.useMemo<TableColumn<MachineKind>[]>(
@@ -266,7 +273,7 @@ export const MachineList: React.FC<MachineListProps> = (props) => {
   );
 };
 
-export const MachinePage: React.FC<MachinePageProps> = ({
+export const MachinePage: React.FC<React.PropsWithChildren<MachinePageProps>> = ({
   selector,
   namespace,
   showTitle = true,
@@ -316,7 +323,7 @@ export const MachinePage: React.FC<MachinePageProps> = ({
   );
 };
 
-export const MachineDetailsPage: React.SFC = (props) => (
+export const MachineDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => (
   <DetailsPage
     {...props}
     kind={machineReference}

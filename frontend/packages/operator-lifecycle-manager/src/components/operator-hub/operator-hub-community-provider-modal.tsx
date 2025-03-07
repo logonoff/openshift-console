@@ -11,14 +11,13 @@ import {
 import { ExternalLink } from '@console/internal/components/utils';
 import { RH_OPERATOR_SUPPORT_POLICY_LINK } from '@console/shared';
 
-export const OperatorHubCommunityProviderModal: React.FC<OperatorHubCommunityProviderModalProps> = ({
-  close,
-  showCommunityOperators,
-}) => {
+export const OperatorHubCommunityProviderModal: React.FC<React.PropsWithChildren<
+  OperatorHubCommunityProviderModalProps
+>> = ({ close, showCommunityOperators }) => {
   const { t } = useTranslation();
   const [ignoreWarnings, setIgnoreWarnings] = React.useState(false);
   const submit = React.useCallback(
-    (event) => {
+    (event: any) => {
       event.preventDefault();
       close();
       showCommunityOperators(ignoreWarnings);

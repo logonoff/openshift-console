@@ -6,7 +6,12 @@ type FallbackImgProps = {
   fallback?: React.ReactNode;
 } & React.ImgHTMLAttributes<HTMLImageElement>;
 
-const FallbackImg: React.FC<FallbackImgProps> = ({ src, alt, fallback, ...props }) => {
+const FallbackImg: React.FC<React.PropsWithChildren<FallbackImgProps>> = ({
+  src,
+  alt,
+  fallback,
+  ...props
+}) => {
   const [isSrcValid, setIsSrcValid] = React.useState<boolean>(true);
 
   if (src && isSrcValid) {

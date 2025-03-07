@@ -11,7 +11,10 @@ export interface HelmReleaseOverviewProps {
   customData: HelmRelease;
 }
 
-const HelmReleaseOverview: React.FC<HelmReleaseOverviewProps> = ({ obj, customData }) => {
+const HelmReleaseOverview: React.FC<React.PropsWithChildren<HelmReleaseOverviewProps>> = ({
+  obj,
+  customData,
+}) => {
   const { t } = useTranslation();
   return (
     <div className="co-m-pane__body">

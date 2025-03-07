@@ -12,7 +12,7 @@ type ChannelSelectorProps = {
   defaultConfiguredChannel: string;
 } & Omit<DropdownFieldProps, 'name'>;
 
-const ChannelSelector: React.FC<ChannelSelectorProps> = ({
+const ChannelSelector: React.FC<React.PropsWithChildren<ChannelSelectorProps>> = ({
   channels,
   onChange,
   defaultConfiguredChannel,

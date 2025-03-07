@@ -13,7 +13,7 @@ export type PolicySectionFormData = {
   };
 };
 
-const PolicySection: React.FC<{}> = () => {
+const PolicySection: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
   const [{ value: runPolicy }] = useField<BuildConfigRunPolicy>('formData.policy.runPolicy');
 

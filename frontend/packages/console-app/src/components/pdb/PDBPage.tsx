@@ -11,10 +11,9 @@ import { PodDisruptionBudgetModel } from '../../models';
 import PodDisruptionBudgetList from './PDBList';
 import { PodDisruptionBudgetKind } from './types';
 
-export const PodDisruptionBudgetsPage: React.FC<PodDisruptionBudgetsPageProps> = ({
-  namespace,
-  showTitle = true,
-}) => {
+export const PodDisruptionBudgetsPage: React.FC<React.PropsWithChildren<
+  PodDisruptionBudgetsPageProps
+>> = ({ namespace, showTitle = true }) => {
   const { t } = useTranslation();
   const [resources, loaded, loadError] = useK8sWatchResource<PodDisruptionBudgetKind[]>({
     groupVersionKind: {

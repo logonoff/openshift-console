@@ -14,7 +14,9 @@ import { withHandlePromise } from '@console/internal/components/utils';
 import { k8sUpdate, referenceFor, K8sKind, K8sResourceKind } from '@console/internal/module/k8s';
 import { RootState } from '@console/internal/redux';
 
-export const ResourceRequirements: React.FC<ResourceRequirementsProps> = (props) => {
+export const ResourceRequirements: React.FC<React.PropsWithChildren<ResourceRequirementsProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const { cpu, memory, storage, onChangeCPU, onChangeMemory, onChangeStorage, path = '' } = props;
 

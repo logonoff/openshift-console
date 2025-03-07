@@ -10,10 +10,10 @@ interface TaskListPageProps {
   canCreate?: boolean;
 }
 
-const TaskListPage: React.FC<
+const TaskListPage: React.FC<React.PropsWithChildren<
   Omit<React.ComponentProps<typeof ListPage>, 'canCreate' | 'kind' | 'ListComponent'> &
     TaskListPageProps
-> = ({ hideBadge, ...props }) => {
+>> = ({ hideBadge, ...props }) => {
   const badge = usePipelineTechPreviewBadge(props.namespace);
   return (
     <ListPage

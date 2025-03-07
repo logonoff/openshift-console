@@ -9,11 +9,9 @@ type TopologyGroupResourcesPanelProps = {
   linkForResource?: (obj: K8sResourceKind) => React.ReactElement;
 };
 
-const TopologyGroupResourcesPanel: React.FC<TopologyGroupResourcesPanelProps> = ({
-  manifestResources,
-  releaseNamespace,
-  linkForResource,
-}) => {
+const TopologyGroupResourcesPanel: React.FC<React.PropsWithChildren<
+  TopologyGroupResourcesPanelProps
+>> = ({ manifestResources, releaseNamespace, linkForResource }) => {
   const kinds = manifestResources
     .reduce((resourceKinds, resource) => {
       const kind = referenceFor(resource);

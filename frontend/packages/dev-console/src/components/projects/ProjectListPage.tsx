@@ -7,11 +7,11 @@ import './ProjectListPage.scss';
 
 export type ProjectListPageProps = {
   title: string;
-  listComponent?: React.ComponentType<any>;
+  listComponent?: React.ComponentType<React.PropsWithChildren<any>>;
   children?: React.ReactNode;
   badge?: React.ReactNode;
 };
-const ProjectListPage: React.FC<ProjectListPageProps> = ({
+const ProjectListPage: React.FC<React.PropsWithChildren<ProjectListPageProps>> = ({
   badge,
   title,
   children,

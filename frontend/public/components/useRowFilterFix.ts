@@ -18,7 +18,7 @@ const useRowFilterFix = (
   defaultSelections: string[],
 ): UseMirroredLocalStateReturn<string[]> => {
   const syncRowFilterParams = React.useCallback(
-    (selected) => {
+    (selected: any) => {
       _.forIn(filters, (value, key) => {
         const recognized = _.filter(selected, (item) => value.includes(item));
         setOrRemoveQueryArgument(filterKeys[key], recognized.join(','));

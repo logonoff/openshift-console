@@ -9,7 +9,9 @@ import { isServerlessFunction } from '../../topology/knative-topology-utils';
 import { ServiceKind, ServiceTypeValue } from '../../types';
 import ServiceList from './ServiceList';
 
-const ServicesPage: React.FC<React.ComponentProps<typeof ListPage>> = (props) => {
+const ServicesPage: React.FC<React.PropsWithChildren<React.ComponentProps<typeof ListPage>>> = (
+  props,
+) => {
   const { t } = useTranslation();
 
   const filterReducer = (service): ServiceTypeValue => {

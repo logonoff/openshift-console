@@ -14,7 +14,7 @@ interface RevisionRouteDecoratorProps {
   y: number;
 }
 
-const RevisionRouteDecorator: React.FC<RevisionRouteDecoratorProps> = ({
+const RevisionRouteDecorator: React.FC<React.PropsWithChildren<RevisionRouteDecoratorProps>> = ({
   element,
   radius,
   x,

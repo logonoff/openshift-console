@@ -57,7 +57,10 @@ const getDebugPod = (debugPodName: string, podToDebug: PodKind, containerName: s
   return debugPod;
 };
 
-const DebugTerminalError: React.FC<DebugTerminalErrorProps> = ({ error, description }) => {
+const DebugTerminalError: React.FC<React.PropsWithChildren<DebugTerminalErrorProps>> = ({
+  error,
+  description,
+}) => {
   return (
     <div className="co-m-pane__body">
       <Alert variant="danger" isInline title={error}>
@@ -67,7 +70,10 @@ const DebugTerminalError: React.FC<DebugTerminalErrorProps> = ({ error, descript
   );
 };
 
-const DebugTerminalInner: React.FC<DebugTerminalInnerProps> = ({ debugPod, initialContainer }) => {
+const DebugTerminalInner: React.FC<React.PropsWithChildren<DebugTerminalInnerProps>> = ({
+  debugPod,
+  initialContainer,
+}) => {
   const { t } = useTranslation();
   const infoMessage = (
     <Alert
@@ -105,7 +111,10 @@ const DebugTerminalInner: React.FC<DebugTerminalInnerProps> = ({ debugPod, initi
   }
 };
 
-export const DebugTerminal: React.FC<DebugTerminalProps> = ({ podData, containerName }) => {
+export const DebugTerminal: React.FC<React.PropsWithChildren<DebugTerminalProps>> = ({
+  podData,
+  containerName,
+}) => {
   const [errorMessage, setErrorMessage] = React.useState('');
   const [generatedDebugPodName, setGeneratedDebugPodName] = React.useState('');
   const { t } = useTranslation();
@@ -177,7 +186,7 @@ export const DebugTerminal: React.FC<DebugTerminalProps> = ({ podData, container
   return <LoadingBox />;
 };
 
-export const DebugTerminalPage: React.FC<DebugTerminalPageProps> = () => {
+export const DebugTerminalPage: React.FC<React.PropsWithChildren<DebugTerminalPageProps>> = () => {
   const { t } = useTranslation();
   const params = useParams();
   const { podName, ns, name } = params;

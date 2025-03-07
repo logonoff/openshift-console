@@ -21,7 +21,7 @@ interface EventSinkSectionProps {
   kameletSink?: K8sResourceKind;
 }
 
-const EventSinkSection: React.FC<EventSinkSectionProps> = ({
+const EventSinkSection: React.FC<React.PropsWithChildren<EventSinkSectionProps>> = ({
   namespace,
   fullWidth = false,
   kameletSink,

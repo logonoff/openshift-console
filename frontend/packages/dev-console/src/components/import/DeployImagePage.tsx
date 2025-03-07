@@ -8,7 +8,7 @@ import NamespacedPage, { NamespacedPageVariants } from '../NamespacedPage';
 import QueryFocusApplication from '../QueryFocusApplication';
 import DeployImage from './DeployImage';
 
-const DeployImagePage: React.FunctionComponent = () => {
+const DeployImagePage: React.FunctionComponent<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const location = useLocation();

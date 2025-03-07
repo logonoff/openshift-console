@@ -50,7 +50,7 @@ import { Link } from 'react-router-dom-v5-compat';
 import { useK8sWatchResource } from '../../../utils/k8s-watch-hook';
 import { ClusterDashboardContext } from './context';
 
-const ClusterVersion: React.FC<ClusterVersionProps> = ({ cv }) => {
+const ClusterVersion: React.FC<React.PropsWithChildren<ClusterVersionProps>> = ({ cv }) => {
   const { t } = useTranslation();
   const desiredVersion = getDesiredClusterVersion(cv);
   const lastVersion = getLastCompletedUpdate(cv);

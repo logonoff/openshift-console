@@ -15,11 +15,9 @@ export type ApplicationGroupResourceProps = {
   group: string;
 };
 
-const ApplicationGroupResource: React.FC<ApplicationGroupResourceProps> = ({
-  title,
-  resourcesData,
-  group,
-}) => {
+const ApplicationGroupResource: React.FC<React.PropsWithChildren<
+  ApplicationGroupResourceProps
+>> = ({ title, resourcesData, group }) => {
   const { t } = useTranslation();
   return !_.isEmpty(resourcesData) ? (
     <div className="overview__sidebar-pane-body">

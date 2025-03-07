@@ -38,7 +38,7 @@ type PageContentsProps = {
   viewType: TopologyViewType;
 };
 
-const PageContents: React.FC<PageContentsProps> = ({ viewType }) => {
+const PageContents: React.FC<React.PropsWithChildren<PageContentsProps>> = ({ viewType }) => {
   const { t } = useTranslation();
   const { name: namespace } = useParams();
 
@@ -58,7 +58,7 @@ const PageContents: React.FC<PageContentsProps> = ({ viewType }) => {
 
 const PageContentsWithStartGuide = withStartGuide(PageContents);
 
-export const TopologyPage: React.FC<TopologyPageProps> = ({
+export const TopologyPage: React.FC<React.PropsWithChildren<TopologyPageProps>> = ({
   activeViewStorageKey = LAST_TOPOLOGY_VIEW_LOCAL_STORAGE_KEY,
   hideProjects = false,
   defaultViewType = TopologyViewType.graph,

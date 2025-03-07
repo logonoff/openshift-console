@@ -34,7 +34,9 @@ describe(PackageManifestTableHeaderWithCatalogSource.displayName, () => {
 
 describe('PackageManifestTableRow', () => {
   let wrapper: ShallowWrapper<React.FC<
-    RowFunctionArgs<PackageManifestKind, { catalogSource: CatalogSourceKind }>
+    React.PropsWithChildren<
+      RowFunctionArgs<PackageManifestKind, { catalogSource: CatalogSourceKind }>
+    >
   >>;
 
   beforeEach(() => {

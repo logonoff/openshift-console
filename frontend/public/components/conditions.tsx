@@ -12,7 +12,7 @@ export enum ConditionTypes {
   K8sResource = 'K8sResource',
 }
 
-export const Conditions: React.FC<ConditionsProps> = ({
+export const Conditions: React.FC<React.PropsWithChildren<ConditionsProps>> = ({
   conditions,
   type = ConditionTypes.K8sResource,
 }) => {

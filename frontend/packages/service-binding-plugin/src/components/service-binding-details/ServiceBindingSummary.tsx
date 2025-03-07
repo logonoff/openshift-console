@@ -9,7 +9,9 @@ type ServiceBindingSummaryProps = {
   serviceBinding: ServiceBinding;
 };
 
-const ServiceBindingSummary: React.FC<ServiceBindingSummaryProps> = ({ serviceBinding }) => {
+const ServiceBindingSummary: React.FC<React.PropsWithChildren<ServiceBindingSummaryProps>> = ({
+  serviceBinding,
+}) => {
   const { findModel } = useModelFinder();
   const { t } = useTranslation();
 

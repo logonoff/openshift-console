@@ -11,7 +11,7 @@ type AutoCompletePopoverProps = {
   onAutoComplete: (newValue: string) => void;
 };
 
-const AutoCompletePopover: React.FC<AutoCompletePopoverProps> = ({
+const AutoCompletePopover: React.FC<React.PropsWithChildren<AutoCompletePopoverProps>> = ({
   autoCompleteValues,
   children,
   onAutoComplete,

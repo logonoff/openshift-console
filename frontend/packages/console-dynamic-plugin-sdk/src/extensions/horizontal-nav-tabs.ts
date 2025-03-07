@@ -25,7 +25,7 @@ export type HorizontalNavTab = ExtensionDeclaration<
       href: string;
     };
     /** The component to be rendered when the route matches. */
-    component: CodeRef<React.ComponentType<PageComponentProps>>;
+    component: CodeRef<React.ComponentType<React.PropsWithChildren<PageComponentProps>>>;
   }
 >;
 
@@ -43,7 +43,7 @@ export type NavTab = ExtensionDeclaration<
     /** The href appended to the existing URL */
     href: string;
     /** Tab content component. */
-    component: CodeRef<React.ComponentType<PageComponentProps>>;
+    component: CodeRef<React.ComponentType<React.PropsWithChildren<PageComponentProps>>>;
   }
 >;
 

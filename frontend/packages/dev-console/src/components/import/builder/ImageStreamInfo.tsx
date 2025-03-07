@@ -12,7 +12,10 @@ export type ImageStreamInfoProps = {
   tag: object;
 };
 
-const ImageStreamInfo: React.FC<ImageStreamInfoProps> = ({ displayName, tag }) => {
+const ImageStreamInfo: React.FC<React.PropsWithChildren<ImageStreamInfoProps>> = ({
+  displayName,
+  tag,
+}) => {
   const { t } = useTranslation();
   const annotationTags = getAnnotationTags(tag);
   const description = _.get(tag, 'annotations.description');

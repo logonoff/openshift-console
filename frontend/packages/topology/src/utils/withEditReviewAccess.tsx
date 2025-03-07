@@ -9,7 +9,9 @@ import { modelFor, referenceFor } from '@console/internal/module/k8s';
 import { getResource } from './topology-utils';
 
 export const withEditReviewAccess: WithEditReviewAccess = (verb) => (WrappedComponent) => {
-  const Component: React.FC<WithEditReviewAccessComponentProps> = (props) => {
+  const Component: React.FC<React.PropsWithChildren<WithEditReviewAccessComponentProps>> = (
+    props,
+  ) => {
     const resourceObj = getResource(props.element);
     const resourceModel = modelFor(referenceFor(resourceObj));
     const editAccess = useAccessReview({

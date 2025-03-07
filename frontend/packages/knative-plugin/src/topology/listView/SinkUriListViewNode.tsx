@@ -11,7 +11,10 @@ interface SinkUriListViewNodeProps {
   onSelect: (ids: string[]) => void;
 }
 
-const ObservedSinkUriListViewNode: React.FC<SinkUriListViewNodeProps> = ({ item, ...rest }) => {
+const ObservedSinkUriListViewNode: React.FC<React.PropsWithChildren<SinkUriListViewNodeProps>> = ({
+  item,
+  ...rest
+}) => {
   const sinkUri = item.getResource()?.spec?.sinkUri;
 
   const labelCell = (

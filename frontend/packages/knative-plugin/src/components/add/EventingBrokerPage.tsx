@@ -10,7 +10,7 @@ import { QUERY_PROPERTIES } from '@console/dev-console/src/const';
 import { PageHeading } from '@console/internal/components/utils';
 import AddBroker from './brokers/AddBroker';
 
-const EventingBrokerPage: React.FC = () => {
+const EventingBrokerPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { ns: namespace } = useParams();
   const location = useLocation();
   const { t } = useTranslation();

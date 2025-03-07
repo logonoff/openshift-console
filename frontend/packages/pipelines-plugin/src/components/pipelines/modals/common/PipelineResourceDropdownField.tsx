@@ -10,7 +10,9 @@ import { PipelineModalFormResource } from './types';
 type PipelineResourceDropdownFieldProps = DropdownFieldProps & {
   filterType?: string;
 };
-const PipelineResourceDropdownField: React.FC<PipelineResourceDropdownFieldProps> = (props) => {
+const PipelineResourceDropdownField: React.FC<React.PropsWithChildren<
+  PipelineResourceDropdownFieldProps
+>> = (props) => {
   const { filterType, name, label } = props;
 
   const [field] = useField<PipelineModalFormResource>(name);

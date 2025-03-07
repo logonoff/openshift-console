@@ -9,7 +9,9 @@ type HelmChartMetaDescriptionProps = {
   chart: HelmChart;
 };
 
-const HelmChartMetaDescription: React.FC<HelmChartMetaDescriptionProps> = ({ chart }) => {
+const HelmChartMetaDescription: React.FC<React.PropsWithChildren<
+  HelmChartMetaDescriptionProps
+>> = ({ chart }) => {
   const { t } = useTranslation();
   const chartVersion = chart?.metadata?.version;
   const displayName = _.startCase(chart?.metadata?.name);

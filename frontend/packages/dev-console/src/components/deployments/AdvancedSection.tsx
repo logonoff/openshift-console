@@ -21,7 +21,7 @@ const Footer = ({ children }) => {
   );
 };
 
-const List: React.FC<AdvancedSectionProps> = ({ resourceType }) => {
+const List: React.FC<React.PropsWithChildren<AdvancedSectionProps>> = ({ resourceType }) => {
   const { t } = useTranslation();
   const [visibleItems, setVisibleItems] = React.useState<string[]>([]);
   const handleVisibleItemChange = (item: string) => {
@@ -44,7 +44,9 @@ const List: React.FC<AdvancedSectionProps> = ({ resourceType }) => {
   );
 };
 
-const AdvancedSection: React.FC<AdvancedSectionProps> = ({ resourceType }) => {
+const AdvancedSection: React.FC<React.PropsWithChildren<AdvancedSectionProps>> = ({
+  resourceType,
+}) => {
   const { t } = useTranslation();
 
   return (

@@ -4,7 +4,7 @@ import { useCreateResourceExtension } from '@console/shared/src/hooks/create-res
 import { ErrorBoundaryPage } from '@console/shared/src/components/error';
 import { AsyncComponent } from './utils';
 
-const CreateResource: React.FC = () => {
+const CreateResource: React.FC<React.PropsWithChildren<unknown>> = () => {
   const params = useParams();
   const createResourceExtension = useCreateResourceExtension(params.plural);
 

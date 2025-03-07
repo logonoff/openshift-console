@@ -27,7 +27,7 @@ type ServiceBindingProps = {
   WithTargetDragProps &
   WithContextMenuProps;
 
-const ServiceBinding: React.FC<ServiceBindingProps> = (props) => {
+const ServiceBinding: React.FC<React.PropsWithChildren<ServiceBindingProps>> = (props) => {
   const { sbr } = props.element.getData();
 
   const hasError = getComputedServiceBindingStatus(sbr) === ComputedServiceBindingStatus.ERROR;

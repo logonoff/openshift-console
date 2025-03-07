@@ -5,7 +5,7 @@ import { navFactory, Kebab } from '@console/internal/components/utils';
 import { useTriggersTechPreviewBadge } from '../../utils/hooks';
 import { useTriggersBreadcrumbsFor } from './hooks';
 
-const ClusterTriggerBindingPage: React.FC<DetailsPageProps> = (props) => {
+const ClusterTriggerBindingPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const { kindObj } = props;
   const breadcrumbsFor = useTriggersBreadcrumbsFor(kindObj);
   const badge = useTriggersTechPreviewBadge(props.namespace);

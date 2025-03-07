@@ -17,7 +17,7 @@ type StatusCellResourceLinkProps = {
   resource: K8sResourceKind;
 };
 
-const StatusCellResourceLink: React.FC<StatusCellResourceLinkProps> = ({
+const StatusCellResourceLink: React.FC<React.PropsWithChildren<StatusCellResourceLinkProps>> = ({
   desired = 0,
   ready = 0,
   resource,
@@ -36,7 +36,10 @@ interface StatusCellResourceStatus {
   podData: PodRCData;
 }
 
-const StatusCellResourceStatus: React.FC<StatusCellResourceStatus> = ({ obj, podData }) => {
+const StatusCellResourceStatus: React.FC<React.PropsWithChildren<StatusCellResourceStatus>> = ({
+  obj,
+  podData,
+}) => {
   const { t } = useTranslation();
   if (obj.kind === DaemonSetModel.kind) {
     return (
@@ -71,7 +74,7 @@ type StatusProps = {
   item: Node;
 };
 
-const StatusCell: React.FC<StatusProps> = ({ item }) => {
+const StatusCell: React.FC<React.PropsWithChildren<StatusProps>> = ({ item }) => {
   const resource = getTopologyResourceObject(item.getData());
   const { podData, loaded, loadError } = usePodsWatcher(resource);
 

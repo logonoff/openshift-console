@@ -12,7 +12,7 @@ import { CamelKameletBindingModel } from '../../models';
 import ConnectedEventSource from './EventSource';
 import EventSourceAlert from './EventSourceAlert';
 
-const EventSourcePage: React.FC = () => {
+const EventSourcePage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const location = useLocation();

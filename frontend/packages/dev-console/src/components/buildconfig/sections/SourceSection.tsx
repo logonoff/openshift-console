@@ -19,7 +19,7 @@ export type SourceSectionFormData = {
   };
 };
 
-const SourceSection: React.FC = () => {
+const SourceSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
 
   const [, meta] = useField<string>('formData.name');

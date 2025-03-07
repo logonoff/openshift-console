@@ -9,7 +9,10 @@ interface SecretDropdownProps {
   namespace: string;
 }
 
-const SecretDropdown: React.FC<SecretDropdownProps> = ({ name, namespace }) => {
+const SecretDropdown: React.FC<React.PropsWithChildren<SecretDropdownProps>> = ({
+  name,
+  namespace,
+}) => {
   const { t } = useTranslation();
   const autocompleteFilter = (strText, item): boolean => fuzzy(strText, item?.props?.name);
   const resources = [

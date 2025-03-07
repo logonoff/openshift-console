@@ -34,7 +34,9 @@ export const pluralize = (
   return includeCount ? `${i || 0} ${pluralized}` : pluralized;
 };
 
-export const detailsPage = <T extends {}>(Component: React.ComponentType<T>) =>
+export const detailsPage = <T extends {}>(
+  Component: React.ComponentType<React.PropsWithChildren<T>>,
+) =>
   function DetailsPage(props: T) {
     return <Component {...props} />;
   };
@@ -44,7 +46,7 @@ const getTolerationsPath = (obj: K8sResourceKind): string => {
   return obj.kind === 'Pod' ? 'spec.tolerations' : 'spec.template.spec.tolerations';
 };
 
-export const ResourceSummary: React.FC<ResourceSummaryProps> = ({
+export const ResourceSummary: React.FC<React.PropsWithChildren<ResourceSummaryProps>> = ({
   children,
   resource,
   customPathName,
@@ -163,7 +165,9 @@ export const ResourceSummary: React.FC<ResourceSummaryProps> = ({
   );
 };
 
-export const ResourcePodCount: React.SFC<ResourcePodCountProps> = ({ resource }) => {
+export const ResourcePodCount: React.FC<React.PropsWithChildren<ResourcePodCountProps>> = ({
+  resource,
+}) => {
   const { t } = useTranslation();
   return (
     <>
@@ -183,7 +187,10 @@ export const ResourcePodCount: React.SFC<ResourcePodCountProps> = ({ resource })
   );
 };
 
-export const RuntimeClass: React.FC<RuntimeClassProps> = ({ obj, path }) => {
+export const RuntimeClass: React.FC<React.PropsWithChildren<RuntimeClassProps>> = ({
+  obj,
+  path,
+}) => {
   const { t } = useTranslation();
   return (
     <DetailsItem
@@ -195,9 +202,9 @@ export const RuntimeClass: React.FC<RuntimeClassProps> = ({ obj, path }) => {
   );
 };
 
-export const UpstreamConfigDetailsItem: React.SFC<UpstreamConfigDetailsItemProps> = ({
-  resource,
-}) => {
+export const UpstreamConfigDetailsItem: React.FC<React.PropsWithChildren<
+  UpstreamConfigDetailsItemProps
+>> = ({ resource }) => {
   const { t } = useTranslation();
   const canUpgrade = useCanClusterUpgrade();
   return (

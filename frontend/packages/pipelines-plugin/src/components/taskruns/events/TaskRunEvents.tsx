@@ -8,7 +8,7 @@ type TaskRunEventsProps = {
   obj: TaskRunKind;
 };
 
-const TaskRunEvents: React.FC<TaskRunEventsProps> = ({ obj: taskRun }) => {
+const TaskRunEvents: React.FC<React.PropsWithChildren<TaskRunEventsProps>> = ({ obj: taskRun }) => {
   const { ns: namespace } = useParams();
   return (
     <ResourcesEventStream filters={useTaskRunFilters(namespace, taskRun)} namespace={namespace} />

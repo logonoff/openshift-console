@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 import Topology from '@console/topology/src/components/page/TopologyPage';
 
-const TopologyPage: React.FC = () => {
+const TopologyPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <>

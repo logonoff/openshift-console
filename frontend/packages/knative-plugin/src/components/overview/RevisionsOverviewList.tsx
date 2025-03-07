@@ -18,7 +18,7 @@ export type RevisionsOverviewListProps = {
 
 const MAX_REVISIONS: number = 3;
 
-const RevisionsOverviewList: React.FC<RevisionsOverviewListProps> = ({
+const RevisionsOverviewList: React.FC<React.PropsWithChildren<RevisionsOverviewListProps>> = ({
   revisions,
   service,
   hideSectionHeading,

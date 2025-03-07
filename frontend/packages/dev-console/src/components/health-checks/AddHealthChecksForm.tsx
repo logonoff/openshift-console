@@ -16,7 +16,7 @@ type AddHealthChecksFormProps = {
   currentContainer: string;
 };
 
-const AddHealthChecksForm: React.FC<AddHealthChecksFormProps> = ({
+const AddHealthChecksForm: React.FC<React.PropsWithChildren<AddHealthChecksFormProps>> = ({
   resource,
   currentContainer,
 }) => {

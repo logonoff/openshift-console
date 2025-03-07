@@ -24,7 +24,7 @@ import {
   getMultilineUtilizationQueries,
 } from './queries';
 
-const UtilizationCard: React.FC = () => {
+const UtilizationCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { machine } = React.useContext(BareMetalHostDashboardContext);
   const nodeName = getMachineNodeName(machine);
@@ -35,7 +35,7 @@ const UtilizationCard: React.FC = () => {
   ]);
 
   const humanizePods = React.useCallback(
-    (v) => ({
+    (v: any) => ({
       string: `${v}`,
       value: v as number,
       unit: '',
@@ -44,7 +44,7 @@ const UtilizationCard: React.FC = () => {
   );
 
   const cpuPopover = React.useCallback(
-    ({ current }) => {
+    ({ current }: any) => {
       const topConsumerQueries = getTopConsumerQueries(nodeName);
       return (
         <ConsumerPopover
@@ -70,7 +70,7 @@ const UtilizationCard: React.FC = () => {
   );
 
   const memPopover = React.useCallback(
-    ({ current }) => {
+    ({ current }: any) => {
       const topConsumerQueries = getTopConsumerQueries(nodeName);
       return (
         <ConsumerPopover
@@ -96,7 +96,7 @@ const UtilizationCard: React.FC = () => {
   );
 
   const storagePopover = React.useCallback(
-    ({ current }) => {
+    ({ current }: any) => {
       const topConsumerQueries = getTopConsumerQueries(nodeName);
       return (
         <ConsumerPopover

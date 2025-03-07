@@ -9,7 +9,11 @@ type PageLayoutProps = {
   hint?: React.ReactNode;
 };
 
-const PageLayout: React.FC<PageLayoutProps> = ({ children, title, hint }) => (
+const PageLayout: React.FC<React.PropsWithChildren<PageLayoutProps>> = ({
+  children,
+  title,
+  hint,
+}) => (
   <>
     <div className="ocs-page-layout__header">
       <Content component="h1" className="ocs-page-layout__title">

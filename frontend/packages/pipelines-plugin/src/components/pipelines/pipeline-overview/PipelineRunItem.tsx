@@ -18,7 +18,9 @@ type PipelineRunItemProps = {
   pipelineRun: PipelineRunKind;
 };
 
-const PipelineRunItem: React.FC<PipelineRunItemProps> = ({ pipelineRun }) => {
+const PipelineRunItem: React.FC<React.PropsWithChildren<PipelineRunItemProps>> = ({
+  pipelineRun,
+}) => {
   const { t } = useTranslation();
   const {
     metadata: { name, namespace, creationTimestamp },

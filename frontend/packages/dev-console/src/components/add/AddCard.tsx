@@ -15,7 +15,13 @@ type AddCardProps = {
   icon?: CodeRef<React.ReactNode> | string;
 };
 
-const AddCard: React.FC<AddCardProps> = ({ id, title, items, namespace, icon }) => {
+const AddCard: React.FC<React.PropsWithChildren<AddCardProps>> = ({
+  id,
+  title,
+  items,
+  namespace,
+  icon,
+}) => {
   const isTitleFromItem: boolean = items?.length === 1 && items[0].properties.label === title;
   const actionIcon = (): JSX.Element => {
     if (typeof icon === 'string') {

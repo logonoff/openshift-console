@@ -25,7 +25,9 @@ import {
 } from '../cluster-settings/cluster-settings';
 import { ReleaseNotesLink } from '../utils';
 
-export const ClusterMoreUpdatesModal: React.FC<ClusterMoreUpdatesModalProps> = ({ cancel, cv }) => {
+export const ClusterMoreUpdatesModal: React.FC<React.PropsWithChildren<
+  ClusterMoreUpdatesModalProps
+>> = ({ cancel, cv }) => {
   const availableUpdates = getSortedAvailableUpdates(cv);
   const moreAvailableUpdates = availableUpdates.slice(1).reverse();
   const releaseNotes = showReleaseNotes();

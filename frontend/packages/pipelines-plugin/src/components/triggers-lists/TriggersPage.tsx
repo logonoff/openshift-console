@@ -19,7 +19,7 @@ import EventListenersPage from './EventListnersPage';
 import TriggerBindingsPage from './TriggerBindingsPage';
 import TriggerTemplatesPage from './TriggerTemplatesPage';
 
-const TriggersPage: React.FC = () => {
+const TriggersPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const badge = useTriggersTechPreviewBadge(namespace);

@@ -7,7 +7,7 @@ type NodeUptimeProps = {
   obj: NodeKind;
 };
 
-const NodeUptime: React.FC<NodeUptimeProps> = ({ obj }) => (
+const NodeUptime: React.FC<React.PropsWithChildren<NodeUptimeProps>> = ({ obj }) => (
   <Timestamp timestamp={getNodeUptime(obj)} />
 );
 

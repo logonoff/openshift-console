@@ -23,7 +23,11 @@ type DeleteHPAModalProps = ModalComponentProps & {
   workload: K8sResourceCommon;
 };
 
-const DeleteHPAModal: React.FC<DeleteHPAModalProps> = ({ close, hpa, workload }) => {
+const DeleteHPAModal: React.FC<React.PropsWithChildren<DeleteHPAModalProps>> = ({
+  close,
+  hpa,
+  workload,
+}) => {
   const [submitError, setSubmitError] = React.useState<string>(null);
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const { t } = useTranslation();

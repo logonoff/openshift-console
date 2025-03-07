@@ -12,7 +12,11 @@ type ErrorNodeDecoratorProps = {
   y: number;
 };
 
-const ErrorNodeDecorator: React.FC<ErrorNodeDecoratorProps> = ({ errorStr, x, y }) => {
+const ErrorNodeDecorator: React.FC<React.PropsWithChildren<ErrorNodeDecoratorProps>> = ({
+  errorStr,
+  x,
+  y,
+}) => {
   const iconRef = React.useRef();
   return (
     <Tooltip triggerRef={iconRef} content={errorStr}>

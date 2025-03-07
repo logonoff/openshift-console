@@ -4,10 +4,9 @@ type FlexFormProps = {
   children?: React.ReactNode;
 };
 
-const FlexForm: React.FC<FlexFormProps & React.HTMLProps<HTMLFormElement>> = ({
-  children,
-  ...props
-}) => (
+const FlexForm: React.FC<React.PropsWithChildren<
+  FlexFormProps & React.HTMLProps<HTMLFormElement>
+>> = ({ children, ...props }) => (
   <form {...props} style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
     {children}
   </form>

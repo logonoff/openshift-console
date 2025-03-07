@@ -18,7 +18,7 @@ interface ShortcutProps {
   dragNdrop?: boolean;
 }
 
-export const ShortcutCommand: React.FC = ({ children }) => (
+export const ShortcutCommand: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
   <span className="ocs-shortcut__command">
     <kbd className="co-kbd">{children}</kbd>
   </span>
@@ -26,7 +26,7 @@ export const ShortcutCommand: React.FC = ({ children }) => (
 
 export const isMac = window.navigator.platform.includes('Mac');
 
-const Shortcut: React.FC<ShortcutProps> = ({
+const Shortcut: React.FC<React.PropsWithChildren<ShortcutProps>> = ({
   children,
   alt,
   click,

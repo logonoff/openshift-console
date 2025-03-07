@@ -7,7 +7,10 @@ import { ExpandCollapse } from '../../utils';
 import { SendResolvedAlertsCheckbox } from './send-resolved-alerts-checkbox';
 import { FormProps } from './receiver-form-props';
 
-export const Form: React.FC<FormProps> = ({ formValues, dispatchFormChange }) => {
+export const Form: React.FC<React.PropsWithChildren<FormProps>> = ({
+  formValues,
+  dispatchFormChange,
+}) => {
   const { t } = useTranslation();
   return (
     <div data-test-id="webhook-receiver-form" className="form-group">

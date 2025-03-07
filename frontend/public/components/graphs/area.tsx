@@ -47,7 +47,7 @@ export const chartStatusColors = {
   [AreaChartStatus.WARNING]: warningColor.value,
 };
 
-export const AreaChart: React.FC<AreaChartProps> = ({
+export const AreaChart: React.FC<React.PropsWithChildren<AreaChartProps>> = ({
   className,
   data = [],
   formatDate = timeFormatter.format,
@@ -84,8 +84,8 @@ export const AreaChart: React.FC<AreaChartProps> = ({
     [processedData],
   );
 
-  const xTickFormat = React.useCallback((tick) => formatDate(tick), [formatDate]);
-  const yTickFormat = React.useCallback((tick) => `${humanize(tick, unit, unit).string}`, [
+  const xTickFormat = React.useCallback((tick: any) => formatDate(tick), [formatDate]);
+  const yTickFormat = React.useCallback((tick: any) => `${humanize(tick, unit, unit).string}`, [
     humanize,
     unit,
   ]);
@@ -175,7 +175,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
   );
 };
 
-export const Area: React.FC<AreaProps> = ({
+export const Area: React.FC<React.PropsWithChildren<AreaProps>> = ({
   endTime = Date.now(),
   namespace,
   query,

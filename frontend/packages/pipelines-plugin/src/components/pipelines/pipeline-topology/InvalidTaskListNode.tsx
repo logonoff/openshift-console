@@ -10,7 +10,9 @@ type InvalidTaskListNodeProps = {
   element: Node<NodeModel, TaskListNodeModelData>;
 };
 
-const InvalidTaskListNode: React.FC<InvalidTaskListNodeProps> = ({ element }) => {
+const InvalidTaskListNode: React.FC<React.PropsWithChildren<InvalidTaskListNodeProps>> = ({
+  element,
+}) => {
   const { t } = useTranslation();
   const {
     task: { name },

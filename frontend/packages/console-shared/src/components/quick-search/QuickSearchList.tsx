@@ -39,7 +39,7 @@ interface QuickSearchListProps {
   closeModal: () => void;
 }
 
-const QuickSearchList: React.FC<QuickSearchListProps> = ({
+const QuickSearchList: React.FC<React.PropsWithChildren<QuickSearchListProps>> = ({
   listItems,
   catalogItemTypes,
   viewAll,

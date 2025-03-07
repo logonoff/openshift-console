@@ -8,10 +8,9 @@ type BareMetalHostPowerStatusIconProps = {
   powerStatus: string;
 };
 
-const BareMetalHostPowerStatusIcon: React.FC<BareMetalHostPowerStatusIconProps> = ({
-  powerStatus,
-  ...iconProps
-}) => {
+const BareMetalHostPowerStatusIcon: React.FC<React.PropsWithChildren<
+  BareMetalHostPowerStatusIconProps
+>> = ({ powerStatus, ...iconProps }) => {
   if (powerStatus === HOST_POWER_STATUS_POWERED_ON) return <OnRunningIcon {...iconProps} />;
   if (powerStatus === HOST_POWER_STATUS_POWERED_OFF) return <OffIcon {...iconProps} />;
   return <InProgressIcon {...iconProps} />;

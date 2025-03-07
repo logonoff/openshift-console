@@ -14,7 +14,7 @@ export const useSelectList = <R extends K8sResourceCommon>(
   const [selectedRows, setSelectedRows] = React.useState<Set<string>>(visibleRows);
 
   const onSelect = React.useCallback(
-    (_event, isSelected, rowIndex, rowData) => {
+    (_event: any, isSelected: any, rowIndex: any, rowData: any) => {
       const uniqueUIDs: Set<string> = selectedRows ? new Set([...selectedRows]) : new Set<string>();
 
       if (rowIndex === -1) {

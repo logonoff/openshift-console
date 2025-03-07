@@ -7,7 +7,11 @@ import { useTranslation } from 'react-i18next';
 import { Selector as SelectorKind } from '../../module/k8s';
 import { selectorToString } from '@console/dynamic-plugin-sdk/src/utils/k8s';
 
-const Requirement: React.FC<RequirementProps> = ({ kind, requirements, namespace = '' }) => {
+const Requirement: React.FC<React.PropsWithChildren<RequirementProps>> = ({
+  kind,
+  requirements,
+  namespace = '',
+}) => {
   // Strip off any trailing '=' characters for valueless selectors
   const requirementAsString = selectorToString(requirements).replace(/=,/g, ',').replace(/=$/g, '');
   const requirementAsUrlEncodedString = encodeURIComponent(requirementAsString);
@@ -27,7 +31,7 @@ const Requirement: React.FC<RequirementProps> = ({ kind, requirements, namespace
 };
 Requirement.displayName = 'Requirement';
 
-export const Selector: React.FC<SelectorProps> = ({
+export const Selector: React.FC<React.PropsWithChildren<SelectorProps>> = ({
   kind = 'Pod',
   selector = {},
   namespace = undefined,

@@ -27,7 +27,7 @@ export const operatorNamespaceFor = (obj: K8sResourceKind) =>
 export const operatorGroupFor = (obj: K8sResourceKind) =>
   obj?.metadata?.annotations?.['olm.operatorGroup']; // FIXME magic string
 
-export const NoOperatorGroupMsg: React.FC = () => {
+export const NoOperatorGroupMsg: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const actions = [
     <Link
@@ -46,7 +46,9 @@ export const NoOperatorGroupMsg: React.FC = () => {
   );
 };
 
-export const OperatorGroupSelector: React.FC<OperatorGroupSelectorProps> = (props) => {
+export const OperatorGroupSelector: React.FC<React.PropsWithChildren<
+  OperatorGroupSelectorProps
+>> = (props) => {
   const { t } = useTranslation();
   return (
     <AsyncComponent
@@ -74,7 +76,7 @@ export const OperatorGroupSelector: React.FC<OperatorGroupSelectorProps> = (prop
 };
 
 export const requireOperatorGroup = <P extends RequireOperatorGroupProps>(
-  Component: React.ComponentType<P>,
+  Component: React.ComponentType<React.PropsWithChildren<P>>,
 ) => {
   return class RequireOperatorGroup extends React.Component<P> {
     static WrappedComponent = Component;
@@ -85,7 +87,9 @@ export const requireOperatorGroup = <P extends RequireOperatorGroupProps>(
 
       return namespaceEnabled ? <Component {...this.props} /> : <NoOperatorGroupMsg />;
     }
-  } as React.ComponentClass<P> & { WrappedComponent: React.ComponentType<P> };
+  } as React.ComponentClass<P> & {
+    WrappedComponent: React.ComponentType<React.PropsWithChildren<P>>;
+  };
 };
 
 export type InstallModeSet = { type: InstallModeType; supported: boolean }[];

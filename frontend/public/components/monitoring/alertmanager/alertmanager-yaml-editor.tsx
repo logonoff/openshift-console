@@ -22,7 +22,9 @@ const EditAlertmanagerYAML = (props) => (
   />
 );
 
-const AlertmanagerYAMLEditor: React.FC<AlertmanagerYAMLEditorProps> = ({ obj: secret }) => {
+const AlertmanagerYAMLEditor: React.FC<React.PropsWithChildren<AlertmanagerYAMLEditorProps>> = ({
+  obj: secret,
+}) => {
   const [errorMsg, setErrorMsg] = React.useState<string>();
   const [successMsg, setSuccessMsg] = React.useState<string>();
   const { t } = useTranslation();
@@ -103,23 +105,23 @@ const AlertmanagerYAMLEditor: React.FC<AlertmanagerYAMLEditorProps> = ({ obj: se
   );
 };
 
-const AlertmanagerYAMLEditorWrapper: React.FC<AlertmanagerYAMLEditorWrapperProps> = React.memo(
-  ({ obj, ...props }) => {
-    const { t } = useTranslation();
-    return (
-      <>
-        <Helmet>
-          <title>{t('public~Alerting')}</title>
-        </Helmet>
-        <StatusBox {...obj}>
-          <AlertmanagerYAMLEditor {...props} obj={obj.data} />
-        </StatusBox>
-      </>
-    );
-  },
-);
+const AlertmanagerYAMLEditorWrapper: React.FC<React.PropsWithChildren<
+  AlertmanagerYAMLEditorWrapperProps
+>> = React.memo(({ obj, ...props }) => {
+  const { t } = useTranslation();
+  return (
+    <>
+      <Helmet>
+        <title>{t('public~Alerting')}</title>
+      </Helmet>
+      <StatusBox {...obj}>
+        <AlertmanagerYAMLEditor {...props} obj={obj.data} />
+      </StatusBox>
+    </>
+  );
+});
 
-const AlertmanagerYAML: React.FC<{}> = () => {
+const AlertmanagerYAML: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
 
   const configPath = 'alertmanagerconfig';

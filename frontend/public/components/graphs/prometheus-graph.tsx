@@ -17,7 +17,7 @@ const mapStateToProps = (state: RootState) => ({
   namespace: getActiveNamespace(state),
 });
 
-const PrometheusGraphLink_: React.FC<PrometheusGraphLinkProps> = ({
+const PrometheusGraphLink_: React.FC<React.PropsWithChildren<PrometheusGraphLinkProps>> = ({
   canAccessMonitoring,
   children,
   query,
@@ -50,18 +50,18 @@ const PrometheusGraphLink_: React.FC<PrometheusGraphLinkProps> = ({
 };
 export const PrometheusGraphLink = connect(mapStateToProps)(PrometheusGraphLink_);
 
-export const PrometheusGraph: React.FC<PrometheusGraphProps> = React.forwardRef(
-  ({ children, className, title }, ref: React.RefObject<HTMLDivElement>) => (
-    <div ref={ref} className={classNames('graph-wrapper graph-wrapper__horizontal-bar', className)}>
-      {title && (
-        <Title headingLevel="h5" className="graph-title">
-          {title}
-        </Title>
-      )}
-      {children}
-    </div>
-  ),
-);
+export const PrometheusGraph: React.FC<React.PropsWithChildren<
+  PrometheusGraphProps
+>> = React.forwardRef(({ children, className, title }, ref: React.RefObject<HTMLDivElement>) => (
+  <div ref={ref} className={classNames('graph-wrapper graph-wrapper__horizontal-bar', className)}>
+    {title && (
+      <Title headingLevel="h5" className="graph-title">
+        {title}
+      </Title>
+    )}
+    {children}
+  </div>
+));
 
 type PrometheusGraphLinkProps = {
   canAccessMonitoring: boolean;

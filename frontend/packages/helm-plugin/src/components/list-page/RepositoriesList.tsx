@@ -5,7 +5,7 @@ import { Table, TableProps } from '@console/internal/components/factory';
 import RepositoriesHeader from './RepositoriesHeader';
 import RepositoriesRow from './RepositoriesRow';
 
-const RepositoriesList: React.FC<TableProps> = (props) => {
+const RepositoriesList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
 
   const EmptyMsg = () => (

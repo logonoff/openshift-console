@@ -2,7 +2,7 @@ import * as React from 'react';
 import DropdownWithSwitchMenu from './DropdownWithSwitchMenu';
 import DropdownWithSwitchToggle from './DropdownWithSwitchToggle';
 
-const DropdownWithSwitch: React.FC<DropdownWithSwitchProps> = ({
+const DropdownWithSwitch: React.FC<React.PropsWithChildren<DropdownWithSwitchProps>> = ({
   isDisabled,
   isFullWidth,
   toggleLabel,

@@ -13,10 +13,9 @@ export type DomainMappingOverviewListProps = {
   domainMappings: K8sResourceKind[];
 };
 
-const DomainMappingOverviewList: React.FC<DomainMappingOverviewListProps> = ({
-  title,
-  domainMappings,
-}) => {
+const DomainMappingOverviewList: React.FC<React.PropsWithChildren<
+  DomainMappingOverviewListProps
+>> = ({ title, domainMappings }) => {
   const { t } = useTranslation();
   return (
     <>

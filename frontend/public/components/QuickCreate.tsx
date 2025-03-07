@@ -64,7 +64,7 @@ const useCanCreateResource = () => {
   );
 };
 
-const QuickCreate: React.FC<QuickCreateProps> = ({ namespace }) => {
+const QuickCreate: React.FC<React.PropsWithChildren<QuickCreateProps>> = ({ namespace }) => {
   const { t } = useTranslation();
   const opeshiftStartGuideEnable = useFlag(FLAGS.SHOW_OPENSHIFT_START_GUIDE);
 

@@ -12,7 +12,9 @@ type RepositoryPipelineRunListProps = {
   namespace: string;
 };
 
-export const RepositoryPipelineRunList: React.FC<RepositoryPipelineRunListProps> = (props) => {
+export const RepositoryPipelineRunList: React.FC<React.PropsWithChildren<
+  RepositoryPipelineRunListProps
+>> = (props) => {
   const { t } = useTranslation();
   const operatorVersion = usePipelineOperatorVersion(props.namespace);
   const [taskRuns, taskRunsLoaded] = useTaskRuns(props.namespace);

@@ -28,7 +28,9 @@ const popperOptions: PopperOptions = {
   },
 };
 
-const InteractiveSpotlight: React.FC<InteractiveSpotlightProps> = ({ element }) => {
+const InteractiveSpotlight: React.FC<React.PropsWithChildren<InteractiveSpotlightProps>> = ({
+  element,
+}) => {
   const { height, width } = element.getBoundingClientRect();
   const style: React.CSSProperties = {
     height,

@@ -12,7 +12,7 @@ import { VolumeSnapshotClassKind } from '@console/internal/module/k8s';
 
 const { editYaml, events } = navFactory;
 
-const Details: React.FC<DetailsProps> = ({ obj }) => {
+const Details: React.FC<React.PropsWithChildren<DetailsProps>> = ({ obj }) => {
   const { t } = useTranslation();
   return (
     <div className="co-m-pane__body">
@@ -31,7 +31,9 @@ const Details: React.FC<DetailsProps> = ({ obj }) => {
   );
 };
 
-const VolumeSnapshotClassDetailsPage: React.FC<DetailsPageProps> = (props) => {
+const VolumeSnapshotClassDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (
+  props,
+) => {
   const pages = [
     {
       href: '',

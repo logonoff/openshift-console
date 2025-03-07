@@ -20,7 +20,7 @@ loader.config({ monaco });
  * Note that it is important that this is the only component that imports
  * monaco-editor, to avoid fetching files from a 3rd-party CDN.
  */
-export const BasicCodeEditor: React.FC<BasicCodeEditorProps> = (props) => {
+export const BasicCodeEditor: React.FC<React.PropsWithChildren<BasicCodeEditorProps>> = (props) => {
   const { t } = useTranslation('console-shared');
   const theme = React.useContext(ThemeContext);
 

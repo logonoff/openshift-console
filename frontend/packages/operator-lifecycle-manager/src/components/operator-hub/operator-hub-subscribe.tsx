@@ -101,7 +101,7 @@ export const CloudServiceTokenWarningAlert = ({
   );
 };
 
-const InputField: React.FC<InputFieldProps> = ({
+const InputField: React.FC<React.PropsWithChildren<InputFieldProps>> = ({
   label,
   helpText,
   placeholder,
@@ -131,7 +131,9 @@ const InputField: React.FC<InputFieldProps> = ({
   );
 };
 
-export const OperatorHubSubscribeForm: React.FC<OperatorHubSubscribeFormProps> = (props) => {
+export const OperatorHubSubscribeForm: React.FC<React.PropsWithChildren<
+  OperatorHubSubscribeFormProps
+>> = (props) => {
   const packageManifest = props.packageManifest?.data?.[0];
   const { name: pkgName } = packageManifest?.metadata ?? {};
   const { provider, channels = [], packageName, catalogSource, catalogSourceNamespace } =
@@ -1196,13 +1198,15 @@ export const OperatorHubSubscribeForm: React.FC<OperatorHubSubscribeFormProps> =
   );
 };
 
-const OperatorHubSubscribe: React.FC<OperatorHubSubscribeFormProps> = (props) => (
+const OperatorHubSubscribe: React.FC<React.PropsWithChildren<OperatorHubSubscribeFormProps>> = (
+  props,
+) => (
   <StatusBox data={props.packageManifest.data[0]} loaded={props.loaded} loadError={props.loadError}>
     <OperatorHubSubscribeForm {...props} />
   </StatusBox>
 );
 
-export const OperatorHubSubscribePage: React.SFC = (props) => {
+export const OperatorHubSubscribePage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   return (
     <Firehose
       resources={[

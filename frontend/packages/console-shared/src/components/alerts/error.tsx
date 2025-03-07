@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Alert } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
 
-const ErrorAlert: React.FC<Props> = ({ message, title }) => {
+const ErrorAlert: React.FC<React.PropsWithChildren<Props>> = ({ message, title }) => {
   const { t } = useTranslation();
 
   return (

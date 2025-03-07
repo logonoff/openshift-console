@@ -10,7 +10,7 @@ interface MachineLinkProps {
   host: BareMetalHostKind;
 }
 
-const MachineLink: React.FC<MachineLinkProps> = ({ host }) => {
+const MachineLink: React.FC<React.PropsWithChildren<MachineLinkProps>> = ({ host }) => {
   const machineName = getHostMachineName(host);
   const namespace = getNamespace(host);
 

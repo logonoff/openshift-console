@@ -89,7 +89,7 @@ const OperatorHubEmptyState = () => {
   );
 };
 
-export const OperatorHubList: React.FC<OperatorHubListProps> = ({
+export const OperatorHubList: React.FC<React.PropsWithChildren<OperatorHubListProps>> = ({
   loaded,
   loadError,
   namespace,

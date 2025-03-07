@@ -13,7 +13,10 @@ interface GitOpsListProps {
   emptyStateMsg: string;
 }
 
-const GitOpsList: React.FC<GitOpsListProps> = ({ appGroups, emptyStateMsg }) => {
+const GitOpsList: React.FC<React.PropsWithChildren<GitOpsListProps>> = ({
+  appGroups,
+  emptyStateMsg,
+}) => {
   const { t } = useTranslation();
   const [textFilter, setTextFilter] = React.useState('');
 

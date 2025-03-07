@@ -35,7 +35,7 @@ export interface ProjectAccessProps {
   fullFormView?: boolean;
 }
 
-const ProjectAccess: React.FC<ProjectAccessProps> = ({
+const ProjectAccess: React.FC<React.PropsWithChildren<ProjectAccessProps>> = ({
   namespace,
   roleBindings,
   roles,

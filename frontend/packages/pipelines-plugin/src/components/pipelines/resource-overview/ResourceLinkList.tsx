@@ -8,7 +8,11 @@ type ResourceLinkListProps = {
   model: K8sKind;
   links: string[];
 };
-const ResourceLinkList: React.FC<ResourceLinkListProps> = ({ links, model, namespace }) => {
+const ResourceLinkList: React.FC<React.PropsWithChildren<ResourceLinkListProps>> = ({
+  links,
+  model,
+  namespace,
+}) => {
   const { t } = useTranslation();
   return (
     <DynamicResourceLinkList

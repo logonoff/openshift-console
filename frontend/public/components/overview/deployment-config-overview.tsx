@@ -11,9 +11,9 @@ import { KebabAction, LoadingInline, ResourceSummary, WorkloadPausedAlert } from
 import { OverviewDetailsResourcesTab } from './resource-overview-page';
 import { ResourceOverviewDetails } from './resource-overview-details';
 
-const DeploymentConfigOverviewDetails: React.SFC<DeploymentConfigOverviewDetailsProps> = ({
-  item: { obj: dc },
-}) => {
+const DeploymentConfigOverviewDetails: React.FC<React.PropsWithChildren<
+  DeploymentConfigOverviewDetailsProps
+>> = ({ item: { obj: dc } }) => {
   const { t } = useTranslation();
   return (
     <div className="overview__sidebar-pane-body resource-overview__body">
@@ -45,10 +45,9 @@ const DeploymentConfigOverviewDetails: React.SFC<DeploymentConfigOverviewDetails
   );
 };
 
-export const DeploymentConfigOverviewPage: React.SFC<DeploymentConfigOverviewProps> = ({
-  item,
-  customActions,
-}) => {
+export const DeploymentConfigOverviewPage: React.FC<React.PropsWithChildren<
+  DeploymentConfigOverviewProps
+>> = ({ item, customActions }) => {
   const { t } = useTranslation();
   const tabs = [
     {

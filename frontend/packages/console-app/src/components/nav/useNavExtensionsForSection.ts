@@ -8,7 +8,7 @@ export const useNavExtensionsForSection = (section: string): LoadedExtension<Nav
   const [activePerspective] = useActivePerspective();
   const extensions = useNavExtensionsForPerspective(activePerspective);
   const isExtensionForSection = React.useCallback(
-    (extension) => section === extension.properties.section,
+    (extension: any) => section === extension.properties.section,
     [section],
   );
   return React.useMemo(() => {

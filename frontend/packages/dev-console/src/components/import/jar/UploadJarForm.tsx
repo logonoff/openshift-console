@@ -22,7 +22,9 @@ export type UploadJarFormProps = {
   builderImage?: BuilderImage;
 };
 
-const UploadJarForm: React.FunctionComponent<FormikProps<FormikValues> & UploadJarFormProps> = ({
+const UploadJarForm: React.FunctionComponent<React.PropsWithChildren<
+  FormikProps<FormikValues> & UploadJarFormProps
+>> = ({
   values,
   errors,
   handleSubmit,

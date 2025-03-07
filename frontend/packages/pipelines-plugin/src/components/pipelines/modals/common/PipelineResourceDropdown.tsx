@@ -19,7 +19,9 @@ type PipelineResourceDropdownProps = {
   namespace: string;
 };
 
-const PipelineResourceDropdown: React.FC<PipelineResourceDropdownProps> = (props) => {
+const PipelineResourceDropdown: React.FC<React.PropsWithChildren<PipelineResourceDropdownProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const { autoSelect, filterType, name, namespace } = props;
 

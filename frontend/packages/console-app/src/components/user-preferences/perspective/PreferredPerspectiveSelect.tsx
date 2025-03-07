@@ -16,9 +16,9 @@ import {
   usePreferredPerspective,
 } from './usePreferredPerspective';
 
-const PreferredPerspectiveSelectOptions: React.FC<PreferredPerspectiveSelectOptionsProps> = ({
-  perspectives,
-}) => (
+const PreferredPerspectiveSelectOptions: React.FC<React.PropsWithChildren<
+  PreferredPerspectiveSelectOptionsProps
+>> = ({ perspectives }) => (
   <>
     {perspectives
       .sort((a, b) => {
@@ -38,7 +38,7 @@ const PreferredPerspectiveSelectOptions: React.FC<PreferredPerspectiveSelectOpti
   </>
 );
 
-const PreferrredPerspectiveSelect: React.FC = () => {
+const PreferrredPerspectiveSelect: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
   const lastViewed = t('console-app~Last viewed');
@@ -53,7 +53,7 @@ const PreferrredPerspectiveSelect: React.FC = () => {
 
   const onToggle = () => setIsOpen((current) => !current);
   const onSelect = React.useCallback(
-    (_, selection) => {
+    (_: any, selection: any) => {
       if (selection !== preferredPerspectiveID) {
         setPreferredPerspectiveID(selection === lastViewed ? null : selection);
         fireTelemetryEvent('User Preference Changed', {

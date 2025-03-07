@@ -27,7 +27,7 @@ type TabBarTabHookResolverProps = {
 const blamedDeprecatedPlugins: Record<string, boolean> = {};
 const renderNullNoop = () => null;
 
-const TabBarTabHookResolver: React.FC<TabBarTabHookResolverProps> = ({
+const TabBarTabHookResolver: React.FC<React.PropsWithChildren<TabBarTabHookResolverProps>> = ({
   element: graphElement,
   children,
   tabSectionExtensions,

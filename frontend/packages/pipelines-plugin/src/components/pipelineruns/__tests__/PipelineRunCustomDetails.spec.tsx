@@ -14,7 +14,7 @@ configure({ testIdAttribute: 'data-test' });
 
 type PipelineRunCustomDetailsProps = React.ComponentProps<typeof PipelineRunCustomDetails>;
 
-const Wrapper: React.FC = ({ children }) => (
+const Wrapper: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
   <MemoryRouter>
     <Provider store={store}>{children}</Provider>
   </MemoryRouter>

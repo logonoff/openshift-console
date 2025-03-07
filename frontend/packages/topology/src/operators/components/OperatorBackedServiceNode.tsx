@@ -25,11 +25,9 @@ type OperatorBackedServiceNodeProps = {
   WithDragNodeProps &
   WithDndDropProps;
 
-const OperatorBackedServiceNode: React.FC<OperatorBackedServiceNodeProps> = ({
-  canDrop,
-  dropTarget,
-  ...rest
-}) => {
+const OperatorBackedServiceNode: React.FC<React.PropsWithChildren<
+  OperatorBackedServiceNodeProps
+>> = ({ canDrop, dropTarget, ...rest }) => {
   const ref = React.useRef();
   const { t } = useTranslation();
   return (

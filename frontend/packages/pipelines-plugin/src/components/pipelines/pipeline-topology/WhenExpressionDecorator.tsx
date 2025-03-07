@@ -18,7 +18,7 @@ type WhenExpressionDecoratorProps = {
   isPipelineRun: boolean;
 };
 
-const WhenExpressionDecorator: React.FC<WhenExpressionDecoratorProps> = ({
+const WhenExpressionDecorator: React.FC<React.PropsWithChildren<WhenExpressionDecoratorProps>> = ({
   width,
   height,
   enableTooltip,

@@ -19,7 +19,7 @@ type ParameterFieldsProps = {
   params: any[];
 };
 
-const ParameterFields: React.FC<ParameterFieldsProps> = ({ params }) => {
+const ParameterFields: React.FC<React.PropsWithChildren<ParameterFieldsProps>> = ({ params }) => {
   return (
     <FieldArray
       name="parameters"
@@ -71,7 +71,7 @@ const ParameterFields: React.FC<ParameterFieldsProps> = ({ params }) => {
   );
 };
 
-const ParameterSection: React.FC<ParametersSectionProps> = () => {
+const ParameterSection: React.FC<React.PropsWithChildren<ParametersSectionProps>> = () => {
   const { t } = useTranslation();
   const {
     values: { formData },

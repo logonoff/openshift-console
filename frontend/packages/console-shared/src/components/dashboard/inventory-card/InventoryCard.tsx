@@ -8,17 +8,22 @@ import {
   InventoryItemStatusProps,
 } from '@console/dynamic-plugin-sdk';
 
-const InventoryItem: React.FC = ({ children }) => (
+const InventoryItem: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
   <div className="co-inventory-card__item">{children}</div>
 );
 
-export const InventoryItemLoading: React.FC = () => <div className="skeleton-inventory" />;
-
-export const InventoryItemTitle: React.FC<InventoryItemTitleProps> = ({ children }) => (
-  <div className="co-inventory-card__item-title">{children}</div>
+export const InventoryItemLoading: React.FC<React.PropsWithChildren<unknown>> = () => (
+  <div className="skeleton-inventory" />
 );
 
-export const InventoryItemBody: React.FC<InventoryItemBodyProps> = ({ error, children }) => {
+export const InventoryItemTitle: React.FC<React.PropsWithChildren<InventoryItemTitleProps>> = ({
+  children,
+}) => <div className="co-inventory-card__item-title">{children}</div>;
+
+export const InventoryItemBody: React.FC<React.PropsWithChildren<InventoryItemBodyProps>> = ({
+  error,
+  children,
+}) => {
   const { t } = useTranslation();
   return (
     <div className="co-inventory-card__item-status">
@@ -33,7 +38,7 @@ export const InventoryItemBody: React.FC<InventoryItemBodyProps> = ({ error, chi
   );
 };
 
-export const InventoryItemStatus: React.FC<InventoryItemStatusProps> = ({
+export const InventoryItemStatus: React.FC<React.PropsWithChildren<InventoryItemStatusProps>> = ({
   count,
   icon,
   linkTo,

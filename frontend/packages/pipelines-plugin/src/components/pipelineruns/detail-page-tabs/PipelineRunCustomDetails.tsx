@@ -36,7 +36,9 @@ export type PipelineRunCustomDetailsProps = {
   pipelineRun: PipelineRunKind;
 };
 
-const PipelineRunCustomDetails: React.FC<PipelineRunCustomDetailsProps> = ({ pipelineRun }) => {
+const PipelineRunCustomDetails: React.FC<React.PropsWithChildren<
+  PipelineRunCustomDetailsProps
+>> = ({ pipelineRun }) => {
   const { t } = useTranslation();
   const [taskRuns, taskRunsLoaded] = useTaskRuns(
     pipelineRun?.metadata?.namespace,

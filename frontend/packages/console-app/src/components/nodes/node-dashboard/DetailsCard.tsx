@@ -12,7 +12,7 @@ import NodeRoles from '../NodeRoles';
 import { NodeDashboardContext } from './NodeDashboardContext';
 import NodeUptime from './NodeUptime';
 
-const DetailsCard: React.FC = () => {
+const DetailsCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { obj } = React.useContext(NodeDashboardContext);
   const detailsLink = `${resourcePathFromModel(NodeModel, obj.metadata.name)}/details`;
   const instanceType = obj.metadata.labels?.['beta.kubernetes.io/instance-type'];

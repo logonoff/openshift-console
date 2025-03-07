@@ -7,12 +7,9 @@ import {
 } from '@console/shared/src/components/utils';
 import { isCatalogSourceTrusted } from '../utils';
 
-export const ConsolePluginFormGroup: React.FC<ConsolePluginFormGroupProps> = ({
-  catalogSource,
-  csvPlugins,
-  enabledPlugins,
-  setPluginEnabled,
-}) => {
+export const ConsolePluginFormGroup: React.FC<React.PropsWithChildren<
+  ConsolePluginFormGroupProps
+>> = ({ catalogSource, csvPlugins, enabledPlugins, setPluginEnabled }) => {
   const { t } = useTranslation();
   const csvPluginsCount = csvPlugins.length;
 

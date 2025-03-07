@@ -26,7 +26,7 @@ import { PipelineRunsResourceList } from '../pipelineruns';
 import RepositoriesList from '../repository/list-page/RepositoriesList';
 import PipelinesList from './list-page/PipelinesList';
 
-export const PageContents: React.FC = () => {
+export const PageContents: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const navigate = useNavigate();
@@ -110,7 +110,7 @@ export const PageContents: React.FC = () => {
 
 const PageContentsWithStartGuide = withStartGuide(PageContents);
 
-const PipelineTabbedPage: React.FC = (props) => {
+const PipelineTabbedPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   return (
     <NamespacedPage variant={NamespacedPageVariants.light} hideApplications>
       <PageContentsWithStartGuide {...props} />

@@ -4,7 +4,7 @@ import SvgDropShadowFilter from '../../svg/SvgDropShadowFilter';
 export const NODE_SHADOW_FILTER_ID = 'NodeShadowsFilterId';
 export const NODE_SHADOW_FILTER_ID_HOVER = 'NodeShadowsFilterId--hover';
 
-const NodeShadows: React.FC = () => (
+const NodeShadows: React.FC<React.PropsWithChildren<unknown>> = () => (
   <>
     <SvgDropShadowFilter id={NODE_SHADOW_FILTER_ID} />
     <SvgDropShadowFilter

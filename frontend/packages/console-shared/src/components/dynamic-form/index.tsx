@@ -18,7 +18,7 @@ import { getSchemaErrors } from './utils';
 import defaultWidgets from './widgets';
 import './styles.scss';
 
-export const DynamicForm: React.FC<DynamicFormProps> = ({
+export const DynamicForm: React.FC<React.PropsWithChildren<DynamicFormProps>> = ({
   ArrayFieldTemplate = DefaultArrayFieldTemplate,
   errors = [],
   ErrorTemplate = DefaultErrorTemplate,
@@ -57,7 +57,9 @@ export const DynamicForm: React.FC<DynamicFormProps> = ({
       />
     );
   }
-  const FormErrorFallbackComponent: React.FC<ErrorBoundaryFallbackProps> = () => {
+  const FormErrorFallbackComponent: React.FC<React.PropsWithChildren<
+    ErrorBoundaryFallbackProps
+  >> = () => {
     return (
       <Alert
         isInline
@@ -126,7 +128,7 @@ export const DynamicForm: React.FC<DynamicFormProps> = ({
 
 type DynamicFormProps = FormProps<any> & {
   errors?: string[];
-  ErrorTemplate?: React.FC<{ errors: string[] }>;
+  ErrorTemplate?: React.FC<React.PropsWithChildren<{ errors: string[] }>>;
   noActions?: boolean;
   customUISchema?: boolean;
   showAlert?: boolean;

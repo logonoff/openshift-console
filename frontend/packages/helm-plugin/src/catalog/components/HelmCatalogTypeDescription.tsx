@@ -5,7 +5,7 @@ import { useAccessReview } from '@console/dynamic-plugin-sdk/src';
 import { useActiveNamespace } from '@console/shared/src/hooks/useActiveNamespace';
 import { ProjectHelmChartRepositoryModel } from '../../models';
 
-const LinkToCreatePHCR: React.FC = () => {
+const LinkToCreatePHCR: React.FC<React.PropsWithChildren<unknown>> = () => {
   const [namespace] = useActiveNamespace();
   const [isAllowed] = useAccessReview({
     group: ProjectHelmChartRepositoryModel.apiGroup,
@@ -30,7 +30,7 @@ const LinkToCreatePHCR: React.FC = () => {
   return isAllowed ? createPHCR : null;
 };
 
-const HelmCatalogTypeDescription: React.FC = () => {
+const HelmCatalogTypeDescription: React.FC<React.PropsWithChildren<unknown>> = () => {
   return (
     <>
       <Trans ns="helm-plugin">

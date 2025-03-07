@@ -83,7 +83,9 @@ const isEstablished = (conditions: any[]) => {
 
 const namespaced = (crd: CustomResourceDefinitionKind) => crd.spec.scope === 'Namespaced';
 
-const Established: React.FC<{ crd: CustomResourceDefinitionKind }> = ({ crd }) => {
+const Established: React.FC<React.PropsWithChildren<{ crd: CustomResourceDefinitionKind }>> = ({
+  crd,
+}) => {
   const { t } = useTranslation();
   return crd.status && isEstablished(crd.status.conditions) ? (
     <span>
@@ -96,20 +98,20 @@ const Established: React.FC<{ crd: CustomResourceDefinitionKind }> = ({ crd }) =
   );
 };
 
-const EmptyVersionsMsg: React.FC<{}> = () => {
+const EmptyVersionsMsg: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
   return <EmptyBox label={t('public~CRD versions')} />;
 };
 
-const CRDVersionTable: React.FC<CRDVersionProps> = ({ versions }) => {
+const CRDVersionTable: React.FC<React.PropsWithChildren<CRDVersionProps>> = ({ versions }) => {
   const { t } = useTranslation();
   const [sortBy, setSortBy] = React.useState({ index: 0, direction: SortByDirection.asc });
   const onSort = React.useCallback(
-    (_event, index, direction) => setSortBy({ index, direction }),
+    (_event: any, index: any, direction: any) => setSortBy({ index, direction }),
     [],
   );
   const compare = React.useCallback(
-    (a, b) => {
+    (a: any, b: any) => {
       const { index, direction } = sortBy;
       const descending = direction === SortByDirection.desc;
       const left = (descending ? b : a)?.[index] ?? '';
@@ -161,7 +163,9 @@ const CRDVersionTable: React.FC<CRDVersionProps> = ({ versions }) => {
   );
 };
 
-const Details: React.FC<{ obj: CustomResourceDefinitionKind }> = ({ obj: crd }) => {
+const Details: React.FC<React.PropsWithChildren<{ obj: CustomResourceDefinitionKind }>> = ({
+  obj: crd,
+}) => {
   const { t } = useTranslation();
   return (
     <>
@@ -199,7 +203,7 @@ const Details: React.FC<{ obj: CustomResourceDefinitionKind }> = ({ obj: crd }) 
   );
 };
 
-const Instances: React.FC<InstancesProps> = ({ obj, namespace }) => {
+const Instances: React.FC<React.PropsWithChildren<InstancesProps>> = ({ obj, namespace }) => {
   const resourceListPageExtensions = useExtensions<ResourceListPage>(isResourceListPage);
   const dynamicResourceListPageExtensions = useExtensions<DynamicResourceListPage>(
     isDynamicResourceListPage,
@@ -220,9 +224,9 @@ const Instances: React.FC<InstancesProps> = ({ obj, namespace }) => {
   );
 };
 
-export const CustomResourceDefinitionsList: React.FC<CustomResourceDefinitionsListProps> = (
-  props,
-) => {
+export const CustomResourceDefinitionsList: React.FC<React.PropsWithChildren<
+  CustomResourceDefinitionsListProps
+>> = (props) => {
   const { t } = useTranslation();
   const CRDTableHeader = () => {
     return [
@@ -260,7 +264,9 @@ export const CustomResourceDefinitionsList: React.FC<CustomResourceDefinitionsLi
       },
     ];
   };
-  const CRDTableRow: React.FC<RowFunctionArgs<CustomResourceDefinitionKind>> = ({ obj: crd }) => {
+  const CRDTableRow: React.FC<React.PropsWithChildren<
+    RowFunctionArgs<CustomResourceDefinitionKind>
+  >> = ({ obj: crd }) => {
     return (
       <>
         <TableData className={tableColumnClasses[0]}>
@@ -304,9 +310,9 @@ export const CustomResourceDefinitionsList: React.FC<CustomResourceDefinitionsLi
   );
 };
 
-export const CustomResourceDefinitionsPage: React.FC<CustomResourceDefinitionsPageProps> = (
-  props,
-) => (
+export const CustomResourceDefinitionsPage: React.FC<React.PropsWithChildren<
+  CustomResourceDefinitionsPageProps
+>> = (props) => (
   <ListPage
     {...props}
     ListComponent={CustomResourceDefinitionsList}
@@ -315,7 +321,9 @@ export const CustomResourceDefinitionsPage: React.FC<CustomResourceDefinitionsPa
     textFilter="custom-resource-definition-name"
   />
 );
-export const CustomResourceDefinitionsDetailsPage: React.FC = (props) => {
+export const CustomResourceDefinitionsDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (
+  props,
+) => {
   return (
     <DetailsPage
       {...props}

@@ -26,7 +26,7 @@ interface ApplicationSelectorProps {
   subPath?: string;
 }
 
-const ApplicationSelector: React.FC<ApplicationSelectorProps> = ({
+const ApplicationSelector: React.FC<React.PropsWithChildren<ApplicationSelectorProps>> = ({
   namespace,
   noProjectsAvailable,
   subPath,

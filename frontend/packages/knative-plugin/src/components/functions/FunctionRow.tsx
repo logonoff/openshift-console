@@ -18,7 +18,7 @@ import GetConditionsForStatus from './GetConditionsForStatus';
 
 const serviceReference = referenceForModel(ServiceModel);
 
-const FunctionRow: React.FC<RowFunctionArgs<ServiceKind>> = ({ obj }) => {
+const FunctionRow: React.FC<React.PropsWithChildren<RowFunctionArgs<ServiceKind>>> = ({ obj }) => {
   const readyCondition = obj.status
     ? getCondition(obj.status.conditions, ConditionTypes.Ready)
     : null;

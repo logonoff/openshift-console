@@ -10,7 +10,7 @@ import PipelineBuilderPage from './PipelineBuilderPage';
 
 import './PipelineBuilderEditPage.scss';
 
-const PipelineBuilderEditPage: React.FC = (props) => {
+const PipelineBuilderEditPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const [editPipeline, setEditPipeline] = React.useState<PipelineKind>(null);
   const [error, setError] = React.useState<string>(null);

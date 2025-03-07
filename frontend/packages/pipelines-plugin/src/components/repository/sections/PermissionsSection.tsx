@@ -10,7 +10,9 @@ type PermissionsSectionProps = {
   formContextField?: string;
 };
 
-const PermissionsSection: React.FC<PermissionsSectionProps> = ({ formContextField }) => {
+const PermissionsSection: React.FC<React.PropsWithChildren<PermissionsSectionProps>> = ({
+  formContextField,
+}) => {
   const { t } = useTranslation();
   const { values } = useFormikContext<RepositoryFormValues>();
   const { gitProvider } = _.get(values, formContextField) || values;

@@ -19,7 +19,7 @@ import TaskRunLog from './TaskRunLog';
 
 import './TaskRunDetailsPage.scss';
 
-const TaskRunDetailsPage: React.FC<DetailsPageProps> = (props) => {
+const TaskRunDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const { kindObj, namespace, name } = props;
   const { t } = useTranslation();
   const breadcrumbsFor = useTasksBreadcrumbsFor(kindObj);

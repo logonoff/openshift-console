@@ -4,7 +4,7 @@ import { QuestionCircleIcon } from '@patternfly/react-icons/dist/esm/icons/quest
 import { useTranslation } from 'react-i18next';
 import { Shortcut, ShortcutTable } from '@console/shared';
 
-const TaskSidebarShortcuts: React.FC = () => {
+const TaskSidebarShortcuts: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
 
   return (

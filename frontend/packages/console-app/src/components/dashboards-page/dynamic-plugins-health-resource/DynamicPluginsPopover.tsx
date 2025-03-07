@@ -10,7 +10,9 @@ import { useDynamicPluginInfo } from '@console/plugin-sdk/src/api/useDynamicPlug
 import { StatusPopupSection } from '@console/shared/src/components/dashboard/status-card/StatusPopup';
 import NotLoadedDynamicPlugins from './NotLoadedDynamicPlugins';
 
-const DynamicPluginsPopover: React.FC<DynamicPluginsPopoverProps> = ({ consolePlugins }) => {
+const DynamicPluginsPopover: React.FC<React.PropsWithChildren<DynamicPluginsPopoverProps>> = ({
+  consolePlugins,
+}) => {
   const { t } = useTranslation();
   const [pluginInfoEntries] = useDynamicPluginInfo();
   const notLoadedDynamicPluginInfo = pluginInfoEntries.filter(isNotLoadedDynamicPluginInfo);

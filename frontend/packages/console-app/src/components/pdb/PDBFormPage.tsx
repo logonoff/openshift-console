@@ -16,7 +16,7 @@ import { getPDBResource } from './utils/get-pdb-resources';
 
 const LAST_VIEWED_EDITOR_TYPE_USERSETTING_KEY = 'console.pdbForm.editor.lastView';
 
-export const PDBFormPage: React.FC<{}> = () => {
+export const PDBFormPage: React.FC<React.PropsWithChildren<{}>> = () => {
   const { t } = useTranslation();
   const params = useParams();
   const location = useLocation();
@@ -67,7 +67,10 @@ export const PDBFormPage: React.FC<{}> = () => {
   const [helpText, setHelpText] = React.useState(formHelpText);
   const k8sObj = pdbToK8sResource(initialPDB);
 
-  const YAMLEditor: React.FC<YAMLEditorProps> = ({ onChange, initialYAML = '' }) => {
+  const YAMLEditor: React.FC<React.PropsWithChildren<YAMLEditorProps>> = ({
+    onChange,
+    initialYAML = '',
+  }) => {
     const yamlData = mergeInitialYAMLWithExistingResource(initialYAML, existingResource);
 
     return (

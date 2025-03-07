@@ -69,7 +69,7 @@ const clusterBuildStrategyTab = (model: K8sModel): Page => {
   };
 };
 
-const ShipwrightTabListPage: React.FC = () => {
+const ShipwrightTabListPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { '*': currentTab } = useParams();
   const navigate = useNavigate();

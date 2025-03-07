@@ -18,7 +18,7 @@ type OwnProps = {
 
 type QueryFocusApplicationProps = StateProps & DispatchProps & OwnProps;
 
-const QueryFocusApplication: React.FC<QueryFocusApplicationProps> = ({
+const QueryFocusApplication: React.FC<React.PropsWithChildren<QueryFocusApplicationProps>> = ({
   children,
   application,
   onSetApp,

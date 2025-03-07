@@ -9,7 +9,7 @@ type ActionsHookResolverProps = {
   onValueError: (error: any) => void;
 };
 
-const ActionsHookResolver: React.FC<ActionsHookResolverProps> = ({
+const ActionsHookResolver: React.FC<React.PropsWithChildren<ActionsHookResolverProps>> = ({
   useValue,
   scope,
   onValueResolved,

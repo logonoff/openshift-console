@@ -68,12 +68,9 @@ const orderQuickStarts = (
   return orderedQuickStarts;
 };
 
-export const QuickStartGettingStartedCard: React.FC<QuickStartGettingStartedCardProps> = ({
-  featured,
-  title,
-  description,
-  filter,
-}) => {
+export const QuickStartGettingStartedCard: React.FC<React.PropsWithChildren<
+  QuickStartGettingStartedCardProps
+>> = ({ featured, title, description, filter }) => {
   const { t } = useTranslation();
   const { allQuickStartStates, setActiveQuickStart } = useQuickStartContext();
 

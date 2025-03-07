@@ -71,7 +71,7 @@ const HostsTableHeader = (t: TFunction) => () => [
   },
 ];
 
-const HostsTableRow: React.FC<RowFunctionArgs<BareMetalHostBundle>> = ({
+const HostsTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<BareMetalHostBundle>>> = ({
   obj: { host, node, nodeMaintenance, machine, machineSet, status },
 }) => {
   const { t } = useTranslation();
@@ -132,7 +132,9 @@ type BareMetalHostsTableProps = React.ComponentProps<typeof Table> & {
   data: BareMetalHostBundle[];
 };
 
-const BareMetalHostsTable: React.FC<BareMetalHostsTableProps> = (props) => {
+const BareMetalHostsTable: React.FC<React.PropsWithChildren<BareMetalHostsTableProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   return (
     <Table

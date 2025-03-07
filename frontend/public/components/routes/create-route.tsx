@@ -575,7 +575,9 @@ export const CreateRoute = withTranslation()(
   connect<CreateRouteProps, any>(CreateRouteWithTranslation),
 );
 
-export const AlternateServicesGroup: React.FC<AlternateServiceEntryGroupProps> = (props) => {
+export const AlternateServicesGroup: React.FC<React.PropsWithChildren<
+  AlternateServiceEntryGroupProps
+>> = (props) => {
   const { t } = useTranslation();
   const [weight, setWeight] = React.useState(props.weight);
   const [name, setName] = React.useState(props.name);

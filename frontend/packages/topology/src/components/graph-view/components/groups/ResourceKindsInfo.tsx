@@ -15,7 +15,10 @@ type ResourceKindsInfoProps = {
   emptyValue?: React.ReactNode;
 };
 
-const ResourceKindsInfo: React.FC<ResourceKindsInfoProps> = ({ groupResources, emptyValue }) => {
+const ResourceKindsInfo: React.FC<React.PropsWithChildren<ResourceKindsInfoProps>> = ({
+  groupResources,
+  emptyValue,
+}) => {
   const resourcesData = {};
   _.forEach(groupResources, (node: OdcNodeModel) => {
     if (!node) {

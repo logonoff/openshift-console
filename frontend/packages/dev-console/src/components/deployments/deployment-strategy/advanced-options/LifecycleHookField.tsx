@@ -20,7 +20,7 @@ interface LifecycleHookFieldProps {
   subTitle?: string;
 }
 
-const LifecycleHookField: React.FC<LifecycleHookFieldProps> = ({
+const LifecycleHookField: React.FC<React.PropsWithChildren<LifecycleHookFieldProps>> = ({
   title,
   subTitle,
   dataAttribute,

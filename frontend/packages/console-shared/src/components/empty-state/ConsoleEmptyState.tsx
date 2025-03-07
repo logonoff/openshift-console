@@ -8,7 +8,7 @@ import {
   EmptyStateProps,
 } from '@patternfly/react-core';
 
-export const ConsoleEmptyState: React.FC<ConsoleEmptyStateProps> = ({
+export const ConsoleEmptyState: React.FC<React.PropsWithChildren<ConsoleEmptyStateProps>> = ({
   children,
   Icon,
   primaryActions,
@@ -54,7 +54,7 @@ ConsoleEmptyState.displayName = 'ConsoleEmptyState';
 type ConsoleEmptyStateProps = Partial<EmptyStateProps> & {
   className?: string;
   'data-test'?: string;
-  Icon?: React.ComponentType;
+  Icon?: React.ComponentType<React.PropsWithChildren<unknown>>;
   primaryActions?: React.ReactElement[];
   secondaryActions?: React.ReactElement[];
   title?: string | React.ReactElement;

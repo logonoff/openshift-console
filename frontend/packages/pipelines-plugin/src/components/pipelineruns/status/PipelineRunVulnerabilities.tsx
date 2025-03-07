@@ -27,10 +27,9 @@ type PipelineRunVulnerabilitiesProps = {
   condensed?: boolean;
 };
 
-const PipelineRunVulnerabilities: React.FC<PipelineRunVulnerabilitiesProps> = ({
-  pipelineRun,
-  condensed,
-}) => {
+const PipelineRunVulnerabilities: React.FC<React.PropsWithChildren<
+  PipelineRunVulnerabilitiesProps
+>> = ({ pipelineRun, condensed }) => {
   const scanResults = usePipelineRunVulnerabilities(pipelineRun);
 
   return scanResults?.vulnerabilities ? (

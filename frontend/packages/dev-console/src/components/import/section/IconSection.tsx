@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import IconDropdown from '../icon/IconDropdown';
 import FormSection from './FormSection';
 
-const IconSection: React.FC = () => {
+const IconSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const [field] = useField<string>('runtimeIcon');
   const formik = useFormikContext<{ runtimeIcon: string }>();

@@ -23,7 +23,7 @@ type CatalogFiltersProps = {
   onShowAllToggle: (groupName: string) => void;
 };
 
-const CatalogFilters: React.FC<CatalogFiltersProps> = ({
+const CatalogFilters: React.FC<React.PropsWithChildren<CatalogFiltersProps>> = ({
   activeFilters,
   filterGroupCounts,
   filterGroupMap,

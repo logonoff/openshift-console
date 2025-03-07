@@ -13,7 +13,12 @@ export interface SinkPubsubProps {
   close?: () => void;
 }
 
-const SinkPubsub: React.FC<SinkPubsubProps> = ({ source, resourceType, cancel, close }) => {
+const SinkPubsub: React.FC<React.PropsWithChildren<SinkPubsubProps>> = ({
+  source,
+  resourceType,
+  cancel,
+  close,
+}) => {
   const { t } = useTranslation();
   const {
     metadata: { namespace, name },

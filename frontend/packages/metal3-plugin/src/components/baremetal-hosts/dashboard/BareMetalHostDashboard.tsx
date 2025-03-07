@@ -12,7 +12,7 @@ import InventoryCard from './InventoryCard';
 import StatusCard from './StatusCard';
 import UtilizationCard from './UtilizationCard';
 
-const BareMetalHostDashboard: React.FC<BareMetalHostDashboardProps> = ({
+const BareMetalHostDashboard: React.FC<React.PropsWithChildren<BareMetalHostDashboardProps>> = ({
   obj,
   machines,
   nodes,

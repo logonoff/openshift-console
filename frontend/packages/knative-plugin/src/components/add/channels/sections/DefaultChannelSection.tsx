@@ -9,7 +9,9 @@ type DefaultChannelSectionProps = {
   namespace: string;
 };
 
-const DefaultChannelSection: React.FC<DefaultChannelSectionProps> = ({ namespace }) => {
+const DefaultChannelSection: React.FC<React.PropsWithChildren<DefaultChannelSectionProps>> = ({
+  namespace,
+}) => {
   const { t } = useTranslation();
   return (
     <FormSection extraMargin>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Alert, AlertGroup, AlertActionCloseButton, AlertActionLink } from '@patternfly/react-core';
 import ToastContext, { ToastOptions, ToastContextType } from './ToastContext';
 
-const ToastProvider: React.FC = ({ children }) => {
+const ToastProvider: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   const [toasts, setToasts] = React.useState<ToastOptions[]>([]);
 
   const removeToast = React.useCallback((id: string) => {

@@ -2,10 +2,9 @@ import * as React from 'react';
 import { Content } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
 
-export const LocalVolumeDiscoveryHeader: React.FC<LocalVolumeDiscoveryHeaderProps> = ({
-  className,
-  variant,
-}) => {
+export const LocalVolumeDiscoveryHeader: React.FC<React.PropsWithChildren<
+  LocalVolumeDiscoveryHeaderProps
+>> = ({ className, variant }) => {
   const { t } = useTranslation();
 
   return (

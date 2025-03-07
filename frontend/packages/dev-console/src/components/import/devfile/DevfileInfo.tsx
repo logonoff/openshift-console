@@ -11,7 +11,7 @@ export type DevfileInfoProps = {
   devfileSample: DevfileSample;
 };
 
-const DevfileInfo: React.FC<DevfileInfoProps> = ({ devfileSample }) => {
+const DevfileInfo: React.FC<React.PropsWithChildren<DevfileInfoProps>> = ({ devfileSample }) => {
   const { t } = useTranslation();
   const { icon, iconClass, displayName, description, git, tags } = devfileSample;
   const iconUrl = iconClass ? getImageForIconClass(iconClass) : icon || '';

@@ -10,7 +10,9 @@ type KnEventMetaDescriptionProps = {
   normalizedData: KnEventCatalogMetaData;
 };
 
-const KnEventMetaDescription: React.FC<KnEventMetaDescriptionProps> = ({ normalizedData }) => {
+const KnEventMetaDescription: React.FC<React.PropsWithChildren<KnEventMetaDescriptionProps>> = ({
+  normalizedData,
+}) => {
   const { t } = useTranslation();
   if (_.isEmpty(normalizedData)) {
     return null;

@@ -2,7 +2,7 @@ import * as _ from 'lodash-es';
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-export const RadioInput: React.SFC<RadioInputProps> = (props) => {
+export const RadioInput: React.FC<React.PropsWithChildren<RadioInputProps>> = (props) => {
   const inputProps: React.InputHTMLAttributes<any> = _.omit(props, [
     'title',
     'subTitle',
@@ -31,7 +31,7 @@ export const RadioInput: React.SFC<RadioInputProps> = (props) => {
   return props.inline ? inputElement : <div className="radio">{inputElement}</div>;
 };
 
-export const RadioGroup: React.SFC<RadioGroupProps> = ({
+export const RadioGroup: React.FC<React.PropsWithChildren<RadioGroupProps>> = ({
   currentValue,
   inline = false,
   items,

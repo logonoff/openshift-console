@@ -100,7 +100,7 @@ const getRows: NodesTableRowsFunction = (
   return rows;
 };
 
-export const NodesTable: React.FC<NodesTableProps> = (props) => {
+export const NodesTable: React.FC<React.PropsWithChildren<NodesTableProps>> = (props) => {
   const { t } = useTranslation();
   const [visibleRows, setVisibleRows] = React.useState<Set<string>>(new Set());
 

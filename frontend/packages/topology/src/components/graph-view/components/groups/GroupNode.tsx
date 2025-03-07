@@ -52,7 +52,7 @@ type GroupNodeProps = {
   dragRegroupable?: boolean;
 } & Partial<WithSelectionProps & WithDndDropProps & WithContextMenuProps & WithDragNodeProps>;
 
-const GroupNode: React.FC<GroupNodeProps> = ({
+const GroupNode: React.FC<React.PropsWithChildren<GroupNodeProps>> = ({
   element,
   bgClassName,
   badge,

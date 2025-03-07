@@ -53,7 +53,7 @@ interface SecretFormValues {
   formData: any;
 }
 
-const SecretForm: React.FC<FormikProps<SecretFormValues>> = ({
+const SecretForm: React.FC<React.PropsWithChildren<FormikProps<SecretFormValues>>> = ({
   values,
   setFieldValue,
   setFieldTouched,

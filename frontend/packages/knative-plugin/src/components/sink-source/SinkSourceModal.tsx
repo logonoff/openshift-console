@@ -18,7 +18,7 @@ export interface SinkSourceModalProps {
 
 type Props = FormikProps<FormikValues> & SinkSourceModalProps;
 
-const SinkSourceModal: React.FC<Props> = ({
+const SinkSourceModal: React.FC<React.PropsWithChildren<Props>> = ({
   resourceName,
   namespace,
   handleSubmit,

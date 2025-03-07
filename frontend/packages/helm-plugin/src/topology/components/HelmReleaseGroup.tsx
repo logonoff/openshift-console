@@ -39,7 +39,7 @@ type HelmReleaseGroupProps = {
   WithDndDropProps;
 
 const DECORATOR_RADIUS = 13;
-const HelmReleaseGroup: React.FC<HelmReleaseGroupProps> = ({
+const HelmReleaseGroup: React.FC<React.PropsWithChildren<HelmReleaseGroupProps>> = ({
   element,
   badge,
   badgeColor,

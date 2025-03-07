@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { K8sKind, referenceFor } from '../../module/k8s';
 import { FirehoseResult } from '../utils';
 
-const ResourceSidebarSample: React.FC<ResourceSidebarSampleProps> = ({
+const ResourceSidebarSample: React.FC<React.PropsWithChildren<ResourceSidebarSampleProps>> = ({
   sample,
   loadSampleYaml,
   downloadSampleYaml,
@@ -83,7 +83,7 @@ interface ResourceSidebarSnippetProps {
   insertSnippetYaml: (id: string, yaml: string, reference: string) => void;
 }
 
-const ResourceSidebarSnippet: React.FC<ResourceSidebarSnippetProps> = ({
+const ResourceSidebarSnippet: React.FC<React.PropsWithChildren<ResourceSidebarSnippetProps>> = ({
   snippet,
   insertSnippetYaml,
 }) => {
@@ -163,10 +163,9 @@ interface ResourceSidebarSnippetsProps {
   insertSnippetYaml(id: string, yaml: string, reference: string);
 }
 
-export const ResourceSidebarSnippets: React.FC<ResourceSidebarSnippetsProps> = ({
-  snippets,
-  insertSnippetYaml,
-}) => {
+export const ResourceSidebarSnippets: React.FC<React.PropsWithChildren<
+  ResourceSidebarSnippetsProps
+>> = ({ snippets, insertSnippetYaml }) => {
   return (
     <ul className="co-resource-sidebar-list" style={{ listStyle: 'none', paddingLeft: 0 }}>
       {_.map(_.sortBy(snippets, 'title'), (snippet) => (
@@ -180,11 +179,9 @@ export const ResourceSidebarSnippets: React.FC<ResourceSidebarSnippetsProps> = (
   );
 };
 
-export const ResourceSidebarSamples: React.FC<ResourceSidebarSamplesProps> = ({
-  samples,
-  loadSampleYaml,
-  downloadSampleYaml,
-}) => {
+export const ResourceSidebarSamples: React.FC<React.PropsWithChildren<
+  ResourceSidebarSamplesProps
+>> = ({ samples, loadSampleYaml, downloadSampleYaml }) => {
   return (
     <ol className="co-resource-sidebar-list" data-test="resource-samples-list">
       {_.map(_.sortBy(samples, 'title'), (sample) => (

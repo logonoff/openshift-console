@@ -14,7 +14,7 @@ export const csvNameFromWindow = () =>
         allParts[i - 1] === ClusterServiceVersionModel.plural,
     );
 
-export const OperandLink: React.FC<OperandLinkProps> = (props) => {
+export const OperandLink: React.FC<React.PropsWithChildren<OperandLinkProps>> = (props) => {
   const { namespace, name } = props.obj.metadata;
   const csvName = props.csvName || csvNameFromWindow();
 

@@ -30,7 +30,10 @@ type HPAFormikFormProps = {
   targetResource: K8sResourceKind;
 };
 
-const HPAFormikForm: React.FC<HPAFormikFormProps> = ({ existingHPA, targetResource }) => {
+const HPAFormikForm: React.FC<React.PropsWithChildren<HPAFormikFormProps>> = ({
+  existingHPA,
+  targetResource,
+}) => {
   const { t } = useTranslation();
   const initialValues: HPAFormValues = {
     showCanUseYAMLMessage: true,

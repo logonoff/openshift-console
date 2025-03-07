@@ -14,13 +14,9 @@ import { SubscriptionModel, ClusterServiceVersionModel } from '../../models';
 import { SubscriptionKind, PackageManifestKind } from '../../types';
 import { DeprecatedOperatorWarningIcon } from '../deprecated-operator-warnings/deprecated-operator-warnings';
 
-export const SubscriptionChannelModal: React.FC<SubscriptionChannelModalProps> = ({
-  cancel,
-  close,
-  k8sUpdate,
-  pkg,
-  subscription,
-}) => {
+export const SubscriptionChannelModal: React.FC<React.PropsWithChildren<
+  SubscriptionChannelModalProps
+>> = ({ cancel, close, k8sUpdate, pkg, subscription }) => {
   const { t } = useTranslation();
   const currentChannel = subscription?.spec?.channel;
   const [handlePromise, inProgress, errorMessage] = usePromiseHandler();

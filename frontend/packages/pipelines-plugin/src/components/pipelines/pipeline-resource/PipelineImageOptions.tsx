@@ -5,7 +5,9 @@ import { InputField } from '@console/shared';
 
 type PipelineImageOptionsProps = { prefixName: string };
 
-const PipelineImageOptions: React.FC<PipelineImageOptionsProps> = ({ prefixName }) => {
+const PipelineImageOptions: React.FC<React.PropsWithChildren<PipelineImageOptionsProps>> = ({
+  prefixName,
+}) => {
   const { t } = useTranslation();
   return (
     <InputField

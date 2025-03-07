@@ -11,7 +11,12 @@ type ServiceRouteDecoratorProps = {
   y: number;
 };
 
-const ServiceRouteDecorator: React.FC<ServiceRouteDecoratorProps> = ({ url, radius, x, y }) => {
+const ServiceRouteDecorator: React.FC<React.PropsWithChildren<ServiceRouteDecoratorProps>> = ({
+  url,
+  radius,
+  x,
+  y,
+}) => {
   const ref = React.useRef();
   const { t } = useTranslation();
   return (

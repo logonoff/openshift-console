@@ -3,7 +3,7 @@ import * as _ from 'lodash-es';
 import { useTranslation } from 'react-i18next';
 import { ContainerSpec } from '../../module/k8s';
 
-const ContainerRow: React.FC<ContainerRowProps> = ({ container }) => {
+const ContainerRow: React.FC<React.PropsWithChildren<ContainerRowProps>> = ({ container }) => {
   const resourceLimits = _.get(container, 'resources.limits');
   const ports = _.get(container, 'ports');
   return (
@@ -22,7 +22,9 @@ const ContainerRow: React.FC<ContainerRowProps> = ({ container }) => {
   );
 };
 
-export const ContainerTable: React.FC<ContainerTableProps> = ({ containers }) => {
+export const ContainerTable: React.FC<React.PropsWithChildren<ContainerTableProps>> = ({
+  containers,
+}) => {
   const { t } = useTranslation();
   return (
     <div className="co-m-table-grid co-m-table-grid--bordered">

@@ -15,7 +15,7 @@ type DecoratorTypes = {
   circleRef?: React.Ref<SVGCircleElement>;
 };
 
-const Decorator: React.FunctionComponent<DecoratorTypes> = ({
+const Decorator: React.FunctionComponent<React.PropsWithChildren<DecoratorTypes>> = ({
   x,
   y,
   radius,

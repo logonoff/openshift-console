@@ -12,7 +12,7 @@ import InventoryItem, {
 import { getPodStatusGroups } from '@console/shared/src/components/dashboard/inventory-card/utils';
 import { NodeDashboardContext } from './NodeDashboardContext';
 
-export const NodeInventoryItem: React.FC<NodeInventoryItemProps> = ({
+export const NodeInventoryItem: React.FC<React.PropsWithChildren<NodeInventoryItemProps>> = ({
   nodeName,
   model,
   mapper,
@@ -40,7 +40,7 @@ export const NodeInventoryItem: React.FC<NodeInventoryItemProps> = ({
   );
 };
 
-const InventoryCard: React.FC = () => {
+const InventoryCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { obj } = React.useContext(NodeDashboardContext);
   const { t } = useTranslation();
 

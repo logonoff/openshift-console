@@ -93,7 +93,9 @@ export const menuActions = [
   ...common,
 ];
 
-export const DeploymentDetailsList: React.FC<DeploymentDetailsListProps> = ({ deployment }) => {
+export const DeploymentDetailsList: React.FC<React.PropsWithChildren<
+  DeploymentDetailsListProps
+>> = ({ deployment }) => {
   const { t } = useTranslation();
   return (
     <dl className="co-m-pane__details">
@@ -148,7 +150,9 @@ export const DeploymentDetailsList: React.FC<DeploymentDetailsListProps> = ({ de
 };
 DeploymentDetailsList.displayName = 'DeploymentDetailsList';
 
-const DeploymentDetails: React.FC<DeploymentDetailsProps> = ({ obj: deployment }) => {
+const DeploymentDetails: React.FC<React.PropsWithChildren<DeploymentDetailsProps>> = ({
+  obj: deployment,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -216,7 +220,7 @@ const environmentComponent = (props) => (
   />
 );
 
-const ReplicaSetsTab: React.FC<ReplicaSetsTabProps> = ({ obj }) => {
+const ReplicaSetsTab: React.FC<React.PropsWithChildren<ReplicaSetsTabProps>> = ({ obj }) => {
   const {
     metadata: { namespace },
     spec: { selector },
@@ -233,7 +237,7 @@ const ReplicaSetsTab: React.FC<ReplicaSetsTabProps> = ({ obj }) => {
   );
 };
 
-export const DeploymentsDetailsPage: React.FC = (props) => {
+export const DeploymentsDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const prometheusIsAvailable = usePrometheusGate();
   const customActionMenu = (kindObj, obj) => {
     const resourceKind = referenceForModel(kindObj);
@@ -283,7 +287,10 @@ type DeploymentDetailsProps = {
 
 const kind = 'Deployment';
 
-const DeploymentTableRow: React.FC<RowFunctionArgs<DeploymentKind>> = ({ obj, ...props }) => {
+const DeploymentTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<DeploymentKind>>> = ({
+  obj,
+  ...props
+}) => {
   const resourceKind = referenceFor(obj);
   const context = { [resourceKind]: obj };
   const customActionMenu = <LazyActionMenu context={context} />;
@@ -295,7 +302,7 @@ const DeploymentTableHeader = () => {
 };
 DeploymentTableHeader.displayName = 'DeploymentTableHeader';
 
-export const DeploymentsList: React.FC = (props) => {
+export const DeploymentsList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table
@@ -309,7 +316,7 @@ export const DeploymentsList: React.FC = (props) => {
 };
 DeploymentsList.displayName = 'DeploymentsList';
 
-export const DeploymentsPage: React.FC<DeploymentsPageProps> = (props) => {
+export const DeploymentsPage: React.FC<React.PropsWithChildren<DeploymentsPageProps>> = (props) => {
   const createProps = {
     to: `/k8s/ns/${props.namespace || 'default'}/deployments/~new/form`,
   };

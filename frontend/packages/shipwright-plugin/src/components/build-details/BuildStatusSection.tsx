@@ -8,7 +8,10 @@ type BuildStatusSectionProps = {
   buildStatus: BuildStatus;
 };
 
-const BuildStatusSection: React.FC<BuildStatusSectionProps> = ({ obj, buildStatus }) => {
+const BuildStatusSection: React.FC<React.PropsWithChildren<BuildStatusSectionProps>> = ({
+  obj,
+  buildStatus,
+}) => {
   const { t } = useTranslation();
 
   if (!buildStatus) {

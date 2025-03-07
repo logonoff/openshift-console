@@ -31,7 +31,7 @@ export const runFilters = (t: TFunction): RowFilter[] => {
   ];
 };
 
-const PipelineRuns: React.FC<PipelineDetailsTabProps> = (props) => {
+const PipelineRuns: React.FC<React.PropsWithChildren<PipelineDetailsTabProps>> = (props) => {
   const { t } = useTranslation();
   const { obj } = props;
   const selector = React.useMemo(() => {

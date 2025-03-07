@@ -6,7 +6,9 @@ import ActivityItem from '@console/shared/src/components/dashboard/activity-card
 const getVersion = (cv: ClusterVersionKind) =>
   cv && cv.status.history[0] ? cv.status.history[0].version : null;
 
-const ClusterUpdateActivityText: React.FC<ClusterUpdateActivityProps> = ({ resource }) => {
+const ClusterUpdateActivityText: React.FC<React.PropsWithChildren<ClusterUpdateActivityProps>> = ({
+  resource,
+}) => {
   const { t } = useTranslation();
   return (
     <ActivityItem>
@@ -15,7 +17,9 @@ const ClusterUpdateActivityText: React.FC<ClusterUpdateActivityProps> = ({ resou
   );
 };
 
-const ClusterUpdateActivity: React.FC<ClusterUpdateActivityProps> = React.memo(
+const ClusterUpdateActivity: React.FC<React.PropsWithChildren<
+  ClusterUpdateActivityProps
+>> = React.memo(
   ({ resource }) => <ClusterUpdateActivityText resource={resource} />,
   (prevProps, newProps) => getVersion(prevProps.resource) === getVersion(newProps.resource),
 );

@@ -33,7 +33,10 @@ const spyEvaluateFunc = jest.spyOn(serverlessFxUtils, 'evaluateFunc');
 
 configure({ testIdAttribute: 'data-test' });
 
-const Wrapper: React.FC<FormikConfig<SourceSectionFormData>> = ({ children, ...formikConfig }) => (
+const Wrapper: React.FC<React.PropsWithChildren<FormikConfig<SourceSectionFormData>>> = ({
+  children,
+  ...formikConfig
+}) => (
   <Provider store={store}>
     <Formik {...formikConfig}>
       {(formikProps) => (

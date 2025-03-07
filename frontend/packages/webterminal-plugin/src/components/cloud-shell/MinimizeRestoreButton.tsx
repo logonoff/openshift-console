@@ -10,7 +10,7 @@ type MinimizeRestoreButtonProps = {
   onClick: (minimized: boolean) => void;
 };
 
-const MinimizeRestoreButton: React.FC<MinimizeRestoreButtonProps> = ({
+const MinimizeRestoreButton: React.FC<React.PropsWithChildren<MinimizeRestoreButtonProps>> = ({
   minimizeText,
   restoreText,
   minimize = true,

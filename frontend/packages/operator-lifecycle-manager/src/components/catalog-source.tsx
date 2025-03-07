@@ -91,7 +91,7 @@ const enableSource = (
   accessReview: asAccessReview(kind, operatorHub, 'patch'),
 });
 
-const DefaultSourceKebab: React.FC<DefaultSourceKebabProps> = ({
+const DefaultSourceKebab: React.FC<React.PropsWithChildren<DefaultSourceKebabProps>> = ({
   kind,
   operatorHub,
   sourceName,
@@ -130,7 +130,7 @@ const getEndpoint = (catalogSource: CatalogSourceKind): React.ReactNode => {
   return catalogSource.spec.image || catalogSource.spec.address;
 };
 
-export const CatalogSourceDetails: React.FC<CatalogSourceDetailsProps> = ({
+export const CatalogSourceDetails: React.FC<React.PropsWithChildren<CatalogSourceDetailsProps>> = ({
   obj: catalogSource,
   packageManifests,
 }) => {
@@ -209,11 +209,13 @@ export const CatalogSourceDetails: React.FC<CatalogSourceDetailsProps> = ({
   );
 };
 
-export const CatalogSourceOperatorsPage: React.FC<CatalogSourceOperatorsPageProps> = (props) => {
+export const CatalogSourceOperatorsPage: React.FC<React.PropsWithChildren<
+  CatalogSourceOperatorsPageProps
+>> = (props) => {
   return <PackageManifestsPage catalogSource={props.obj} showTitle={false} {...props} />;
 };
 
-export const CatalogSourceDetailsPage: React.FC = (props) => {
+export const CatalogSourceDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const [operatorHub, operatorHubLoaded, operatorHubLoadError] = useOperatorHubConfig();
   const params = useParams();
 
@@ -257,7 +259,7 @@ export const CatalogSourceDetailsPage: React.FC = (props) => {
   );
 };
 
-export const CreateSubscriptionYAML: React.FC = (props) => {
+export const CreateSubscriptionYAML: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   type CreateProps = {
     packageManifest: { loaded: boolean; data?: PackageManifestKind };
     operatorGroup: { loaded: boolean; data?: OperatorGroupKind[] };
@@ -340,7 +342,9 @@ const getRowProps = (obj) => ({
   className: obj?.disabled ? 'catalog-source__table-row--disabled' : undefined,
 });
 
-const CatalogSourceTableRow: React.FC<RowFunctionArgs<CatalogSourceTableRowObj>> = ({
+const CatalogSourceTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<CatalogSourceTableRowObj>
+>> = ({
   obj: {
     availability = '-',
     disabled = false,
@@ -400,7 +404,7 @@ const CatalogSourceTableRow: React.FC<RowFunctionArgs<CatalogSourceTableRowObj>>
   </>
 );
 
-const CatalogSourceList: React.FC<TableProps> = (props) => {
+const CatalogSourceList: React.FC<React.PropsWithChildren<TableProps>> = (props) => {
   const { t } = useTranslation();
   const CatalogSourceHeader = () => {
     return [
@@ -463,7 +467,10 @@ const CatalogSourceList: React.FC<TableProps> = (props) => {
   );
 };
 
-const DisabledPopover: React.FC<DisabledPopoverProps> = ({ operatorHub, sourceName }) => {
+const DisabledPopover: React.FC<React.PropsWithChildren<DisabledPopoverProps>> = ({
+  operatorHub,
+  sourceName,
+}) => {
   const [visible, setVisible] = React.useState<boolean>(null);
   const close = React.useCallback(() => {
     setVisible(false);
@@ -556,7 +563,9 @@ const flatten = ({
   );
 };
 
-export const CatalogSourceListPage: React.FC<CatalogSourceListPageProps> = (props) => {
+export const CatalogSourceListPage: React.FC<React.PropsWithChildren<
+  CatalogSourceListPageProps
+>> = (props) => {
   const { t } = useTranslation();
   return (
     <MultiListPage

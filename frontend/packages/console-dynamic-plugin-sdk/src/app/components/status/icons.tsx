@@ -27,7 +27,11 @@ export type ColoredIconProps = {
  * <GreenCheckCircleIcon title="Healthy" />
  * ```
  */
-export const GreenCheckCircleIcon: React.FC<ColoredIconProps> = ({ className, title, size }) => {
+export const GreenCheckCircleIcon: React.FC<React.PropsWithChildren<ColoredIconProps>> = ({
+  className,
+  title,
+  size,
+}) => {
   const icon = (
     <CheckCircleIcon
       data-test="success-icon"
@@ -51,7 +55,7 @@ export const GreenCheckCircleIcon: React.FC<ColoredIconProps> = ({ className, ti
  * <RedExclamationCircleIcon title="Failed" />
  * ```
  */
-export const RedExclamationCircleIcon: React.FC<ColoredIconProps> = ({
+export const RedExclamationCircleIcon: React.FC<React.PropsWithChildren<ColoredIconProps>> = ({
   className,
   title,
   size,
@@ -80,7 +84,7 @@ export const RedExclamationCircleIcon: React.FC<ColoredIconProps> = ({
  * <YellowExclamationTriangleIcon title="Warning" />
  * ```
  */
-export const YellowExclamationTriangleIcon: React.FC<ColoredIconProps> = ({
+export const YellowExclamationTriangleIcon: React.FC<React.PropsWithChildren<ColoredIconProps>> = ({
   className,
   title,
   size,
@@ -110,7 +114,11 @@ export const YellowExclamationTriangleIcon: React.FC<ColoredIconProps> = ({
  * <BlueInfoCircleIcon title="Info" />
  * ```
  */
-export const BlueInfoCircleIcon: React.FC<ColoredIconProps> = ({ className, title, size }) => {
+export const BlueInfoCircleIcon: React.FC<React.PropsWithChildren<ColoredIconProps>> = ({
+  className,
+  title,
+  size,
+}) => {
   const icon = (
     <InfoCircleIcon className={classNames('dps-icons__blue-info-icon', className)} title={title} />
   );

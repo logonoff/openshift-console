@@ -24,7 +24,7 @@ import {
 import { PRIVATE_KNATIVE_SERVING_LABEL } from '../../const';
 import { serverlessTab } from '../../utils/serverless-tab-utils';
 
-const RouteDetails: React.FC<RoutesDetailsProps> = ({ obj: route }) => {
+const RouteDetails: React.FC<React.PropsWithChildren<RoutesDetailsProps>> = ({ obj: route }) => {
   const { t } = useTranslation();
   const isPrivateKSVC =
     route?.metadata?.labels?.[PRIVATE_KNATIVE_SERVING_LABEL] === 'cluster-local';
@@ -68,7 +68,9 @@ const RouteDetails: React.FC<RoutesDetailsProps> = ({ obj: route }) => {
   );
 };
 
-const RouteDetailsPage: React.FC<React.ComponentProps<typeof DetailsPage>> = (props) => {
+const RouteDetailsPage: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof DetailsPage>
+>> = (props) => {
   const { kindObj } = props;
   const params = useParams();
   const location = useLocation();

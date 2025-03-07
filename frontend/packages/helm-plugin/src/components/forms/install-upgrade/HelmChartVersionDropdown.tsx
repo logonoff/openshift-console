@@ -42,7 +42,9 @@ export type HelmChartVersionDropdownProps = {
 };
 type ModalCallback = () => void;
 
-const HelmChartVersionDropdown: React.FunctionComponent<HelmChartVersionDropdownProps> = ({
+const HelmChartVersionDropdown: React.FunctionComponent<React.PropsWithChildren<
+  HelmChartVersionDropdownProps
+>> = ({
   chartVersion,
   chartName,
   helmAction,

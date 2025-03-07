@@ -22,12 +22,9 @@ interface GettingStartedExpandableGridProps {
   setShowState?: (showState: GettingStartedShowState) => void;
 }
 
-export const GettingStartedExpandableGrid: React.FC<GettingStartedExpandableGridProps> = ({
-  children,
-  isOpen,
-  setIsOpen,
-  setShowState,
-}) => {
+export const GettingStartedExpandableGrid: React.FC<React.PropsWithChildren<
+  GettingStartedExpandableGridProps
+>> = ({ children, isOpen, setIsOpen, setShowState }) => {
   const { t } = useTranslation();
 
   const title = t('console-shared~Getting started resources');

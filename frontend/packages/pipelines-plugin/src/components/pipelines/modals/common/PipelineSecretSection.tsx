@@ -26,7 +26,7 @@ const initialValues = {
   formData: {},
 };
 
-const PipelineSecretSection: React.FC = () => {
+const PipelineSecretSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const [secretOpenField] = useField<boolean>('secretOpen');
   const {

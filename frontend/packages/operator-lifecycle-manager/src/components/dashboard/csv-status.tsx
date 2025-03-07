@@ -13,9 +13,9 @@ import { ClusterServiceVersionKind } from '../../types';
 
 import './csv-status.scss';
 
-const ClusterServiceVersionRow: React.FC<OperatorRowProps<ClusterServiceVersionKind>> = ({
-  operatorStatus,
-}) => {
+const ClusterServiceVersionRow: React.FC<React.PropsWithChildren<
+  OperatorRowProps<ClusterServiceVersionKind>
+>> = ({ operatorStatus }) => {
   const { name, namespace } = operatorStatus.operators[0].metadata;
   const { displayName } = operatorStatus.operators[0].spec;
   const to =

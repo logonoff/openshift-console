@@ -8,10 +8,10 @@ import { InputField } from '@console/shared/src';
 import { DeploymentStrategyType } from '../utils/types';
 import LifecycleHookField from './LifecycleHookField';
 
-const AdvancedStrategyOptions: React.FC<{
+const AdvancedStrategyOptions: React.FC<React.PropsWithChildren<{
   dataAttribute: string;
   resourceObj: K8sResourceKind;
-}> = ({ dataAttribute, resourceObj }) => {
+}>> = ({ dataAttribute, resourceObj }) => {
   const { t } = useTranslation();
   const {
     values: {

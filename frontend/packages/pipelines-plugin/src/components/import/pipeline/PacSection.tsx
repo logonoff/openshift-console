@@ -11,7 +11,7 @@ import { PacConfigurationTypes } from '../../repository/consts';
 import InfoPanel from './PacInfoPanel';
 import './PacSection.scss';
 
-const PacSection: React.FC = () => {
+const PacSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const formContextField = 'pac.repository';
   const [githubAppAvailable, setGithubAppAvailable] = React.useState(false);

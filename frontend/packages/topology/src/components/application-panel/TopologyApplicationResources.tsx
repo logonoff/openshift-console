@@ -11,10 +11,9 @@ type TopologyApplicationResourcesProps = {
   group: string;
 };
 
-const TopologyApplicationResources: React.FC<TopologyApplicationResourcesProps> = ({
-  resources,
-  group,
-}) => {
+const TopologyApplicationResources: React.FC<React.PropsWithChildren<
+  TopologyApplicationResourcesProps
+>> = ({ resources, group }) => {
   const resourcesData = resources.reduce((acc, { resource }) => {
     if (resource?.kind) {
       acc[resource.kind] = [...(acc[resource.kind] ? acc[resource.kind] : []), resource];

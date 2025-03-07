@@ -33,7 +33,7 @@ type ToggleProps = {
   toggleRef: React.Ref<MenuToggleElement>;
 };
 
-const Toggle: React.FC<ToggleProps> = ({
+const Toggle: React.FC<React.PropsWithChildren<ToggleProps>> = ({
   focusedItemIndex,
   inputValue,
   isOpen,

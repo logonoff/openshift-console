@@ -40,7 +40,7 @@ const getDisplayName = (clusterRole?: K8sResourceCommon, name?: string) =>
   clusterRole?.metadata.name ||
   name;
 
-const Item: React.FC<ItemProps> = ({ name, clusterRole }) => (
+const Item: React.FC<React.PropsWithChildren<ItemProps>> = ({ name, clusterRole }) => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
     {clusterRole ? (
       <ResourceIcon groupVersionKind={getGroupVersionKindForModel(ClusterRoleModel)} />
@@ -49,7 +49,9 @@ const Item: React.FC<ItemProps> = ({ name, clusterRole }) => (
   </div>
 );
 
-const ProjectAccessRolesConfiguration: React.FC<{ readonly: boolean }> = ({ readonly }) => {
+const ProjectAccessRolesConfiguration: React.FC<React.PropsWithChildren<{ readonly: boolean }>> = ({
+  readonly,
+}) => {
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();
 

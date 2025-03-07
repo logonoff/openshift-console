@@ -11,10 +11,10 @@ import PushSecretDropdown from './PushSecretDropdown';
 const CREATE_PULL_SECRET = 'create-pull-secret';
 const CLEAR_PULL_SECRET = 'clear-pull-secret';
 
-const PushSecretSelector: React.FC<{
+const PushSecretSelector: React.FC<React.PropsWithChildren<{
   formContextField?: string;
   namespace: string;
-}> = ({ formContextField, namespace }) => {
+}>> = ({ formContextField, namespace }) => {
   const fieldPrefix = formContextField ? `${formContextField}` : '';
 
   const { t } = useTranslation();

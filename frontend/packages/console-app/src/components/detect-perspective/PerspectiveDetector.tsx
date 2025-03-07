@@ -16,7 +16,7 @@ type PerspectiveDetectorProps = {
   setActivePerspective: (perspective: string, next: string) => void;
 };
 
-const Detector: React.FC<DetectorProps> = ({
+const Detector: React.FC<React.PropsWithChildren<DetectorProps>> = ({
   setActivePerspective,
   perspectiveExtensions,
   detectors,
@@ -57,7 +57,9 @@ const Detector: React.FC<DetectorProps> = ({
   return null;
 };
 
-const PerspectiveDetector: React.FC<PerspectiveDetectorProps> = ({ setActivePerspective }) => {
+const PerspectiveDetector: React.FC<React.PropsWithChildren<PerspectiveDetectorProps>> = ({
+  setActivePerspective,
+}) => {
   const perspectiveExtensions = usePerspectives();
   const [detectors, setDetectors] = React.useState<
     (undefined | ResolvedExtension<Perspective>['properties']['usePerspectiveDetection'])[]

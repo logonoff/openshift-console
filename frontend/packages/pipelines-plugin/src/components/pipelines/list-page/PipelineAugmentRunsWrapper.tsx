@@ -19,7 +19,9 @@ interface PipelineAugmentRunsWrapperProps {
   hideNameLabelFilters?: boolean;
 }
 
-const PipelineAugmentRunsWrapper: React.FC<PipelineAugmentRunsWrapperProps> = (props) => {
+const PipelineAugmentRunsWrapper: React.FC<React.PropsWithChildren<
+  PipelineAugmentRunsWrapperProps
+>> = (props) => {
   const { t } = useTranslation();
   const activePerspective = useActivePerspective()[0];
   const [, setPreferredTab, preferredTabLoaded] = useUserSettings<string>(

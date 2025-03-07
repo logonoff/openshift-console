@@ -26,7 +26,7 @@ import { PIPELINE_NAMESPACE } from '../pipelines/const';
 import PipelinesList from '../pipelines/list-page/PipelinesList';
 import RepositoriesList from '../repository/list-page/RepositoriesList';
 
-const PipelinesListPage: React.FC = () => {
+const PipelinesListPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const isRepositoryEnabled = useFlag(FLAG_OPENSHIFT_PIPELINE_AS_CODE);

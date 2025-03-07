@@ -55,12 +55,14 @@ const tableColumnClasses = [
   'pf-m-hidden pf-m-visible-on-sm',
 ];
 
-export const ResourceTableRow: React.FC<RowFunctionArgs<
-  K8sResourceKind,
-  {
-    linkFor: (obj: K8sResourceKind, providedAPI: ProvidedAPI) => JSX.Element;
-    providedAPI: ProvidedAPI;
-  }
+export const ResourceTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<
+    K8sResourceKind,
+    {
+      linkFor: (obj: K8sResourceKind, providedAPI: ProvidedAPI) => JSX.Element;
+      providedAPI: ProvidedAPI;
+    }
+  >
 >> = ({ obj, customData: { linkFor, providedAPI } }) => (
   <>
     <TableData className={tableColumnClasses[0]}>{linkFor(obj, providedAPI)}</TableData>
@@ -74,7 +76,7 @@ export const ResourceTableRow: React.FC<RowFunctionArgs<
   </>
 );
 
-export const ResourceTable: React.FC<ResourceTableProps> = (props) => {
+export const ResourceTable: React.FC<React.PropsWithChildren<ResourceTableProps>> = (props) => {
   const { t } = useTranslation();
   const ResourceTableHeader = () => [
     {
@@ -151,7 +153,7 @@ export const linkForCsvResource = (
 
 type ResourcesPageRouteParams = RouteParams<'plural'>;
 
-export const Resources: React.FC<ResourcesProps> = (props) => {
+export const Resources: React.FC<React.PropsWithChildren<ResourcesProps>> = (props) => {
   const { t } = useTranslation();
   const { plural } = useParams<ResourcesPageRouteParams>();
   const providedAPI = providedAPIForReference(props.customData, plural);

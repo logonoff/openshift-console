@@ -29,7 +29,9 @@ const useConsumers = (query: ProjectQueries) => {
   };
 };
 
-export const CPUPopover: React.FC<TopConsumerPopoverProps> = ({ current }) => {
+export const CPUPopover: React.FC<React.PropsWithChildren<TopConsumerPopoverProps>> = ({
+  current,
+}) => {
   const { t } = useTranslation();
   const consumers = useConsumers(ProjectQueries.PODS_BY_CPU);
   return (
@@ -42,7 +44,9 @@ export const CPUPopover: React.FC<TopConsumerPopoverProps> = ({ current }) => {
   );
 };
 
-export const MemoryPopover: React.FC<TopConsumerPopoverProps> = ({ current }) => {
+export const MemoryPopover: React.FC<React.PropsWithChildren<TopConsumerPopoverProps>> = ({
+  current,
+}) => {
   const { t } = useTranslation();
   const consumers = useConsumers(ProjectQueries.PODS_BY_MEMORY);
   return (
@@ -55,7 +59,9 @@ export const MemoryPopover: React.FC<TopConsumerPopoverProps> = ({ current }) =>
   );
 };
 
-export const FilesystemPopover: React.FC<TopConsumerPopoverProps> = ({ current }) => {
+export const FilesystemPopover: React.FC<React.PropsWithChildren<TopConsumerPopoverProps>> = ({
+  current,
+}) => {
   const { t } = useTranslation();
   const consumers = useConsumers(ProjectQueries.PODS_BY_FILESYSTEM);
   return (
@@ -68,7 +74,9 @@ export const FilesystemPopover: React.FC<TopConsumerPopoverProps> = ({ current }
   );
 };
 
-export const NetworkInPopover: React.FC<TopConsumerPopoverProps> = ({ current }) => {
+export const NetworkInPopover: React.FC<React.PropsWithChildren<TopConsumerPopoverProps>> = ({
+  current,
+}) => {
   const { t } = useTranslation();
   const consumers = useConsumers(ProjectQueries.PODS_BY_NETWORK_IN);
   return (
@@ -81,7 +89,9 @@ export const NetworkInPopover: React.FC<TopConsumerPopoverProps> = ({ current })
   );
 };
 
-export const NetworkOutPopover: React.FC<TopConsumerPopoverProps> = ({ current }) => {
+export const NetworkOutPopover: React.FC<React.PropsWithChildren<TopConsumerPopoverProps>> = ({
+  current,
+}) => {
   const { t } = useTranslation();
   const consumers = useConsumers(ProjectQueries.PODS_BY_NETWORK_OUT);
   return (

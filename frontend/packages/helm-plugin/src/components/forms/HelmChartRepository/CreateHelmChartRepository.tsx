@@ -33,10 +33,9 @@ interface CreateHelmChartRepositoryProps {
   existingRepoName: string;
 }
 
-const CreateHelmChartRepository: React.FC<CreateHelmChartRepositoryProps> = ({
-  showScopeType,
-  existingRepoName,
-}) => {
+const CreateHelmChartRepository: React.FC<React.PropsWithChildren<
+  CreateHelmChartRepositoryProps
+>> = ({ showScopeType, existingRepoName }) => {
   const queryParams = useQueryParams();
   const resourceKind: K8sResourceKindReference = queryParams.get('kind');
   const isEditForm = !!existingRepoName;

@@ -13,7 +13,7 @@ type GroupByFilterGridProps = {
   children: (props: GridChildrenProps) => React.ReactNode;
 };
 
-const GroupByFilterGrid: React.FC<GroupByFilterGridProps> = ({
+const GroupByFilterGrid: React.FC<React.PropsWithChildren<GroupByFilterGridProps>> = ({
   height,
   width,
   scrollTop,

@@ -16,7 +16,7 @@ interface TaskRunsListProps {
   data?: TaskRunKind[];
 }
 
-const TaskRunsList: React.FC<TaskRunsListProps> = (props) => {
+const TaskRunsList: React.FC<React.PropsWithChildren<TaskRunsListProps>> = (props) => {
   const { t } = useTranslation();
   const {
     columnLayout: { columns, id },

@@ -10,7 +10,7 @@ import { CREATE_NAMESPACE_KEY } from './cloud-shell-setup-utils';
 
 type NamespaceSectionProps = WithFlagsProps;
 
-const NamespaceSection: React.FC<NamespaceSectionProps> = ({ flags }) => {
+const NamespaceSection: React.FC<React.PropsWithChildren<NamespaceSectionProps>> = ({ flags }) => {
   const canCreateNs = flags[FLAGS.CAN_CREATE_NS];
   const canCreateProject = flags[FLAGS.CAN_CREATE_PROJECT];
   const canCreate = canCreateNs || canCreateProject;

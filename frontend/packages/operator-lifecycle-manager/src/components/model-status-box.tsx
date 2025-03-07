@@ -8,7 +8,10 @@ type ModelStatusBoxProps = {
   groupVersionKind: GroupVersionKind;
 };
 
-const ModelStatusBox: React.FC<ModelStatusBoxProps> = ({ groupVersionKind, children }) => {
+const ModelStatusBox: React.FC<React.PropsWithChildren<ModelStatusBoxProps>> = ({
+  groupVersionKind,
+  children,
+}) => {
   const { t } = useTranslation();
   const [model, inFlight] = useK8sModel(groupVersionKind);
 

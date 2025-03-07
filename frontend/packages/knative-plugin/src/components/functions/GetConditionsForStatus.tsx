@@ -8,7 +8,9 @@ export type GetConditionsForStatusProps = {
   conditions: K8sResourceCondition[];
 };
 
-const GetConditionsForStatus: React.FC<GetConditionsForStatusProps> = ({ conditions }) => {
+const GetConditionsForStatus: React.FC<React.PropsWithChildren<GetConditionsForStatusProps>> = ({
+  conditions,
+}) => {
   const successCount = getConditionOKCount(conditions);
   const failureCount = _.size(conditions) - successCount;
   return (

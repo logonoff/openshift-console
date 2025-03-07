@@ -17,7 +17,7 @@ const Footer = ({ children }) => {
   );
 };
 
-const List: React.FC = () => {
+const List: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
 
   const [visibleItems, setVisibleItems] = React.useState([]);
@@ -41,7 +41,7 @@ const List: React.FC = () => {
   );
 };
 
-const CloudShellAdvancedSection: React.FC = () => {
+const CloudShellAdvancedSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   return (
     <FormSection style={{ marginTop: 0 }}>
       <div>

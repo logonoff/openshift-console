@@ -49,7 +49,7 @@ export type DetailsItem = ExtensionDeclaration<
     /**
      * An optional React component that will render the details item value.
      */
-    component?: CodeRef<React.ComponentType<DetailsItemComponentProps>>;
+    component?: CodeRef<React.ComponentType<React.PropsWithChildren<DetailsItemComponentProps>>>;
 
     /**
      * An optional sort weight, relative to all other details items in the same column. Represented

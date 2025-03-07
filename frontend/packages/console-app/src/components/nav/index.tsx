@@ -10,20 +10,18 @@ type NavigationProps = {
   isNavOpen: boolean;
 };
 
-export const Navigation: React.FC<NavigationProps> = React.memo(function Navigation({
-  isNavOpen,
-  onNavSelect,
-  onPerspectiveSelected,
-}) {
-  const { t } = useTranslation();
-  return (
-    <PageSidebar isSidebarOpen={isNavOpen}>
-      <PageSidebarBody>
-        <Nav aria-label={t('console-app~Nav')} onSelect={onNavSelect}>
-          <NavHeader onPerspectiveSelected={onPerspectiveSelected} />
-          <PerspectiveNav />
-        </Nav>
-      </PageSidebarBody>
-    </PageSidebar>
-  );
-});
+export const Navigation: React.FC<React.PropsWithChildren<NavigationProps>> = React.memo(
+  function Navigation({ isNavOpen, onNavSelect, onPerspectiveSelected }) {
+    const { t } = useTranslation();
+    return (
+      <PageSidebar isSidebarOpen={isNavOpen}>
+        <PageSidebarBody>
+          <Nav aria-label={t('console-app~Nav')} onSelect={onNavSelect}>
+            <NavHeader onPerspectiveSelected={onPerspectiveSelected} />
+            <PerspectiveNav />
+          </Nav>
+        </PageSidebarBody>
+      </PageSidebar>
+    );
+  },
+);

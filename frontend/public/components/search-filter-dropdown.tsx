@@ -20,7 +20,7 @@ export enum searchFilterValues {
   Name = 'Name',
 }
 
-export const SearchFilterDropdown: React.FC<SearchFilterDropdownProps> = ({
+export const SearchFilterDropdown: React.FC<React.PropsWithChildren<SearchFilterDropdownProps>> = ({
   labelFilterInput,
   nameFilterInput,
   onChange,

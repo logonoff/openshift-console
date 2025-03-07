@@ -21,7 +21,7 @@ export interface EditBuildConfigProps {
   buildConfig: BuildConfig;
 }
 
-const EditBuildConfig: React.FC<EditBuildConfigProps> = ({
+const EditBuildConfig: React.FC<React.PropsWithChildren<EditBuildConfigProps>> = ({
   heading,
   namespace,
   name,

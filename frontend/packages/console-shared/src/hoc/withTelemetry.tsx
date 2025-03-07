@@ -6,8 +6,8 @@ type WithTelemetryProps = {
 };
 
 export const withTelemetry = <Props extends WithTelemetryProps>(
-  WrappedComponent: React.ComponentType<Props>,
-): React.FC<Omit<Props, keyof WithTelemetryProps>> => {
+  WrappedComponent: React.ComponentType<React.PropsWithChildren<Props>>,
+): React.FC<React.PropsWithChildren<Omit<Props, keyof WithTelemetryProps>>> => {
   const Component = (props: Props) => {
     const fireTelemetryEvent = useTelemetry();
     return <WrappedComponent {...props} fireTelemetryEvent={fireTelemetryEvent} />;

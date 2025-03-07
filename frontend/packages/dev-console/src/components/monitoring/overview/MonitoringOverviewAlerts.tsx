@@ -13,7 +13,9 @@ interface MonitoringOverviewAlertsProps {
   alerts: AlertType[];
 }
 
-const MonitoringOverviewAlerts: React.FC<MonitoringOverviewAlertsProps> = ({ alerts }) => {
+const MonitoringOverviewAlerts: React.FC<React.PropsWithChildren<
+  MonitoringOverviewAlertsProps
+>> = ({ alerts }) => {
   const [activePerspective] = useActivePerspective();
   const sortedAlerts = sortMonitoringAlerts(alerts);
 

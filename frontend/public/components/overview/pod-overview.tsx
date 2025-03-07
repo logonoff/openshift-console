@@ -13,7 +13,9 @@ import { PodsOverview } from './pods-overview';
 import { PodKind } from '../../module/k8s';
 import { useTranslation } from 'react-i18next';
 
-const PodOverviewDetails: React.SFC<PodOverviewDetailsProps> = ({ item: { obj: pod } }) => {
+const PodOverviewDetails: React.FC<React.PropsWithChildren<PodOverviewDetailsProps>> = ({
+  item: { obj: pod },
+}) => {
   return (
     <div className="overview__sidebar-pane-body resource-overview__body">
       <div className="resource-overview__pod-counts">
@@ -29,14 +31,19 @@ const PodOverviewDetails: React.SFC<PodOverviewDetailsProps> = ({ item: { obj: p
   );
 };
 
-const PodResourcesTab: React.SFC<PodResourcesTabProps> = ({ item: { obj } }) => (
+const PodResourcesTab: React.FC<React.PropsWithChildren<PodResourcesTabProps>> = ({
+  item: { obj },
+}) => (
   <div className="overview__sidebar-pane-body">
     <PodsOverview obj={obj} />
     <NetworkingOverview obj={obj} />
   </div>
 );
 
-export const PodOverviewPage: React.SFC<PodOverviewPageProps> = ({ item, customActions }) => {
+export const PodOverviewPage: React.FC<React.PropsWithChildren<PodOverviewPageProps>> = ({
+  item,
+  customActions,
+}) => {
   const { t } = useTranslation();
   const tabs = [
     {

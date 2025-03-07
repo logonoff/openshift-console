@@ -26,7 +26,7 @@ interface OwnProps {
   kameletSource?: K8sResourceKind;
 }
 
-const EventSourceForm: React.FC<FormikProps<FormikValues> & OwnProps> = ({
+const EventSourceForm: React.FC<React.PropsWithChildren<FormikProps<FormikValues> & OwnProps>> = ({
   errors,
   values,
   handleSubmit,

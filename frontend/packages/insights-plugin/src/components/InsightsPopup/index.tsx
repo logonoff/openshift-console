@@ -25,7 +25,7 @@ import {
   errorUpload,
 } from './mappers';
 
-const DataComponent: React.FC<DataComponentProps> = ({ x, y, datum }) => {
+const DataComponent: React.FC<React.PropsWithChildren<DataComponentProps>> = ({ x, y, datum }) => {
   const Icon = riskIcons[datum.id];
   return <Icon x={x} y={y - 5} fill={legendColorScale[datum.id]} />;
 };
@@ -54,7 +54,10 @@ const SubTitleComponent = (props) => (
   />
 );
 
-export const InsightsPopup: React.FC<PrometheusHealthPopupProps> = ({ responses, k8sResult }) => {
+export const InsightsPopup: React.FC<React.PropsWithChildren<PrometheusHealthPopupProps>> = ({
+  responses,
+  k8sResult,
+}) => {
   const [
     { response: metricsResponse, error: metricsError },
     { response: operatorStatusResponse, error: operatorStatusError },

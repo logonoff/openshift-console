@@ -12,13 +12,16 @@ type TopologySideBarProps = {
 
 const DEFAULT_SIDE_BAR_SIZE = 500;
 
-const TopologySideBar: React.FC<TopologySideBarProps> = ({ children, onClose }) => {
+const TopologySideBar: React.FC<React.PropsWithChildren<TopologySideBarProps>> = ({
+  children,
+  onClose,
+}) => {
   const [sideBarSize, setSideBarSize, sideBarSizeLoaded] = useUserSettings(
     TOPOLOGY_SIDE_BAR_WIDTH_STORAGE_KEY,
     DEFAULT_SIDE_BAR_SIZE,
   );
   const handleResizeCallback = React.useCallback(
-    (_event, width: number) => {
+    (_event: any, width: number) => {
       setSideBarSize(width);
     },
     [setSideBarSize],

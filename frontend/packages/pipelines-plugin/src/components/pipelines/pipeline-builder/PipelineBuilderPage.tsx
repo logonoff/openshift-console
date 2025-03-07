@@ -22,7 +22,9 @@ type PipelineBuilderPageProps = {
   existingPipeline?: PipelineKind;
 };
 
-const PipelineBuilderPage: React.FC<PipelineBuilderPageProps> = (props) => {
+const PipelineBuilderPage: React.FC<React.PropsWithChildren<PipelineBuilderPageProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const { ns } = useParams();
   const { existingPipeline } = props;

@@ -12,9 +12,9 @@ import { OverviewDetailsResourcesTab } from './resource-overview-page';
 import { ResourceOverviewDetails } from './resource-overview-details';
 import { OverviewItem } from '@console/shared';
 
-const StatefulSetOverviewDetails: React.SFC<StatefulSetOverviewDetailsProps> = ({
-  item: { obj: ss },
-}) => (
+const StatefulSetOverviewDetails: React.FC<React.PropsWithChildren<
+  StatefulSetOverviewDetailsProps
+>> = ({ item: { obj: ss } }) => (
   <div className="overview__sidebar-pane-body resource-overview__body">
     <div className="resource-overview__pod-counts">
       <PodRingSet key={ss.metadata.uid} obj={ss} path="/spec/replicas" />
@@ -23,7 +23,7 @@ const StatefulSetOverviewDetails: React.SFC<StatefulSetOverviewDetailsProps> = (
   </div>
 );
 
-export const StatefulSetOverview: React.SFC<StatefulSetOverviewProps> = ({
+export const StatefulSetOverview: React.FC<React.PropsWithChildren<StatefulSetOverviewProps>> = ({
   item,
   customActions,
 }) => {

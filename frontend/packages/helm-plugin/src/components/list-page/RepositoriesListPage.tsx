@@ -18,7 +18,7 @@ type RepositoriesPageProps = {
   };
 };
 
-const RepositoriesPage: React.FC<RepositoriesPageProps> = ({
+const RepositoriesPage: React.FC<React.PropsWithChildren<RepositoriesPageProps>> = ({
   title,
   canCreate = false,
   createButtonText,

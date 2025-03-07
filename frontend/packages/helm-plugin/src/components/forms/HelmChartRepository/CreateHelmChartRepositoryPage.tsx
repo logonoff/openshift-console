@@ -14,7 +14,7 @@ import { kindForReference } from '@console/internal/module/k8s';
 import { useQueryParams } from '@console/shared/src';
 import CreateHelmChartRepository from './CreateHelmChartRepository';
 
-const CreateHelmChartRepositoryPage: React.FC = () => {
+const CreateHelmChartRepositoryPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const params = useParams();
   const queryParams = useQueryParams();

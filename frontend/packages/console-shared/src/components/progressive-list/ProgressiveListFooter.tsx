@@ -8,7 +8,7 @@ export interface ProgressiveListFooterProps {
   Footer: (children) => React.ReactElement;
 }
 
-const ProgressiveListFooter: React.FC<ProgressiveListFooterProps> = ({
+const ProgressiveListFooter: React.FC<React.PropsWithChildren<ProgressiveListFooterProps>> = ({
   items,
   onShowItem,
   Footer,

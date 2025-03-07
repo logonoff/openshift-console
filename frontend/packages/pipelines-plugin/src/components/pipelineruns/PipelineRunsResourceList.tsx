@@ -14,10 +14,10 @@ interface PipelineRunsResourceListProps {
   canCreate?: boolean;
 }
 
-const PipelineRunsResourceList: React.FC<
+const PipelineRunsResourceList: React.FC<React.PropsWithChildren<
   Omit<React.ComponentProps<typeof ListPage>, 'kind' | 'ListComponent' | 'rowFilters'> &
     PipelineRunsResourceListProps
-> = (props) => {
+>> = (props) => {
   const { t } = useTranslation();
   const params = useParams();
   const ns = props.namespace || params?.ns;

@@ -9,7 +9,7 @@ import CreateProjectListPage, { CreateAProjectButton } from '../projects/CreateP
 import AddPageLayout from './AddPageLayout';
 
 // Exported for testing
-export const PageContents: React.FC = () => {
+export const PageContents: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const isOpenShift = useFlag(FLAGS.OPENSHIFT);
@@ -39,7 +39,7 @@ export const PageContents: React.FC = () => {
 
 const PageContentsWithStartGuide = withStartGuide(PageContents);
 
-const AddPage: React.FC = () => {
+const AddPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace } = useParams();
   const nsVariant = namespace ? null : NamespacedPageVariants.light;

@@ -7,7 +7,9 @@ export interface PipelineRunDetailsProps {
   obj: PipelineRunKind;
 }
 
-export const PipelineRunDetails: React.FC<PipelineRunDetailsProps> = ({ obj: pipelineRun }) => {
+export const PipelineRunDetails: React.FC<React.PropsWithChildren<PipelineRunDetailsProps>> = ({
+  obj: pipelineRun,
+}) => {
   return (
     <div className="co-m-pane__body odc-pipeline-run-details">
       <PipelineRunDetailsSection pipelineRun={pipelineRun} />

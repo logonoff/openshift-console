@@ -12,7 +12,7 @@ interface NumberSpinnerFieldProps extends FieldProps {
   setOutputAsIntegerFlag?: boolean;
 }
 
-const NumberSpinnerField: React.FC<NumberSpinnerFieldProps> = ({
+const NumberSpinnerField: React.FC<React.PropsWithChildren<NumberSpinnerFieldProps>> = ({
   label,
   helpText,
   required,

@@ -13,11 +13,9 @@ export interface VolumeClaimTemplatesSectionProps {
   ownerResourceKind?: string;
 }
 
-const VolumeClaimTemplatesSection: React.FC<VolumeClaimTemplatesSectionProps> = ({
-  namespace,
-  ownerResourceName,
-  ownerResourceKind = PipelineRunModel.kind,
-}) => {
+const VolumeClaimTemplatesSection: React.FC<React.PropsWithChildren<
+  VolumeClaimTemplatesSectionProps
+>> = ({ namespace, ownerResourceName, ownerResourceKind = PipelineRunModel.kind }) => {
   const [pvcResources, loaded, loadError] = useK8sWatchResource<PersistentVolumeClaimKind[]>({
     kind: PersistentVolumeClaimModel.kind,
     isList: true,

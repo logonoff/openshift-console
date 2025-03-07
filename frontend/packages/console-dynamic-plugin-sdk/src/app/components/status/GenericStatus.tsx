@@ -4,7 +4,7 @@ import PopoverStatus from './PopoverStatus';
 import StatusIconAndText from './StatusIconAndText';
 
 type GenericStatusProps = StatusComponentProps & {
-  Icon: React.ComponentType<{ title?: string }>;
+  Icon: React.ComponentType<React.PropsWithChildren<{ title?: string }>>;
   popoverTitle?: string;
   noTooltip?: boolean;
 };
@@ -23,7 +23,7 @@ type GenericStatusProps = StatusComponentProps & {
  * <GenericStatus Icon={CircleIcon} />
  * ```
  */
-const GenericStatus: React.FC<GenericStatusProps> = (props) => {
+const GenericStatus: React.FC<React.PropsWithChildren<GenericStatusProps>> = (props) => {
   const { Icon, children, popoverTitle, title, noTooltip, iconOnly, ...restProps } = props;
   const renderIcon = iconOnly && !noTooltip ? <Icon title={title} /> : <Icon />;
   const statusBody = (

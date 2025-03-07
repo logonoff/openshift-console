@@ -28,7 +28,7 @@ const statusColor = {
   success: ChartThemeColor.green,
 };
 
-const PipelineSuccessRatioDonut: React.FC<PipelineMetricsGraphProps> = ({
+const PipelineSuccessRatioDonut: React.FC<React.PropsWithChildren<PipelineMetricsGraphProps>> = ({
   pipeline,
   timespan,
   interval,

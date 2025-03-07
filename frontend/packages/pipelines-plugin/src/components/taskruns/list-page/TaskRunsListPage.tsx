@@ -24,13 +24,13 @@ interface TaskRunsListPageProps {
   showPipelineColumn?: boolean;
 }
 
-const TaskRunsListPage: React.FC<
+const TaskRunsListPage: React.FC<React.PropsWithChildren<
   Omit<
     React.ComponentProps<typeof ListPage>,
     'canCreate' | 'kind' | 'ListComponent' | 'rowFilters'
   > &
     TaskRunsListPageProps
-> = ({ hideBadge, showPipelineColumn = true, namespace, ...props }) => {
+>> = ({ hideBadge, showPipelineColumn = true, namespace, ...props }) => {
   const { t } = useTranslation();
   const params = useParams();
   const searchParams = getURLSearchParams();

@@ -20,7 +20,7 @@ type ModalStructureCombinedProps = FormikProps<FormikValues> &
   ModalComponentProps &
   ModalStructureProps;
 
-const ModalStructure: React.FC<ModalStructureCombinedProps> = (props) => {
+const ModalStructure: React.FC<React.PropsWithChildren<ModalStructureCombinedProps>> = (props) => {
   const {
     children,
     close,

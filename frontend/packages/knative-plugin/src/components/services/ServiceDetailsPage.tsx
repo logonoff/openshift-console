@@ -35,7 +35,7 @@ type FunctionsPodsProps = {
   obj: K8sResourceKind;
 };
 
-const ServiceDetails: React.FC<{ obj: ServiceKind }> = ({ obj }) => {
+const ServiceDetails: React.FC<React.PropsWithChildren<{ obj: ServiceKind }>> = ({ obj }) => {
   const { t } = useTranslation();
   const [revisions, revisionLoaded, revisionErrorLoad] = useK8sWatchResource<RevisionKind[]>({
     kind: referenceForModel(RevisionModel),
@@ -95,7 +95,7 @@ const ServiceDetails: React.FC<{ obj: ServiceKind }> = ({ obj }) => {
   );
 };
 
-const FunctionsPods: React.FC<FunctionsPodsProps> = ({ obj }) => (
+const FunctionsPods: React.FC<React.PropsWithChildren<FunctionsPodsProps>> = ({ obj }) => (
   <PodsPage
     showTitle={false}
     selector={{ matchLabels: { 'serving.knative.dev/service': obj.metadata.name } }}
@@ -105,7 +105,9 @@ const FunctionsPods: React.FC<FunctionsPodsProps> = ({ obj }) => (
   />
 );
 
-const ServiceDetailsPage: React.FC<React.ComponentProps<typeof DetailsPage>> = (props) => {
+const ServiceDetailsPage: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof DetailsPage>
+>> = (props) => {
   const { t } = useTranslation();
   const serviceTypeValue = React.useContext(KnativeServiceTypeContext);
   const { kindObj } = props;

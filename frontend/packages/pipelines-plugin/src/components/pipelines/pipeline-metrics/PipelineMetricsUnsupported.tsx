@@ -16,10 +16,9 @@ type PipelineMetricsUnsupportedProps = {
   metricsLevel: string;
 };
 
-const PipelineMetricsUnsupported: React.FC<PipelineMetricsUnsupportedProps> = ({
-  updatePermission,
-  metricsLevel,
-}) => {
+const PipelineMetricsUnsupported: React.FC<React.PropsWithChildren<
+  PipelineMetricsUnsupportedProps
+>> = ({ updatePermission, metricsLevel }) => {
   const { t } = useTranslation();
   return (
     <>

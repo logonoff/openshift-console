@@ -11,7 +11,10 @@ type GroupMenuContentProps = {
   onClick: () => void;
 };
 
-const GroupMenuContent: React.FC<GroupMenuContentProps> = ({ option, onClick }) => (
+const GroupMenuContent: React.FC<React.PropsWithChildren<GroupMenuContentProps>> = ({
+  option,
+  onClick,
+}) => (
   <>
     <Divider />
     <MenuGroup label={option.label}>
@@ -27,7 +30,10 @@ const GroupMenuContent: React.FC<GroupMenuContentProps> = ({ option, onClick }) 
 );
 
 // Need to keep this in the same file to avoid circular dependency.
-const SubMenuContent: React.FC<GroupMenuContentProps> = ({ option, onClick }) => (
+const SubMenuContent: React.FC<React.PropsWithChildren<GroupMenuContentProps>> = ({
+  option,
+  onClick,
+}) => (
   <MenuItem
     data-test-action={option.id}
     flyoutMenu={
@@ -54,7 +60,11 @@ type ActionMenuContentProps = {
   focusItem?: MenuOption;
 };
 
-const ActionMenuContent: React.FC<ActionMenuContentProps> = ({ options, onClick, focusItem }) => {
+const ActionMenuContent: React.FC<React.PropsWithChildren<ActionMenuContentProps>> = ({
+  options,
+  onClick,
+  focusItem,
+}) => {
   const sortedOptions = orderExtensionBasedOnInsertBeforeAndAfter(options);
   return (
     <>

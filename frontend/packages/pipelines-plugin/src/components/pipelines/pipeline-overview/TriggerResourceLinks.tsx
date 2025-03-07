@@ -10,7 +10,7 @@ type TriggerResourceLinksProps = {
   model: K8sKind;
   links: RouteTemplate[];
 };
-const TriggerResourceLinks: React.FC<TriggerResourceLinksProps> = ({
+const TriggerResourceLinks: React.FC<React.PropsWithChildren<TriggerResourceLinksProps>> = ({
   links = [],
   namespace,
   model,

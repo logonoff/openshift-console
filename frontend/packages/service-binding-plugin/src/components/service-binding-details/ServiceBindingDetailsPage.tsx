@@ -11,7 +11,7 @@ import { getComputedServiceBindingStatus } from '../../utils';
 import { ServiceBindingDeprecationAlert } from '../service-binding-utils/ServiceBindingAlerts';
 import ServiceBindingDetailsTab from './ServiceBindingDetailsTab';
 
-const ServiceBindingDetailsPage: React.FC<DetailsPageProps> = (props) => {
+const ServiceBindingDetailsPage: React.FC<React.PropsWithChildren<DetailsPageProps>> = (props) => {
   const customActionMenu = (_, serviceBinding) => {
     const kindReference = referenceFor(serviceBinding);
     const context = { [kindReference]: serviceBinding };

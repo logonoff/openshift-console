@@ -105,7 +105,7 @@ export const podCompare = (pod1: PodKind, pod2: PodKind): number => {
   return pod1.metadata.name.localeCompare(pod2.metadata.name);
 };
 
-const PodOverviewItem: React.FC<PodOverviewItemProps> = ({ pod }) => {
+const PodOverviewItem: React.FC<React.PropsWithChildren<PodOverviewItemProps>> = ({ pod }) => {
   const {
     metadata: { name, namespace },
   } = pod;
@@ -136,7 +136,7 @@ type PodOverviewItemProps = {
   pod: PodKind;
 };
 
-const PodsOverviewList: React.FC<PodOverviewListProps> = ({ pods }) => (
+const PodsOverviewList: React.FC<React.PropsWithChildren<PodOverviewListProps>> = ({ pods }) => (
   <ul className="list-group">
     {_.map(pods, (pod) => (
       <PodOverviewItem key={pod.metadata.uid} pod={pod} />
@@ -203,7 +203,7 @@ const buildRunIsComplete = (buildRun: K8sResourceKind) => {
   );
 };
 
-export const PodsOverviewContent: React.FC<PodsOverviewContentProps> = ({
+export const PodsOverviewContent: React.FC<React.PropsWithChildren<PodsOverviewContentProps>> = ({
   obj,
   pods,
   loaded,
@@ -283,7 +283,7 @@ export const PodsOverviewContent: React.FC<PodsOverviewContentProps> = ({
 };
 PodsOverviewContent.displayName = 'PodsOverviewContent';
 
-export const PodsOverview: React.FC<PodsOverviewProps> = ({
+export const PodsOverview: React.FC<React.PropsWithChildren<PodsOverviewProps>> = ({
   obj,
   podsFilter,
   hideIfEmpty = false,
@@ -314,7 +314,7 @@ export const PodsOverview: React.FC<PodsOverviewProps> = ({
   );
 };
 
-export const PodsOverviewMultiple: React.FC<PodsOverviewMultipleProps> = ({
+export const PodsOverviewMultiple: React.FC<React.PropsWithChildren<PodsOverviewMultipleProps>> = ({
   obj,
   podResources,
   podsFilter,

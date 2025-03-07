@@ -17,7 +17,9 @@ type CreateAProjectButtonProps = {
   openProjectModal: () => void;
 };
 
-export const CreateAProjectButton: React.FC<CreateAProjectButtonProps> = ({ openProjectModal }) => {
+export const CreateAProjectButton: React.FC<React.PropsWithChildren<CreateAProjectButtonProps>> = ({
+  openProjectModal,
+}) => {
   const { t } = useTranslation();
   const canCreateNs = useFlag(FLAGS.CAN_CREATE_NS);
   const canCreateProject = useFlag(FLAGS.CAN_CREATE_PROJECT);
@@ -48,7 +50,7 @@ export const CreateAProjectButton: React.FC<CreateAProjectButtonProps> = ({ open
   return null;
 };
 
-const CreateProjectListPage: React.FC<CreateProjectListPageProps> = ({
+const CreateProjectListPage: React.FC<React.PropsWithChildren<CreateProjectListPageProps>> = ({
   onCreate,
   title,
   children,

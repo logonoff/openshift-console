@@ -15,7 +15,9 @@ const workloadResourceModels = [DeploymentModel, DeploymentConfigModel, Stateful
 const getContainers = (workload: K8sResourceKind) =>
   _.get(workload, 'spec.template.spec.containers') || [];
 
-export const AddSecretToWorkloadModal: React.FC<AddSecretToWorkloadModalProps> = (props) => {
+export const AddSecretToWorkloadModal: React.FC<React.PropsWithChildren<
+  AddSecretToWorkloadModalProps
+>> = (props) => {
   const { namespace, secretName } = props;
   const { t } = useTranslation();
   const navigate = useNavigate();

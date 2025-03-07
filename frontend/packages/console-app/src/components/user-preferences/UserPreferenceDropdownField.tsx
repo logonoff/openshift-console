@@ -16,13 +16,9 @@ import './UserPreferenceField.scss';
 
 type UserPreferenceDropdownFieldProps = UserPreferenceFieldProps<DropdownFieldType>;
 
-const UserPreferenceDropdownField: React.FC<UserPreferenceDropdownFieldProps> = ({
-  id,
-  userSettingsKey,
-  defaultValue,
-  options,
-  description,
-}) => {
+const UserPreferenceDropdownField: React.FC<React.PropsWithChildren<
+  UserPreferenceDropdownFieldProps
+>> = ({ id, userSettingsKey, defaultValue, options, description }) => {
   // resources and calls to hooks
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();

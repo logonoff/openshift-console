@@ -59,7 +59,7 @@ type BareMetalHostDetailsProps = {
   nodeMaintenances: K8sResourceKind[];
 };
 
-const BareMetalHostDetails: React.FC<BareMetalHostDetailsProps> = ({
+const BareMetalHostDetails: React.FC<React.PropsWithChildren<BareMetalHostDetailsProps>> = ({
   obj: host,
   machines,
   nodes,

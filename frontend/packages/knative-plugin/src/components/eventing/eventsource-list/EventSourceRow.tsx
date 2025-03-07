@@ -8,7 +8,9 @@ import { EventSourceKind, EventSourceConditionTypes } from '../../../types';
 import { getCondition, getConditionString } from '../../../utils/condition-utils';
 import { getDynamicEventSourceModel } from '../../../utils/fetch-dynamic-eventsources-utils';
 
-const EventSourceRow: React.FC<RowFunctionArgs<EventSourceKind>> = ({ obj }) => {
+const EventSourceRow: React.FC<React.PropsWithChildren<RowFunctionArgs<EventSourceKind>>> = ({
+  obj,
+}) => {
   const {
     metadata: { name, namespace, creationTimestamp, uid },
   } = obj;

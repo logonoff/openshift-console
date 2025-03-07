@@ -28,7 +28,7 @@ type FilterKeys = {
 
 const columnReducer = (s: GitOpsHistoryData): string => s?.environment;
 
-const GitOpsDeploymentHistory: React.FC<GitOpsDeploymentHistoryProps> = ({
+const GitOpsDeploymentHistory: React.FC<React.PropsWithChildren<GitOpsDeploymentHistoryProps>> = ({
   customData: { emptyStateMsg, envs, applicationBaseURI },
 }) => {
   const { t } = useTranslation();

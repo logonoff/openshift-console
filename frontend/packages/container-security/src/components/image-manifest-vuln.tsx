@@ -53,7 +53,9 @@ export const affectedPodsCount = (obj: ImageManifestVuln) =>
 export const highestSeverityIndex = (obj: ImageManifestVuln) =>
   priorityFor(obj.status?.highestSeverity).index;
 
-export const ImageManifestVulnDetails: React.FC<ImageManifestVulnDetailsProps> = (props) => {
+export const ImageManifestVulnDetails: React.FC<React.PropsWithChildren<
+  ImageManifestVulnDetailsProps
+>> = (props) => {
   const { t } = useTranslation();
   const queryURL = quayURLFor(props.obj);
   return (
@@ -95,7 +97,7 @@ export const ImageManifestVulnDetails: React.FC<ImageManifestVulnDetailsProps> =
   );
 };
 
-export const AffectedPods: React.FC<AffectedPodsProps> = (props) => {
+export const AffectedPods: React.FC<React.PropsWithChildren<AffectedPodsProps>> = (props) => {
   const affectedPodsFor = (pods: PodKind[]) =>
     pods.filter((p) =>
       _.keys(props.obj.status?.affectedPods ?? {}).includes(
@@ -116,7 +118,7 @@ export const AffectedPods: React.FC<AffectedPodsProps> = (props) => {
   );
 };
 
-export const ImageManifestVulnDetailsPage: React.FC = () => {
+export const ImageManifestVulnDetailsPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const params = useParams();
   return (
     <DetailsPage
@@ -154,9 +156,9 @@ const tableColumnClasses = [
   classNames('pf-m-hidden', 'pf-m-visible-on-xl'),
 ];
 
-export const ImageManifestVulnTableRow: React.FC<RowFunctionArgs<ImageManifestVuln>> = ({
-  obj,
-}) => {
+export const ImageManifestVulnTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<ImageManifestVuln>
+>> = ({ obj }) => {
   const { name, namespace } = obj.metadata;
   const queryURL = quayURLFor(obj);
   return (
@@ -242,7 +244,9 @@ export const ImageManifestVulnTableHeader = (t: TFunction) => () => [
   },
 ];
 
-export const ImageManifestVulnList: React.FC<ImageManifestVulnListProps> = (props) => {
+export const ImageManifestVulnList: React.FC<React.PropsWithChildren<
+  ImageManifestVulnListProps
+>> = (props) => {
   const { t } = useTranslation();
   const EmptyMsg = () => (
     <EmptyState
@@ -274,7 +278,9 @@ export const ImageManifestVulnList: React.FC<ImageManifestVulnListProps> = (prop
   );
 };
 
-export const ImageManifestVulnPage: React.FC<ImageManifestVulnPageProps> = (props) => {
+export const ImageManifestVulnPage: React.FC<React.PropsWithChildren<
+  ImageManifestVulnPageProps
+>> = (props) => {
   const { t } = useTranslation();
   const params = useParams();
   const { showTitle = true, hideNameLabelFilters = true } = props;
@@ -303,13 +309,15 @@ export const ImageManifestVulnPage: React.FC<ImageManifestVulnPageProps> = (prop
   );
 };
 
-export const ProjectImageManifestVulnListPage: React.FC<ImageManifestVulnPageProps> = (props) => (
-  <ImageManifestVulnPage {...props} showTitle={false} hideNameLabelFilters={false} />
-);
+export const ProjectImageManifestVulnListPage: React.FC<React.PropsWithChildren<
+  ImageManifestVulnPageProps
+>> = (props) => <ImageManifestVulnPage {...props} showTitle={false} hideNameLabelFilters={false} />;
 
 const podKey = (pod: PodKind) => [pod.metadata.namespace, pod.metadata.name].join('/');
 
-export const ContainerVulnerabilities: React.FC<ContainerVulnerabilitiesProps> = (props) => {
+export const ContainerVulnerabilities: React.FC<React.PropsWithChildren<
+  ContainerVulnerabilitiesProps
+>> = (props) => {
   const { t } = useTranslation();
   const vulnFor = (containerStatus: ContainerStatus) =>
     _.get(props.imageManifestVuln, 'data', []).find(
@@ -389,7 +397,9 @@ export const ContainerVulnerabilities: React.FC<ContainerVulnerabilitiesProps> =
   );
 };
 
-export const ImageManifestVulnPodTab: React.FC<ImageManifestVulnPodTabProps> = (props) => {
+export const ImageManifestVulnPodTab: React.FC<React.PropsWithChildren<
+  ImageManifestVulnPodTabProps
+>> = (props) => {
   const params = useParams();
   return (
     <Firehose

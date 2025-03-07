@@ -20,7 +20,11 @@ const SMTP_GLOBAL_FIELDS = [
 ];
 const GLOBAL_FIELDS = [...SMTP_GLOBAL_FIELDS, 'email_send_resolved', 'email_html'];
 
-export const Form: React.FC<FormProps> = ({ globals, formValues, dispatchFormChange }) => {
+export const Form: React.FC<React.PropsWithChildren<FormProps>> = ({
+  globals,
+  formValues,
+  dispatchFormChange,
+}) => {
   // disable saveAsDefault if all SMTP form fields match global values
   const disableSaveAsDefault = SMTP_GLOBAL_FIELDS.every(
     (propName) => formValues[propName] === globals[propName],

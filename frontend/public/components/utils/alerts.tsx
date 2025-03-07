@@ -3,7 +3,10 @@ import * as _ from 'lodash-es';
 import { Alert, AlertVariant, Button, List, ListItem } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
 
-export const ExpandableAlert: React.FC<CustomAlertProps> = ({ alerts, variant }) => {
+export const ExpandableAlert: React.FC<React.PropsWithChildren<CustomAlertProps>> = ({
+  alerts,
+  variant,
+}) => {
   const alertCount = alerts.length;
   const [expanded, setExpanded] = React.useState(false);
   const alertContent =

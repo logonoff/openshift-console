@@ -27,9 +27,9 @@ export interface EditApplicationFormProps {
   appResources: AppResources;
 }
 
-const EditApplicationForm: React.FC<
+const EditApplicationForm: React.FC<React.PropsWithChildren<
   FormikProps<FormikValues & GitImportFormData> & EditApplicationFormProps
-> = ({
+>> = ({
   handleSubmit,
   handleReset,
   values,

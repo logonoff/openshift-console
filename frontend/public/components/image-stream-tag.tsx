@@ -120,10 +120,9 @@ export const SupportedPlatformsTable = (props) => {
 
 SupportedPlatformsTable.displayName = 'SupportedPlatformsTable';
 
-export const ImageStreamTagsDetails: React.SFC<ImageStreamTagsDetailsProps> = ({
-  obj: imageStreamTag,
-  imageStream,
-}) => {
+export const ImageStreamTagsDetails: React.FC<React.PropsWithChildren<
+  ImageStreamTagsDetailsProps
+>> = ({ obj: imageStreamTag, imageStream }) => {
   const config = _.get(imageStreamTag, 'image.dockerImageMetadata.Config', {});
   const labels = config.Labels || {};
   // Convert to an array of objects with name and value properties, then sort the array for display.
@@ -253,7 +252,7 @@ const getImageStreamNameAndTag = (imageStreamTag: K8sResourceKind) => {
   return { imageStreamName, tag };
 };
 
-const ImageStreamTagHistory: React.FC<ImageStreamTagHistoryProps> = ({
+const ImageStreamTagHistory: React.FC<React.PropsWithChildren<ImageStreamTagHistoryProps>> = ({
   obj: imageStreamTag,
   imageStream,
 }) => {
@@ -274,7 +273,9 @@ const pages = [
   navFactory.editYaml(),
   navFactory.history(ImageStreamTagHistory),
 ];
-export const ImageStreamTagsDetailsPage: React.SFC<ImageStreamTagsDetailsPageProps> = (props) => {
+export const ImageStreamTagsDetailsPage: React.FC<React.PropsWithChildren<
+  ImageStreamTagsDetailsPageProps
+>> = (props) => {
   const { t } = useTranslation();
   const params = useParams();
   const location = useLocation();

@@ -60,7 +60,7 @@ const useSize = <T extends HTMLElement>(): [number, (element: T) => void] => {
 const getPageY = (e: DraggableEvent): number =>
   (e as MouseEvent).pageY ?? (e as TouchEvent).touches?.[0]?.pageY;
 
-const Drawer: React.FC<DrawerProps> = ({
+const Drawer: React.FC<React.PropsWithChildren<DrawerProps>> = ({
   children,
   defaultHeight = 300,
   height,

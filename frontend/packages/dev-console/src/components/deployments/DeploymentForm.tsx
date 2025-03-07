@@ -21,13 +21,13 @@ import { Resources } from '../import/import-types';
 import DeploymentFormEditor from './DeploymentFormEditor';
 import { convertDeploymentToEditForm, convertEditFormToDeployment } from './utils/deployment-utils';
 
-const EditDeploymentForm: React.FC<
+const EditDeploymentForm: React.FC<React.PropsWithChildren<
   FormikProps<FormikValues> & {
     heading: string;
     resource: K8sResourceKind;
     handleCancel: () => void;
   }
-> = ({
+>> = ({
   heading,
   resource,
   status,

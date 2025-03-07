@@ -60,7 +60,7 @@ export const useMultipleAccessReviews = (
   return [allowedArr, loading];
 };
 
-const RequireCreatePermission_: React.FC<RequireCreatePermissionProps> = ({
+const RequireCreatePermission_: React.FC<React.PropsWithChildren<RequireCreatePermissionProps>> = ({
   model,
   namespace,
   impersonate,

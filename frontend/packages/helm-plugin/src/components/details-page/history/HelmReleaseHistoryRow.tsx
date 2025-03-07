@@ -50,13 +50,18 @@ const confirmModalRollbackHelmRelease = (
   };
 };
 
-const HelmReleaseHistoryKebab: React.FC<HelmReleaseHistoryKebabProps> = ({ obj }) => {
+const HelmReleaseHistoryKebab: React.FC<React.PropsWithChildren<HelmReleaseHistoryKebabProps>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   const menuActions = [confirmModalRollbackHelmRelease(obj.name, obj.namespace, obj.version, t)];
   return <ActionMenu actions={menuActions} className="helm-release-history-action-menu" />;
 };
 
-const HelmReleaseHistoryRow: React.FC<RowFunctionArgs> = ({ obj, customData }) => (
+const HelmReleaseHistoryRow: React.FC<React.PropsWithChildren<RowFunctionArgs>> = ({
+  obj,
+  customData,
+}) => (
   <>
     <TableData className={tableColumnClasses.revision}>{obj.version}</TableData>
     <TableData className={tableColumnClasses.updated}>

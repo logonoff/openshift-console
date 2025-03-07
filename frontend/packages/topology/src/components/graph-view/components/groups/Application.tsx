@@ -33,7 +33,7 @@ type ApplicationProps = {
   WithDragNodeProps &
   WithContextMenuProps;
 
-const Application: React.FC<ApplicationProps> = ({
+const Application: React.FC<React.PropsWithChildren<ApplicationProps>> = ({
   element,
   dragNodeRef,
   canDrop,

@@ -80,7 +80,7 @@ export interface GitSectionProps {
   autoFocus?: boolean;
 }
 
-const GitSection: React.FC<GitSectionProps> = ({
+const GitSection: React.FC<React.PropsWithChildren<GitSectionProps>> = ({
   title,
   formContextField,
   builderImages,

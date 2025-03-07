@@ -2,7 +2,11 @@ import * as React from 'react';
 import { Title } from '@patternfly/react-core';
 import * as classNames from 'classnames';
 
-const SecondaryHeading: React.FC<SecondaryHeadingProps> = ({ children, className, ...props }) => (
+const SecondaryHeading: React.FC<React.PropsWithChildren<SecondaryHeadingProps>> = ({
+  children,
+  className,
+  ...props
+}) => (
   <Title headingLevel="h2" className={classNames('co-section-heading', className)} {...props}>
     {children}
   </Title>

@@ -33,7 +33,7 @@ import { NodeDashboardContext } from './NodeDashboardContext';
 
 import './node-health.scss';
 
-export const HealthChecksPopup: React.FC<HealthChecksPopupProps> = ({
+export const HealthChecksPopup: React.FC<React.PropsWithChildren<HealthChecksPopupProps>> = ({
   conditions = [],
   machineHealthChecks,
   disabledAlert,
@@ -239,7 +239,9 @@ type HealthChecksItemProps = {
   };
 };
 
-export const HealthChecksItem: React.FC<HealthChecksItemProps> = ({ disabledAlert }) => {
+export const HealthChecksItem: React.FC<React.PropsWithChildren<HealthChecksItemProps>> = ({
+  disabledAlert,
+}) => {
   const { obj, setHealthCheck } = React.useContext(NodeDashboardContext);
   const [name, namespace] = getNodeMachineNameAndNamespace(obj);
   const { t } = useTranslation();
@@ -291,7 +293,7 @@ export const HealthChecksItem: React.FC<HealthChecksItemProps> = ({ disabledAler
   );
 };
 
-const NodeHealth: React.FC = () => {
+const NodeHealth: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { obj } = React.useContext(NodeDashboardContext);
   return (
     <HealthBody>

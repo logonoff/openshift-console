@@ -26,7 +26,7 @@ export type EventSourceProps = {
   WithContextMenuProps &
   WithCreateConnectorProps;
 
-const EventSource: React.FC<EventSourceProps> = ({
+const EventSource: React.FC<React.PropsWithChildren<EventSourceProps>> = ({
   element,
   onShowCreateConnector,
   children,

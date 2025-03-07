@@ -17,7 +17,9 @@ interface SourceSecretDropdownProps {
   title?: React.ReactNode;
 }
 
-const SourceSecretDropdown: React.FC<SourceSecretDropdownProps> = (props) => {
+const SourceSecretDropdown: React.FC<React.PropsWithChildren<SourceSecretDropdownProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const filterData = (item) => {
     return item.type === 'kubernetes.io/basic-auth' || item.type === 'kubernetes.io/ssh-auth';

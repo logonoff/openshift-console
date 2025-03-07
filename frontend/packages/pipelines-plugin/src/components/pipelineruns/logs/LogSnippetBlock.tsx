@@ -8,7 +8,11 @@ type LogSnippetBlockProps = {
   namespace: string;
 };
 
-const LogSnippetBlock: React.FC<LogSnippetBlockProps> = ({ children, logDetails, namespace }) => {
+const LogSnippetBlock: React.FC<React.PropsWithChildren<LogSnippetBlockProps>> = ({
+  children,
+  logDetails,
+  namespace,
+}) => {
   return 'podName' in logDetails ? (
     <LogSnippetFromPod
       containerName={logDetails.containerName}

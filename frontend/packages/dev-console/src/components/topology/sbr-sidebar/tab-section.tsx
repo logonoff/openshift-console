@@ -9,7 +9,9 @@ import TopologyEdgeResourcesPanel from '@console/topology/src/components/side-ba
 import { TYPE_SERVICE_BINDING } from '@console/topology/src/const';
 import { getResource } from '@console/topology/src/utils';
 
-const DetailsSection: React.FC<{ resource: ServiceBinding }> = ({ resource }) => {
+const DetailsSection: React.FC<React.PropsWithChildren<{ resource: ServiceBinding }>> = ({
+  resource,
+}) => {
   const { t } = useTranslation();
   return (
     <div className="overview__sidebar-pane-body">

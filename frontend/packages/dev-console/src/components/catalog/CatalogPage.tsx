@@ -13,7 +13,7 @@ import {
 import NamespacedPage, { NamespacedPageVariants } from '../NamespacedPage';
 import CreateProjectListPage, { CreateAProjectButton } from '../projects/CreateProjectListPage';
 
-const CatalogPage: React.FC = () => {
+const CatalogPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const queryParams = useQueryParams();
   const catalogType = queryParams.get(CatalogQueryParams.TYPE);

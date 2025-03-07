@@ -8,7 +8,12 @@ import { RedExclamationCircleIcon } from '../status';
 import { DropdownFieldProps } from './field-types';
 import { getFieldId } from './field-utils';
 
-const DropdownField: React.FC<DropdownFieldProps> = ({ label, helpText, required, ...props }) => {
+const DropdownField: React.FC<React.PropsWithChildren<DropdownFieldProps>> = ({
+  label,
+  helpText,
+  required,
+  ...props
+}) => {
   const [field, { touched, error }] = useField(props.name);
   const { setFieldValue, setFieldTouched } = useFormikContext<FormikValues>();
   const fieldId = getFieldId(props.name, 'dropdown');

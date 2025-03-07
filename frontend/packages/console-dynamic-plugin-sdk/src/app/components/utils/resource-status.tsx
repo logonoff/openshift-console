@@ -23,7 +23,7 @@ type ResourceStatusProps = {
  * )
  * ```
  */
-const ResourceStatus: React.FC<ResourceStatusProps> = ({
+const ResourceStatus: React.FC<React.PropsWithChildren<ResourceStatusProps>> = ({
   additionalClassNames,
   badgeAlt,
   children,

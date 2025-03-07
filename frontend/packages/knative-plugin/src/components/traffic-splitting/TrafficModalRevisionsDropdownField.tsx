@@ -9,11 +9,9 @@ type TrafficModalRevisionsDropdownFieldProps = {
   title: string;
 };
 
-const TrafficModalRevisionsDropdownField: React.FC<TrafficModalRevisionsDropdownFieldProps> = ({
-  revisionItems,
-  name,
-  title,
-}) => {
+const TrafficModalRevisionsDropdownField: React.FC<React.PropsWithChildren<
+  TrafficModalRevisionsDropdownFieldProps
+>> = ({ revisionItems, name, title }) => {
   const [field] = useField(name);
   const dropdownItems =
     !field.value || Object.values(revisionItems).includes(field.value)

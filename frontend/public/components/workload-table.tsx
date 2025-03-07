@@ -25,7 +25,7 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-export const WorkloadTableRow: React.FC<WorkloadTableRowProps> = ({
+export const WorkloadTableRow: React.FC<React.PropsWithChildren<WorkloadTableRowProps>> = ({
   obj,
   kind,
   menuActions,

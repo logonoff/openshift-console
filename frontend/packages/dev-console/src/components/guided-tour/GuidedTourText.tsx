@@ -5,7 +5,7 @@ import * as semver from 'semver';
 import { ExternalLink } from '@console/internal/components/utils';
 import { useOpenShiftVersion } from '@console/shared/src/hooks/version';
 
-const DevPerspectiveTourText: React.FC = () => {
+const DevPerspectiveTourText: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const fullVersion = useOpenShiftVersion();
   const parsed = semver.parse(fullVersion);
@@ -23,7 +23,7 @@ const DevPerspectiveTourText: React.FC = () => {
 
 export const devPerspectiveTourText = <DevPerspectiveTourText />;
 
-const PerspectiveSwitcherTourText: React.FC = () => {
+const PerspectiveSwitcherTourText: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <>
@@ -44,7 +44,7 @@ const PerspectiveSwitcherTourText: React.FC = () => {
 
 export const perspectiveSwitcherTourText = <PerspectiveSwitcherTourText />;
 
-const WebTerminalGuidedTourText: React.FC = () => {
+const WebTerminalGuidedTourText: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <>
@@ -65,7 +65,7 @@ const WebTerminalGuidedTourText: React.FC = () => {
 
 export const webTerminalGuidedTourText = <WebTerminalGuidedTourText />;
 
-export const SearchTourText: React.FC = () => {
+export const SearchTourText: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <>

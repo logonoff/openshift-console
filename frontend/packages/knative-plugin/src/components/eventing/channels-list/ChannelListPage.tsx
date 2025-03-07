@@ -10,7 +10,9 @@ import {
 } from '../../../utils/fetch-dynamic-eventsources-utils';
 import ChannelList from './ChannelList';
 
-const ChannelListPage: React.FC<React.ComponentProps<typeof MultiListPage>> = (props) => {
+const ChannelListPage: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof MultiListPage>
+>> = (props) => {
   const { t } = useTranslation();
   const { loaded: modelsLoaded, eventSourceChannels } = useChannelModels();
   const flatten = (resources) =>

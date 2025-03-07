@@ -46,7 +46,9 @@ const useK8sWatchResourceMock = useK8sWatchResource as jest.Mock;
 const useUserSettingsMock = useUserSettings as jest.Mock;
 const usePreferredCreateEditMethodMock = usePreferredCreateEditMethod as jest.Mock;
 
-const Wrapper: React.FC<{}> = ({ children }) => <Provider store={store}>{children}</Provider>;
+const Wrapper: React.FC<React.PropsWithChildren<{}>> = ({ children }) => (
+  <Provider store={store}>{children}</Provider>
+);
 
 configure({ testIdAttribute: 'data-test' });
 

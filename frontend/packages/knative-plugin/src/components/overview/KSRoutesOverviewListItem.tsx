@@ -10,7 +10,9 @@ type KSRoutesOverviewListItemProps = {
   ksroute: K8sResourceKind;
 };
 
-const KSRoutesOverviewListItem: React.FC<KSRoutesOverviewListItemProps> = ({ ksroute }) => {
+const KSRoutesOverviewListItem: React.FC<React.PropsWithChildren<
+  KSRoutesOverviewListItemProps
+>> = ({ ksroute }) => {
   const { t } = useTranslation();
   const {
     metadata: { name, namespace },

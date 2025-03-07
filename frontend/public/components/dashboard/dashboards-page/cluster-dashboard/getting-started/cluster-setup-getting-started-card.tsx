@@ -13,7 +13,7 @@ import { useIdentityProviderLink } from './cluster-setup-identity-provider-link'
 import { useAlertReceiverLink } from './cluster-setup-alert-receiver-link';
 import { documentationURLs, getDocumentationURL, isManaged } from '../../../../utils';
 
-export const ClusterSetupGettingStartedCard: React.FC = () => {
+export const ClusterSetupGettingStartedCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
 
   const canUpgrade = useCanClusterUpgrade();

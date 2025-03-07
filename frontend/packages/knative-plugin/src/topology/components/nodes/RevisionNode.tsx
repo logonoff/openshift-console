@@ -4,7 +4,9 @@ import { WorkloadPodsNode } from '@console/topology/src/components/graph-view';
 import { getTopologyResourceObject } from '@console/topology/src/utils';
 import { usePodsForRevisions } from '../../../utils/usePodsForRevisions';
 
-const RevisionNode: React.FC<React.ComponentProps<typeof WorkloadPodsNode>> = (props) => {
+const RevisionNode: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof WorkloadPodsNode>
+>> = (props) => {
   const { element } = props;
   const resource = getTopologyResourceObject(element.getData());
   const { loaded, loadError, pods } = usePodsForRevisions(

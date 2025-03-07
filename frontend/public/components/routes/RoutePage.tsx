@@ -25,7 +25,7 @@ type RouteFormValues = {
 
 const defaultRouteYAML = baseTemplates.get(referenceForModel(RouteModel)).get('default');
 
-export const RoutePage: React.FC = () => {
+export const RoutePage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { ns: namespace, name } = useParams();

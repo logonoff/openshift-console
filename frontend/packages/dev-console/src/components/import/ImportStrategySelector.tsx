@@ -19,7 +19,7 @@ import { getFieldId, useFlag, useFormikValidationFix } from '@console/shared/src
 
 import './ImportStrategySelector.scss';
 
-const ImportStrategySelector: React.FC = () => {
+const ImportStrategySelector: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const {
     values: {
@@ -95,7 +95,7 @@ const ImportStrategySelector: React.FC = () => {
   }
 
   const onSelect = React.useCallback(
-    (item) => {
+    (item: any) => {
       setFieldValue('import.selectedStrategy.name', item.name);
       setFieldValue('import.selectedStrategy.type', item.type);
       setFieldValue('import.selectedStrategy.priority', item.priority);

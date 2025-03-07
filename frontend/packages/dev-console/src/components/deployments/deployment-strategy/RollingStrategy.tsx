@@ -6,7 +6,10 @@ import { Resources } from '../../import/import-types';
 import AdvancedStrategyOptions from './advanced-options/AdvancedStrategyOptions';
 import { StrategyFieldProps } from './utils/types';
 
-const RollingStrategy: React.FC<StrategyFieldProps> = ({ resourceType, resourceObj }) => {
+const RollingStrategy: React.FC<React.PropsWithChildren<StrategyFieldProps>> = ({
+  resourceType,
+  resourceObj,
+}) => {
   const { t } = useTranslation();
   const dataAttribute = resourceType === Resources.OpenShift ? 'rollingParams' : 'rollingUpdate';
   return (

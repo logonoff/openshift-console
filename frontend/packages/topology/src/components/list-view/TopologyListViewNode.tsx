@@ -38,7 +38,9 @@ type DispatchProps = {
   onSelectTab?: (name: string) => void;
 };
 
-const TopologyListViewNode: React.FC<TopologyListViewNodeProps & DispatchProps> = ({
+const TopologyListViewNode: React.FC<React.PropsWithChildren<
+  TopologyListViewNodeProps & DispatchProps
+>> = ({
   item,
   selectedIds,
   onSelect,

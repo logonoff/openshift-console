@@ -7,7 +7,9 @@ interface TaskStatusToolTipProps {
   taskStatus: TaskStatus;
 }
 
-const TaskStatusToolTip: React.FC<TaskStatusToolTipProps> = ({ taskStatus }) => {
+const TaskStatusToolTip: React.FC<React.PropsWithChildren<TaskStatusToolTipProps>> = ({
+  taskStatus,
+}) => {
   return (
     <div className="odc-task-status-tooltip">
       {Object.keys(ComputedStatus).map((status) => {

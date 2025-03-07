@@ -24,7 +24,9 @@ const getFilters = (buildRun: BuildRun) => {
   ];
 };
 
-const BuildRunEventsTab: React.FC<BuildRunEventsTabProps> = ({ obj: buildRun }) => {
+const BuildRunEventsTab: React.FC<React.PropsWithChildren<BuildRunEventsTabProps>> = ({
+  obj: buildRun,
+}) => {
   const { ns: namespace } = useParams();
   return <ResourcesEventStream filters={getFilters(buildRun)} namespace={namespace} />;
 };

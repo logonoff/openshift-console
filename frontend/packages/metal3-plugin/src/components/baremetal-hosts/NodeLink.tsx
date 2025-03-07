@@ -8,7 +8,7 @@ type NodeLinkProps = {
   nodeName?: string;
 };
 
-const NodeLink: React.FC<NodeLinkProps> = ({ nodeName }) => {
+const NodeLink: React.FC<React.PropsWithChildren<NodeLinkProps>> = ({ nodeName }) => {
   if (nodeName) {
     return <ResourceLink kind={referenceForModel(NodeModel)} name={nodeName} />;
   }

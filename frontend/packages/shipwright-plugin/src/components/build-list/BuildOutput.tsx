@@ -9,7 +9,7 @@ type BuildOutputProps = {
   buildSpec: BuildSpec;
 };
 
-const BuildOutput: React.FC<BuildOutputProps> = ({ buildSpec }) => {
+const BuildOutput: React.FC<React.PropsWithChildren<BuildOutputProps>> = ({ buildSpec }) => {
   const outputImage = buildSpec?.output?.image;
 
   if (outputImage?.startsWith(BUILD_OUTPUT_IMAGESTREAM_URL)) {

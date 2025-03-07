@@ -12,7 +12,7 @@ export interface PipelineListProps {
   namespace: string;
 }
 
-const PipelineList: React.FC<PipelineListProps> = (props) => {
+const PipelineList: React.FC<React.PropsWithChildren<PipelineListProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <Table

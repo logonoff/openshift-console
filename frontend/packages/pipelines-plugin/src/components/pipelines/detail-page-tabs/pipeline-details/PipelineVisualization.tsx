@@ -14,11 +14,9 @@ interface PipelineTopologyVisualizationProps {
   taskRuns?: TaskRunKind[];
 }
 
-const PipelineVisualization: React.FC<PipelineTopologyVisualizationProps> = ({
-  pipeline,
-  pipelineRun,
-  taskRuns,
-}) => {
+const PipelineVisualization: React.FC<React.PropsWithChildren<
+  PipelineTopologyVisualizationProps
+>> = ({ pipeline, pipelineRun, taskRuns }) => {
   const { t } = useTranslation();
   let content: React.ReactElement;
   const model = getGraphDataModel(pipeline, pipelineRun, taskRuns);

@@ -9,7 +9,9 @@ export interface PipelineRunParametersFormProps {
   obj: K8sResourceKind;
 }
 
-const PipelineRunParametersForm: React.FC<PipelineRunParametersFormProps> = ({ obj }) => {
+const PipelineRunParametersForm: React.FC<React.PropsWithChildren<
+  PipelineRunParametersFormProps
+>> = ({ obj }) => {
   const { t } = useTranslation();
   const initialValues = {
     parameters: _.get(obj.spec, 'params', []),

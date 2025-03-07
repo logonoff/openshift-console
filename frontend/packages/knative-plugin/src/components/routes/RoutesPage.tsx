@@ -4,7 +4,9 @@ import { referenceForModel } from '@console/internal/module/k8s';
 import { RouteModel } from '../../models';
 import RouteList from './RouteList';
 
-const RoutesPage: React.FC<React.ComponentProps<typeof ListPage>> = (props) => {
+const RoutesPage: React.FC<React.PropsWithChildren<React.ComponentProps<typeof ListPage>>> = (
+  props,
+) => {
   const { customData } = props;
   return (
     <ListPage

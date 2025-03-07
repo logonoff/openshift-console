@@ -42,9 +42,9 @@ export const withExtensions = <
   TCombinedProps extends TExtensionProps = TExtensionProps
 >(
   typeGuardMapper: ExtensionTypeGuardMapper<E, TExtensionProps>,
-): ((C: React.ComponentType<TCombinedProps>) => ExtensionHOC<TCombinedProps, TExtensionProps>) => (
-  WrappedComponent,
-) => {
+): ((
+  C: React.ComponentType<React.PropsWithChildren<TCombinedProps>>,
+) => ExtensionHOC<TCombinedProps, TExtensionProps>) => (WrappedComponent) => {
   const typeGuards = Object.values(typeGuardMapper);
 
   if (typeGuards.length === 0) {
@@ -78,9 +78,9 @@ export const withExtensions = <
 };
 
 type ExtensionHOC<TCombinedProps, TExtensionProps> = React.ComponentType<
-  Omit<TCombinedProps, keyof TExtensionProps>
+  React.PropsWithChildren<Omit<TCombinedProps, keyof TExtensionProps>>
 > & {
-  WrappedComponent: React.ComponentType<TCombinedProps>;
+  WrappedComponent: React.ComponentType<React.PropsWithChildren<TCombinedProps>>;
 };
 
 type ExtensionProps<E extends Extension> = {

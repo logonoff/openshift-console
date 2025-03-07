@@ -19,10 +19,9 @@ interface PipelineMetricsTimeRangeDropdownProps {
   setTimespan: (t: number) => void;
 }
 
-const PipelineMetricsTimeRangeDropdown: React.FC<PipelineMetricsTimeRangeDropdownProps> = ({
-  timespan,
-  setTimespan,
-}) => {
+const PipelineMetricsTimeRangeDropdown: React.FC<React.PropsWithChildren<
+  PipelineMetricsTimeRangeDropdownProps
+>> = ({ timespan, setTimespan }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleIsOpen = React.useCallback(() => setIsOpen((v) => !v), []);
   const setClosed = React.useCallback(() => setIsOpen(false), []);

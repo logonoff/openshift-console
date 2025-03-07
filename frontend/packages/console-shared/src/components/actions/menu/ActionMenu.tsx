@@ -16,7 +16,7 @@ type ActionMenuProps = {
   className?: string;
 };
 
-const ActionMenu: React.FC<ActionMenuProps> = ({
+const ActionMenu: React.FC<React.PropsWithChildren<ActionMenuProps>> = ({
   actions,
   options,
   isDisabled,

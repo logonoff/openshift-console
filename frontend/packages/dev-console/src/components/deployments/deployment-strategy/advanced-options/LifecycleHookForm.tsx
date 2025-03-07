@@ -19,7 +19,7 @@ interface LifecycleHookFormProps {
   onClose: () => void;
 }
 
-const LifecycleHookForm: React.FC<LifecycleHookFormProps> = ({
+const LifecycleHookForm: React.FC<React.PropsWithChildren<LifecycleHookFormProps>> = ({
   lifecycleHook,
   resourceObj,
   dataAttribute,

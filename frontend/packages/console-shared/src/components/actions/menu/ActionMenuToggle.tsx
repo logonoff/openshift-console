@@ -15,7 +15,7 @@ type ActionMenuToggleProps = {
   onToggleHover: () => void;
 };
 
-const ActionMenuToggle: React.FC<ActionMenuToggleProps> = ({
+const ActionMenuToggle: React.FC<React.PropsWithChildren<ActionMenuToggleProps>> = ({
   isOpen,
   isDisabled,
   menuRef,

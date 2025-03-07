@@ -4,9 +4,9 @@ import { Dropdown } from '@console/internal/components/utils';
 
 export type NetworkPolicyPeerType = 'sameNS' | 'anyNS' | 'ipBlock';
 
-export const NetworkPolicyAddPeerDropdown: React.FunctionComponent<NetworkPolicyAddPeerDropdownProps> = (
-  props,
-) => {
+export const NetworkPolicyAddPeerDropdown: React.FunctionComponent<React.PropsWithChildren<
+  NetworkPolicyAddPeerDropdownProps
+>> = (props) => {
   const { t } = useTranslation();
   const { title, onSelect } = props;
   const options = [

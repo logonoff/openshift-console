@@ -49,7 +49,7 @@ type PipelineRunRowWithTaskRunsProps = {
 const TASKRUNSFORPLRCACHE: { [key: string]: TaskRunKind[] } = {};
 const InFlightStoreForTaskRunsForPLR: { [key: string]: boolean } = {};
 
-const PLRStatus: React.FC<PLRStatusProps> = React.memo(({ obj }) => {
+const PLRStatus: React.FC<React.PropsWithChildren<PLRStatusProps>> = React.memo(({ obj }) => {
   return (
     <PipelineRunStatusContent
       status={pipelineRunFilterReducer(obj)}
@@ -134,74 +134,77 @@ const PipelineRunRowTable = ({
   );
 };
 
-const PipelineRunRowWithoutTaskRuns: React.FC<PipelineRunRowWithoutTaskRunsProps> = React.memo(
-  ({ obj, operatorVersion, taskRunStatusObj }) => {
-    return (
-      <PipelineRunRowTable
-        obj={obj}
-        PLRTaskRuns={[]}
-        taskRunsLoaded
-        operatorVersion={operatorVersion}
-        taskRunStatusObj={taskRunStatusObj}
-      />
-    );
-  },
-);
+const PipelineRunRowWithoutTaskRuns: React.FC<React.PropsWithChildren<
+  PipelineRunRowWithoutTaskRunsProps
+>> = React.memo(({ obj, operatorVersion, taskRunStatusObj }) => {
+  return (
+    <PipelineRunRowTable
+      obj={obj}
+      PLRTaskRuns={[]}
+      taskRunsLoaded
+      operatorVersion={operatorVersion}
+      taskRunStatusObj={taskRunStatusObj}
+    />
+  );
+});
 
-const PipelineRunRowWithTaskRunsFetch: React.FC<PipelineRunRowWithTaskRunsProps> = React.memo(
-  ({ obj, operatorVersion }) => {
-    const cacheKey = `${obj.metadata.namespace}-${obj.metadata.name}`;
-    const [PLRTaskRuns, taskRunsLoaded] = useTaskRuns(
-      obj.metadata.namespace,
-      obj.metadata.name,
-      undefined,
-      `${obj.metadata.namespace}-${obj.metadata.name}`,
-    );
-    InFlightStoreForTaskRunsForPLR[cacheKey] = false;
-    if (taskRunsLoaded) {
-      TASKRUNSFORPLRCACHE[cacheKey] = PLRTaskRuns;
-    }
-    return (
-      <PipelineRunRowTable
-        obj={obj}
-        PLRTaskRuns={PLRTaskRuns}
-        taskRunsLoaded={taskRunsLoaded}
-        operatorVersion={operatorVersion}
-        taskRunStatusObj={undefined}
-      />
-    );
-  },
-);
+const PipelineRunRowWithTaskRunsFetch: React.FC<React.PropsWithChildren<
+  PipelineRunRowWithTaskRunsProps
+>> = React.memo(({ obj, operatorVersion }) => {
+  const cacheKey = `${obj.metadata.namespace}-${obj.metadata.name}`;
+  const [PLRTaskRuns, taskRunsLoaded] = useTaskRuns(
+    obj.metadata.namespace,
+    obj.metadata.name,
+    undefined,
+    `${obj.metadata.namespace}-${obj.metadata.name}`,
+  );
+  InFlightStoreForTaskRunsForPLR[cacheKey] = false;
+  if (taskRunsLoaded) {
+    TASKRUNSFORPLRCACHE[cacheKey] = PLRTaskRuns;
+  }
+  return (
+    <PipelineRunRowTable
+      obj={obj}
+      PLRTaskRuns={PLRTaskRuns}
+      taskRunsLoaded={taskRunsLoaded}
+      operatorVersion={operatorVersion}
+      taskRunStatusObj={undefined}
+    />
+  );
+});
 
-const PipelineRunRowWithTaskRuns: React.FC<PipelineRunRowWithTaskRunsProps> = React.memo(
-  ({ obj, operatorVersion }) => {
-    let PLRTaskRuns: TaskRunKind[];
-    let taskRunsLoaded: boolean;
-    const cacheKey = `${obj.metadata.namespace}-${obj.metadata.name}`;
-    const result = TASKRUNSFORPLRCACHE[cacheKey];
-    if (result) {
-      PLRTaskRuns = result;
-      taskRunsLoaded = true;
-    } else if (InFlightStoreForTaskRunsForPLR[cacheKey]) {
-      PLRTaskRuns = [];
-      taskRunsLoaded = true;
-      InFlightStoreForTaskRunsForPLR[cacheKey] = true;
-    } else {
-      return <PipelineRunRowWithTaskRunsFetch obj={obj} operatorVersion={operatorVersion} />;
-    }
-    return (
-      <PipelineRunRowTable
-        obj={obj}
-        PLRTaskRuns={PLRTaskRuns}
-        taskRunsLoaded={taskRunsLoaded}
-        operatorVersion={operatorVersion}
-        taskRunStatusObj={undefined}
-      />
-    );
-  },
-);
+const PipelineRunRowWithTaskRuns: React.FC<React.PropsWithChildren<
+  PipelineRunRowWithTaskRunsProps
+>> = React.memo(({ obj, operatorVersion }) => {
+  let PLRTaskRuns: TaskRunKind[];
+  let taskRunsLoaded: boolean;
+  const cacheKey = `${obj.metadata.namespace}-${obj.metadata.name}`;
+  const result = TASKRUNSFORPLRCACHE[cacheKey];
+  if (result) {
+    PLRTaskRuns = result;
+    taskRunsLoaded = true;
+  } else if (InFlightStoreForTaskRunsForPLR[cacheKey]) {
+    PLRTaskRuns = [];
+    taskRunsLoaded = true;
+    InFlightStoreForTaskRunsForPLR[cacheKey] = true;
+  } else {
+    return <PipelineRunRowWithTaskRunsFetch obj={obj} operatorVersion={operatorVersion} />;
+  }
+  return (
+    <PipelineRunRowTable
+      obj={obj}
+      PLRTaskRuns={PLRTaskRuns}
+      taskRunsLoaded={taskRunsLoaded}
+      operatorVersion={operatorVersion}
+      taskRunStatusObj={undefined}
+    />
+  );
+});
 
-const PipelineRunRow: React.FC<RowFunctionArgs<PipelineRunKind>> = ({ obj, customData }) => {
+const PipelineRunRow: React.FC<React.PropsWithChildren<RowFunctionArgs<PipelineRunKind>>> = ({
+  obj,
+  customData,
+}) => {
   const { operatorVersion } = customData;
   const plrStatus = pipelineRunStatus(obj);
   if (plrStatus === ComputedStatus.Cancelled && (obj?.status?.childReferences ?? []).length > 0) {

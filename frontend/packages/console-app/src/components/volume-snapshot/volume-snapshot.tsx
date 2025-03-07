@@ -121,10 +121,9 @@ const getTableColumns = (disableItems = {}): TableColumn<VolumeSnapshotKind>[] =
     },
   ].filter((item) => !disableItems[item.title]);
 
-const Row: React.FC<RowProps<VolumeSnapshotKind, VolumeSnapshotRowProsCustomData>> = ({
-  obj,
-  rowData: { customData },
-}) => {
+const Row: React.FC<React.PropsWithChildren<
+  RowProps<VolumeSnapshotKind, VolumeSnapshotRowProsCustomData>
+>> = ({ obj, rowData: { customData } }) => {
   const { name, namespace, creationTimestamp } = obj?.metadata || {};
   const size = obj?.status?.restoreSize;
   const sizeBase = convertToBaseValue(size);
@@ -194,7 +193,9 @@ const Row: React.FC<RowProps<VolumeSnapshotKind, VolumeSnapshotRowProsCustomData
   );
 };
 
-const VolumeSnapshotTable: React.FC<VolumeSnapshotTableProps> = (props) => {
+const VolumeSnapshotTable: React.FC<React.PropsWithChildren<VolumeSnapshotTableProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const [columns] = useActiveColumns({
     columns: getTableColumns(props.rowData.customData.disableItems),
@@ -212,7 +213,7 @@ const VolumeSnapshotTable: React.FC<VolumeSnapshotTableProps> = (props) => {
   );
 };
 
-const VolumeSnapshotPage: React.FC<VolumeSnapshotPageProps> = ({
+const VolumeSnapshotPage: React.FC<React.PropsWithChildren<VolumeSnapshotPageProps>> = ({
   canCreate = true,
   showTitle = true,
   namespace,
@@ -274,7 +275,7 @@ const checkPVCSnapshot: CheckPVCSnapshot = (volumeSnapshots, pvc) =>
       getNamespace(snapshot) === getNamespace(pvc),
   );
 
-const FilteredSnapshotTable: React.FC<FilteredSnapshotTable> = (props) => {
+const FilteredSnapshotTable: React.FC<React.PropsWithChildren<FilteredSnapshotTable>> = (props) => {
   const { t } = useTranslation();
   const { data, rowData } = props;
 
@@ -293,7 +294,10 @@ const FilteredSnapshotTable: React.FC<FilteredSnapshotTable> = (props) => {
   );
 };
 
-export const VolumeSnapshotPVCPage: React.FC<VolumeSnapshotPVCPage> = ({ ns, obj }) => {
+export const VolumeSnapshotPVCPage: React.FC<React.PropsWithChildren<VolumeSnapshotPVCPage>> = ({
+  ns,
+  obj,
+}) => {
   const { t } = useTranslation();
   const params = useParams();
   const canListVSC = useFlag(FLAGS.CAN_LIST_VSC);

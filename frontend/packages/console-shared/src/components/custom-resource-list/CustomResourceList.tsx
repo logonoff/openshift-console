@@ -18,10 +18,10 @@ interface CustomResourceListProps {
   rowFilters?: RowFilter[];
   sortBy: string;
   sortOrder: SortByDirection;
-  ResourceRow: React.FC<RowFunctionArgs>;
+  ResourceRow: React.FC<React.PropsWithChildren<RowFunctionArgs>>;
   resources?: { [key: string]: any }[];
   resourceHeader: () => TableColumn[];
-  EmptyMsg?: React.ComponentType;
+  EmptyMsg?: React.ComponentType<React.PropsWithChildren<unknown>>;
   loaded?: boolean;
   rowFilterReducer?: (
     items: { [key: string]: any }[],
@@ -36,7 +36,7 @@ interface CustomResourceListProps {
   getRowProps?: TableProps['getRowProps'];
 }
 
-const CustomResourceList: React.FC<CustomResourceListProps> = ({
+const CustomResourceList: React.FC<React.PropsWithChildren<CustomResourceListProps>> = ({
   resources,
   loaded = true,
   EmptyMsg,

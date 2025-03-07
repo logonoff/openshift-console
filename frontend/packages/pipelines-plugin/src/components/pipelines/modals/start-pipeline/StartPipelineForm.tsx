@@ -8,7 +8,9 @@ import PipelineSecretSection from '../common/PipelineSecretSection';
 import PipelineWorkspacesSection from '../common/PipelineWorkspacesSection';
 import { StartPipelineFormValues } from './types';
 
-const StartPipelineForm: React.FC<FormikProps<StartPipelineFormValues>> = () => {
+const StartPipelineForm: React.FC<React.PropsWithChildren<
+  FormikProps<StartPipelineFormValues>
+>> = () => {
   const { t } = useTranslation();
   return (
     <>

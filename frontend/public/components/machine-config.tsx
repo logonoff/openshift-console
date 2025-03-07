@@ -38,14 +38,19 @@ const machineConfigMenuActions = [
   ...Kebab.factory.common,
 ];
 
-const MachineConfigSummary: React.SFC<MachineConfigSummaryProps> = ({ obj, t }) => (
+const MachineConfigSummary: React.FC<React.PropsWithChildren<MachineConfigSummaryProps>> = ({
+  obj,
+  t,
+}) => (
   <ResourceSummary resource={obj}>
     <dt>{t('public~OS image URL')}</dt>
     <dd>{obj.spec.osImageURL || '-'}</dd>
   </ResourceSummary>
 );
 
-const MachineConfigDetails: React.SFC<MachineConfigDetailsProps> = ({ obj }) => {
+const MachineConfigDetails: React.FC<React.PropsWithChildren<MachineConfigDetailsProps>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
   const files = obj.spec.config?.storage?.files;
 
@@ -122,7 +127,7 @@ const pages = [
   navFactory.events(ResourceEventStream),
 ];
 
-export const MachineConfigDetailsPage: React.SFC<any> = (props) => {
+export const MachineConfigDetailsPage: React.FC<React.PropsWithChildren<any>> = (props) => {
   return (
     <DetailsPage
       {...props}
@@ -142,7 +147,9 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const MachineConfigTableRow: React.FC<RowFunctionArgs<MachineConfigKind>> = ({ obj }) => {
+const MachineConfigTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<MachineConfigKind>
+>> = ({ obj }) => {
   return (
     <>
       <TableData className={tableColumnClasses[0]}>
@@ -179,7 +186,7 @@ const MachineConfigTableRow: React.FC<RowFunctionArgs<MachineConfigKind>> = ({ o
   );
 };
 
-const MachineConfigList: React.SFC<any> = (props) => {
+const MachineConfigList: React.FC<React.PropsWithChildren<any>> = (props) => {
   const { t } = useTranslation();
   const MachineConfigTableHeader = () => {
     return [
@@ -232,7 +239,10 @@ const MachineConfigList: React.SFC<any> = (props) => {
   );
 };
 
-export const MachineConfigPage: React.SFC<any> = ({ canCreate = true, ...rest }) => (
+export const MachineConfigPage: React.FC<React.PropsWithChildren<any>> = ({
+  canCreate = true,
+  ...rest
+}) => (
   <ListPage
     {...rest}
     canCreate={canCreate}

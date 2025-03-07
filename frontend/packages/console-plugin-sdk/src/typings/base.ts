@@ -57,7 +57,9 @@ export type Plugin<E extends Extension> = E[];
 /**
  * Common interface for loading async React components.
  */
-export type LazyLoader<T extends {} = {}> = () => Promise<React.ComponentType<Partial<T>>>;
+export type LazyLoader<T extends {} = {}> = () => Promise<
+  React.ComponentType<React.PropsWithChildren<Partial<T>>>
+>;
 
 /**
  * From Console application perspective, a plugin is a list of extensions

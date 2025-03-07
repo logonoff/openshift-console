@@ -43,7 +43,9 @@ type OperatorBackedServiceGroupProps = {
   WithDndDropProps &
   WithDragNodeProps;
 
-const OperatorBackedServiceGroup: React.FC<OperatorBackedServiceGroupProps> = ({
+const OperatorBackedServiceGroup: React.FC<React.PropsWithChildren<
+  OperatorBackedServiceGroupProps
+>> = ({
   element,
   selected,
   editAccess,

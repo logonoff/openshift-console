@@ -5,7 +5,7 @@ import { DownloadIcon } from '@patternfly/react-icons/dist/esm/icons/download-ic
 
 import { coFetch } from '../../co-fetch';
 
-export const DownloadButton: React.FC<DownloadButtonProps> = (props) => {
+export const DownloadButton: React.FC<React.PropsWithChildren<DownloadButtonProps>> = (props) => {
   const [inFlight, setInFlight] = React.useState(false);
   const [error, setError] = React.useState(null);
 

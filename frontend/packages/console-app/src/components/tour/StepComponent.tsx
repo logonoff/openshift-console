@@ -15,7 +15,7 @@ type StepComponentProps = {
   expandableSelector?: string;
 };
 
-const StepComponent: React.FC<StepComponentProps> = ({
+const StepComponent: React.FC<React.PropsWithChildren<StepComponentProps>> = ({
   heading,
   content,
   expandableSelector,

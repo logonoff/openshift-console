@@ -8,7 +8,9 @@ export type ConfigurationsOverviewListItemProps = {
   configuration: K8sResourceKind;
 };
 
-const ConfigurationsOverviewListItem: React.FC<ConfigurationsOverviewListItemProps> = ({
+const ConfigurationsOverviewListItem: React.FC<React.PropsWithChildren<
+  ConfigurationsOverviewListItemProps
+>> = ({
   configuration: {
     metadata: { name, namespace },
     status: { latestCreatedRevisionName, latestReadyRevisionName },

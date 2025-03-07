@@ -3,7 +3,7 @@ import { EmptyState, EmptyStateBody, EmptyStateVariant } from '@patternfly/react
 import { InfoCircleIcon } from '@patternfly/react-icons/dist/esm/icons/info-circle-icon';
 import { useTranslation } from 'react-i18next';
 
-const HelmReleaseNotesEmptyState: React.FC = () => {
+const HelmReleaseNotesEmptyState: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <EmptyState

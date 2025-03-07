@@ -11,7 +11,7 @@ import PrimaryHeading from '@console/shared/src/components/heading/PrimaryHeadin
 import { AccessDenied, EmptyBox } from '../empty-state';
 import { LoadError, LoadingBox } from '../loading';
 
-const Data: React.FC<DataProps> = ({
+const Data: React.FC<React.PropsWithChildren<DataProps>> = ({
   NoDataEmptyMsg,
   EmptyMsg,
   label,
@@ -38,7 +38,7 @@ const Data: React.FC<DataProps> = ({
 };
 Data.displayName = 'Data';
 
-export const StatusBox: React.FC<StatusBoxProps> = (props) => {
+export const StatusBox: React.FC<React.PropsWithChildren<StatusBoxProps>> = (props) => {
   const { loadError, loaded, skeleton, data, ...dataProps } = props;
   const { t } = useTranslation('console-shared');
 
@@ -99,8 +99,8 @@ export const StatusBox: React.FC<StatusBoxProps> = (props) => {
 StatusBox.displayName = 'StatusBox';
 
 type DataProps = {
-  NoDataEmptyMsg?: React.ComponentType;
-  EmptyMsg?: React.ComponentType;
+  NoDataEmptyMsg?: React.ComponentType<React.PropsWithChildren<unknown>>;
+  EmptyMsg?: React.ComponentType<React.PropsWithChildren<unknown>>;
   label?: string;
   unfilteredData?: any;
   data?: any;
@@ -114,7 +114,7 @@ type StatusBoxProps = {
   data?: any;
   unfilteredData?: any;
   skeleton?: React.ReactNode;
-  NoDataEmptyMsg?: React.ComponentType;
-  EmptyMsg?: React.ComponentType;
+  NoDataEmptyMsg?: React.ComponentType<React.PropsWithChildren<unknown>>;
+  EmptyMsg?: React.ComponentType<React.PropsWithChildren<unknown>>;
   children?: React.ReactNode;
 };

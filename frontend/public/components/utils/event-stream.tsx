@@ -70,7 +70,7 @@ class SysEvent extends React.Component<SysEventProps> {
   }
 }
 
-export const EventStreamList: React.FC<EventStreamListProps> = ({
+export const EventStreamList: React.FC<React.PropsWithChildren<EventStreamListProps>> = ({
   events,
   className,
   EventComponent,
@@ -82,7 +82,7 @@ export const EventStreamList: React.FC<EventStreamListProps> = ({
     list?.recomputeRowHeights();
   }, [list, events, onResize]);
   const rowRenderer = React.useCallback(
-    ({ index, style, key, parent }) => (
+    ({ index, style, key, parent }: any) => (
       <CellMeasurer
         cache={measurementCache}
         columnIndex={0}
@@ -141,7 +141,7 @@ export const EventStreamList: React.FC<EventStreamListProps> = ({
 
 type EventStreamListProps = {
   events: EventKind[];
-  EventComponent: React.ComponentType<EventComponentProps>;
+  EventComponent: React.ComponentType<React.PropsWithChildren<EventComponentProps>>;
   className?: string;
 };
 
@@ -153,7 +153,7 @@ export type EventComponentProps = {
 };
 
 type SysEventProps = {
-  EventComponent: React.ComponentType<EventComponentProps>;
+  EventComponent: React.ComponentType<React.PropsWithChildren<EventComponentProps>>;
   event: EventKind;
   onLoad: () => void;
   onEntered: () => void;

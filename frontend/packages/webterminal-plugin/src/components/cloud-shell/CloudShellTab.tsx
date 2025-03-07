@@ -7,7 +7,7 @@ import MultiTabTerminal from './MultiTabbedTerminal';
 
 import './CloudShellTab.scss';
 
-const CloudShellTab: React.FC = () => {
+const CloudShellTab: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const devWorkspaceFlag = useFlag(FLAG_DEVWORKSPACE);
 

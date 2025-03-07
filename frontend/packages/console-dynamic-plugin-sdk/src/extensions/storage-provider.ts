@@ -8,7 +8,7 @@ export type StorageProvider = ExtensionDeclaration<
     /** Displayed name of the provider. */
     name: string;
     /** Provider specific component to render. */
-    Component: CodeRef<React.ComponentType>;
+    Component: CodeRef<React.ComponentType<React.PropsWithChildren<unknown>>>;
   }
 >;
 

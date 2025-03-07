@@ -3,7 +3,7 @@ import * as classNames from 'classnames';
 import { Badge } from '@patternfly/react-core';
 import { AngleDownIcon, AngleRightIcon } from '@patternfly/react-icons';
 
-const NotificationCategory: React.FC<NotificationCategoryProps> = ({
+const NotificationCategory: React.FC<React.PropsWithChildren<NotificationCategoryProps>> = ({
   label,
   count,
   isExpanded,

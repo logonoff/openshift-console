@@ -251,11 +251,9 @@ const getColumns = (t: TFunction): TableColumn<NodeRowItem>[] => [
   },
 ];
 
-const NodesTableRow: React.FC<RowProps<NodeKind, GetNodeStatusExtensions>> = ({
-  obj: node,
-  activeColumnIDs,
-  rowData,
-}) => {
+const NodesTableRow: React.FC<React.PropsWithChildren<
+  RowProps<NodeKind, GetNodeStatusExtensions>
+>> = ({ obj: node, activeColumnIDs, rowData }) => {
   const { t } = useTranslation();
   const metrics = useSelector<RootState, NodeMetrics>(({ UI }) => UI.getIn(['metrics', 'node']));
   const nodeName = getName(node);
@@ -464,10 +462,9 @@ const fetchNodeMetrics = (): Promise<NodeMetrics> => {
 
 const showMetrics = PROMETHEUS_BASE_PATH && window.innerWidth > 1200;
 
-const CSRTableRow: React.FC<RowProps<NodeCertificateSigningRequestKind>> = ({
-  obj: csr,
-  activeColumnIDs,
-}) => {
+const CSRTableRow: React.FC<React.PropsWithChildren<
+  RowProps<NodeCertificateSigningRequestKind>
+>> = ({ obj: csr, activeColumnIDs }) => {
   const csrObj = _.omit(csr, ['metadata.originalName']);
   csrObj.metadata.name = csr.metadata.originalName;
 
@@ -579,7 +576,9 @@ const CSRTableRow: React.FC<RowProps<NodeCertificateSigningRequestKind>> = ({
   );
 };
 
-const TableRow: React.FC<RowProps<NodeRowItem, GetNodeStatusExtensions>> = ({ obj, ...rest }) =>
+const TableRow: React.FC<React.PropsWithChildren<
+  RowProps<NodeRowItem, GetNodeStatusExtensions>
+>> = ({ obj, ...rest }) =>
   isCSRResource(obj) ? <CSRTableRow obj={obj} {...rest} /> : <NodesTableRow obj={obj} {...rest} />;
 
 type NodeListProps = Pick<
@@ -587,7 +586,7 @@ type NodeListProps = Pick<
   'data' | 'unfilteredData' | 'loaded' | 'loadError'
 >;
 
-const NodeList: React.FC<NodeListProps> = (props) => {
+const NodeList: React.FC<React.PropsWithChildren<NodeListProps>> = (props) => {
   const { t } = useTranslation();
   const columns = React.useMemo(() => getColumns(t), [t]);
   const [activeColumns, userSettingsLoaded] = useActiveColumns({
@@ -703,7 +702,7 @@ const useWatchCSRs = (): [CertificateSigningRequestKind[], boolean, unknown] => 
   return [csrs, !checkIsLoading && loaded, error];
 };
 
-const NodesPage: React.FC<NodesPageProps> = ({ selector }) => {
+const NodesPage: React.FC<React.PropsWithChildren<NodesPageProps>> = ({ selector }) => {
   const dispatch = useDispatch();
 
   const [selectedColumns, , userSettingsLoaded] = useUserSettingsCompatibility<TableColumnsType>(

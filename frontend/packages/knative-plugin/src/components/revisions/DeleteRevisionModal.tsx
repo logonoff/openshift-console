@@ -23,7 +23,7 @@ interface TrafficSplittingDeleteModalProps {
 
 type Props = FormikProps<FormikValues> & TrafficSplittingDeleteModalProps;
 
-const DeleteRevisionModal: React.FC<Props> = (props) => {
+const DeleteRevisionModal: React.FC<React.PropsWithChildren<Props>> = (props) => {
   const { t } = useTranslation();
   const { deleteRevision, handleSubmit, isSubmitting, status, showTraffic, cancel } = props;
   const serviceName = deleteRevision.metadata.labels[KNATIVE_SERVING_LABEL];

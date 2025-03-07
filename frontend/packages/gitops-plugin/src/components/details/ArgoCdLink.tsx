@@ -9,7 +9,11 @@ type ArgoCdLinkProps = {
   argocdLink: any;
 };
 
-const ArgoCdLink: React.FC<ArgoCdLinkProps> = ({ envName, appName, argocdLink }) => {
+const ArgoCdLink: React.FC<React.PropsWithChildren<ArgoCdLinkProps>> = ({
+  envName,
+  appName,
+  argocdLink,
+}) => {
   // Use environment name as is or the original KAM-based design
   const appNameLink = envName.includes(appName) ? envName : `${envName}-${appName}`;
   return (

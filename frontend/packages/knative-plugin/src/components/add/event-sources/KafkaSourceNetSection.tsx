@@ -6,7 +6,7 @@ import TertiaryHeading from '@console/shared/src/components/heading/TertiaryHead
 import { EventSources } from '../import-types';
 import SecretKeySelector from '../SecretKeySelector';
 
-const KafkaSourceNetSection: React.FC = () => {
+const KafkaSourceNetSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const {
     values: {

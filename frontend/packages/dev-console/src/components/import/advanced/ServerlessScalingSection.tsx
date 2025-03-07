@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { NumberSpinnerField, ResourceLimitField } from '@console/shared';
 import FormSection from '../section/FormSection';
 
-const ServerlessScalingSection: React.FC = () => {
+const ServerlessScalingSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const AutoscaleWindowUnits = {
     s: t('devconsole~Sec'),

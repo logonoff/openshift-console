@@ -155,9 +155,9 @@ export const getManualSubscriptionsInNamespace = (
   );
 };
 
-export const OperatorsWithManualApproval: React.FC<OperatorsWithManualApprovalProps> = ({
-  subscriptions,
-}) => {
+export const OperatorsWithManualApproval: React.FC<React.PropsWithChildren<
+  OperatorsWithManualApprovalProps
+>> = ({ subscriptions }) => {
   const { t } = useTranslation();
   const subs = subscriptions
     ?.map((subscription) => (
@@ -171,10 +171,9 @@ export const OperatorsWithManualApproval: React.FC<OperatorsWithManualApprovalPr
   );
 };
 
-export const NamespaceIncludesManualApproval: React.FC<NamespaceIncludesManualApprovalProps> = ({
-  subscriptions,
-  namespace,
-}) => (
+export const NamespaceIncludesManualApproval: React.FC<React.PropsWithChildren<
+  NamespaceIncludesManualApprovalProps
+>> = ({ subscriptions, namespace }) => (
   <Trans ns="olm">
     Installation namespace <strong>{{ namespace }}</strong> contains{' '}
     <OperatorsWithManualApproval subscriptions={subscriptions} /> installed with manual approval,
@@ -184,7 +183,9 @@ export const NamespaceIncludesManualApproval: React.FC<NamespaceIncludesManualAp
   </Trans>
 );
 
-const InstallPlanCSVNames: React.FC<InstallPlanReviewProps> = ({ installPlan }) =>
+const InstallPlanCSVNames: React.FC<React.PropsWithChildren<InstallPlanReviewProps>> = ({
+  installPlan,
+}) =>
   installPlan?.spec.clusterServiceVersionNames
     .sort()
     // eslint-disable-next-line react/no-array-index-key
@@ -192,7 +193,9 @@ const InstallPlanCSVNames: React.FC<InstallPlanReviewProps> = ({ installPlan }) 
     // eslint-disable-next-line react/no-array-index-key
     .map((CSVName, i) => (i > 0 ? <span key={`${CSVName}-${i}`}>, {CSVName}</span> : CSVName));
 
-export const InstallPlanReview: React.FC<InstallPlanReviewProps> = ({ installPlan }) => (
+export const InstallPlanReview: React.FC<React.PropsWithChildren<InstallPlanReviewProps>> = ({
+  installPlan,
+}) => (
   <p>
     <Trans ns="olm">
       Review the manual install plan for operators <InstallPlanCSVNames installPlan={installPlan} />

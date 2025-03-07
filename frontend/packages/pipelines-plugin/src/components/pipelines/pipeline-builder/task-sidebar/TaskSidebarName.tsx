@@ -20,7 +20,7 @@ type TaskSidebarNameProps = {
   taskName: string;
 };
 
-const TaskSidebarName: React.FC<TaskSidebarNameProps> = (props) => {
+const TaskSidebarName: React.FC<React.PropsWithChildren<TaskSidebarNameProps>> = (props) => {
   const { t } = useTranslation();
   const { name, onChange, taskName } = props;
   const { setStatus, status, values } = useFormikContext<PipelineBuilderFormikValues>();

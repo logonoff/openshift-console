@@ -17,7 +17,9 @@ type ServiceBindingListPageProps = Omit<
   'title' | 'badge' | 'kind' | 'ListComponent' | 'rowFilters'
 >;
 
-const ServiceBindingListPage: React.FC<ServiceBindingListPageProps> = (props) => {
+const ServiceBindingListPage: React.FC<React.PropsWithChildren<ServiceBindingListPageProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
 
   const filters: RowFilter<ServiceBinding>[] = [

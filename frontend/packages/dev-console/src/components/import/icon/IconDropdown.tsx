@@ -16,7 +16,7 @@ type IconProps = {
   url: string;
 };
 
-const Icon: React.FC<IconProps> = ({ label, url }) => (
+const Icon: React.FC<React.PropsWithChildren<IconProps>> = ({ label, url }) => (
   <div className="odc-icon-dropdown__item">
     <img src={url} width="24" height="24" alt="" className="icon" />
     {label}
@@ -26,7 +26,11 @@ const Icon: React.FC<IconProps> = ({ label, url }) => (
 const iconLabelAutocompleteFilter = (text: string, item: React.ReactElement<IconProps>) =>
   fuzzy(text, item.props.label);
 
-const IconDropdown: React.FC<IconDropdownProps> = ({ placeholder, value, onChanged }) => {
+const IconDropdown: React.FC<React.PropsWithChildren<IconDropdownProps>> = ({
+  placeholder,
+  value,
+  onChanged,
+}) => {
   const title = React.useMemo<React.ReactElement>(() => {
     const icon = getIcon(value || 'openshift');
     return icon ? (

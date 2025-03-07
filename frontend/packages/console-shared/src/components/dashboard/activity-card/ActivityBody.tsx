@@ -19,7 +19,10 @@ import EventItem from './EventItem';
 
 import './activity-card.scss';
 
-export const Activity: React.FC<ActivityProps> = ({ timestamp, children }) => {
+export const Activity: React.FC<React.PropsWithChildren<ActivityProps>> = ({
+  timestamp,
+  children,
+}) => {
   const { t } = useTranslation();
   return (
     <div className="co-activity-item__ongoing" data-test="activity">
@@ -36,13 +39,9 @@ export const Activity: React.FC<ActivityProps> = ({ timestamp, children }) => {
   );
 };
 
-export const RecentEventsBodyContent: React.FC<RecentEventsBodyContentProps> = ({
-  events,
-  filter,
-  paused,
-  setPaused,
-  moreLink,
-}) => {
+export const RecentEventsBodyContent: React.FC<React.PropsWithChildren<
+  RecentEventsBodyContentProps
+>> = ({ events, filter, paused, setPaused, moreLink }) => {
   const { t } = useTranslation();
   const ref = React.useRef<EventKind[]>([]);
   React.useEffect(() => {
@@ -123,7 +122,10 @@ export const RecentEventsBodyContent: React.FC<RecentEventsBodyContentProps> = (
   );
 };
 
-export const PauseButton: React.FC<PauseButtonProps> = ({ paused, togglePause }) => {
+export const PauseButton: React.FC<React.PropsWithChildren<PauseButtonProps>> = ({
+  paused,
+  togglePause,
+}) => {
   const { t } = useTranslation();
   return (
     <Button
@@ -140,7 +142,9 @@ export const PauseButton: React.FC<PauseButtonProps> = ({ paused, togglePause })
   );
 };
 
-export const RecentEventsBody: React.FC<RecentEventsBodyProps> = (props) => {
+export const RecentEventsBody: React.FC<React.PropsWithChildren<RecentEventsBodyProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const [paused, setPaused] = React.useState(false);
   const togglePause = React.useCallback(() => setPaused(!paused), [paused]);
@@ -155,7 +159,7 @@ export const RecentEventsBody: React.FC<RecentEventsBodyProps> = (props) => {
   );
 };
 
-export const OngoingActivityBody: React.FC<OngoingActivityBodyProps> = ({
+export const OngoingActivityBody: React.FC<React.PropsWithChildren<OngoingActivityBodyProps>> = ({
   loaded,
   resourceActivities = [],
   prometheusActivities = [],
@@ -218,7 +222,10 @@ export const OngoingActivityBody: React.FC<OngoingActivityBodyProps> = ({
   );
 };
 
-const ActivityBody: React.FC<ActivityBodyProps> = ({ children, className }) => (
+const ActivityBody: React.FC<React.PropsWithChildren<ActivityBodyProps>> = ({
+  children,
+  className,
+}) => (
   <div className={classNames('co-activity-card__body', className)} id="activity-body">
     {children}
   </div>

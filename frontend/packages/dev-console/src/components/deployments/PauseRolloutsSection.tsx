@@ -4,10 +4,10 @@ import { CheckboxField } from '@console/shared/src';
 import { Resources } from '../import/import-types';
 import FormSection from '../import/section/FormSection';
 
-const PauseRolloutsSection: React.FC<{ name: string; resourceType: string }> = ({
-  name,
-  resourceType,
-}) => {
+const PauseRolloutsSection: React.FC<React.PropsWithChildren<{
+  name: string;
+  resourceType: string;
+}>> = ({ name, resourceType }) => {
   const { t } = useTranslation();
   const resourceLabel = resourceType === Resources.OpenShift ? 'deployment config' : 'deployment';
   return (

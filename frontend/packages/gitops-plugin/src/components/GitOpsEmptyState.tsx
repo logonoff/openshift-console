@@ -7,7 +7,9 @@ interface GitOpsEmptyStateProps {
   emptyStateMsg: string;
 }
 
-const GitOpsEmptyState: React.FC<GitOpsEmptyStateProps> = ({ emptyStateMsg }) => (
+const GitOpsEmptyState: React.FC<React.PropsWithChildren<GitOpsEmptyStateProps>> = ({
+  emptyStateMsg,
+}) => (
   <EmptyState icon={CubesIcon} variant={EmptyStateVariant.full}>
     <EmptyStateBody>{emptyStateMsg}</EmptyStateBody>
   </EmptyState>

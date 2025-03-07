@@ -34,7 +34,9 @@ type PowerOffWarning = {
   restart?: boolean;
 };
 
-export const PowerOffWarning: React.FC<PowerOffWarning> = ({ restart }) => {
+export const PowerOffWarning: React.FC<React.PropsWithChildren<PowerOffWarning>> = ({
+  restart,
+}) => {
   const { t } = useTranslation();
   return (
     <Alert
@@ -89,7 +91,7 @@ type ForcePowerOffDialogProps = {
   cancel?: () => void;
 };
 
-const ForcePowerOffDialog: React.FC<ForcePowerOffDialogProps> = ({
+const ForcePowerOffDialog: React.FC<React.PropsWithChildren<ForcePowerOffDialogProps>> = ({
   canStartMaintenance,
   forceOff,
   nodeName,

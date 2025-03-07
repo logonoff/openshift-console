@@ -15,7 +15,10 @@ const getChannelSection = (kind: string): React.ReactElement | null => {
   return null;
 };
 
-const FormViewSection: React.FC<FormViewSectionProps> = ({ namespace, kind }) => (
+const FormViewSection: React.FC<React.PropsWithChildren<FormViewSectionProps>> = ({
+  namespace,
+  kind,
+}) => (
   <>
     {getChannelSection(kind)}
     <DefaultChannelSection namespace={namespace} />

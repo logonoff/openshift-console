@@ -2,7 +2,10 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SecretSubFormProps } from './types';
 
-export const WebHookSecretForm: React.FC<SecretSubFormProps> = ({ onChange, stringData }) => {
+export const WebHookSecretForm: React.FC<React.PropsWithChildren<SecretSubFormProps>> = ({
+  onChange,
+  stringData,
+}) => {
   const { t } = useTranslation();
 
   const handleWebHookSecretChange = (newSecret: string) => {

@@ -12,12 +12,9 @@ type DetailsBreadcrumbResolverType = {
   urlMatch: any;
 };
 
-const DetailsBreadcrumbResolver: React.FC<DetailsBreadcrumbResolverType> = ({
-  useBreadcrumbs,
-  onBreadcrumbsResolved,
-  kind,
-  urlMatch,
-}) => {
+const DetailsBreadcrumbResolver: React.FC<React.PropsWithChildren<
+  DetailsBreadcrumbResolverType
+>> = ({ useBreadcrumbs, onBreadcrumbsResolved, kind, urlMatch }) => {
   const breadcrumbs = useBreadcrumbs(kind, urlMatch);
   React.useEffect(() => {
     if (breadcrumbs?.length > 0) {

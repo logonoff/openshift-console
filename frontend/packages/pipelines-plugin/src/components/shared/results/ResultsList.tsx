@@ -12,7 +12,11 @@ export interface ResultsListProps {
   status: string;
 }
 
-const ResultsList: React.FC<ResultsListProps> = ({ results, resourceName, status }) => {
+const ResultsList: React.FC<React.PropsWithChildren<ResultsListProps>> = ({
+  results,
+  resourceName,
+  status,
+}) => {
   const { t } = useTranslation();
   if (!results.length) return null;
 

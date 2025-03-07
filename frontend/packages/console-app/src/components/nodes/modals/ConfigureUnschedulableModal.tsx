@@ -16,14 +16,9 @@ type ConfigureUnschedulableModalProps = HandlePromiseProps & {
   close?: () => void;
 };
 
-const ConfigureUnschedulableModal: React.FC<ConfigureUnschedulableModalProps> = ({
-  handlePromise,
-  resource,
-  close,
-  cancel,
-  errorMessage,
-  inProgress,
-}) => {
+const ConfigureUnschedulableModal: React.FC<React.PropsWithChildren<
+  ConfigureUnschedulableModalProps
+>> = ({ handlePromise, resource, close, cancel, errorMessage, inProgress }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     handlePromise(makeNodeUnschedulable(resource), close);

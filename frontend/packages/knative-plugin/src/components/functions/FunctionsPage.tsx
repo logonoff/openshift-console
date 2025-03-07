@@ -22,7 +22,7 @@ import { KnativeServiceTypeContext } from './ServiceTypeContext';
 
 import './FunctionsPage.scss';
 
-const FunctionList: React.FC<{ namespace: string }> = (props) => {
+const FunctionList: React.FC<React.PropsWithChildren<{ namespace: string }>> = (props) => {
   const { t } = useTranslation();
   return (
     <KnativeServiceTypeContext.Provider value={ServiceTypeValue.Function}>
@@ -47,7 +47,9 @@ const FunctionList: React.FC<{ namespace: string }> = (props) => {
   );
 };
 
-const FunctionsListPage: React.FC<React.ComponentProps<typeof ListPage>> = (props) => {
+const FunctionsListPage: React.FC<React.PropsWithChildren<
+  React.ComponentProps<typeof ListPage>
+>> = (props) => {
   const { t } = useTranslation();
   const { ns } = useParams();
   const [perspective] = useActivePerspective();
@@ -71,7 +73,9 @@ const FunctionsListPage: React.FC<React.ComponentProps<typeof ListPage>> = (prop
 
 const PageContentsWithStartGuide = withStartGuide(FunctionsListPage);
 
-const FunctionsPage: React.FC<React.ComponentProps<typeof ListPage>> = (props) => {
+const FunctionsPage: React.FC<React.PropsWithChildren<React.ComponentProps<typeof ListPage>>> = (
+  props,
+) => {
   return (
     <NamespacedPage variant={NamespacedPageVariants.light} hideApplications>
       <PageContentsWithStartGuide {...props} />

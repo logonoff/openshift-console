@@ -5,7 +5,7 @@ import { AUTHS_KEY } from './const';
 import { DroppableFileInput } from './DropableFileInput';
 import { getPullSecretFileName } from './utils';
 
-export const PullSecretUploadForm: React.FC<PullSecretUploadFormProps> = ({
+export const PullSecretUploadForm: React.FC<React.PropsWithChildren<PullSecretUploadFormProps>> = ({
   onChange,
   stringData,
   secretType,

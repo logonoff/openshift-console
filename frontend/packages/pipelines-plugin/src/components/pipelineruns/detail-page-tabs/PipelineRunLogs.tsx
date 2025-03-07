@@ -226,9 +226,9 @@ type PipelineRunLogsWithActiveTaskProps = {
 
 const PipelineRunLogs = withTranslation()(PipelineRunLogsWithTranslation);
 
-export const PipelineRunLogsWithActiveTask: React.FC<PipelineRunLogsWithActiveTaskProps> = ({
-  obj,
-}) => {
+export const PipelineRunLogsWithActiveTask: React.FC<React.PropsWithChildren<
+  PipelineRunLogsWithActiveTaskProps
+>> = ({ obj }) => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const activeTask = params?.get('taskName');

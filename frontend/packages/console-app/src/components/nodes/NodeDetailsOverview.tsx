@@ -29,7 +29,9 @@ type NodeDetailsOverviewProps = {
   node: NodeKind;
 };
 
-const NodeDetailsOverview: React.FC<NodeDetailsOverviewProps> = ({ node }) => {
+const NodeDetailsOverview: React.FC<React.PropsWithChildren<NodeDetailsOverviewProps>> = ({
+  node,
+}) => {
   const launchLabelsModal = useLabelsModal(node);
   const [machineName, machineNamespace] = getNodeMachineNameAndNamespace(node);
   const canUpdate = useAccessReview({

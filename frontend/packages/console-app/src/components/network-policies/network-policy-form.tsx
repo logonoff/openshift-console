@@ -57,7 +57,10 @@ type NetworkPolicyFormProps = {
   onChange: (newFormData: NetworkPolicyKind) => void;
 };
 
-export const NetworkPolicyForm: React.FC<NetworkPolicyFormProps> = ({ formData, onChange }) => {
+export const NetworkPolicyForm: React.FC<React.PropsWithChildren<NetworkPolicyFormProps>> = ({
+  formData,
+  onChange,
+}) => {
   const { t } = useTranslation();
   const isOpenShift = useFlag(FLAGS.OPENSHIFT);
 

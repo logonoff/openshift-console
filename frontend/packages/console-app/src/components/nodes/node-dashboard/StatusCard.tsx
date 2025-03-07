@@ -7,7 +7,7 @@ import NodeAlerts from './NodeAlerts';
 import { NodeDashboardContext } from './NodeDashboardContext';
 import NodeHealth from './NodeHealth';
 
-const StatusCard: React.FC = () => {
+const StatusCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { obj } = React.useContext(NodeDashboardContext);
   const { t } = useTranslation();
   return (

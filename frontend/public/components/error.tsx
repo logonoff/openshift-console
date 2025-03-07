@@ -18,7 +18,10 @@ import { t_global_icon_color_status_danger_default as globalDangerColor100 } fro
 import { PageHeading } from './utils';
 import { useLocation } from 'react-router';
 
-const ErrorComponent: React.FC<ErrorComponentProps> = ({ title, message }) => {
+const ErrorComponent: React.FC<React.PropsWithChildren<ErrorComponentProps>> = ({
+  title,
+  message,
+}) => {
   const { t } = useTranslation();
   return (
     <>
@@ -31,7 +34,7 @@ const ErrorComponent: React.FC<ErrorComponentProps> = ({ title, message }) => {
   );
 };
 
-export const ErrorPage404: React.FC<ErrorPage404Props> = (props) => {
+export const ErrorPage404: React.FC<React.PropsWithChildren<ErrorPage404Props>> = (props) => {
   const { t } = useTranslation();
   return (
     <div>
@@ -58,7 +61,7 @@ const ErrorStateMessage = () => (
   </Trans>
 );
 
-export const ErrorState: React.FC = () => {
+export const ErrorState: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const DangerIcon = () => (
     <Icon size="sm">
@@ -86,7 +89,7 @@ export const ErrorState: React.FC = () => {
   );
 };
 
-const LoginErrorMessage: React.FC = () => {
+const LoginErrorMessage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const urlSearchParams = new URLSearchParams(location.search);
@@ -121,7 +124,7 @@ const LoginErrorMessage: React.FC = () => {
   }
 };
 
-export const AuthenticationErrorPage: React.FC = () => {
+export const AuthenticationErrorPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const title = t('public~Authentication error');
   return (

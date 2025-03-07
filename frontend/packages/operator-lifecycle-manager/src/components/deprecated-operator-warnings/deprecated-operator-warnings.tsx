@@ -28,10 +28,9 @@ export const findDeprecatedOperator = (
   };
 };
 
-export const DeprecatedOperatorWarningBadge: React.FC<DeprecatedOperatorWarningBadge> = ({
-  deprecation,
-  className,
-}) => {
+export const DeprecatedOperatorWarningBadge: React.FC<React.PropsWithChildren<
+  DeprecatedOperatorWarningBadge
+>> = ({ deprecation, className }) => {
   const { t } = useTranslation();
 
   return (
@@ -48,10 +47,9 @@ export const DeprecatedOperatorWarningBadge: React.FC<DeprecatedOperatorWarningB
   );
 };
 
-export const DeprecatedOperatorWarningIcon: React.FC<DeprecatedOperatorWarningIcon> = ({
-  deprecation,
-  dataTest,
-}) => {
+export const DeprecatedOperatorWarningIcon: React.FC<React.PropsWithChildren<
+  DeprecatedOperatorWarningIcon
+>> = ({ deprecation, dataTest }) => {
   const { t } = useTranslation();
 
   return (
@@ -61,12 +59,9 @@ export const DeprecatedOperatorWarningIcon: React.FC<DeprecatedOperatorWarningIc
   );
 };
 
-export const DeprecatedOperatorWarningAlert: React.FC<DeprecatedOperatorWarningProps> = ({
-  deprecatedPackage,
-  deprecatedChannel,
-  deprecatedVersion,
-  dismissible,
-}) => {
+export const DeprecatedOperatorWarningAlert: React.FC<React.PropsWithChildren<
+  DeprecatedOperatorWarningProps
+>> = ({ deprecatedPackage, deprecatedChannel, deprecatedVersion, dismissible }) => {
   const { t } = useTranslation();
   const [alertVisible, setAlertVisible] = React.useState<boolean>(true);
 

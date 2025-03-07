@@ -7,8 +7,10 @@ type WithActivePerspectiveProps = {
 };
 
 export const withActivePerspective = <Props extends WithActivePerspectiveProps>(
-  Component: React.ComponentType<Props>,
-): React.FC<Omit<Props, keyof WithActivePerspectiveProps>> => (props: Props) => {
+  Component: React.ComponentType<React.PropsWithChildren<Props>>,
+): React.FC<React.PropsWithChildren<Omit<Props, keyof WithActivePerspectiveProps>>> => (
+  props: Props,
+) => {
   const [activePerspective, setActivePerspective] = useActivePerspective();
   return (
     <Component

@@ -12,7 +12,9 @@ type ParametersSectionProps = {
   autoCompleteValues?: string[];
 };
 
-const PipelineParameterSection: React.FC<ParametersSectionProps> = ({ autoCompleteValues }) => {
+const PipelineParameterSection: React.FC<React.PropsWithChildren<ParametersSectionProps>> = ({
+  autoCompleteValues,
+}) => {
   const { t } = useTranslation();
 
   const {

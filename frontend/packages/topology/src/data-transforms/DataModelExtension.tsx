@@ -7,7 +7,9 @@ interface DataModelExtensionProps {
   dataModelFactory: TopologyDataModelFactory['properties'];
 }
 
-const DataModelExtension: React.FC<DataModelExtensionProps> = ({ dataModelFactory }) => {
+const DataModelExtension: React.FC<React.PropsWithChildren<DataModelExtensionProps>> = ({
+  dataModelFactory,
+}) => {
   const dataModelContext = React.useContext<ExtensibleModel>(ModelContext);
   const { id, priority, resources } = dataModelFactory;
   const workloadKeys = useDeepCompareMemoize(dataModelFactory.workloadKeys);

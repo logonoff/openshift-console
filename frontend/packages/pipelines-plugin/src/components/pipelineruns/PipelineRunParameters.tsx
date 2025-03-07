@@ -14,7 +14,7 @@ type PipelineRunParametersProps = {
   isReadOnly?: boolean;
 };
 
-const PipelineRunParameters: React.FC<PipelineRunParametersProps> = ({
+const PipelineRunParameters: React.FC<React.PropsWithChildren<PipelineRunParametersProps>> = ({
   addLabel,
   nameLabel,
   nameFieldName,

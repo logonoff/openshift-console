@@ -19,7 +19,9 @@ const getPerspectiveURLParam = (perspectives: Perspective[]) => {
   return perspectiveIDs.includes(perspectiveParam) ? perspectiveParam : null;
 };
 
-const DetectPerspective: React.FC<DetectPerspectiveProps> = ({ children }) => {
+const DetectPerspective: React.FC<React.PropsWithChildren<DetectPerspectiveProps>> = ({
+  children,
+}) => {
   const [activePerspective, setActivePerspective, loaded] = useValuesForPerspectiveContext();
   const perspectiveExtensions = usePerspectives();
   const perspectiveParam = getPerspectiveURLParam(perspectiveExtensions);

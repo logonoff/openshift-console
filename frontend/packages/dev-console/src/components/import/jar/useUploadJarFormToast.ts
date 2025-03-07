@@ -23,7 +23,7 @@ export const useUploadJarFormToast = () => {
   const [builds] = useK8sWatchResource<K8sResourceKind[]>(buildsResource);
 
   return React.useCallback(
-    (resp) => {
+    (resp: any) => {
       const createdBuildConfig = resp.find((d) => d.kind === BuildConfigModel.kind);
       const ownBuilds = getOwnedResources(createdBuildConfig, builds);
       const buildName = `${createdBuildConfig.metadata.name}-${ownBuilds.length + 1}`;

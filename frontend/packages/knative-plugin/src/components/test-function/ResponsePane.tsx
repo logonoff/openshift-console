@@ -19,9 +19,9 @@ type ResponsePaneFormikValues = {
   response?: Response | undefined;
 };
 
-const ResponsePane: React.FC<FormikProps<FormikValues & ResponsePaneFormikValues>> = ({
-  values,
-}) => {
+const ResponsePane: React.FC<React.PropsWithChildren<
+  FormikProps<FormikValues & ResponsePaneFormikValues>
+>> = ({ values }) => {
   const { t } = useTranslation();
   const { statusCode, header } = values.response;
 

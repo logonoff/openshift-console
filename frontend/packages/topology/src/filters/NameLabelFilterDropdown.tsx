@@ -21,7 +21,9 @@ type NameLabelFilterDropdownProps = {
   labelFilterInput: string;
 };
 
-const NameLabelFilterDropdown: React.FC<NameLabelFilterDropdownProps> = (props) => {
+const NameLabelFilterDropdown: React.FC<React.PropsWithChildren<NameLabelFilterDropdownProps>> = (
+  props,
+) => {
   const { data, onChange, nameFilterInput, labelFilterInput, isDisabled } = props;
 
   const [isOpen, setOpen] = React.useState(false);

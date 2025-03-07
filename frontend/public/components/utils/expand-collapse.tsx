@@ -8,7 +8,7 @@ interface ExpandCollapseProps {
   dataTest?: string;
 }
 
-export const ExpandCollapse: React.FC<ExpandCollapseProps> = ({
+export const ExpandCollapse: React.FC<React.PropsWithChildren<ExpandCollapseProps>> = ({
   textCollapsed,
   textExpanded,
   onToggle,

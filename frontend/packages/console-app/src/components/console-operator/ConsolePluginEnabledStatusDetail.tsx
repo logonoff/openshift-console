@@ -9,7 +9,9 @@ import {
   useConsoleOperatorConfigData,
 } from './ConsoleOperatorConfig';
 
-const ConsolePluginEnabledStatusDetail: React.FC<DetailsItemComponentProps> = ({ obj }) => {
+const ConsolePluginEnabledStatusDetail: React.FC<React.PropsWithChildren<
+  DetailsItemComponentProps
+>> = ({ obj }) => {
   const pluginStore = usePluginStore();
   const { consoleOperatorConfig, consoleOperatorConfigLoaded } = useConsoleOperatorConfigData();
 

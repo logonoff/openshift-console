@@ -12,7 +12,7 @@ type ListPageProps = React.ComponentProps<typeof ListPage>;
 
 type BuildRunListPageProps = Omit<ListPageProps, 'title' | 'kind' | 'ListComponent' | 'rowFilters'>;
 
-const BuildRunListPage: React.FC<BuildRunListPageProps> = (props) => {
+const BuildRunListPage: React.FC<React.PropsWithChildren<BuildRunListPageProps>> = (props) => {
   const { t } = useTranslation();
 
   const filters: RowFilter<BuildRun>[] = [

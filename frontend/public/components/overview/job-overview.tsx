@@ -12,7 +12,9 @@ import { DetailsItem, KebabAction, pluralize, ResourceSummary, StatusBox } from 
 import { ResourceOverviewDetails } from './resource-overview-details';
 import { PodsOverview } from './pods-overview';
 
-const JobOverviewDetails: React.FC<JobOverviewDetailsProps> = ({ item }) => {
+const JobOverviewDetails: React.FC<React.PropsWithChildren<JobOverviewDetailsProps>> = ({
+  item,
+}) => {
   const { obj: job } = item;
   const { namespace } = job.metadata;
   const { podData, loaded, loadError } = usePodsWatcher(job, 'Job', namespace);
@@ -41,7 +43,9 @@ const JobOverviewDetails: React.FC<JobOverviewDetailsProps> = ({ item }) => {
   );
 };
 
-export const JobResourcesTab: React.SFC<JobResourcesTabProps> = ({ item }) => {
+export const JobResourcesTab: React.FC<React.PropsWithChildren<JobResourcesTabProps>> = ({
+  item,
+}) => {
   const { obj } = item;
   const pluginComponents = usePluginsOverviewTabSection(item);
   return (
@@ -54,7 +58,10 @@ export const JobResourcesTab: React.SFC<JobResourcesTabProps> = ({ item }) => {
   );
 };
 
-export const JobOverview: React.SFC<JobOverviewProps> = ({ item, customActions }) => {
+export const JobOverview: React.FC<React.PropsWithChildren<JobOverviewProps>> = ({
+  item,
+  customActions,
+}) => {
   const { t } = useTranslation();
   const tabs = [
     {

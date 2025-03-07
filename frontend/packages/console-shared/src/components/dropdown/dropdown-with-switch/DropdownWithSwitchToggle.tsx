@@ -1,15 +1,9 @@
 import * as React from 'react';
 import { MenuToggle, Popper } from '@patternfly/react-core';
 
-const DropdownWithSwitchToggle: React.FC<DropdownWithSwitchToggleProps> = ({
-  isDisabled,
-  isFullWidth,
-  isOpen,
-  label,
-  menu,
-  menuRef,
-  onToggle,
-}) => {
+const DropdownWithSwitchToggle: React.FC<React.PropsWithChildren<
+  DropdownWithSwitchToggleProps
+>> = ({ isDisabled, isFullWidth, isOpen, label, menu, menuRef, onToggle }) => {
   const toggleRef = React.useRef(null);
   const containerRef = React.useRef(null);
   React.useEffect(() => {

@@ -22,7 +22,12 @@ export interface EditDeploymentProps {
   namespace: string;
 }
 
-const EditDeployment: React.FC<EditDeploymentProps> = ({ heading, resource, namespace, name }) => {
+const EditDeployment: React.FC<React.PropsWithChildren<EditDeploymentProps>> = ({
+  heading,
+  resource,
+  namespace,
+  name,
+}) => {
   const { t } = useTranslation();
   const isNew = !name;
 

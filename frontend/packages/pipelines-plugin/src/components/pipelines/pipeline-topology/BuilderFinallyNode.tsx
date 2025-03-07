@@ -26,7 +26,9 @@ type BuilderFinallyNodeProps = {
   element: Node<NodeModel, BuilderFinallyNodeModel>;
 };
 
-const BuilderFinallyNode: React.FC<BuilderFinallyNodeProps> = ({ element }) => {
+const BuilderFinallyNode: React.FC<React.PropsWithChildren<BuilderFinallyNodeProps>> = ({
+  element,
+}) => {
   const { t } = useTranslation();
   const { width, height } = element.getBounds();
   const { task, namespace } = element.getData();

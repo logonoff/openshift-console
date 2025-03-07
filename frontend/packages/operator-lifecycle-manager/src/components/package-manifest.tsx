@@ -62,9 +62,8 @@ export const PackageManifestTableHeaderWithCatalogSource = () => [
   },
 ];
 
-export const PackageManifestTableRow: React.FC<RowFunctionArgs<
-  PackageManifestKind,
-  { catalogSource: CatalogSourceKind }
+export const PackageManifestTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<PackageManifestKind, { catalogSource: CatalogSourceKind }>
 >> = ({ obj: packageManifest, customData }) => {
   const channel = defaultChannelFor(packageManifest);
 
@@ -139,7 +138,9 @@ export const PackageManifestList = (props: PackageManifestListProps) => {
   );
 };
 
-export const PackageManifestsPage: React.FC<PackageManifestsPageProps> = (props) => {
+export const PackageManifestsPage: React.FC<React.PropsWithChildren<PackageManifestsPageProps>> = (
+  props,
+) => {
   const { catalogSource } = props;
   const { ns: namespace } = useParams();
 

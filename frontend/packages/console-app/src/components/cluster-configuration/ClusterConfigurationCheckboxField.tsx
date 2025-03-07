@@ -15,9 +15,9 @@ type ClusterConfigurationCheckboxFieldProps = {
   field: ClusterConfigurationCheckboxField;
 };
 
-const ClusterConfigurationCheckboxField: React.FC<ClusterConfigurationCheckboxFieldProps> = ({
-  item,
-}) => (
+const ClusterConfigurationCheckboxField: React.FC<React.PropsWithChildren<
+  ClusterConfigurationCheckboxFieldProps
+>> = ({ item }) => (
   <FormGroup fieldId={item.id} label={item.label} data-test={`${item.id} field`}>
     <FormLayout>
       <Checkbox id="" title="asd" />

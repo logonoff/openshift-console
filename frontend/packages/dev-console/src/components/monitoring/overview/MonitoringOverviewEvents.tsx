@@ -13,7 +13,9 @@ interface MonitoringOverviewEventsProps {
   events: EventKind[];
 }
 
-const MonitoringOverviewEvents: React.FC<MonitoringOverviewEventsProps> = ({ events }) => {
+const MonitoringOverviewEvents: React.FC<React.PropsWithChildren<
+  MonitoringOverviewEventsProps
+>> = ({ events }) => {
   const { t } = useTranslation();
   return (
     <div className="odc-monitoring-events">

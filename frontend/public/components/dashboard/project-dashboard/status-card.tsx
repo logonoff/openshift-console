@@ -16,7 +16,7 @@ import { ResourceHealthItem } from '../dashboards-page/cluster-dashboard/health-
 
 import { DashboardAlerts } from '../dashboards-page/cluster-dashboard/status-card';
 
-export const StatusCard: React.FC = () => {
+export const StatusCard: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { obj } = React.useContext(ProjectDashboardContext);
   const filterSubsystems = (subsystems: DashboardsOverviewHealthSubsystem[]) =>
     subsystems.filter(isDashboardsOverviewHealthResourceSubsystem);

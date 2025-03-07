@@ -9,7 +9,7 @@ type MonitoringTabProps = {
   item: OverviewItem;
 };
 
-const MonitoringTab: React.FC<MonitoringTabProps> = ({ item }) => {
+const MonitoringTab: React.FC<React.PropsWithChildren<MonitoringTabProps>> = ({ item }) => {
   const { monitoringAlerts } = item;
   const {
     kind,

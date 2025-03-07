@@ -45,7 +45,7 @@ const DEFAULT_CHILDREN = (
   );
 };
 
-const TextColumnItemContent: React.FC<TextColumnItemContentProps> = ({
+const TextColumnItemContent: React.FC<React.PropsWithChildren<TextColumnItemContentProps>> = ({
   name,
   dndEnabled,
   children = DEFAULT_CHILDREN,

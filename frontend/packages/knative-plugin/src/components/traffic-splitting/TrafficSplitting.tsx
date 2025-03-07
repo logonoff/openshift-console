@@ -18,7 +18,7 @@ export interface TrafficSplittingType {
   trafficSplitting: Traffic[];
 }
 
-const TrafficSplitting: React.FC<TrafficSplittingProps> = ({
+const TrafficSplitting: React.FC<React.PropsWithChildren<TrafficSplittingProps>> = ({
   service,
   revisions,
   cancel,

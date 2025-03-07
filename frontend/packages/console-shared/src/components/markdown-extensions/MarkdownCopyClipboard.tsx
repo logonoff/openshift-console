@@ -10,7 +10,7 @@ type CopyClipboardProps = {
   docContext: HTMLDocument;
 };
 
-export const CopyClipboard: React.FC<CopyClipboardProps> = ({
+export const CopyClipboard: React.FC<React.PropsWithChildren<CopyClipboardProps>> = ({
   element,
   rootSelector,
   docContext,
@@ -57,7 +57,7 @@ type MarkdownCopyClipboardProps = {
   rootSelector: string;
 };
 
-const MarkdownCopyClipboard: React.FC<MarkdownCopyClipboardProps> = ({
+const MarkdownCopyClipboard: React.FC<React.PropsWithChildren<MarkdownCopyClipboardProps>> = ({
   docContext,
   rootSelector,
 }) => {

@@ -62,7 +62,7 @@ type LogControlsProps = {
   showSearch: boolean;
 };
 
-const LogControls: React.FC<LogControlsProps> = ({
+const LogControls: React.FC<React.PropsWithChildren<LogControlsProps>> = ({
   onTogglePath,
   onChangePath,
   path,
@@ -173,7 +173,7 @@ const LogControls: React.FC<LogControlsProps> = ({
   );
 };
 
-const NodeLogs: React.FC<NodeLogsProps> = ({ obj: node }) => {
+const NodeLogs: React.FC<React.PropsWithChildren<NodeLogsProps>> = ({ obj: node }) => {
   const {
     kind,
     metadata: { labels, name, namespace: ns },

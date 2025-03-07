@@ -26,7 +26,7 @@ const DEFAULT_SAMPLES = 60;
 const DEFAULT_TICK_COUNT = 2;
 const DEFAULT_TIMESPAN = 60 * 60 * 1000; // 1 hour
 
-export const StackChart: React.FC<AreaChartProps> = ({
+export const StackChart: React.FC<React.PropsWithChildren<AreaChartProps>> = ({
   className,
   data = [],
   formatDate = timeFormatter.format,
@@ -56,13 +56,13 @@ export const StackChart: React.FC<AreaChartProps> = ({
     return [data, ''];
   }, [byteDataType, data]);
 
-  const tickFormat = React.useCallback((tick) => `${humanize(tick, unit, unit).string}`, [
+  const tickFormat = React.useCallback((tick: any) => `${humanize(tick, unit, unit).string}`, [
     humanize,
     unit,
   ]);
 
   const getLabel = React.useCallback(
-    (prop, includeDate = true) => {
+    (prop: any, includeDate = true) => {
       const { x, y } = prop.datum as DataPoint<Date>;
       const value = humanize(y, unit, unit).string;
       const date = formatDate(x);
@@ -141,7 +141,7 @@ export const StackChart: React.FC<AreaChartProps> = ({
   );
 };
 
-export const Stack: React.FC<StackProps> = ({
+export const Stack: React.FC<React.PropsWithChildren<StackProps>> = ({
   namespace,
   query,
   samples = DEFAULT_SAMPLES,

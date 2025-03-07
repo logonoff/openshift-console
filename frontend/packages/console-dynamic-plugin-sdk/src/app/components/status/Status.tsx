@@ -33,7 +33,7 @@ export type StatusProps = StatusComponentProps & {
  * <Status status='Warning' />
  * ```
  */
-const Status: React.FC<StatusProps> = ({
+const Status: React.FC<React.PropsWithChildren<StatusProps>> = ({
   status,
   title,
   children,

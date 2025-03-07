@@ -61,7 +61,7 @@ type BaseNodeProps = {
   Partial<WithContextMenuProps> &
   Partial<WithCreateConnectorProps>;
 
-const BaseNode: React.FC<BaseNodeProps> = ({
+const BaseNode: React.FC<React.PropsWithChildren<BaseNodeProps>> = ({
   className,
   innerRadius,
   icon,

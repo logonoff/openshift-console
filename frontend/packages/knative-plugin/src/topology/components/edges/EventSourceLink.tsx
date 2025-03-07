@@ -14,8 +14,8 @@ type EventSourceLinkProps = {
 } & WithSourceDragProps &
   WithTargetDragProps;
 
-const EventSourceLink: React.FC<EventSourceLinkProps> = ({ ...others }) => (
-  <BaseEdge endTerminalType={EdgeTerminalType.circle} {...others} />
-);
+const EventSourceLink: React.FC<React.PropsWithChildren<EventSourceLinkProps>> = ({
+  ...others
+}) => <BaseEdge endTerminalType={EdgeTerminalType.circle} {...others} />;
 
 export default observer(EventSourceLink);

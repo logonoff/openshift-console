@@ -13,10 +13,10 @@ export const getRouteStatusGroups: StatusGroupMapper = (resources) => ({
   },
 });
 
-export const DemoGroupIcon: React.FC<{}> = () => (
+export const DemoGroupIcon: React.FC<React.PropsWithChildren<{}>> = () => (
   <AddressBookIcon className="co-inventory-card__status-icon co-inventory-card__status-icon--warn" />
 );
 
-export const ExpandedRoutes: React.FC<ExpandedComponentProps> = ({ resource }) => (
-  <div>Additional content for {resource.length} routes</div>
-);
+export const ExpandedRoutes: React.FC<React.PropsWithChildren<ExpandedComponentProps>> = ({
+  resource,
+}) => <div>Additional content for {resource.length} routes</div>;

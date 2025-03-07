@@ -41,7 +41,9 @@ type PipelineBuilderFormProps = FormikProps<PipelineBuilderFormikValues> & {
   namespace: string;
 };
 
-const PipelineBuilderForm: React.FC<PipelineBuilderFormProps> = (props) => {
+const PipelineBuilderForm: React.FC<React.PropsWithChildren<PipelineBuilderFormProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const IS_PIPELINE_OPERATOR_VERSION_1_17_OR_NEWER = useFlag(
     FLAG_PIPELINES_OPERATOR_VERSION_1_17_OR_NEWER,

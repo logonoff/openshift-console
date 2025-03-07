@@ -12,7 +12,11 @@ export interface TestFunctionProps {
   close?: () => void;
 }
 
-const TestFunction: React.FC<TestFunctionProps> = ({ service, cancel, close }) => {
+const TestFunction: React.FC<React.PropsWithChildren<TestFunctionProps>> = ({
+  service,
+  cancel,
+  close,
+}) => {
   const svcName = service.data.metadata.name;
   const svcNamespace = service.data.metadata.namespace;
   const initialValues: TestFunctionFormikValues = {

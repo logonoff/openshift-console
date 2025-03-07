@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
-const ServerlessFunctionType: React.FC = () => {
+const ServerlessFunctionType: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <dl className="co-m-pane__details" data-test="serverless-function-type">

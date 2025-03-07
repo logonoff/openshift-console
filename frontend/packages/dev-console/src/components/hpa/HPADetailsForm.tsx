@@ -8,7 +8,7 @@ import { getMetricByType } from './hpa-utils';
 import HPAUtilizationField from './HPAUtilizationField';
 import { HPAFormValues, SupportedMetricTypes } from './types';
 
-const HPADetailsForm: React.FC = () => {
+const HPADetailsForm: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const name = 'formData';
   const [field] = useField<HorizontalPodAutoscalerKind>(name);

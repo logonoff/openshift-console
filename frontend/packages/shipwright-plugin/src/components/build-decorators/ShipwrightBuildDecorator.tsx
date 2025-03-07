@@ -30,13 +30,9 @@ type StateProps = {
   };
 };
 
-export const ConnectedBuildRunDecorator: React.FC<BuildRunDecoratorProps & StateProps> = ({
-  buildRuns,
-  resource,
-  radius,
-  x,
-  y,
-}) => {
+export const ConnectedBuildRunDecorator: React.FC<React.PropsWithChildren<
+  BuildRunDecoratorProps & StateProps
+>> = ({ buildRuns, resource, radius, x, y }) => {
   const ref = React.useRef();
   const { t } = useTranslation();
   const { latestBuildRun, status } = getLatestBuildRunStatusforDeployment(buildRuns, resource);

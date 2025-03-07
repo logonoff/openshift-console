@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { OverviewProps } from '@console/dynamic-plugin-sdk';
 import './dashboard.scss';
 
-const Dashboard: React.FC<OverviewProps> = ({ className, children }) => (
+const Dashboard: React.FC<React.PropsWithChildren<OverviewProps>> = ({ className, children }) => (
   <div data-test-id="dashboard" className={classNames('co-dashboard-body', className)}>
     {children}
   </div>

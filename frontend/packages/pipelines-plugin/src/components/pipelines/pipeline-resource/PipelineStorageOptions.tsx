@@ -5,7 +5,9 @@ import { InputField } from '@console/shared';
 
 type PipelineStorageOptionsProps = { prefixName: string };
 
-const PipelineStorageOptions: React.FC<PipelineStorageOptionsProps> = ({ prefixName }) => {
+const PipelineStorageOptions: React.FC<React.PropsWithChildren<PipelineStorageOptionsProps>> = ({
+  prefixName,
+}) => {
   const { t } = useTranslation();
   return (
     <>

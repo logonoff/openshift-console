@@ -2,7 +2,10 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SecretChangeData, SecretStringData } from './types';
 
-export const BasicAuthSubform: React.FC<BasicAuthSubformProps> = ({ onChange, stringData }) => {
+export const BasicAuthSubform: React.FC<React.PropsWithChildren<BasicAuthSubformProps>> = ({
+  onChange,
+  stringData,
+}) => {
   const { t } = useTranslation();
 
   const changeData = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import FormSection from '@console/dev-console/src/components/import/section/FormSection';
 import { NumberSpinnerField } from '@console/shared';
 
-const KafkaChannelSection: React.FC = () => {
+const KafkaChannelSection: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <FormSection extraMargin>

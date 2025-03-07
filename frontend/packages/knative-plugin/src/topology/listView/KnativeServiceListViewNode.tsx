@@ -11,12 +11,9 @@ interface KnativeServiceListViewNodeProps {
   onSelect: (ids: string[]) => void;
 }
 
-const ObservedKnativeServiceListViewNode: React.FC<KnativeServiceListViewNodeProps> = ({
-  item,
-  selectedIds,
-  onSelect,
-  children,
-}) => {
+const ObservedKnativeServiceListViewNode: React.FC<React.PropsWithChildren<
+  KnativeServiceListViewNodeProps
+>> = ({ item, selectedIds, onSelect, children }) => {
   const kind = getResourceKind(item);
 
   const typeIconClass: string = isServerlessFunction(getResource(item))

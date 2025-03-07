@@ -16,7 +16,7 @@ import { RedExclamationCircleIcon } from '../status';
 import { SingleDropdownFieldProps } from './field-types';
 import { getFieldId } from './field-utils';
 
-const SingleDropdownField: React.FC<SingleDropdownFieldProps> = ({
+const SingleDropdownField: React.FC<React.PropsWithChildren<SingleDropdownFieldProps>> = ({
   name,
   label,
   ariaLabel,

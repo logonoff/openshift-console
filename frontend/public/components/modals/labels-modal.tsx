@@ -20,7 +20,7 @@ import { useK8sWatchResource } from '../utils/k8s-watch-hook';
 const LABELS_PATH = '/metadata/labels';
 const TEMPLATE_SELECTOR_PATH = '/spec/template/metadata/labels';
 
-const BaseLabelsModal: React.FC<BaseLabelsModalProps> = ({
+const BaseLabelsModal: React.FC<React.PropsWithChildren<BaseLabelsModalProps>> = ({
   cancel,
   close,
   descriptionKey,
@@ -130,7 +130,7 @@ const BaseLabelsModal: React.FC<BaseLabelsModalProps> = ({
   );
 };
 
-export const LabelsModal: React.FC<LabelsModalProps> = (props) => (
+export const LabelsModal: React.FC<React.PropsWithChildren<LabelsModalProps>> = (props) => (
   <BaseLabelsModal path={LABELS_PATH} {...props} />
 );
 export const labelsModalLauncher = createModalLauncher<LabelsModalProps>(LabelsModal);

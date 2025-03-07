@@ -14,7 +14,10 @@ jest.mock('@console/internal/components/utils/firehose', () => ({
   Firehose: ({ children }) => children,
 }));
 
-const Wrapper: React.FC<FormikConfig<SecretsSectionFormData>> = ({ children, ...formikConfig }) => (
+const Wrapper: React.FC<React.PropsWithChildren<FormikConfig<SecretsSectionFormData>>> = ({
+  children,
+  ...formikConfig
+}) => (
   <Provider store={store}>
     <Formik {...formikConfig}>
       {(formikProps) => (

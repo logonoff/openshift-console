@@ -60,7 +60,9 @@ const emptyPeer = (type: NetworkPolicyPeerType): NetworkPolicyPeer => {
   }
 };
 
-export const NetworkPolicyRuleConfigPanel: React.FunctionComponent<RuleConfigProps> = (props) => {
+export const NetworkPolicyRuleConfigPanel: React.FunctionComponent<React.PropsWithChildren<
+  RuleConfigProps
+>> = (props) => {
   const { t } = useTranslation();
   const { policyNamespace, direction, onChange, onRemove, rule } = props;
   const peersHelp =

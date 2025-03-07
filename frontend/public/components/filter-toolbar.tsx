@@ -66,7 +66,7 @@ type FilterKeys = {
   [key: string]: string;
 };
 
-export const FilterToolbar: React.FC<FilterToolbarProps> = ({
+export const FilterToolbar: React.FC<React.PropsWithChildren<FilterToolbarProps>> = ({
   rowFilters,
   data,
   hideColumnManagement,

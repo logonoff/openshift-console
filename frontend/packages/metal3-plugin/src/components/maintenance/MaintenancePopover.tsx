@@ -13,7 +13,7 @@ type MaintenancePopoverProps = {
   className?: string;
 };
 
-const MaintenancePopover: React.FC<MaintenancePopoverProps> = ({
+const MaintenancePopover: React.FC<React.PropsWithChildren<MaintenancePopoverProps>> = ({
   title,
   nodeMaintenance,
   className,

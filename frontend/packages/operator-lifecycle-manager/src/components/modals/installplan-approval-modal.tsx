@@ -24,12 +24,9 @@ const getApprovalStrategy = (obj: InstallPlanKind | SubscriptionKind): InstallPl
   (obj as InstallPlanKind)?.spec?.approval ??
   InstallPlanApproval.Automatic;
 
-export const InstallPlanApprovalModal: React.FC<InstallPlanApprovalModalProps> = ({
-  cancel,
-  close,
-  k8sUpdate,
-  obj,
-}) => {
+export const InstallPlanApprovalModal: React.FC<React.PropsWithChildren<
+  InstallPlanApprovalModalProps
+>> = ({ cancel, close, k8sUpdate, obj }) => {
   const { t } = useTranslation();
   const [handlePromise, inProgress, errorMessage] = usePromiseHandler();
   const [selectedApprovalStrategy, setSelectedApprovalStrategy] = React.useState(

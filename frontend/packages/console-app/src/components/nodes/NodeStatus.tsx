@@ -39,11 +39,9 @@ type NodeStatusWithExtensionsProps = {
   className?: string;
 };
 
-export const NodeStatusWithExtensions: React.FC<NodeStatusWithExtensionsProps> = ({
-  node,
-  className,
-  statusExtensions,
-}) => {
+export const NodeStatusWithExtensions: React.FC<React.PropsWithChildren<
+  NodeStatusWithExtensionsProps
+>> = ({ node, className, statusExtensions }) => {
   const { t } = useTranslation();
 
   const { popoverContent, secondaryStatuses } = React.useMemo(() => statusExtensions(node), [
@@ -92,7 +90,7 @@ type NodeStatusProps = {
   className?: string;
 };
 
-const NodeStatus: React.FC<NodeStatusProps> = ({ node, className }) => {
+const NodeStatus: React.FC<React.PropsWithChildren<NodeStatusProps>> = ({ node, className }) => {
   const statusExtensions = useNodeStatusExtensions();
 
   return (

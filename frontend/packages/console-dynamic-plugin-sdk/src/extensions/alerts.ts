@@ -25,7 +25,7 @@ export type AlertingRuleChartExtension = ExtensionDeclaration<
     /** Source Id belonging to one 'console.alerts/rules-source' used to fetch alerting rule metrics */
     sourceId: string;
     /** Chart component to be rendered as alerting rule metrics */
-    chart: CodeRef<React.ComponentType<AlertingRuleChartProps>>;
+    chart: CodeRef<React.ComponentType<React.PropsWithChildren<AlertingRuleChartProps>>>;
   }
 >;
 

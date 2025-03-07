@@ -24,7 +24,9 @@ jest.mock('../../../taskruns/useTaskRuns', () => ({
 }));
 
 const useTaskRunsMock = useTaskRuns as jest.Mock;
-const Wrapper: React.FC = ({ children }) => <Provider store={store}>{children}</Provider>;
+const Wrapper: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
+  <Provider store={store}>{children}</Provider>
+);
 
 describe('PipelineRunCustomDetails', () => {
   afterEach(() => {

@@ -20,7 +20,7 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const RepositoriesRow: React.FC<RowFunctionArgs> = ({ obj }) => {
+const RepositoriesRow: React.FC<React.PropsWithChildren<RowFunctionArgs>> = ({ obj }) => {
   const { t } = useTranslation();
   const objReference = referenceFor(obj);
   const context = { [objReference]: obj };

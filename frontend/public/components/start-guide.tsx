@@ -79,9 +79,9 @@ export const OpenShiftGettingStarted = connect(createProjectMessageStateToProps)
 );
 
 type WithStartGuide = <P>(
-  WrappedComponent: React.ComponentType<P & WithStartGuideProps>,
+  WrappedComponent: React.ComponentType<React.PropsWithChildren<P & WithStartGuideProps>>,
   disable?: boolean,
-) => React.ComponentType<P>;
+) => React.ComponentType<React.PropsWithChildren<P>>;
 
 export const withStartGuide: WithStartGuide = (WrappedComponent, disable = true) =>
   connectToFlags<any>(

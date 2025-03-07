@@ -14,7 +14,7 @@ import './RepositoryForm.scss';
 
 type RepositoryFormProps = FormikProps<FormikValues & RepositoryFormValues>;
 
-export const RepositoryForm: React.FC<RepositoryFormProps> = ({
+export const RepositoryForm: React.FC<React.PropsWithChildren<RepositoryFormProps>> = ({
   values,
   status,
   isSubmitting,

@@ -7,7 +7,7 @@ type StaticSpotlightProps = {
   element: Element | HTMLElement;
 };
 
-const StaticSpotlight: React.FC<StaticSpotlightProps> = ({ element }) => {
+const StaticSpotlight: React.FC<React.PropsWithChildren<StaticSpotlightProps>> = ({ element }) => {
   const clientRect = useBoundingClientRect(element as HTMLElement);
   const style: React.CSSProperties = clientRect
     ? {

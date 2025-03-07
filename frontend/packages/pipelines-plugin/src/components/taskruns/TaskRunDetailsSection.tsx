@@ -9,7 +9,9 @@ export interface TaskRunDetailsSectionProps {
   taskRun: TaskRunKind;
 }
 
-const TaskRunDetailsSection: React.FC<TaskRunDetailsSectionProps> = ({ taskRun }) => {
+const TaskRunDetailsSection: React.FC<React.PropsWithChildren<TaskRunDetailsSectionProps>> = ({
+  taskRun,
+}) => {
   const { t } = useTranslation();
   return (
     <>

@@ -11,7 +11,7 @@ type FilterTableProps = {
   paddingLeft?: boolean;
 };
 
-const FilterTable: React.FC<FilterTableProps> = ({
+const FilterTable: React.FC<React.PropsWithChildren<FilterTableProps>> = ({
   filters,
   bordered = true,
   paddingLeft = false,

@@ -48,14 +48,14 @@ export const ImageStreamReducer = (state: ImageStreamState, action: ImageStreamA
   }
 };
 
-const ImageStream: React.FC<{
+const ImageStream: React.FC<React.PropsWithChildren<{
   disabled?: boolean;
   label?: string;
   required?: boolean;
   formContextField?: string;
   dataTest?: string;
   reloadCount?: number;
-}> = ({ disabled = false, label, required = false, formContextField, dataTest, reloadCount }) => {
+}>> = ({ disabled = false, label, required = false, formContextField, dataTest, reloadCount }) => {
   const { t } = useTranslation();
   const { values } = useFormikContext<FormikValues>();
   const [validated, setValidated] = React.useState<ValidatedOptions>(ValidatedOptions.default);

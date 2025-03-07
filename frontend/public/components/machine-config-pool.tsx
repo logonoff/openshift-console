@@ -84,9 +84,9 @@ const getMachineConfigPoolUpdateStatus = (mcp: MachineConfigPoolKind) => {
   return null;
 };
 
-const MachineConfigPoolCharacteristics: React.SFC<MachineConfigPoolCharacteristicsProps> = ({
-  obj,
-}) => {
+const MachineConfigPoolCharacteristics: React.FC<React.PropsWithChildren<
+  MachineConfigPoolCharacteristicsProps
+>> = ({ obj }) => {
   const configuration = _.get(obj, 'status.configuration');
   const maxUnavailable = _.get(obj, 'spec.maxUnavailable', 1);
   const { t } = useTranslation();
@@ -131,7 +131,9 @@ const MachineConfigPoolCharacteristics: React.SFC<MachineConfigPoolCharacteristi
   );
 };
 
-const MachineConfigPoolCounts: React.SFC<MachineConfigPoolCountsProps> = ({ obj }) => {
+const MachineConfigPoolCounts: React.FC<React.PropsWithChildren<MachineConfigPoolCountsProps>> = ({
+  obj,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -206,7 +208,9 @@ const MachineConfigPoolCounts: React.SFC<MachineConfigPoolCountsProps> = ({ obj 
   );
 };
 
-const MachineConfigPoolSummary: React.SFC<MachineConfigPoolSummaryProps> = ({ obj }) => {
+const MachineConfigPoolSummary: React.FC<React.PropsWithChildren<
+  MachineConfigPoolSummaryProps
+>> = ({ obj }) => {
   const machineConfigSelector = _.get(obj, 'spec.machineConfigSelector');
   const { t } = useTranslation();
   return (
@@ -219,7 +223,7 @@ const MachineConfigPoolSummary: React.SFC<MachineConfigPoolSummaryProps> = ({ ob
   );
 };
 
-const MachineConfigList: React.SFC<MachineConfigListProps> = ({ obj }) => (
+const MachineConfigList: React.FC<React.PropsWithChildren<MachineConfigListProps>> = ({ obj }) => (
   <MachineConfigPage
     canCreate={false}
     showTitle={false}
@@ -227,7 +231,9 @@ const MachineConfigList: React.SFC<MachineConfigListProps> = ({ obj }) => (
   />
 );
 
-const MachineConfigPoolDetails: React.SFC<MachineConfigPoolDetailsProps> = ({ obj }) => {
+const MachineConfigPoolDetails: React.FC<React.PropsWithChildren<
+  MachineConfigPoolDetailsProps
+>> = ({ obj }) => {
   const paused = _.get(obj, 'spec.paused');
   const { t } = useTranslation();
   return (
@@ -260,7 +266,9 @@ const pages = [
   navFactory.events(ResourceEventStream),
 ];
 
-const MachineConfigPoolUpdateStatus: React.FC<MachineConfigPoolUpdateStatusProps> = ({ obj }) => {
+const MachineConfigPoolUpdateStatus: React.FC<React.PropsWithChildren<
+  MachineConfigPoolUpdateStatusProps
+>> = ({ obj }) => {
   const { t } = useTranslation();
   switch (getMachineConfigPoolUpdateStatus(obj)) {
     case MCPUpdateStatus.Paused:
@@ -283,7 +291,7 @@ const MachineConfigPoolUpdateStatus: React.FC<MachineConfigPoolUpdateStatusProps
   }
 };
 
-export const MachineConfigPoolDetailsPage: React.SFC<any> = (props) => (
+export const MachineConfigPoolDetailsPage: React.FC<React.PropsWithChildren<any>> = (props) => (
   <DetailsPage
     {...props}
     kind={machineConfigPoolReference}
@@ -300,7 +308,7 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const MachineConfigPoolList: React.SFC<any> = (props) => {
+const MachineConfigPoolList: React.FC<React.PropsWithChildren<any>> = (props) => {
   const { t } = useTranslation();
   const MachineConfigPoolTableHeader = () => {
     return [
@@ -331,7 +339,9 @@ const MachineConfigPoolList: React.SFC<any> = (props) => {
     ];
   };
 
-  const MachineConfigPoolTableRow: React.FC<RowFunctionArgs<MachineConfigPoolKind>> = ({ obj }) => {
+  const MachineConfigPoolTableRow: React.FC<React.PropsWithChildren<
+    RowFunctionArgs<MachineConfigPoolKind>
+  >> = ({ obj }) => {
     return (
       <>
         <TableData className={classNames(tableColumnClasses[0], 'co-break-word')}>
@@ -379,7 +389,7 @@ const MachineConfigPoolList: React.SFC<any> = (props) => {
   );
 };
 
-export const MachineConfigPoolPage: React.SFC<any> = (props) => (
+export const MachineConfigPoolPage: React.FC<React.PropsWithChildren<any>> = (props) => (
   <ListPage
     {...props}
     ListComponent={MachineConfigPoolList}

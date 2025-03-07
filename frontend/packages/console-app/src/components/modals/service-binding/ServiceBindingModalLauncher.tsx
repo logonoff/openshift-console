@@ -44,7 +44,9 @@ const handleRedirect = async (
   history.push(redirectURL);
 };
 
-const CreateServiceBindingModal: React.FC<CreateServiceBindingModalProps> = (props) => {
+const CreateServiceBindingModal: React.FC<React.PropsWithChildren<
+  CreateServiceBindingModalProps
+>> = (props) => {
   const { source, model } = props;
   const { t } = useTranslation();
   const fireTelemetryEvent = useTelemetry();

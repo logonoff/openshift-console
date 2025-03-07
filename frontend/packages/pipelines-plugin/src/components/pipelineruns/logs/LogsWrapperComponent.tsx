@@ -20,7 +20,7 @@ type LogsWrapperComponentProps = {
   resource?: WatchK8sResource;
 };
 
-const LogsWrapperComponent: React.FC<LogsWrapperComponentProps> = ({
+const LogsWrapperComponent: React.FC<React.PropsWithChildren<LogsWrapperComponentProps>> = ({
   resource,
   taskRun,
   taskName,
@@ -49,7 +49,10 @@ const LogsWrapperComponent: React.FC<LogsWrapperComponentProps> = ({
     });
     saveAs(blob, `${taskName}.log`);
   };
-  const setLogGetter = React.useCallback((getter) => (currentLogGetterRef.current = getter), []);
+  const setLogGetter = React.useCallback(
+    (getter: any) => (currentLogGetterRef.current = getter),
+    [],
+  );
 
   const startDownloadAll = () => {
     setDownloadAllStatus(true);

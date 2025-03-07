@@ -9,7 +9,9 @@ type BuildDetailsTabProps = {
   obj: Build;
 };
 
-const BuildDetailsTab: React.FC<BuildDetailsTabProps> = ({ obj: build }) => {
+const BuildDetailsTab: React.FC<React.PropsWithChildren<BuildDetailsTabProps>> = ({
+  obj: build,
+}) => {
   const { t } = useTranslation();
 
   return (

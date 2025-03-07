@@ -2,7 +2,10 @@ import * as React from 'react';
 import { Spinner } from '@patternfly/react-core';
 import classNames from 'classnames';
 
-export const Loading: React.FC<LoadingProps> = ({ className, isInline }) => (
+export const Loading: React.FC<React.PropsWithChildren<LoadingProps>> = ({
+  className,
+  isInline,
+}) => (
   <Spinner
     aria-live="polite"
     aria-busy="true"

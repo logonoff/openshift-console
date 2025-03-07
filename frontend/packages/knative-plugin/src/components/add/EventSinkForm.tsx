@@ -26,7 +26,7 @@ interface OwnProps {
   kameletSink: K8sResourceKind;
 }
 
-const EventSinkForm: React.FC<FormikProps<FormikValues> & OwnProps> = ({
+const EventSinkForm: React.FC<React.PropsWithChildren<FormikProps<FormikValues> & OwnProps>> = ({
   errors,
   values,
   handleSubmit,

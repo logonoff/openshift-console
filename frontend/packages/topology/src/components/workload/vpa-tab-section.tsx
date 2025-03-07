@@ -15,7 +15,7 @@ type VPATabSectionProps = {
   vpas: K8sResourceCommon[];
 };
 
-const VPATabSection: React.FC<VPATabSectionProps> = ({ vpas }) => {
+const VPATabSection: React.FC<React.PropsWithChildren<VPATabSectionProps>> = ({ vpas }) => {
   const { t } = useTranslation();
   return (
     <>

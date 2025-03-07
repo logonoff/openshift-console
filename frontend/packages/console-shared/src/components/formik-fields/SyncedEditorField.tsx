@@ -36,7 +36,7 @@ type SyncedEditorFieldProps = {
   noMargin?: boolean;
 };
 
-const SyncedEditorField: React.FC<SyncedEditorFieldProps> = ({
+const SyncedEditorField: React.FC<React.PropsWithChildren<SyncedEditorFieldProps>> = ({
   name,
   formContext,
   yamlContext,

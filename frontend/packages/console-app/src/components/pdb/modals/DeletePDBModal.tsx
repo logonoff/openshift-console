@@ -15,7 +15,11 @@ import { k8sKill } from '@console/internal/module/k8s';
 import { PodDisruptionBudgetModel } from '../../../models';
 import { PodDisruptionBudgetKind } from '../types';
 
-const DeletePDBModal: React.FC<DeletePDBModalProps> = ({ close, pdb, workloadName }) => {
+const DeletePDBModal: React.FC<React.PropsWithChildren<DeletePDBModalProps>> = ({
+  close,
+  pdb,
+  workloadName,
+}) => {
   const [submitError, setSubmitError] = React.useState<string>(null);
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
   const { t } = useTranslation();

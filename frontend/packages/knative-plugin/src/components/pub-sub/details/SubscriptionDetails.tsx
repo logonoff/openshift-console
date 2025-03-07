@@ -10,7 +10,9 @@ interface SubscriptionDetails {
   obj: K8sResourceKind;
 }
 
-const SubscriptionDetails: React.FC<SubscriptionDetails> = ({ obj: subscription }) => {
+const SubscriptionDetails: React.FC<React.PropsWithChildren<SubscriptionDetails>> = ({
+  obj: subscription,
+}) => {
   const { t } = useTranslation();
   return (
     <>

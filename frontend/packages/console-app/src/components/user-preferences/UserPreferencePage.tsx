@@ -36,7 +36,7 @@ import UserPreferenceForm from './UserPreferenceForm';
 import { getUserPreferenceGroups } from './utils/getUserPreferenceGroups';
 import './UserPreferencePage.scss';
 
-const UserPreferencePage: React.FC = () => {
+const UserPreferencePage: React.FC<React.PropsWithChildren<unknown>> = () => {
   // resources and calls to hooks
   const { t } = useTranslation();
 

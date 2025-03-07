@@ -52,13 +52,9 @@ const deleteOptions = {
   propagationPolicy: 'Foreground',
 };
 
-export const UninstallOperatorModal: React.FC<UninstallOperatorModalProps> = ({
-  cancel,
-  close,
-  csv,
-  k8sKill,
-  subscription,
-}) => {
+export const UninstallOperatorModal: React.FC<React.PropsWithChildren<
+  UninstallOperatorModalProps
+>> = ({ cancel, close, csv, k8sKill, subscription }) => {
   const { t } = useTranslation();
   const [
     handleOperatorUninstallPromise,
@@ -425,10 +421,10 @@ export const UninstallOperatorModal: React.FC<UninstallOperatorModalProps> = ({
   );
 };
 
-const OperandDeleteProgress: React.FC<{
+const OperandDeleteProgress: React.FC<React.PropsWithChildren<{
   total: number;
   remaining: number;
-}> = ({ total, remaining }) => {
+}>> = ({ total, remaining }) => {
   const { t } = useTranslation();
   const progressLabel = t('olm~Remaining Operands: {{remaining}} of {{total}} ', {
     remaining,
@@ -455,9 +451,9 @@ const OperandDeleteProgress: React.FC<{
   );
 };
 
-const OperandsLoadedErrorAlert: React.FC<{ operandsLoadedErrorMessage: string }> = ({
-  operandsLoadedErrorMessage,
-}) => {
+const OperandsLoadedErrorAlert: React.FC<React.PropsWithChildren<{
+  operandsLoadedErrorMessage: string;
+}>> = ({ operandsLoadedErrorMessage }) => {
   const { t } = useTranslation();
   return (
     <Alert variant="warning" className="co-alert" title={t('olm~Cannot load Operands')} isInline>
@@ -471,10 +467,10 @@ const OperandsLoadedErrorAlert: React.FC<{ operandsLoadedErrorMessage: string }>
   );
 };
 
-const OperatorUninstallSuccessAlert: React.FC<{ name: string; namespace: string }> = ({
-  name,
-  namespace,
-}) => {
+const OperatorUninstallSuccessAlert: React.FC<React.PropsWithChildren<{
+  name: string;
+  namespace: string;
+}>> = ({ name, namespace }) => {
   const { t } = useTranslation();
   return (
     <Alert
@@ -493,7 +489,9 @@ const OperatorUninstallSuccessAlert: React.FC<{ name: string; namespace: string 
   );
 };
 
-const OperatorUninstallErrorAlert: React.FC<{ errorMessage: string }> = ({ errorMessage }) => {
+const OperatorUninstallErrorAlert: React.FC<React.PropsWithChildren<{ errorMessage: string }>> = ({
+  errorMessage,
+}) => {
   const { t } = useTranslation();
   return (
     <Alert
@@ -511,11 +509,11 @@ const OperatorUninstallErrorAlert: React.FC<{ errorMessage: string }> = ({ error
   );
 };
 
-const OperandDeletionErrorAlert: React.FC<{
+const OperandDeletionErrorAlert: React.FC<React.PropsWithChildren<{
   operandDeletionErrors: OperandError[];
   csvName: string;
   cancel?: () => void;
-}> = ({ operandDeletionErrors, csvName, cancel }) => {
+}>> = ({ operandDeletionErrors, csvName, cancel }) => {
   const { t } = useTranslation();
   return (
     <Alert variant="danger" className="co-alert" title={t('olm~Error deleting Operands')} isInline>
@@ -533,10 +531,10 @@ const OperandDeletionErrorAlert: React.FC<{
   );
 };
 
-const OperandDeletionSuccessAlert: React.FC<{ name: string; namespace: string }> = ({
-  name,
-  namespace,
-}) => {
+const OperandDeletionSuccessAlert: React.FC<React.PropsWithChildren<{
+  name: string;
+  namespace: string;
+}>> = ({ name, namespace }) => {
   const { t } = useTranslation();
   return (
     <Alert
@@ -555,18 +553,23 @@ const OperandDeletionSuccessAlert: React.FC<{ name: string; namespace: string }>
   );
 };
 
-const UninstallAlert: React.FC<{ errorMessage: string; name: string; namespace: string }> = ({
-  errorMessage,
-  name,
-  namespace,
-}) =>
+const UninstallAlert: React.FC<React.PropsWithChildren<{
+  errorMessage: string;
+  name: string;
+  namespace: string;
+}>> = ({ errorMessage, name, namespace }) =>
   errorMessage ? (
     <OperatorUninstallErrorAlert errorMessage={errorMessage} />
   ) : (
     <OperatorUninstallSuccessAlert name={name} namespace={namespace} />
   );
 
-const OperandsTable: React.FC<OperandsTableProps> = ({ operands, loaded, csvName, cancel }) => {
+const OperandsTable: React.FC<React.PropsWithChildren<OperandsTableProps>> = ({
+  operands,
+  loaded,
+  csvName,
+  cancel,
+}) => {
   const { t } = useTranslation();
   return (
     <StatusBox
@@ -615,7 +618,11 @@ const OperandsTable: React.FC<OperandsTableProps> = ({ operands, loaded, csvName
   );
 };
 
-const OperandErrorList: React.FC<OperandErrorListProps> = ({ operandErrors, csvName, cancel }) => {
+const OperandErrorList: React.FC<React.PropsWithChildren<OperandErrorListProps>> = ({
+  operandErrors,
+  csvName,
+  cancel,
+}) => {
   const { t } = useTranslation();
   return (
     <ul className="co-operator-uninstall-alert__list">

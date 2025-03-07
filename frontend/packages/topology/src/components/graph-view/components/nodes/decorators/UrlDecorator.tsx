@@ -14,7 +14,12 @@ interface DefaultDecoratorProps {
   y: number;
 }
 
-const UrlDecorator: React.FC<DefaultDecoratorProps> = ({ element, radius, x, y }) => {
+const UrlDecorator: React.FC<React.PropsWithChildren<DefaultDecoratorProps>> = ({
+  element,
+  radius,
+  x,
+  y,
+}) => {
   const ref = React.useRef();
   const { t } = useTranslation();
   const resourceObj = getResource(element);

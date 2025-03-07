@@ -2,7 +2,9 @@ import * as React from 'react';
 import { ResourceSummary } from '@console/internal/components/utils';
 import { K8sResourceKind } from '@console/internal/module/k8s';
 
-export const DefaultResourceSideBar: React.FC<{ resource: K8sResourceKind }> = ({ resource }) => {
+export const DefaultResourceSideBar: React.FC<React.PropsWithChildren<{
+  resource: K8sResourceKind;
+}>> = ({ resource }) => {
   return (
     <div className="overview__sidebar-pane resource-overview">
       <div className="overview__sidebar-pane-body resource-overview__body">

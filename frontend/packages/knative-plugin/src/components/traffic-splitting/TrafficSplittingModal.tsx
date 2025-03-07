@@ -16,7 +16,7 @@ interface TrafficSplittingModalProps {
 
 type Props = FormikProps<FormikValues> & TrafficSplittingModalProps & ModalComponentProps;
 
-const TrafficSplittingModal: React.FC<Props> = (props) => {
+const TrafficSplittingModal: React.FC<React.PropsWithChildren<Props>> = (props) => {
   const { t } = useTranslation();
   const { handleSubmit, cancel, isSubmitting, status } = props;
   return (

@@ -1,6 +1,8 @@
 import * as React from 'react';
 
-const PacIcon: React.FC<React.HTMLProps<SVGElement>> = (): React.ReactElement => {
+const PacIcon: React.FC<React.PropsWithChildren<
+  React.HTMLProps<SVGElement>
+>> = (): React.ReactElement => {
   return (
     <svg
       fill="currentColor"

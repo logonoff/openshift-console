@@ -10,11 +10,9 @@ interface BuilderImageEnvironmentsProps {
   imageStreamTag: string;
 }
 
-const BuilderImageEnvironments: React.FC<BuilderImageEnvironmentsProps> = ({
-  name,
-  imageStreamName,
-  imageStreamTag,
-}) => {
+const BuilderImageEnvironments: React.FC<React.PropsWithChildren<
+  BuilderImageEnvironmentsProps
+>> = ({ name, imageStreamName, imageStreamTag }) => {
   const {
     values: {
       build: { env: buildEnvs },

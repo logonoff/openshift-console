@@ -9,7 +9,7 @@ type BrokerTriggerTabProps = {
   obj: EventBrokerKind;
 };
 
-const BrokerTriggerTab: React.FC<BrokerTriggerTabProps> = ({ obj }) => {
+const BrokerTriggerTab: React.FC<React.PropsWithChildren<BrokerTriggerTabProps>> = ({ obj }) => {
   const customData = React.useMemo(
     () => ({
       broker: obj.metadata.name,

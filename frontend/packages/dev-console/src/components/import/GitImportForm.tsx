@@ -17,9 +17,9 @@ import SecureRoute from './route/SecureRoute';
 import { BuildSection } from './section/build-section/BuildSection';
 import { DeploySection } from './section/deploy-section/DeploySection';
 
-const GitImportForm: React.FC<
+const GitImportForm: React.FC<React.PropsWithChildren<
   FormikProps<FormikValues & GitImportFormData> & GitImportFormProps
-> = ({
+>> = ({
   values,
   errors,
   handleSubmit,

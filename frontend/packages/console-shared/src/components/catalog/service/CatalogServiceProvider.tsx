@@ -36,7 +36,7 @@ const useTimeout = (timeout: number) => {
   return timeIsUp;
 };
 
-const CatalogServiceProvider: React.FC<CatalogServiceProviderProps> = ({
+const CatalogServiceProvider: React.FC<React.PropsWithChildren<CatalogServiceProviderProps>> = ({
   namespace,
   catalogId,
   catalogType,
@@ -97,15 +97,15 @@ const CatalogServiceProvider: React.FC<CatalogServiceProviderProps> = ({
     return applyCatalogItemMetadata(preCatalogItems, metadataProviderMap);
   }, [loaded, preCatalogItems, metadataProviderMap]);
 
-  const onValueResolved = React.useCallback((items, uid) => {
+  const onValueResolved = React.useCallback((items: any, uid: any) => {
     setExtItemsMap((prev) => ({ ...prev, [uid]: items }));
   }, []);
 
-  const onValueError = React.useCallback((error, uid) => {
+  const onValueError = React.useCallback((error: any, uid: any) => {
     setItemsErrorMap((prev) => ({ ...prev, [uid]: error }));
   }, []);
 
-  const onMetadataValueResolved = React.useCallback((provider, uid, type) => {
+  const onMetadataValueResolved = React.useCallback((provider: any, uid: any, type: any) => {
     setMetadataProviderMap((prev) => ({
       ...prev,
       [type]: { ...(prev?.[type] ?? {}), [uid]: provider },

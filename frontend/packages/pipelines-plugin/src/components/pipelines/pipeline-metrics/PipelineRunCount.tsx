@@ -18,7 +18,7 @@ import {
 
 import './pipeline-chart.scss';
 
-const PipelineRunCount: React.FC<PipelineMetricsGraphProps> = ({
+const PipelineRunCount: React.FC<React.PropsWithChildren<PipelineMetricsGraphProps>> = ({
   pipeline,
   timespan,
   interval,

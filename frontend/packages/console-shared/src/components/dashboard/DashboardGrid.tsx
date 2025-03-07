@@ -17,7 +17,11 @@ const mapCardsToGrid = (
     </GridItem>
   ));
 
-const DashboardGrid: React.FC<OverviewGridProps> = ({ mainCards, leftCards, rightCards }) => {
+const DashboardGrid: React.FC<React.PropsWithChildren<OverviewGridProps>> = ({
+  mainCards,
+  leftCards,
+  rightCards,
+}) => {
   const [containerRef, width] = useRefWidth();
   const smallGrid = !!width && width <= 992; // 992px is equivalent of --pf-t--global--breakpoint--lg
 

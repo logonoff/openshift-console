@@ -7,7 +7,9 @@ import { HelmRelease, HelmActionOrigins } from '../../types/helm-types';
 import { HelmReleaseStatusLabels, releaseStatus } from '../../utils/helm-utils';
 import { tableColumnClasses } from './HelmReleaseListHeader';
 
-const HelmReleaseListRow: React.FC<RowFunctionArgs<HelmRelease>> = ({ obj }) => {
+const HelmReleaseListRow: React.FC<React.PropsWithChildren<RowFunctionArgs<HelmRelease>>> = ({
+  obj,
+}) => {
   const actionsScope = {
     release: obj,
     actionOrigin: HelmActionOrigins.list,

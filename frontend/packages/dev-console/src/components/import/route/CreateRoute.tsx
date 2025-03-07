@@ -3,7 +3,7 @@ import { TextInputTypes } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
 import { InputField } from '@console/shared';
 
-const CreateRoute: React.FC = () => {
+const CreateRoute: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   return (
     <>

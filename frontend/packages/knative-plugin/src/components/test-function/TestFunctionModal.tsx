@@ -18,7 +18,7 @@ interface TestFunctionModalProps {
 
 type Props = FormikProps<FormikValues> & TestFunctionModalProps & ModalComponentProps;
 
-const TestFunctionModal: React.FC<Props> = (props) => {
+const TestFunctionModal: React.FC<React.PropsWithChildren<Props>> = (props) => {
   const { t } = useTranslation();
   const { handleSubmit, cancel, close, isSubmitting } = props;
   const [currentView, setCurrentView] = React.useState(ModalPanel.Request);

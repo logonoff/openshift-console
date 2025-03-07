@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const IDPNameInput: React.FC<IDPNameInputProps> = ({ value, onChange }) => {
+export const IDPNameInput: React.FC<React.PropsWithChildren<IDPNameInputProps>> = ({
+  value,
+  onChange,
+}) => {
   const { t } = useTranslation();
   return (
     <div className="form-group">

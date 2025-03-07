@@ -13,7 +13,7 @@ import './GitOpsListPage.scss';
 
 const projectRes = { isList: true, kind: ProjectModel.kind, optional: true };
 
-const GitOpsListPage: React.FC = () => {
+const GitOpsListPage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const [appGroups, setAppGroups] = React.useState(null);
   const [emptyStateMsg, setEmptyStateMsg] = React.useState(null);
   const [namespaces, nsLoaded, nsError] = useK8sWatchResource<K8sResourceKind[]>(projectRes);

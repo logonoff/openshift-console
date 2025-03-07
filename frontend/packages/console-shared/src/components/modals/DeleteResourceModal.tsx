@@ -29,7 +29,9 @@ type DeleteResourceModalState = {
   errorMessage: string;
 };
 
-const DeleteResourceForm: React.FC<FormikProps<FormikValues> & DeleteResourceModalProps> = ({
+const DeleteResourceForm: React.FC<React.PropsWithChildren<
+  FormikProps<FormikValues> & DeleteResourceModalProps
+>> = ({
   handleSubmit,
   resourceName,
   resourceType,

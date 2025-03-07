@@ -7,7 +7,7 @@ import PipelineWorkspacesSection from '../common/PipelineWorkspacesSection';
 import TriggerBindingSection from './TriggerBindingSection';
 import { AddTriggerFormValues } from './types';
 
-const AddTriggerForm: React.FC<FormikProps<AddTriggerFormValues>> = () => {
+const AddTriggerForm: React.FC<React.PropsWithChildren<FormikProps<AddTriggerFormValues>>> = () => {
   const autoCompleteValues: string[] = useAddTriggerParams();
 
   return (

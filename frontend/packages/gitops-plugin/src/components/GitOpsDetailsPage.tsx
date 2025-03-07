@@ -16,7 +16,7 @@ type GitOpsOverviewPageProps = {
   };
 };
 type GitOpsDetailsPageProps = GitOpsOverviewPageProps;
-const GitOpsDetailsPage: React.FC<GitOpsDetailsPageProps> = (props) => {
+const GitOpsDetailsPage: React.FC<React.PropsWithChildren<GitOpsDetailsPageProps>> = (props) => {
   const [envsData, setEnvsData] = React.useState<GitOpsEnvironment[]>(null);
   const { appName } = useParams();
   const environmentBaseURI = `/api/gitops/environments`;

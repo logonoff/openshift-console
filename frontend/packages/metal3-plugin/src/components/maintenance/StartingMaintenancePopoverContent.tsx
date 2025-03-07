@@ -17,9 +17,9 @@ type StartingMaintenancePopoverContentProps = {
   nodeMaintenance: K8sResourceKind;
 };
 
-const StartingMaintenancePopoverContent: React.FC<StartingMaintenancePopoverContentProps> = ({
-  nodeMaintenance,
-}) => {
+const StartingMaintenancePopoverContent: React.FC<React.PropsWithChildren<
+  StartingMaintenancePopoverContentProps
+>> = ({ nodeMaintenance }) => {
   const { t } = useTranslation();
   const reason = getNodeMaintenanceReason(nodeMaintenance);
   const creationTimestamp = getNodeMaintenanceCreationTimestamp(nodeMaintenance);

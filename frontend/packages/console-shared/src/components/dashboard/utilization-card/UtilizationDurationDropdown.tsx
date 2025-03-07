@@ -11,9 +11,9 @@ import { UtilizationDurationDropdownProps } from '@console/dynamic-plugin-sdk/sr
 import { DurationKeys, DURATION_VALUES } from '../../../constants/duration';
 import { useUtilizationDuration } from '../../../hooks';
 
-export const UtilizationDurationDropdown: React.FC<UtilizationDurationDropdownProps> = ({
-  adjustDuration,
-}) => {
+export const UtilizationDurationDropdown: React.FC<React.PropsWithChildren<
+  UtilizationDurationDropdownProps
+>> = ({ adjustDuration }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { t } = useTranslation();
   const { selectedKey, updateSelectedKey, updateDuration } = useUtilizationDuration(adjustDuration);
@@ -24,7 +24,7 @@ export const UtilizationDurationDropdown: React.FC<UtilizationDurationDropdownPr
   };
 
   const onSelect = React.useCallback(
-    (event, newSelected) => {
+    (event: any, newSelected: any) => {
       updateSelectedKey(newSelected);
       updateDuration(DURATION_VALUES[newSelected]);
       setIsOpen(false);

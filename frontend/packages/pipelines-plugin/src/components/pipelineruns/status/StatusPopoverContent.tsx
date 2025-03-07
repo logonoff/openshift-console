@@ -9,7 +9,7 @@ type StatusPopoverContentProps = {
   namespace: string;
   logDetails: CombinedErrorDetails;
 };
-const StatusPopoverContent: React.FC<StatusPopoverContentProps> = ({
+const StatusPopoverContent: React.FC<React.PropsWithChildren<StatusPopoverContentProps>> = ({
   namespace,
   logDetails,
   link = null,

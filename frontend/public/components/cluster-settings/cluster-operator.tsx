@@ -57,7 +57,9 @@ const getIcon = (status: OperatorStatus) => {
   }[status];
 };
 
-const OperatorStatusIconAndLabel: React.FC<OperatorStatusIconAndLabelProps> = ({ status }) => {
+const OperatorStatusIconAndLabel: React.FC<React.PropsWithChildren<
+  OperatorStatusIconAndLabelProps
+>> = ({ status }) => {
   const icon = getIcon(status);
   return (
     <>
@@ -74,7 +76,9 @@ const tableColumnClasses = [
   Kebab.columnClass,
 ];
 
-const ClusterOperatorTableRow: React.FC<RowFunctionArgs<ClusterOperator>> = ({ obj }) => {
+const ClusterOperatorTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<ClusterOperator>
+>> = ({ obj }) => {
   const { status, message } = getStatusAndMessage(obj);
   const operatorVersion = getClusterOperatorVersion(obj);
   return (
@@ -104,7 +108,7 @@ const ClusterOperatorTableRow: React.FC<RowFunctionArgs<ClusterOperator>> = ({ o
   );
 };
 
-export const ClusterOperatorList: React.FC = (props) => {
+export const ClusterOperatorList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const ClusterOperatorTableHeader = () => {
     return [
@@ -143,7 +147,9 @@ export const ClusterOperatorList: React.FC = (props) => {
   );
 };
 
-const UpdateInProgressAlert: React.FC<UpdateInProgressAlertProps> = ({ cv }) => {
+const UpdateInProgressAlert: React.FC<React.PropsWithChildren<UpdateInProgressAlertProps>> = ({
+  cv,
+}) => {
   const updateCondition = getClusterVersionCondition(
     cv,
     ClusterVersionConditionType.Progressing,
@@ -167,7 +173,9 @@ const UpdateInProgressAlert: React.FC<UpdateInProgressAlertProps> = ({ cv }) => 
   );
 };
 
-export const ClusterOperatorPage: React.FC<ClusterOperatorPageProps> = (props) => {
+export const ClusterOperatorPage: React.FC<React.PropsWithChildren<ClusterOperatorPageProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const filters = [
     {
@@ -199,7 +207,7 @@ export const ClusterOperatorPage: React.FC<ClusterOperatorPageProps> = (props) =
   );
 };
 
-const OperandVersions: React.FC<OperandVersionsProps> = ({ versions }) => {
+const OperandVersions: React.FC<React.PropsWithChildren<OperandVersionsProps>> = ({ versions }) => {
   const { t } = useTranslation();
   return _.isEmpty(versions) ? (
     <EmptyBox label={t('public~versions')} />
@@ -225,7 +233,9 @@ const OperandVersions: React.FC<OperandVersionsProps> = ({ versions }) => {
   );
 };
 
-const ClusterOperatorDetails: React.FC<ClusterOperatorDetailsProps> = ({ obj }) => {
+const ClusterOperatorDetails: React.FC<React.PropsWithChildren<ClusterOperatorDetailsProps>> = ({
+  obj,
+}) => {
   const { status, message } = getStatusAndMessage(obj);
   const versions: OperandVersion[] = _.get(obj, 'status.versions', []);
   const conditions = _.get(obj, 'status.conditions', []);
@@ -273,7 +283,7 @@ const ClusterOperatorDetails: React.FC<ClusterOperatorDetailsProps> = ({ obj }) 
   );
 };
 
-export const ClusterOperatorDetailsPage: React.FC = (props) => {
+export const ClusterOperatorDetailsPage: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const location = useLocation();
   return (

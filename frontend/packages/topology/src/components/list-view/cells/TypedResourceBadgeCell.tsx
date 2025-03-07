@@ -11,7 +11,7 @@ interface TypedResourceBadgeCellProps {
   typeIcon?: React.ReactNode;
 }
 
-const TypedResourceBadgeCell: React.FC<TypedResourceBadgeCellProps> = ({
+const TypedResourceBadgeCell: React.FC<React.PropsWithChildren<TypedResourceBadgeCellProps>> = ({
   typeIconClass,
   typeIcon,
   imageClass,

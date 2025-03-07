@@ -24,12 +24,12 @@ import { ChartLegendTooltipStyles } from '@patternfly/react-charts/dist/js/victo
 
 import { DataPoint } from '.';
 
-export const ChartLegendTooltipContent: React.FunctionComponent<
+export const ChartLegendTooltipContent: React.FunctionComponent<React.PropsWithChildren<
   ChartLegendTooltipContentProps & {
     stack?: boolean;
     mainDataName?: string;
   }
-> = (props) => {
+>> = (props) => {
   const {
     activePoints,
     center,
@@ -181,7 +181,9 @@ export const ChartLegendTooltipContent: React.FunctionComponent<
 };
 ChartLegendTooltipContent.displayName = 'ChartLegendTooltipContent';
 
-export const ChartLegendTooltipLabel: React.FunctionComponent<ChartLegendTooltipLabelProps> = ({
+export const ChartLegendTooltipLabel: React.FunctionComponent<React.PropsWithChildren<
+  ChartLegendTooltipLabelProps
+>> = ({
   index = 0,
   legendData,
   style,
@@ -221,14 +223,14 @@ export const ChartLegendTooltipLabel: React.FunctionComponent<ChartLegendTooltip
 };
 ChartLegendTooltipLabel.displayName = 'ChartLegendTooltipLabel';
 
-export const ChartLegendTooltip: React.FunctionComponent<
+export const ChartLegendTooltip: React.FunctionComponent<React.PropsWithChildren<
   Omit<ChartLegendTooltipProps, 'title'> & {
     stack?: boolean;
     formatDate: (data: DataPoint<Date>[]) => string;
     getLabel?: (prop: { datum: DataPoint<Date> }) => string;
     mainDataName: string;
   }
-> = (props) => {
+>> = (props) => {
   const {
     activePoints,
     datum,

@@ -24,7 +24,11 @@ type BuildSpecSectionProps = {
   path: string;
 };
 
-const BuildSpecSection: React.FC<BuildSpecSectionProps> = ({ obj, buildSpec, path }) => {
+const BuildSpecSection: React.FC<React.PropsWithChildren<BuildSpecSectionProps>> = ({
+  obj,
+  buildSpec,
+  path,
+}) => {
   const { t } = useTranslation();
 
   if (!buildSpec) {

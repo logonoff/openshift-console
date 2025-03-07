@@ -29,7 +29,7 @@ import { BaseFormData, BuildOptions, GitImportFormData } from './import-types';
 import { detectGitType, validationSchema } from './import-validation-utils';
 import ImportSampleForm from './ImportSampleForm';
 
-const ImportSamplePage: React.FC = () => {
+const ImportSamplePage: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { ns: namespace, is: imageStreamName, isNs: imageStreamNamespace } = useParams();
 

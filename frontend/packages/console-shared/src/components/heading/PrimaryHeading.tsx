@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Title } from '@patternfly/react-core';
 import * as classNames from 'classnames';
 
-const PrimaryHeading: React.FC<PrimaryHeadingProps> = ({
+const PrimaryHeading: React.FC<React.PropsWithChildren<PrimaryHeadingProps>> = ({
   children,
   className,
   alignItemsBaseline,

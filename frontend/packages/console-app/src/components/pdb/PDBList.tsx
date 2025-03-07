@@ -6,7 +6,9 @@ import { getPDBTableColumns } from './pdb-table-columns';
 import PodDisruptionBudgetTableRow from './PDBTableRow';
 import { PodDisruptionBudgetKind } from './types';
 
-const PodDisruptionBudgetList: React.FC<PodDisruptionBudgetsListProps> = (props) => {
+const PodDisruptionBudgetList: React.FC<React.PropsWithChildren<PodDisruptionBudgetsListProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const [columns] = useActiveColumns({ columns: getPDBTableColumns() });
 

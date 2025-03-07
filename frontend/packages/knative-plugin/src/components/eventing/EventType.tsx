@@ -19,9 +19,9 @@ const EventTypeHeaders = (t: TFunction) => () => {
   ];
 };
 
-export const EventTypeRow: React.FC<RowFunctionArgs<{ key: string; value: string }>> = ({
-  obj,
-}) => {
+export const EventTypeRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<{ key: string; value: string }>
+>> = ({ obj }) => {
   return (
     <>
       <TableData columnID="attributes">{obj.key}</TableData>
@@ -34,7 +34,7 @@ interface EventTypeProps {
   eventType: K8sResourceKind;
 }
 
-const EventType: React.FC<EventTypeProps> = ({ eventType }) => {
+const EventType: React.FC<React.PropsWithChildren<EventTypeProps>> = ({ eventType }) => {
   const { t } = useTranslation();
 
   const specAttributes = ['type', 'source', 'schema'];

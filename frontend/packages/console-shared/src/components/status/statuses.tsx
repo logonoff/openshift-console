@@ -11,27 +11,39 @@ import {
 } from '@console/dynamic-plugin-sdk';
 import { YellowExclamationTriangleIcon } from './icons';
 
-export const ErrorStatus: React.FC<StatusComponentProps> = ({ title, ...props }) => {
+export const ErrorStatus: React.FC<React.PropsWithChildren<StatusComponentProps>> = ({
+  title,
+  ...props
+}) => {
   const { t } = useTranslation();
   return <SdkErrorStatus {...props} title={title || t('console-shared~Error')} />;
 };
 
-export const InfoStatus: React.FC<StatusComponentProps> = ({ title, ...props }) => {
+export const InfoStatus: React.FC<React.PropsWithChildren<StatusComponentProps>> = ({
+  title,
+  ...props
+}) => {
   const { t } = useTranslation();
   return <SdkInfoStatus {...props} title={title || t('console-shared~Information')} />;
 };
 
-export const ProgressStatus: React.FC<StatusComponentProps> = ({ title, ...props }) => {
+export const ProgressStatus: React.FC<React.PropsWithChildren<StatusComponentProps>> = ({
+  title,
+  ...props
+}) => {
   const { t } = useTranslation();
   return <SdkProgressStatus {...props} title={title || t('console-shared~In progress')} />;
 };
 
-export const SuccessStatus: React.FC<StatusComponentProps> = ({ title, ...props }) => {
+export const SuccessStatus: React.FC<React.PropsWithChildren<StatusComponentProps>> = ({
+  title,
+  ...props
+}) => {
   const { t } = useTranslation();
   return <SdkSuccessStatus {...props} title={title || t('console-shared~Healthy')} />;
 };
 
-export const PendingStatus: React.FC<StatusComponentProps> = (props) => {
+export const PendingStatus: React.FC<React.PropsWithChildren<StatusComponentProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <GenericStatus
@@ -43,7 +55,7 @@ export const PendingStatus: React.FC<StatusComponentProps> = (props) => {
 };
 PendingStatus.displayName = 'PendingStatus';
 
-export const WarningStatus: React.FC<StatusComponentProps> = (props) => {
+export const WarningStatus: React.FC<React.PropsWithChildren<StatusComponentProps>> = (props) => {
   const { t } = useTranslation();
   return (
     <GenericStatus

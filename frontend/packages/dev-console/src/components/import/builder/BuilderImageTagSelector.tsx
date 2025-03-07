@@ -22,7 +22,7 @@ export interface BuilderImageTagSelectorProps {
   showImageInfo?: boolean;
 }
 
-const BuilderImageTagSelector: React.FC<BuilderImageTagSelectorProps> = ({
+const BuilderImageTagSelector: React.FC<React.PropsWithChildren<BuilderImageTagSelectorProps>> = ({
   selectedBuilderImage,
   selectedImageTag,
   showImageInfo = true,

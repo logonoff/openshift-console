@@ -22,7 +22,7 @@ type StatusIconAndTextProps = StatusComponentProps & {
  * <StatusIconAndText title={title} icon={renderIcon} />
  * ```
  */
-const StatusIconAndText: React.FC<StatusIconAndTextProps> = ({
+const StatusIconAndText: React.FC<React.PropsWithChildren<StatusIconAndTextProps>> = ({
   icon,
   title,
   spin,

@@ -10,7 +10,7 @@ type RemoveTriggerFormProps = {
   pipeline: PipelineKind;
 };
 
-const RemoveTriggerForm: React.FC<RemoveTriggerFormProps> = (props) => {
+const RemoveTriggerForm: React.FC<React.PropsWithChildren<RemoveTriggerFormProps>> = (props) => {
   const { t } = useTranslation();
   const { pipeline } = props;
   const pipelineName = pipeline.metadata.name;

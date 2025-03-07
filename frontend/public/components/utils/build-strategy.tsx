@@ -9,7 +9,10 @@ import { getStrategyType } from '../build';
 
 const ImageStreamTagsReference: K8sResourceKindReference = 'ImageStreamTag';
 
-export const BuildStrategy: React.SFC<BuildStrategyProps> = ({ resource, children }) => {
+export const BuildStrategy: React.FC<React.PropsWithChildren<BuildStrategyProps>> = ({
+  resource,
+  children,
+}) => {
   const dockerfile = _.get(resource, 'spec.source.dockerfile');
   const devfile = _.get(resource, 'spec.source.devfile');
   const jenkinsfile = _.get(resource, 'spec.strategy.jenkinsPipelineStrategy.jenkinsfile');

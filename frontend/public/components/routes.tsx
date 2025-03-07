@@ -109,7 +109,7 @@ export const getRouteLabel = (route: RouteKind): string => {
   return label;
 };
 
-export const RouteLinkAndCopy: React.FC<RouteLinkAndCopyProps> = ({
+export const RouteLinkAndCopy: React.FC<React.PropsWithChildren<RouteLinkAndCopyProps>> = ({
   route,
   additionalClassName,
 }) => {
@@ -125,7 +125,7 @@ export const RouteLinkAndCopy: React.FC<RouteLinkAndCopyProps> = ({
 };
 
 // Renders LinkAndCopy for non subdomains
-export const RouteLocation: React.FC<RouteHostnameProps> = ({ obj }) => (
+export const RouteLocation: React.FC<React.PropsWithChildren<RouteHostnameProps>> = ({ obj }) => (
   <div className="co-break-word">
     {isWebRoute(obj) ? (
       <RouteLinkAndCopy route={obj} additionalClassName="co-external-link--block" />
@@ -153,7 +153,9 @@ export const routeStatus = (route: RouteKind): string => {
   return atLeastOneAdmitted ? 'Accepted' : 'Rejected';
 };
 
-export const RouteStatus: React.FC<RouteStatusProps> = ({ obj: route }) => {
+export const RouteStatus: React.FC<React.PropsWithChildren<RouteStatusProps>> = ({
+  obj: route,
+}) => {
   const status: string = routeStatus(route);
   return <Status status={status} />;
 };
@@ -171,7 +173,9 @@ const tableColumnClasses = [
 
 const kind = 'Route';
 
-const RouteTableRow: React.FC<RowFunctionArgs<RouteKind>> = ({ obj: route }) => {
+const RouteTableRow: React.FC<React.PropsWithChildren<RowFunctionArgs<RouteKind>>> = ({
+  obj: route,
+}) => {
   return (
     <>
       <TableData className={tableColumnClasses[0]}>
@@ -204,7 +208,7 @@ const RouteTableRow: React.FC<RowFunctionArgs<RouteKind>> = ({ obj: route }) => 
   );
 };
 
-const TLSSettings: React.FC<TLSSettingsProps> = ({ route }) => {
+const TLSSettings: React.FC<React.PropsWithChildren<TLSSettingsProps>> = ({ route }) => {
   const [showKey, setShowKey] = React.useState(false);
   const { t } = useTranslation();
   const { tls } = route.spec;
@@ -312,7 +316,10 @@ const showCustomRouteHelp = (
   return true;
 };
 
-const RouteTargetRow: React.FC<RouteTargetRowProps> = ({ route, target }) => (
+const RouteTargetRow: React.FC<React.PropsWithChildren<RouteTargetRowProps>> = ({
+  route,
+  target,
+}) => (
   <tr className="pf-v6-c-table__tr">
     <td className="pf-v6-c-table__td">
       <ResourceLink
@@ -327,7 +334,10 @@ const RouteTargetRow: React.FC<RouteTargetRowProps> = ({ route, target }) => (
   </tr>
 );
 
-const CustomRouteHelp: React.FC<CustomRouteHelpProps> = ({ host, routerCanonicalHostname }) => {
+const CustomRouteHelp: React.FC<React.PropsWithChildren<CustomRouteHelpProps>> = ({
+  host,
+  routerCanonicalHostname,
+}) => {
   const { t } = useTranslation();
   return (
     <Popover
@@ -357,7 +367,9 @@ const CustomRouteHelp: React.FC<CustomRouteHelpProps> = ({ host, routerCanonical
   );
 };
 
-const RouteIngressStatus: React.FC<RouteIngressStatusProps> = ({ route }) => {
+const RouteIngressStatus: React.FC<React.PropsWithChildren<RouteIngressStatusProps>> = ({
+  route,
+}) => {
   const { t } = useTranslation();
   return (
     <>
@@ -401,7 +413,7 @@ const RouteIngressStatus: React.FC<RouteIngressStatusProps> = ({ route }) => {
   );
 };
 
-const RouteDetails: React.FC<RoutesDetailsProps> = ({ obj: route }) => {
+const RouteDetails: React.FC<React.PropsWithChildren<RoutesDetailsProps>> = ({ obj: route }) => {
   const { t } = useTranslation();
   const primaryIngressStatus: IngressStatusProps = getIngressStatusForHost(
     route.spec.host,
@@ -516,7 +528,7 @@ export const RoutesDetailsPage = connectToFlags<RoutesDetailsPageProps>(
   />
 ));
 
-export const RoutesList: React.FC = (props) => {
+export const RoutesList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const RouteTableHeader = () => {
     return [
@@ -566,7 +578,7 @@ export const RoutesList: React.FC = (props) => {
   );
 };
 
-export const RoutesPage: React.FC<RoutesPageProps> = (props) => {
+export const RoutesPage: React.FC<React.PropsWithChildren<RoutesPageProps>> = (props) => {
   const { t } = useTranslation();
   const createProps = {
     to: `/k8s/ns/${props.namespace || 'default'}/routes/~new/form`,

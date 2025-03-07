@@ -20,7 +20,7 @@ import HelmRelease from './HelmRelease';
 export const getHelmComponentFactory = (
   kind,
   type,
-): React.ComponentType<{ element: GraphElement }> | undefined => {
+): React.ComponentType<React.PropsWithChildren<{ element: GraphElement }>> | undefined => {
   switch (type) {
     case TYPE_HELM_RELEASE:
       return withSelection({ controlled: true })(

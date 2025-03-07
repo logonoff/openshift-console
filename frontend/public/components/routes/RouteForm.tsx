@@ -25,7 +25,9 @@ type RouteFormProps = {
   existingRoute?: RouteKind;
 };
 
-export const RouteForm: React.FC<FormikProps<FormikValues> & RouteFormProps> = ({
+export const RouteForm: React.FC<React.PropsWithChildren<
+  FormikProps<FormikValues> & RouteFormProps
+>> = ({
   dirty,
   errors,
   existingRoute,

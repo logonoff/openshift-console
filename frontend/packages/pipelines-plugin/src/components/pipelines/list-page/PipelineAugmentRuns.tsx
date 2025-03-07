@@ -39,7 +39,9 @@ export type PipelineAugmentRunsProps = {
   filters?: Record<string, any>[];
 };
 // Firehose injects a lot of props and some of those are considered the KeyedRuns
-const PipelineAugmentRuns: React.FC<PipelineAugmentRunsProps> = ({ ...props }) => {
+const PipelineAugmentRuns: React.FC<React.PropsWithChildren<PipelineAugmentRunsProps>> = ({
+  ...props
+}) => {
   const allFilters = {
     ...props.filters,
     ...(_.get(props.pipeline, 'filters.name') && { name: _.get(props.pipeline, 'filters.name') }),

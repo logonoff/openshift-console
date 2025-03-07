@@ -13,7 +13,7 @@ type EditorFieldProps = Partial<BasicCodeEditorProps> & {
   isDisabled?: boolean;
 };
 
-const EditorField: React.FC<EditorFieldProps> = ({
+const EditorField: React.FC<React.PropsWithChildren<EditorFieldProps>> = ({
   name,
   label,
   helpText,

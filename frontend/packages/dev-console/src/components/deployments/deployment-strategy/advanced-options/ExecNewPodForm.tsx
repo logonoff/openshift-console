@@ -12,7 +12,7 @@ interface ExecNewPodFormProps {
   dataAttribute: string;
 }
 
-const ExecNewPodForm: React.FC<ExecNewPodFormProps> = ({
+const ExecNewPodForm: React.FC<React.PropsWithChildren<ExecNewPodFormProps>> = ({
   resourceObj,
   lifecycleHook,
   dataAttribute,

@@ -6,9 +6,15 @@ import ProgressiveList from '../ProgressiveList';
 import ProgressiveListFooter from '../ProgressiveListFooter';
 import ProgressiveListItem from '../ProgressiveListItem';
 
-const DummyComponent: React.FC = () => <div id="dummy">Dummy Component</div>;
-const BarComponent: React.FC = () => <div id="bar">Bar Component</div>;
-const FooComponent: React.FC = () => <div id="foo">Foo Component</div>;
+const DummyComponent: React.FC<React.PropsWithChildren<unknown>> = () => (
+  <div id="dummy">Dummy Component</div>
+);
+const BarComponent: React.FC<React.PropsWithChildren<unknown>> = () => (
+  <div id="bar">Bar Component</div>
+);
+const FooComponent: React.FC<React.PropsWithChildren<unknown>> = () => (
+  <div id="foo">Foo Component</div>
+);
 
 const Footer = ({ children }) => {
   const { t } = useTranslation();

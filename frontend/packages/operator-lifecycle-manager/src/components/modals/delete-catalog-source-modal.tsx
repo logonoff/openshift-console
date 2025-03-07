@@ -11,15 +11,9 @@ import { withHandlePromise, HandlePromiseProps } from '@console/internal/compone
 import { k8sKill, K8sKind, K8sResourceKind } from '@console/internal/module/k8s';
 import { YellowExclamationTriangleIcon } from '@console/shared';
 
-const DeleteCatalogSourceModal: React.FC<DeleteCatalogSourceModalProps> = ({
-  kind,
-  resource,
-  close,
-  cancel,
-  inProgress,
-  errorMessage,
-  handlePromise,
-}) => {
+const DeleteCatalogSourceModal: React.FC<React.PropsWithChildren<
+  DeleteCatalogSourceModalProps
+>> = ({ kind, resource, close, cancel, inProgress, errorMessage, handlePromise }) => {
   const { t } = useTranslation();
   const [confirmed, setConfirmed] = React.useState<boolean>(false);
   const isConfirmed = (e: React.KeyboardEvent<HTMLInputElement>) => {

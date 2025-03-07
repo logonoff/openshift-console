@@ -17,7 +17,7 @@ import { getLocalVolumeSetRequestData } from './request';
 import { reducer, initialState } from './state';
 import './create-local-volume-set.scss';
 
-const CreateLocalVolumeSet: React.FC = () => {
+const CreateLocalVolumeSet: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { appName, ns } = useParams();
   const resourcePath = resourcePathFromModel(ClusterServiceVersionModel, appName, ns);
 

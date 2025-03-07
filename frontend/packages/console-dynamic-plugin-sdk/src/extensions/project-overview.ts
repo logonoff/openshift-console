@@ -7,7 +7,7 @@ export type ProjectOverviewInventoryItem = ExtensionDeclaration<
   'console.project-overview/inventory-item',
   {
     /** The component to be rendered. */
-    component: CodeRef<React.ComponentType<{ projectName: string }>>;
+    component: CodeRef<React.ComponentType<React.PropsWithChildren<{ projectName: string }>>>;
   }
 >;
 
@@ -30,7 +30,9 @@ export type ProjectOverviewUtilizationItem = ExtensionDeclaration<
     /** Prometheus limit query. */
     getLimitQuery?: CodeRef<GetProjectQuery>;
     /** Shows Top consumer popover instead of plain value */
-    TopConsumerPopover?: CodeRef<React.ComponentType<TopConsumerPopoverProps>>;
+    TopConsumerPopover?: CodeRef<
+      React.ComponentType<React.PropsWithChildren<TopConsumerPopoverProps>>
+    >;
   }
 >;
 

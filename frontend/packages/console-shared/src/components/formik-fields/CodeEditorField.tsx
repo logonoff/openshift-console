@@ -25,7 +25,7 @@ const SampleResource: WatchK8sResource = {
   isList: true,
 };
 
-const CodeEditorField: React.FC<CodeEditorFieldProps> = ({
+const CodeEditorField: React.FC<React.PropsWithChildren<CodeEditorFieldProps>> = ({
   name,
   label,
   model,

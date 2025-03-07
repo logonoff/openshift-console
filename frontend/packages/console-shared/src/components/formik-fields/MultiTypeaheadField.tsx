@@ -26,7 +26,7 @@ import { RedExclamationCircleIcon } from '../status';
 import { MultiTypeaheadFieldProps } from './field-types';
 import { getFieldId } from './field-utils';
 
-const MultiTypeaheadField: React.FC<MultiTypeaheadFieldProps> = ({
+const MultiTypeaheadField: React.FC<React.PropsWithChildren<MultiTypeaheadFieldProps>> = ({
   name,
   label,
   ariaLabel,

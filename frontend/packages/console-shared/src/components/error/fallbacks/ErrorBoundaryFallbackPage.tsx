@@ -8,7 +8,9 @@ import ErrorDetailsBlock from './ErrorDetailsBlock';
 /**
  * Standard fallback catch -- expected to take up the whole page.
  */
-const ErrorBoundaryFallbackPage: React.FC<ErrorBoundaryFallbackProps> = (props) => {
+const ErrorBoundaryFallbackPage: React.FC<React.PropsWithChildren<ErrorBoundaryFallbackProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   return (
     <div className="co-m-pane__body">

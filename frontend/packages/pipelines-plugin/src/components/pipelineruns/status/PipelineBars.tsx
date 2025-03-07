@@ -15,7 +15,10 @@ export interface PipelineBarsForTaskRunsStatus {
   taskRunStatusObj: TaskStatus;
 }
 
-export const PipelineBars: React.FC<PipelineBarProps> = ({ pipelinerun, taskRuns }) => {
+export const PipelineBars: React.FC<React.PropsWithChildren<PipelineBarProps>> = ({
+  pipelinerun,
+  taskRuns,
+}) => {
   const taskStatus = useTaskStatus(pipelinerun, taskRuns);
   return (
     <Tooltip content={<TaskStatusToolTip taskStatus={taskStatus} />}>
@@ -32,9 +35,9 @@ export const PipelineBars: React.FC<PipelineBarProps> = ({ pipelinerun, taskRuns
   );
 };
 
-export const PipelineBarsForTaskRunsStatus: React.FC<PipelineBarsForTaskRunsStatus> = ({
-  taskRunStatusObj,
-}) => (
+export const PipelineBarsForTaskRunsStatus: React.FC<React.PropsWithChildren<
+  PipelineBarsForTaskRunsStatus
+>> = ({ taskRunStatusObj }) => (
   <Tooltip content={<TaskStatusToolTip taskStatus={taskRunStatusObj} />}>
     <HorizontalStackedBars
       height="1em"

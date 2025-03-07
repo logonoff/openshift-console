@@ -26,7 +26,7 @@ const useCatalogExtensions = (
 ] => {
   const [itemTypeExtensions, itemTypesResolved] = useResolvedExtensions<CatalogItemType>(
     React.useCallback(
-      (e): e is CatalogItemType =>
+      (e: any): e is CatalogItemType =>
         isCatalogItemType(e) && (!catalogType || e.properties.type === catalogType),
       [catalogType],
     ),
@@ -36,7 +36,7 @@ const useCatalogExtensions = (
     CatalogItemTypeMetadata
   >(
     React.useCallback(
-      (e): e is CatalogItemTypeMetadata =>
+      (e: any): e is CatalogItemTypeMetadata =>
         isCatalogItemTypeMetadata(e) && (!catalogType || e.properties.type === catalogType),
       [catalogType],
     ),
@@ -44,7 +44,7 @@ const useCatalogExtensions = (
 
   const [catalogProviderExtensions, providersResolved] = useResolvedExtensions<CatalogItemProvider>(
     React.useCallback(
-      (e): e is CatalogItemProvider =>
+      (e: any): e is CatalogItemProvider =>
         isCatalogItemProvider(e) &&
         _.castArray(e.properties.catalogId).includes(catalogId) &&
         (!catalogType || e.properties.type === catalogType),
@@ -54,7 +54,7 @@ const useCatalogExtensions = (
 
   const [itemFilterExtensions, filtersResolved] = useResolvedExtensions<CatalogItemFilter>(
     React.useCallback(
-      (e): e is CatalogItemFilter =>
+      (e: any): e is CatalogItemFilter =>
         isCatalogItemFilter(e) &&
         _.castArray(e.properties.catalogId).includes(catalogId) &&
         (!catalogType || e.properties.type === catalogType),
@@ -66,7 +66,7 @@ const useCatalogExtensions = (
     CatalogItemMetadataProvider
   >(
     React.useCallback(
-      (e): e is CatalogItemMetadataProvider =>
+      (e: any): e is CatalogItemMetadataProvider =>
         isCatalogItemMetadataProvider(e) &&
         _.castArray(e.properties.catalogId).includes(catalogId) &&
         (!catalogType || e.properties.type === catalogType),

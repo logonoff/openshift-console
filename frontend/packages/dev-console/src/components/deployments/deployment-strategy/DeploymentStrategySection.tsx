@@ -21,10 +21,9 @@ export type DeploymentStrategySectionProps = {
   resourceObj: K8sResourceKind;
 };
 
-const DeploymentStrategySection: React.FC<DeploymentStrategySectionProps> = ({
-  resourceType,
-  resourceObj,
-}) => {
+const DeploymentStrategySection: React.FC<React.PropsWithChildren<
+  DeploymentStrategySectionProps
+>> = ({ resourceType, resourceObj }) => {
   const { t } = useTranslation();
   const {
     values: {

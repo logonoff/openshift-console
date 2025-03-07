@@ -22,7 +22,9 @@ const LimitRangeReference: K8sResourceKindReference = LimitRangeModel.kind;
 
 const tableColumnClasses = ['', '', 'pf-m-hidden pf-m-visible-on-md', Kebab.columnClass];
 
-export const LimitRangeTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({ obj }) => {
+export const LimitRangeTableRow: React.FC<React.PropsWithChildren<
+  RowFunctionArgs<K8sResourceKind>
+>> = ({ obj }) => {
   return (
     <>
       <TableData className={tableColumnClasses[0]}>
@@ -45,7 +47,7 @@ export const LimitRangeTableRow: React.FC<RowFunctionArgs<K8sResourceKind>> = ({
   );
 };
 
-export const LimitRangeList: React.FC = (props) => {
+export const LimitRangeList: React.FC<React.PropsWithChildren<unknown>> = (props) => {
   const { t } = useTranslation();
   const LimitRangeTableHeader = () => {
     return [
@@ -86,11 +88,13 @@ export const LimitRangeList: React.FC = (props) => {
   );
 };
 
-export const LimitRangeListPage: React.FC<LimitRangeListPageProps> = (props) => (
+export const LimitRangeListPage: React.FC<React.PropsWithChildren<LimitRangeListPageProps>> = (
+  props,
+) => (
   <ListPage {...props} kind={LimitRangeReference} ListComponent={LimitRangeList} canCreate={true} />
 );
 
-export const LimitRangeDetailsRow: React.SFC<LimitRangeDetailsRowProps> = ({
+export const LimitRangeDetailsRow: React.FC<React.PropsWithChildren<LimitRangeDetailsRowProps>> = ({
   limitType,
   resource,
   limit,
@@ -108,7 +112,9 @@ export const LimitRangeDetailsRow: React.SFC<LimitRangeDetailsRowProps> = ({
   );
 };
 
-const LimitRangeDetailsRows: React.SFC<LimitRangeDetailsRowsProps> = ({ limit }) => {
+const LimitRangeDetailsRows: React.FC<React.PropsWithChildren<LimitRangeDetailsRowsProps>> = ({
+  limit,
+}) => {
   const properties = ['max', 'min', 'default', 'defaultRequest', 'maxLimitRequestRatio'];
   const resources = {};
   _.each(properties, (property) => {

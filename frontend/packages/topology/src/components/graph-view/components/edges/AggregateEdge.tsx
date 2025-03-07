@@ -8,7 +8,10 @@ type AggregateEdgeProps = {
   element: Edge;
 };
 
-const AggregateEdge: React.FC<AggregateEdgeProps> = ({ element, ...others }) => {
+const AggregateEdge: React.FC<React.PropsWithChildren<AggregateEdgeProps>> = ({
+  element,
+  ...others
+}) => {
   const { bidirectional } = element.getData();
 
   const endTerminalType =

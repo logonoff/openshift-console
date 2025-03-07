@@ -12,11 +12,11 @@ import { RedExclamationCircleIcon } from '../status';
 import { BaseInputFieldProps } from './field-types';
 import { getFieldId } from './field-utils';
 
-const BaseInputField: React.FC<
+const BaseInputField: React.FC<React.PropsWithChildren<
   BaseInputFieldProps & {
     children: (props) => React.ReactNode;
   }
-> = ({
+>> = ({
   label,
   helpText,
   required,

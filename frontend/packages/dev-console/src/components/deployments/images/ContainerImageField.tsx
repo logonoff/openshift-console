@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { CheckboxField, InputField } from '@console/shared/src';
 import ImageStream from '../../import/image-search/ImageStream';
 
-const ContainerImageField: React.FC = () => {
+const ContainerImageField: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const {
     values: {

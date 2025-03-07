@@ -15,7 +15,12 @@ interface BuildDecoratorProps {
   y: number;
 }
 
-const BuildDecorator: React.FC<BuildDecoratorProps> = ({ element, radius, x, y }) => {
+const BuildDecorator: React.FC<React.PropsWithChildren<BuildDecoratorProps>> = ({
+  element,
+  radius,
+  x,
+  y,
+}) => {
   const ref = React.useRef();
   const { t } = useTranslation();
   const resource = getResource(element);

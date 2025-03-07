@@ -20,7 +20,10 @@ interface AddBrokerProps {
   contextSource?: string;
 }
 
-const AddBroker: React.FC<AddBrokerProps> = ({ namespace, selectedApplication }) => {
+const AddBroker: React.FC<React.PropsWithChildren<AddBrokerProps>> = ({
+  namespace,
+  selectedApplication,
+}) => {
   const perspectiveExtension = usePerspectives();
   const [perspective] = useActivePerspective();
   const { t } = useTranslation();

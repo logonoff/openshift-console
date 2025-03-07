@@ -24,7 +24,7 @@ type HelmReleaseProps = {
   WithDragNodeProps &
   WithDndDropProps;
 
-const HelmRelease: React.FC<HelmReleaseProps> = (props) => {
+const HelmRelease: React.FC<React.PropsWithChildren<HelmReleaseProps>> = (props) => {
   const secretObj = getResource(props.element);
   const resourceModel = secretObj ? modelFor(referenceFor(secretObj)) : null;
   const editAccess = useAccessReview({

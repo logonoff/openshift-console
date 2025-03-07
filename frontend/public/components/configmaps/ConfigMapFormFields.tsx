@@ -6,7 +6,7 @@ import { CheckboxField, InputField } from '@console/shared/src/components/formik
 import KeyValueFileInputField from '@console/shared/src/components/formik-fields/key-value-file-input-field/KeyValueFileInputField';
 import { isBase64 } from './configmap-utils';
 
-const ConfigMapFormFields: React.FC = () => {
+const ConfigMapFormFields: React.FC<React.PropsWithChildren<unknown>> = () => {
   const { t } = useTranslation();
   const { values, setFieldValue } = useFormikContext<FormikValues>();
   const onChange = (value: string, keyIndex: string) => {

@@ -13,7 +13,9 @@ type TriggerTemplateSelectorProps = {
   placeholder: string;
 };
 
-const TriggerTemplateSelector: React.FC<TriggerTemplateSelectorProps> = (props) => {
+const TriggerTemplateSelector: React.FC<React.PropsWithChildren<TriggerTemplateSelectorProps>> = (
+  props,
+) => {
   const { t } = useTranslation();
   const { name, pipeline, placeholder } = props;
   const {

@@ -6,7 +6,9 @@ import { referenceForModel } from '@console/internal/module/k8s';
 import { EventingBrokerModel } from '../../../models';
 import BrokerList from './BrokerList';
 
-const BrokerListPage: React.FC<React.ComponentProps<typeof ListPage>> = (props) => {
+const BrokerListPage: React.FC<React.PropsWithChildren<React.ComponentProps<typeof ListPage>>> = (
+  props,
+) => {
   const { t } = useTranslation();
   return (
     <>
