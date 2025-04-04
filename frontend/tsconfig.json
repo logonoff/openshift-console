@@ -8,6 +8,7 @@
     "target": "es2021",
     "jsx": "react-jsx",
     "strict": false,
+    "esModuleInterop": true,
     "allowJs": true,
     "experimentalDecorators": true,
     "sourceMap": true,
