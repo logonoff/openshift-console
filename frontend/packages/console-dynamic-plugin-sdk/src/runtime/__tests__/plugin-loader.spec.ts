@@ -1,5 +1,3 @@
-import { act } from '@testing-library/react';
-import { Simulate } from 'react-dom/test-utils';
 import { PluginStore } from '@console/plugin-sdk/src/store';
 import * as utilsModule from '@console/shared/src/utils/utils';
 import { StandardConsolePluginManifest, LegacyConsolePluginManifest } from '../../build-types';
@@ -124,9 +122,9 @@ describe('loadDynamicPlugin', () => {
     const { pluginMap } = getStateForTestPurposes();
     pluginMap.get('Test@1.2.3').entryCallbackFired = true;
 
-    act(() => {
-      Simulate.load(getFirstPluginScript(manifest));
-    });
+    const script = getFirstPluginScript(manifest);
+    // Directly call the onload handler instead of using Simulate.load
+    script.onload(new Event('load'));
 
     expect(await promise).toBe('Test@1.2.3');
   });
@@ -136,18 +134,12 @@ describe('loadDynamicPlugin', () => {
     const promise = loadDynamicPlugin(manifest);
     const script = getFirstPluginScript(manifest);
 
-    act(() => {
-      Simulate.load(script);
-    });
+    // Directly call the onload handler instead of using Simulate.load
+    script.onload(new Event('load'));
 
-    try {
-      await promise;
-      fail('Expected that loadDynamicPlugin fails and throws an error');
-    } catch (error) {
-      expect(error).toEqual(
-        new Error('Scripts of plugin Test@1.2.3 loaded without entry callback'),
-      );
-    }
+    await expect(promise).rejects.toEqual(
+      new Error('Scripts of plugin Test@1.2.3 loaded without entry callback'),
+    );
   });
 
   it('throws an error if the script was not loaded successfully', async () => {
