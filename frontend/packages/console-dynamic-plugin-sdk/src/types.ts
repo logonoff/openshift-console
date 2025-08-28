@@ -1,10 +1,6 @@
-/**
- * Console feature flags used to gate extension instances.
- */
-export type ExtensionFlags = Partial<{
-  required: string[];
-  disallowed: string[];
-}>;
+import type { Extension as SDKExtension } from '@openshift/dynamic-plugin-sdk';
+
+export type { ExtensionFlags } from '@openshift/dynamic-plugin-sdk';
 
 /**
  * TS type guard to narrow type of the given extension to `E`.
@@ -29,11 +25,11 @@ export type LoadedExtension<E extends Extension = Extension> = E & {
  * Each extension may specify `flags` referencing Console feature flags which
  * are required and/or disallowed in order to put this extension into effect.
  */
-export type Extension<P extends {} = any> = {
-  type: string;
-  properties: P;
-  flags?: ExtensionFlags;
-};
+// Pick to remove customProperty fallback type to make Omit work correctly
+export type Extension<P extends {} = any> = Pick<
+  SDKExtension<string, P>,
+  'type' | 'properties' | 'flags'
+>;
 
 /**
  * Declaration of Console extension type.
