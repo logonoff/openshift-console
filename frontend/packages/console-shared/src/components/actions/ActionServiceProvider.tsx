@@ -8,7 +8,7 @@ import {
   isActionGroup,
   MenuOption,
 } from '@console/dynamic-plugin-sdk';
-import { useExtensions } from '@console/plugin-sdk';
+import { useExtensions } from '@console/plugin-sdk/src/api/useExtensions';
 import { useDeepCompareMemoize } from '../../hooks';
 import ActionsLoader from './loader/ActionsLoader';
 import { ActionContext } from './types';
