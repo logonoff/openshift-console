@@ -84,6 +84,7 @@ export const loadActivePluginsForTestPurposes = (
   for (const pkg of pluginPackages) {
     activePlugins.push({
       name: pkg.name,
+      version: pkg.version,
       extensions: extensionHook(pkg),
     });
   }

@@ -6,5 +6,6 @@ import type { Extension } from '@console/dynamic-plugin-sdk/src/types';
  */
 export type ActivePlugin = {
   name: string;
+  version: string;
   extensions: Extension[];
 };

@@ -68,8 +68,7 @@ export class PluginStore extends SDKPluginStore {
     super.addLoadedPlugin(
       {
         ...plugin,
-        version: '0.0.0',
-        baseURL: `/static/plugins/${plugin.name}`,
+        baseURL: 'https://corndogoncorndog.com',
         loadScripts: [],
         registrationMethod: 'callback',
       },
