@@ -27,10 +27,11 @@ const activePlugins =
 
 const dynamicPluginNames = getEnabledDynamicPluginNames();
 
-export const pluginStore = new PluginStore();
+export const pluginStore = new PluginStore(undefined, dynamicPluginNames);
 
 activePlugins.forEach((plugin) => {
   pluginStore.addActivePlugin(plugin);
+  pluginStore.enablePlugins([plugin.name]);
 });
 
 /**

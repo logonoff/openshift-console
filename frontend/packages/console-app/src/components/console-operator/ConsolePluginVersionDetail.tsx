@@ -9,16 +9,11 @@ const ConsolePluginVersionDetail: React.FC<DetailsItemComponentProps> = ({ obj }
   const pluginName = React.useMemo(() => obj?.metadata?.name, [obj?.metadata?.name]);
 
   const pluginInfo = React.useMemo(
-    () =>
-      pluginInfoEntries.find((entry) =>
-        entry.status === 'loaded'
-          ? entry.metadata.name === pluginName
-          : entry.pluginName === pluginName,
-      ),
+    () => pluginInfoEntries.find((entry) => entry.manifest.name === pluginName),
     [pluginInfoEntries, pluginName],
   );
 
-  return pluginInfo?.status === 'loaded' ? <>{pluginInfo.metadata.version}</> : <>{DASH}</>;
+  return pluginInfo?.status === 'loaded' ? <>{pluginInfo.manifest.version}</> : <>{DASH}</>;
 };
 
 export default ConsolePluginVersionDetail;

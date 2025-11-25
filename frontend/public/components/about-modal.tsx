@@ -38,7 +38,7 @@ const DynamicPlugins: React.FC = () => {
   React.useEffect(() => {
     const loadedPlugins = pluginInfoEntries.filter((plugin) => plugin.status === 'loaded');
     const sortedLoadedPlugins = loadedPlugins.sort((a, b) =>
-      a.metadata.name.localeCompare(b.metadata.name),
+      a.manifest.name.localeCompare(b.manifest.name),
     );
 
     setItems(
@@ -46,8 +46,8 @@ const DynamicPlugins: React.FC = () => {
         return (
           <Content
             component="li"
-            key={plugin.pluginID}
-          >{`${plugin.metadata.name} (${plugin.metadata.version})`}</Content>
+            key={`${plugin.manifest.name}-${plugin.manifest.version}`}
+          >{`${plugin.manifest.name} (${plugin.manifest.version})`}</Content>
         );
       }),
     );
