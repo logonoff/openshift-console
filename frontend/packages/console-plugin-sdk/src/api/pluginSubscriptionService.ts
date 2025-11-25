@@ -1,3 +1,4 @@
+import { PluginEventType } from '@openshift/dynamic-plugin-sdk';
 import * as _ from 'lodash';
 import { Store } from 'redux';
 import type {
@@ -6,7 +7,7 @@ import type {
   LoadedExtension,
 } from '@console/dynamic-plugin-sdk/src/types';
 import type { RootState } from '@console/internal/redux';
-import { isExtensionInUse, PluginStore, DynamicPluginInfo } from '../store';
+import { PluginStore, DynamicPluginInfo } from '../store';
 
 let subscriptionServiceInitialized = false;
 let getPluginStoreInstance: () => PluginStore = () => undefined;
@@ -44,28 +45,19 @@ export const initSubscriptionService = (pluginStore: PluginStore, reduxStore: St
 
   type FeatureFlags = ReturnType<typeof getFlags>;
 
-  const invokeExtensionListener = (
-    sub: ExtensionSubscription,
-    currentExtensions: Extension[],
-    currentFlags: FeatureFlags,
-  ) => {
+  const invokeExtensionListener = (sub: ExtensionSubscription, currentExtensions: Extension[]) => {
     // Narrow extensions according to type guards
     const matchedExtensions = _.flatMap(sub.typeGuards.map((tg) => currentExtensions.filter(tg)));
 
-    // Gate matched extensions by relevant feature flags
-    const extensionsInUse = matchedExtensions.filter((e) =>
-      isExtensionInUse(e, currentFlags.toObject()),
-    );
-
     // Invoke listener only if the extension list has changed
-    if (!_.isEqual(extensionsInUse, sub.listenerLastArgs)) {
-      sub.listenerLastArgs = extensionsInUse;
-      sub.listener(extensionsInUse);
+    if (!_.isEqual(matchedExtensions, sub.listenerLastArgs)) {
+      sub.listenerLastArgs = matchedExtensions;
+      sub.listener(matchedExtensions);
     }
   };
 
   onExtensionSubscriptionAdded = (sub) => {
-    invokeExtensionListener(sub, getExtensions(), getFlags());
+    invokeExtensionListener(sub, getExtensions());
   };
 
   onDynamicPluginListenerAdded = (listener) => {
@@ -91,7 +83,7 @@ export const initSubscriptionService = (pluginStore: PluginStore, reduxStore: St
     lastFlags = nextFlags;
 
     extensionSubscriptions.forEach((sub) => {
-      invokeExtensionListener(sub, nextExtensions, nextFlags);
+      invokeExtensionListener(sub, nextExtensions);
     });
   };
 
@@ -116,8 +108,8 @@ export const initSubscriptionService = (pluginStore: PluginStore, reduxStore: St
   };
 
   // Subscribe to changes in Console plugins and Redux
-  pluginStore.subscribe(invokeAllExtensionListeners);
-  pluginStore.subscribe(invokeAllDynamicPluginListeners);
+  pluginStore.subscribe([PluginEventType.ExtensionsChanged], invokeAllExtensionListeners);
+  pluginStore.subscribe([PluginEventType.PluginInfoChanged], invokeAllDynamicPluginListeners);
   reduxStore.subscribe(invokeAllExtensionListeners);
 
   // Invoke listeners registered prior to initializing subscription service
