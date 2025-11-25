@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { useStore } from 'react-redux';
 import { applyMiddleware, combineReducers, createStore, compose, Store } from 'redux';
 import thunk from 'redux-thunk';
+import { featureFlagMiddleware } from '@console/internal/plugins';
 import { SDKReducers } from './redux';
 import { SDKStoreState } from './redux-types';
 import storeHandler from './storeHandler';
@@ -35,7 +36,7 @@ export const useReduxStore = (): { store: Store<any>; storeContextPresent: boole
       const storeInstance = createStore(
         combineReducers<SDKStoreState>(SDKReducers),
         {},
-        composeEnhancers(applyMiddleware(thunk)),
+        composeEnhancers(applyMiddleware(thunk, featureFlagMiddleware)),
       );
       storeHandler.setStore(storeInstance);
     }

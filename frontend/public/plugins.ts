@@ -1,7 +1,8 @@
 import * as _ from 'lodash-es';
 import { PluginStore } from '@console/plugin-sdk/src/store';
-import { ActivePlugin } from '@console/plugin-sdk/src/typings/base';
+import type { ActivePlugin } from '@console/plugin-sdk/src/typings/base';
 import { getURLSearchParams } from './components/utils/link';
+import type { RootState } from './redux';
 
 const getEnabledDynamicPluginNames = () => {
   const allPluginNames = window.SERVER_FLAGS.consolePlugins;
@@ -26,7 +27,22 @@ const activePlugins =
 
 const dynamicPluginNames = getEnabledDynamicPluginNames();
 
-export const pluginStore = new PluginStore(activePlugins, dynamicPluginNames);
+export const pluginStore = new PluginStore();
+
+activePlugins.forEach((plugin) => {
+  pluginStore.addActivePlugin(plugin);
+});
+
+/**
+ * Redux middleware to update plugin store feature flags when actions are dispatched.
+ */
+export const featureFlagMiddleware = (s: { getState(): RootState }) => (next: any) => (
+  action: any,
+) => {
+  const result = next(action);
+  pluginStore.setFeatureFlags(s.getState().FLAGS.toObject());
+  return result;
+};
 
 if (process.env.NODE_ENV !== 'production') {
   // Expose Console plugin store for debugging
