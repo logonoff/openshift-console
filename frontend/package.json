@@ -112,8 +112,7 @@
       "./__mocks__/matchMedia.js",
       "./__mocks__/mutationObserver.js",
       "./__mocks__/serverFlags.js",
-      "./__mocks__/websocket.js",
-      "./before-tests.js"
+      "./__mocks__/websocket.js"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/setup-tests.js"
@@ -130,8 +129,7 @@
       "public/{components,module,ui}/**/*.{js,jsx,ts,tsx}",
       "packages/*/src/**/*.{js,jsx,ts,tsx}",
       "!**/node_modules/**"
-    ],
-    "resolver": "<rootDir>/__tests__/utils/jest-resolver.js"
+    ]
   },
   "dependencies": {
     "@patternfly-5/patternfly": "npm:@patternfly/patternfly@5.4.2",
