@@ -384,6 +384,7 @@ export type CreateWithPermissionsProps = {
     groupVersionKind: K8sResourceKindReference | K8sGroupVersionKind;
     namespace?: string;
   };
+  children?: ReactNode;
 };
 
 export type ListPageCreateProps = CreateWithPermissionsProps & {
