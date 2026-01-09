@@ -1,12 +1,13 @@
+import type { PluginStore } from '@openshift/dynamic-plugin-sdk';
 import * as _ from 'lodash';
-import { Store } from 'redux';
+import type { Store } from 'redux';
 import {
   initSharedScope,
   getSharedScope,
 } from '@console/dynamic-plugin-sdk/src/runtime/plugin-shared-modules';
-import { RootState } from '@console/internal/redux';
+import type { RootState } from '@console/internal/redux';
 import { initSubscriptionService } from '@console/plugin-sdk/src/api/pluginSubscriptionService';
-import { PluginStore } from '@console/plugin-sdk/src/store';
+import { dynamicPluginNames } from '@console/plugin-sdk/src/utils/allowed-plugins';
 import { resolveURL } from '../utils/url';
 
 /**
@@ -71,7 +72,7 @@ export const initConsolePlugins = _.once(
     // Initialize webpack share scope object and start loading plugins
     initSharedScope()
       .then(() => {
-        pluginStore.getAllowedDynamicPluginNames().forEach((pluginName) => {
+        dynamicPluginNames.forEach((pluginName) => {
           loadAndEnablePlugin(pluginName, pluginStore, (errorMessage, errorCause) => {
             // eslint-disable-next-line no-console
             console.error(..._.compact([errorMessage, errorCause]));
