@@ -12,7 +12,10 @@ table in [Console dynamic plugins README](./README.md).
 
 ## 4.22.0-prerelease.1 - TBD
 
-- BREAKING: Minimum compatible version of `webpack` increased to `^5.100.0` ([CONSOLE-3769], [#15945])
+- **Breaking**: Minimum compatible version of `webpack` increased to `^5.100.0` ([CONSOLE-3769], [#15945])
+- **Breaking**: Minimum compatible version of `typescript` increased to `^5.9.3` ([CONSOLE-3769], [#15945])
+- Changed how `ConsoleRemotePlugin` internally invokes `DynamicRemotePlugin`. Support for
+  versions built without this change will be removed in the future. ([CONSOLE-3769], [#15904])
 
 ## 4.21.0-prerelease.1 - 2025-12-04
 

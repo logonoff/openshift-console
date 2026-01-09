@@ -7,8 +7,8 @@ import {
   ModuleFactoryMock,
   RemoteEntryModuleMock,
 } from '../../utils/test-utils';
+import { applyCodeRefSymbol } from '@openshift/dynamic-plugin-sdk';
 import {
-  applyCodeRefSymbol,
   isEncodedCodeRef,
   isExecutableCodeRef,
   parseEncodedCodeRefValue,
@@ -30,21 +30,6 @@ beforeEach(() => {
 afterEach(() => {
   // eslint-disable-next-line no-console
   ['log', 'info', 'warn', 'error'].forEach((key) => (console[key] = originalConsole[key]));
-});
-
-describe('applyCodeRefSymbol', () => {
-  it('marks the given function with CodeRef symbol', () => {
-    const ref: CodeRef = () => Promise.resolve('qux');
-    expect(isExecutableCodeRef(ref)).toBe(false);
-
-    const updatedRef = applyCodeRefSymbol(ref);
-    expect(isExecutableCodeRef(updatedRef)).toBe(true);
-  });
-
-  it('returns the same function instance', () => {
-    const ref: CodeRef = () => Promise.resolve('qux');
-    expect(applyCodeRefSymbol(ref)).toBe(ref);
-  });
 });
 
 describe('isEncodedCodeRef', () => {

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { AnyObject } from '@openshift/dynamic-plugin-sdk';
+import { AnyObject, applyCodeRefSymbol } from '@openshift/dynamic-plugin-sdk';
 import * as _ from 'lodash';
 import type {
   Extension,
@@ -14,12 +14,13 @@ import type {
 import { deepForOwn } from '../utils/object';
 import { settleAllPromises } from '../utils/promise';
 
-const codeRefSymbol = Symbol('CodeRef');
-
-export const applyCodeRefSymbol = <T = any>(ref: CodeRef<T>) => {
-  ref[codeRefSymbol] = true;
-  return ref;
-};
+/**
+ * Extract the SDK's internal CodeRef symbol by applying it to a dummy function.
+ *
+ * This ensures we can detect code refs created by the SDK, which uses its own
+ * private Symbol instance.
+ */
+const codeRefSymbol = Object.getOwnPropertySymbols(applyCodeRefSymbol(() => Promise.resolve()))[0];
 
 export const isEncodedCodeRef = (obj): obj is EncodedCodeRef =>
   _.isPlainObject(obj) &&
