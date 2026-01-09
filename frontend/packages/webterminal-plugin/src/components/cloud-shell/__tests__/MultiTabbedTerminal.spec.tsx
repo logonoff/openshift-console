@@ -1,6 +1,4 @@
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import store from '@console/internal/redux';
+import { renderWithProviders } from '@console/shared/src/test-utils/unit-test-utils';
 import { sendActivityTick } from '../cloud-shell-utils';
 import { MultiTabbedTerminal } from '../MultiTabbedTerminal';
 
@@ -29,21 +27,13 @@ describe('MultiTabTerminal', () => {
   });
 
   it('should initially load with only one console', () => {
-    const multiTabTerminalWrapper = render(
-      <Provider store={store}>
-        <MultiTabbedTerminal />
-      </Provider>,
-    );
+    const multiTabTerminalWrapper = renderWithProviders(<MultiTabbedTerminal />);
 
     expect(multiTabTerminalWrapper.getAllByText('Terminal content').length).toBe(1);
   });
 
   it('should add terminals on add terminal icon click', () => {
-    const multiTabTerminalWrapper = render(
-      <Provider store={store}>
-        <MultiTabbedTerminal />
-      </Provider>,
-    );
+    const multiTabTerminalWrapper = renderWithProviders(<MultiTabbedTerminal />);
 
     const addTerminalButton = multiTabTerminalWrapper.getByLabelText('Add new tab');
     addTerminalButton.click();
@@ -54,11 +44,7 @@ describe('MultiTabTerminal', () => {
   });
 
   it('should not allow more than 8 terminals', () => {
-    const multiTabTerminalWrapper = render(
-      <Provider store={store}>
-        <MultiTabbedTerminal />
-      </Provider>,
-    );
+    const multiTabTerminalWrapper = renderWithProviders(<MultiTabbedTerminal />);
 
     const addTerminalButton = multiTabTerminalWrapper.getByLabelText('Add new tab');
     for (let i = 0; i < 8; i++) {
@@ -69,11 +55,7 @@ describe('MultiTabTerminal', () => {
   });
 
   it('should remove terminals on remove terminal icon click', () => {
-    const multiTabTerminalWrapper = render(
-      <Provider store={store}>
-        <MultiTabbedTerminal />
-      </Provider>,
-    );
+    const multiTabTerminalWrapper = renderWithProviders(<MultiTabbedTerminal />);
 
     const addTerminalButton = multiTabTerminalWrapper.getByLabelText('Add new tab');
     for (let i = 0; i < 8; i++) {

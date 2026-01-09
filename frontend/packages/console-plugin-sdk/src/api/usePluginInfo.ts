@@ -1,7 +1,18 @@
-import { useRef, useCallback, useEffect } from 'react';
-import { useForceRender } from '@console/shared/src/hooks/useForceRender';
-import { DynamicPluginInfo } from '../store';
-import { subscribeToDynamicPlugins } from './pluginSubscriptionService';
+import { useRef, useMemo } from 'react';
+import { PluginInfoEntry, usePluginInfo as usePluginInfoSDK } from '@openshift/dynamic-plugin-sdk';
+
+const isPluginInfoEqual = (a: PluginInfoEntry, b: PluginInfoEntry): boolean => {
+  if (a.status !== b.status) {
+    return false;
+  }
+  if (a.status === 'loaded' && b.status === 'loaded') {
+    return a.enabled === b.enabled && a.disableReason === b.disableReason;
+  }
+  if (a.status === 'failed' && b.status === 'failed') {
+    return a.errorMessage === b.errorMessage && a.errorCause === b.errorCause;
+  }
+  return true;
+};
 
 /**
  * React hook for consuming Console dynamic plugin runtime information.
@@ -22,38 +33,30 @@ import { subscribeToDynamicPlugins } from './pluginSubscriptionService';
  *
  * @returns Console dynamic plugin runtime information.
  */
-export const usePluginInfo = (): DynamicPluginInfo[] => {
-  const forceRender = useForceRender();
+export const usePluginInfo = () => {
+  const pluginInfo = usePluginInfoSDK();
 
-  const isMountedRef = useRef(true);
-  const unsubscribeRef = useRef<VoidFunction>(null);
-  const pluginInfoEntriesRef = useRef<DynamicPluginInfo[]>([]);
+  const previousResultRef = useRef<PluginInfoEntry[]>([]);
 
-  const trySubscribe = useCallback(() => {
-    if (unsubscribeRef.current === null) {
-      unsubscribeRef.current = subscribeToDynamicPlugins((pluginInfoEntries) => {
-        pluginInfoEntriesRef.current = pluginInfoEntries;
-        isMountedRef.current && forceRender();
-      });
-    }
-  }, [forceRender]);
+  // This hook returns dynamic plugin information only, i.e., not static/local plugins
+  return useMemo(() => {
+    const dynamicPluginInfo = pluginInfo.filter(
+      (plugin) => plugin.manifest.registrationMethod !== 'local',
+    );
 
-  const tryUnsubscribe = useCallback(() => {
-    if (unsubscribeRef.current !== null) {
-      unsubscribeRef.current();
-      unsubscribeRef.current = null;
-    }
-  }, []);
+    // Ensure referential stability of the result elements
+    const stablePluginInfo = dynamicPluginInfo.map((plugin) => {
+      const previousPlugin = previousResultRef.current.find(
+        (p) => p.manifest.name === plugin.manifest.name,
+      );
+      // Only reuse previous reference if the data is actually equal
+      if (previousPlugin && isPluginInfoEqual(previousPlugin, plugin)) {
+        return previousPlugin;
+      }
+      return plugin;
+    });
 
-  trySubscribe();
-
-  useEffect(
-    () => () => {
-      isMountedRef.current = false;
-      tryUnsubscribe();
-    },
-    [tryUnsubscribe],
-  );
-
-  return pluginInfoEntriesRef.current;
+    previousResultRef.current = stablePluginInfo;
+    return stablePluginInfo;
+  }, [pluginInfo]);
 };
