@@ -12,7 +12,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom-v5-compat';
 import { FLAGS, ALL_NAMESPACES_KEY } from '@console/shared/src/constants/common';
 import { getBadgeFromType } from '@console/shared/src/components/badges/badge-factory';
-import { getResourceSidebarSamples } from '@console/shared/src/utils/sample-utils';
+import { useResourceSidebarSamples } from '@console/shared/src/hooks/useResourceSidebarSamples';
 import { useTelemetry } from '@console/shared/src/hooks/useTelemetry';
 import { useResourceConnectionHandler } from '@console/shared/src/hooks/useResourceConnectionHandler';
 
@@ -212,8 +212,10 @@ const EditYAMLInner: FC<EditYAMLInnerProps> = (props) => {
     [models],
   );
 
+  const model = getModel(props.obj) || props.model;
+  const { samples, snippets } = useResourceSidebarSamples(model, yamlSamplesList);
+
   const navigateToResourceList = () => {
-    const model = getModel(props.obj) || props.model;
     if (model) {
       const namespace =
         model.namespaced && props.activeNamespace !== ALL_NAMESPACES_KEY
@@ -260,7 +262,6 @@ const EditYAMLInner: FC<EditYAMLInnerProps> = (props) => {
         return;
       }
 
-      const model = getModel(obj);
       if (!model) {
         return;
       }
@@ -462,7 +463,6 @@ const EditYAMLInner: FC<EditYAMLInnerProps> = (props) => {
 
   const updateYAML = useCallback(
     (obj) => {
-      const model = getModel(obj);
       setSuccess(null);
       setErrors(null);
       const response = create
@@ -539,7 +539,6 @@ const EditYAMLInner: FC<EditYAMLInnerProps> = (props) => {
         return t('public~No "kind" field found in YAML.');
       }
 
-      const model = getModel(obj);
       if (!model) {
         return t(
           'public~The server doesn\'t have a resource type "kind: {{kind}}, apiVersion: {{apiVersion}}".',
@@ -786,10 +785,6 @@ const EditYAMLInner: FC<EditYAMLInnerProps> = (props) => {
 
   const readOnly = props.readOnly || notAllowed;
   const options: CodeEditorProps['options'] = { fontSize, readOnly, scrollBeyondLastLine: false };
-  const model = getModel(props.obj);
-  const { samples, snippets } = model
-    ? getResourceSidebarSamples(model, yamlSamplesList, t)
-    : { samples: [], snippets: [] };
   const definition = model ? definitionFor(model) : { properties: [] };
   const showSchema = definition && !_.isEmpty(definition.properties);
   const hasSidebarContent = showSchema || (create && !_.isEmpty(samples)) || !_.isEmpty(snippets);
