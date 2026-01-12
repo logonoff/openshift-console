@@ -121,7 +121,6 @@ export const getCorePackage: GetPackageDefinition = (
     main: 'lib/lib-core.js',
     ...commonManifestFields,
     dependencies: {
-      ...parseDeps(sdkPackage, ['@openshift/dynamic-plugin-sdk'], missingDepCallback),
       ...parseSharedModuleDeps(rootPackage, missingDepCallback),
       ...parseDeps(rootPackage, ['immutable', 'reselect', 'typesafe-actions'], missingDepCallback),
       ...parseDepsAs(rootPackage, { 'lodash-es': 'lodash' }, missingDepCallback),
@@ -148,7 +147,6 @@ export const getInternalPackage: GetPackageDefinition = (
     main: 'lib/lib-internal.js',
     ...commonManifestFields,
     dependencies: {
-      ...parseDeps(sdkPackage, ['@openshift/dynamic-plugin-sdk'], missingDepCallback),
       ...parseSharedModuleDeps(rootPackage, missingDepCallback),
       ...parseDeps(rootPackage, ['immutable'], missingDepCallback),
     },
@@ -171,14 +169,20 @@ export const getWebpackPackage: GetPackageDefinition = (
     main: 'lib/lib-webpack.js',
     ...commonManifestFields,
     dependencies: {
-      ...parseDeps(
-        sdkPackage,
-        ['@openshift/dynamic-plugin-sdk', '@openshift/dynamic-plugin-sdk-webpack'],
-        missingDepCallback,
-      ),
+      ...parseDeps(sdkPackage, ['@openshift/dynamic-plugin-sdk-webpack'], missingDepCallback),
       ...parseDeps(
         rootPackage,
-        ['ajv', 'chalk', 'comment-json', 'find-up', 'glob', 'read-pkg', 'semver', 'webpack'],
+        [
+          '@openshift/dynamic-plugin-sdk',
+          'ajv',
+          'chalk',
+          'comment-json',
+          'find-up',
+          'glob',
+          'read-pkg',
+          'semver',
+          'webpack',
+        ],
         missingDepCallback,
       ),
       ...parseDepsAs(rootPackage, { 'lodash-es': 'lodash' }, missingDepCallback),

@@ -125,6 +125,7 @@ Console is [configured](./src/shared-modules/shared-modules-meta.ts) to share sp
 
 The following shared modules are provided by Console, without plugins providing their own fallback:
 
+- `@openshift/dynamic-plugin-sdk`
 - `@openshift-console/dynamic-plugin-sdk`
 - `@openshift-console/dynamic-plugin-sdk-internal`
 - `@patternfly/react-topology`
@@ -219,6 +220,7 @@ This section documents notable changes in Console provided shared modules and ot
 
 - Upgraded from `react-redux` v7 to v8. Plugins must use `react-redux` v8 to be compatible
   with Console.
+- Added `@openshift/dynamic-plugin-sdk` to shared modules.
 
 ### PatternFly 5+ dynamic modules
 
