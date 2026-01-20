@@ -1,20 +1,14 @@
-import type { ComponentClass, FC, ReactNode } from 'react';
-import { DndProvider, DndProviderProps } from 'react-dnd';
+import type { ComponentClass, FC } from 'react';
+import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-// TODO: bump react-dnd so this is not needed
-// React 18: DndProvider types don't include children, but it accepts them
-const DndProviderWithChildren = DndProvider as FC<
-  DndProviderProps<any, any> & { children?: ReactNode }
->;
+type WithDragDropContext = <TProps>(Component: ComponentClass<TProps> | FC<TProps>) => FC<TProps>;
 
-const withDragDropContext = <TProps extends {}>(Component: ComponentClass<TProps> | FC<TProps>) => (
-  props: TProps,
-) => {
+const withDragDropContext: WithDragDropContext = (Component) => (props) => {
   return (
-    <DndProviderWithChildren backend={HTML5Backend} context={window}>
+    <DndProvider backend={HTML5Backend} context={window}>
       <Component {...props} />
-    </DndProviderWithChildren>
+    </DndProvider>
   );
 };
 

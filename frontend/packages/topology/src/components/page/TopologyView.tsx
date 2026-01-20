@@ -9,7 +9,6 @@ import {
   TopologyQuadrant,
   Visualization,
 } from '@patternfly/react-topology';
-import { ConnectDropTarget, DropTargetMonitor } from 'react-dnd';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import {
@@ -85,11 +84,8 @@ export interface TopologyViewProps {
   model: Model;
   namespace: string;
   viewType: TopologyViewType;
-  connectDropTarget?: ConnectDropTarget;
   isOver?: boolean;
   canDrop?: boolean;
-  onDrop?: (monitor: DropTargetMonitor) => void;
-  canDropFile?: boolean;
 }
 
 type ComponentProps = TopologyViewProps & StateProps & DispatchProps;
@@ -102,7 +98,6 @@ export const ConnectedTopologyView: FC<ComponentProps> = ({
   application,
   onSupportedFiltersChange,
   onSupportedKindsChange,
-  connectDropTarget,
   isOver,
   canDrop,
 }) => {
@@ -385,9 +380,7 @@ export const ConnectedTopologyView: FC<ComponentProps> = ({
     </div>
   );
 
-  return typeof connectDropTarget === 'function'
-    ? connectDropTarget(topologyViewComponent)
-    : topologyViewComponent;
+  return topologyViewComponent;
 };
 
 const TopologyStateToProps = (state: RootState): StateProps => {

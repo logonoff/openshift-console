@@ -35,7 +35,6 @@ type RemoveButtonProps = {
 export type DragItem = {
   idx: number;
   id: string;
-  type: string;
 };
 
 const DraggableButton: FC<DraggableButtonProps> = ({ dragRef }) => {
@@ -89,8 +88,9 @@ const PinnedResource: FC<PinnedResourceProps> = ({
 }) => {
   const { t } = useTranslation();
   const [, drag, preview] = useDrag({
-    item: { type: 'NavItem', id: `NavItem-${idx}`, idx },
-    end: (item, monitor) => {
+    type: 'NavItem',
+    item: { id: `NavItem-${idx}`, idx },
+    end: (_item, monitor) => {
       const didDrop = monitor.didDrop();
       if (!didDrop) {
         onDrag(false);

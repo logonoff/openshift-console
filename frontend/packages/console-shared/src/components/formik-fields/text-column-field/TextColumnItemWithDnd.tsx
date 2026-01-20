@@ -7,7 +7,8 @@ import TextColumnItemContent from './TextColumnItemContent';
 const TextColumnItemWithDnd: FC<TextColumnItemProps> = (props) => {
   const { idx, onChange, rowValues, arrayHelpers } = props;
   const [, drag, preview] = useDrag({
-    item: { type: ItemTypes.TextColumn, id: `${ItemTypes.TextColumn}-${idx}`, idx },
+    type: ItemTypes.TextColumn,
+    item: { id: `${ItemTypes.TextColumn}-${idx}`, idx },
   });
   const [{ opacity }, drop] = useDrop({
     accept: ItemTypes.TextColumn,
