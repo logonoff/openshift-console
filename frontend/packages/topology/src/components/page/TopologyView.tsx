@@ -4,7 +4,6 @@ import { Drawer, DrawerContent, DrawerContentBody, Stack, StackItem } from '@pat
 import { css } from '@patternfly/react-styles';
 import type { GraphElement, Model, Visualization } from '@patternfly/react-topology';
 import { isGraph, TopologyQuadrant } from '@patternfly/react-topology';
-import type { ConnectDropTarget, DropTargetMonitor } from 'react-dnd';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import type { FileUploadContextType } from '@console/app/src/components/file-upload/file-upload-context';
@@ -72,11 +71,8 @@ export interface TopologyViewProps {
   model: Model;
   namespace: string;
   viewType: TopologyViewType;
-  connectDropTarget?: ConnectDropTarget;
   isOver?: boolean;
   canDrop?: boolean;
-  onDrop?: (monitor: DropTargetMonitor) => void;
-  canDropFile?: boolean;
 }
 
 type ComponentProps = TopologyViewProps & StateProps & DispatchProps;
@@ -89,7 +85,6 @@ export const ConnectedTopologyView: FC<ComponentProps> = ({
   application,
   onSupportedFiltersChange,
   onSupportedKindsChange,
-  connectDropTarget,
   isOver,
   canDrop,
 }) => {
@@ -373,9 +368,7 @@ export const ConnectedTopologyView: FC<ComponentProps> = ({
     </div>
   );
 
-  return typeof connectDropTarget === 'function'
-    ? connectDropTarget(topologyViewComponent)
-    : topologyViewComponent;
+  return topologyViewComponent;
 };
 
 const TopologyStateToProps = (state: RootState): StateProps => {
