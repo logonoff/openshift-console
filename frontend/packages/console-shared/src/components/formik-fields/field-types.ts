@@ -18,8 +18,11 @@ export interface FieldProps {
   dataTest?: string;
 }
 
-export interface DroppableFileInputFieldProps extends FieldProps {
+export interface DroppableFileInputFieldProps
+  extends Omit<FieldProps, 'helpText' | 'helpTextInvalid' | 'label'> {
   onChange?: (fileData: string) => void;
+  helpText?: string;
+  label?: string;
 }
 export interface BaseInputFieldProps extends FieldProps {
   type?: TextInputTypes;

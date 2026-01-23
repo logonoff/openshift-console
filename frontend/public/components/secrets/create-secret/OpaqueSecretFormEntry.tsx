@@ -69,7 +69,6 @@ export const OpaqueSecretFormEntry: FC<OpaqueSecretFormEntryProps> = ({
         inputFieldHelpText={t(
           'public~Drag and drop file with your value here or browse to upload it.',
         )}
-        inputFileIsBinary={entry.isBinary_}
       />
     </FormFieldGroup>
   );
