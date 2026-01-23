@@ -351,7 +351,7 @@ const AppWithExtensions: FC = () => {
   return <LoadingBox blame="AppWithExtensions" />;
 };
 
-render(<LoadingBox blame="Init" />, document.getElementById('app'));
+render(<LoadingBox blame="Init" />, document.getElementById('root'));
 
 const AppRouter: FC = () => {
   const standaloneRouteExtensions = useExtensions(isStandaloneRoutePage);
@@ -550,6 +550,6 @@ graphQLReady.onReady(() => {
         </ThemeProvider>
       </Provider>
     </Suspense>,
-    document.getElementById('app'),
+    document.getElementById('root'),
   );
 });
