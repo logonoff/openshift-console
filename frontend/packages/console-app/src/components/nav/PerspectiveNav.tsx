@@ -1,14 +1,13 @@
-import type { FC, ReactElement } from 'react';
-import { useState, useEffect, useMemo } from 'react';
+import type { FC } from 'react';
+import { useCallback, useState, useEffect, useMemo } from 'react';
 import { NavGroup, NavList } from '@patternfly/react-core';
-import { css } from '@patternfly/react-styles';
+import { DragDropSort, DragDropSortProps, DraggableObject } from '@patternfly/react-drag-drop';
 import { useTranslation } from 'react-i18next';
 import {
   useActivePerspective,
   isNavSection,
   isNavItem,
 } from '@console/dynamic-plugin-sdk/src/lib-core';
-import withDragDropContext from '@console/internal/components/utils/drag-drop-context';
 import { modelFor } from '@console/internal/module/k8s';
 import { usePinnedResources } from '@console/shared/src/hooks/usePinnedResources';
 import PinnedResource from './PinnedResource';
@@ -23,7 +22,6 @@ const PerspectiveNav: FC<{}> = () => {
   const allNavExtensions = useNavExtensionsForPerspective(activePerspective);
   const [pinnedResources, setPinnedResources, pinnedResourcesLoaded] = usePinnedResources();
   const [validPinnedResources, setValidPinnedResources] = useState<string[]>([]);
-  const [isDragged, setIsDragged] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -36,29 +34,28 @@ const PerspectiveNav: FC<{}> = () => {
     return getSortedNavExtensions(topLevelNavExtensions);
   }, [allNavExtensions]);
 
-  const getPinnedItems = (): ReactElement[] =>
-    validPinnedResources.map((resource, idx) => (
-      <PinnedResource
-        key={`${resource}_${idx.toString()}`}
-        idx={idx}
-        resourceRef={resource}
-        onChange={setPinnedResources}
-        onReorder={setValidPinnedResources}
-        onDrag={setIsDragged}
-        navResources={validPinnedResources}
-        draggable={validPinnedResources.length > 1}
-      />
-    ));
+  const draggableItems = useMemo<DraggableObject[]>(() => {
+    return validPinnedResources.map((res, idx) => ({
+      id: res,
+      content: (
+        <PinnedResource
+          key={`${res}_${idx.toString()}`}
+          idx={idx}
+          resourceRef={res}
+          onChange={setPinnedResources}
+          navResources={validPinnedResources}
+        />
+      ),
+    }));
+  }, [validPinnedResources, setPinnedResources]);
 
-  const NavGroupWithDnd = withDragDropContext(() => (
-    <NavGroup
-      title=""
-      aria-label={t('console-app~Pinned resources')}
-      className={css('no-title', { 'oc-perspective-nav--dragging': isDragged })}
-    >
-      {getPinnedItems()}
-    </NavGroup>
-  ));
+  const onDrop = useCallback<DragDropSortProps['onDrop']>(
+    (_, newItems) => {
+      const newOrder = newItems.map((item) => item.id as string);
+      setPinnedResources(newOrder);
+    },
+    [setPinnedResources],
+  );
 
   // We have to use NavList if there is at least one extension that will render an <li>, but we
   // can't use NavList if there are no extensions that render an <li>
@@ -71,7 +68,11 @@ const PerspectiveNav: FC<{}> = () => {
       {orderedNavExtensions.map((extension) => (
         <PluginNavItem key={extension.uid} extension={extension} />
       ))}
-      {pinnedResourcesLoaded && validPinnedResources?.length > 0 ? <NavGroupWithDnd /> : null}
+      {pinnedResourcesLoaded && validPinnedResources?.length > 0 ? (
+        <NavGroup title="" aria-label={t('console-app~Pinned resources')}>
+          <DragDropSort items={draggableItems} onDrop={onDrop} />
+        </NavGroup>
+      ) : null}
     </>
   );
 
