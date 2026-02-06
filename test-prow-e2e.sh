@@ -66,6 +66,12 @@ export DBUS_SESSION_BUS_ADDRESS
 
 SCENARIO="${1:-e2e}"
 
+# Download Chrome 114 for Testing
+CHROME_VERSION="114.0.5735.90"
+curl -LO "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${CHROME_VERSION}/linux64/chrome-linux64.zip"
+unzip -q chrome-linux64.zip -d /tmp
+export PATH="/tmp/chrome-linux64:$PATH"
+
 case $SCENARIO in
   login|olmFull|ceph|kubevirt-gating|nightly-cypress) ;; # no protractor tests
   *) CHROME_VERSION=$(google-chrome --version) ./test-protractor.sh "$SCENARIO";;
