@@ -117,7 +117,8 @@
     ],
     "testRegex": ".*\\.spec\\.(ts|tsx|js|jsx)$",
     "testEnvironmentOptions": {
-      "url": "http://localhost"
+      "url": "http://localhost",
+      "globalsCleanup": "on"
     },
     "setupFiles": [
       "./__mocks__/fetch.ts",
