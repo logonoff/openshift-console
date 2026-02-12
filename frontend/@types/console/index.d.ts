@@ -26,6 +26,7 @@ declare interface Window {
     customFaviconsConfigured: boolean;
     customProductName: string;
     documentationBaseURL: string;
+    kubeAdminLogoutURL: string;
     kubeAPIServerURL: string;
     loadTestFactor: number;
     loginErrorURL: string;
