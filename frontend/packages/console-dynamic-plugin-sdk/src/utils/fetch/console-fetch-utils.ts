@@ -89,7 +89,8 @@ export const normalizeConsoleHeaders = (
 };
 
 /**
- * A utility function to apply console-specific headers to the fetch options.
+ * A utility function to apply console-specific headers to the provided fetch options.
+ * @returns Modified `options` object with additional request headers.
  */
 export const applyConsoleHeaders = (url: string, options: RequestInit): RequestInit => {
   const consoleHeaders = getConsoleRequestHeaders();
@@ -120,6 +121,7 @@ export const applyConsoleHeaders = (url: string, options: RequestInit): RequestI
   if (options.method === 'GET' || url.indexOf('://') >= 0) {
     delete options.headers['X-CSRFToken'];
   }
+
   return options;
 };
 

@@ -9,8 +9,7 @@ const {
   loginURL,
   logoutRedirect,
   logoutURL,
-  // type cast to prevent missing properties errors when building with limited SDK types
-} = (window.SERVER_FLAGS as unknown) as Record<string, string>;
+} = window.SERVER_FLAGS;
 
 export const LOGIN_ERROR_PATH = loginErrorURL
   ? new URL(loginErrorURL, window.location.href).pathname
