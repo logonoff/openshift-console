@@ -151,7 +151,7 @@ data:
   });
 
   it('Validate tls secret is editable', () => {
-    cy.visit(`/k8s/ns/${testName}/secrets/${tlsSecretName}/edit`);
+    cy.visit(`/k8s/ns/${testName}/core~v1~Secret/${tlsSecretName}/edit`);
     secrets.addKeyValue('keyfortest', 'valuefortest');
     secrets.save();
     secrets.detailsPageIsLoaded(tlsSecretName);
