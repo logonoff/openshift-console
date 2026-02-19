@@ -1,4 +1,3 @@
-.puppeteer
 .yarn
 __coverage__
 **/node_modules

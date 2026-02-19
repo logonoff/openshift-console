@@ -34,6 +34,15 @@ module.exports = defineConfig({
     baseUrl: 'http://localhost:9000',
     testIsolation: false,
     experimentalMemoryManagement: true,
+    /**
+     * Preserves non-dangerous CSP directives (e.g. connect-src, report-uri) so
+     * the CSP violation test can detect policy violations via the
+     * {@link SecurityPolicyViolationEvent}
+     *
+     * An empty array keeps all safe directives while still stripping the
+     * ones that would break Cypress (script-src, default-src, frame-src, etc.).
+     */
+    experimentalCspAllowList: [],
     numTestsKeptInMemory: 5,
     injectDocumentDomain: true,
     userAgent: 'ConsoleIntegrationTestEnvironment',

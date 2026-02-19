@@ -36,6 +36,4 @@ elif [ "$SCENARIO" == "knative" ]; then
   ./integration-tests/test-cypress.sh -p knative -h true
 fi
 
-env NO_SANDBOX=true yarn test-puppeteer-csp
-
 popd
