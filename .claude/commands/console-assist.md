@@ -12,7 +12,7 @@ Update the specified package to its reasonably latest stable version or to the v
 
 ### Phase 1: Analysis & Update
 1. **Identify**: Read `package.json` for current version (dependencies/devDependencies/resolutions)
-2. **Research**: Use `yarn info <package> version` for latest version
+2. **Research**: Use `yarn npm info <package> --json | jq -r '.["dist-tags"].latest'` to find latest version; compare with current version; determine if update is needed
 3. **Interactive Gather**: Ask user:
    - "Do you have a migration guide URL for this update?" (optional)
    - "Do you have a changelog/release notes URL?" (optional)
