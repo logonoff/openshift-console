@@ -343,6 +343,7 @@
     "node": ">=14.x"
   },
   "resolutions": {
+    "@types/lodash": "4.14.106",
     "dompurify": "3.2.7",
     "hosted-git-info": "^3.0.8",
     "jquery": "3.5.1",
