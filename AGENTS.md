@@ -8,10 +8,13 @@ Before generating or modifying code, always consult the relevant file(s) to ensu
 
 - **Monorepo:** `frontend/` (React + TypeScript, yarn workspaces), `pkg/` - Go backend code, `cmd/` - Go CLI commands
 - **Key packages:** `@console/dynamic-plugin-sdk` (public API), `@console/shared` (utils), `@console/internal` (`public` folder - core UI/k8s)
+- **Testing:** Jest (unit), Cypress (E2E), Go tests (backend). Read [TESTING.md](TESTING.md) for patterns and best practices. Use the `gen-rtl-test` skill for React Testing Library test generation.
 
 ## Static plugins
 
-Static plugins are built into the console bundle and are core parts of the application. They may be deprecated or extracted into dynamic plugins over time. For the complete list of static plugins, see `console-app/package.json` dependencies. Static plugins have the following characteristics:
+Static plugins are built into the console bundle and are core parts of the application. They may be deprecated or extracted into dynamic plugins over time. For the complete list of static plugins, see `console-app/package.json` dependencies.
+
+### Extension points and type safety
 
 - **Extension points:** Defined in `console-extensions.json` of each static plugin yarn workspace. This mechanism provides static plugins a way to extend the Console UI.
 - **Code references:** `$codeRef` points to a specific export from a plugin's **exposed modules** (defined in their `package.json`) that are consumed by the extension point.
@@ -82,6 +85,7 @@ go mod vendor && go mod tidy # Update Go dependencies
 
 - Backend dependency updates: Separate vendor folder changes into their own commit to isolate core logic changes
 - Bug fixes: prefix with bug number or Jira key (e.g., `OCPBUGS-1234: Fix ...`)
+- Subject line answers "what changed"; body answers "why"
 - Frontend i18n updates: Run `yarn i18n` and commit updated keys alongside any code changes that affect i18n
 
 ### Branch naming
@@ -89,6 +93,16 @@ go mod vendor && go mod tidy # Update Go dependencies
 - Feature work: `CONSOLE-####` (Jira story number)
 - Bug fixes: `OCPBUGS-####` (Jira bug number)
 - Base branch: `main`
+
+## Common pitfalls
+
+- **Barrel imports:** NEVER import from package index files (e.g., `@console/shared`) in new code, as they can create circular dependencies and slow builds. Import from specific file paths instead.
+- **Public API breakage:** Always check `console-dynamic-plugin-sdk/src/api/internal-*.ts` before modifying anything in the SDK. External plugins depend on this API.
+- **Missing i18n keys:** Forgetting `yarn i18n` after adding translatable strings causes missing key warnings and E2E failures.
+- **Backticks in t():** The i18n parser cannot extract keys from template literals. Use single or double quotes.
+- **Deprecated imports in new code:** NEVER import from deprecated packages or use code which has the `@deprecated` TSdoc tag in new code.
+- **Absolute paths:** Never use absolute URLs or paths. The console runs behind a proxy under an arbitrary path.
+- **Custom CSS:** Exhaust PatternFly component options before writing custom SCSS. When necessary, use BEM with `co-` prefix.
 
 ## Reference files
 
