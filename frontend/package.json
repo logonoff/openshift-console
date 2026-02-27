@@ -7,11 +7,11 @@
   "private": true,
   "workspaces": [
     "packages/*",
+    "packages/*/integration-tests",
     "public",
     "integration-tests"
   ],
   "scripts": {
-    "postinstall": "yarn generate",
     "clean": "rm -rf ./public/dist",
     "dev": "yarn clean && yarn generate && REACT_REFRESH=true NODE_OPTIONS=--max-old-space-size=4096 yarn ts-node ./node_modules/.bin/webpack serve --mode=development --progress",
     "dev-once": "yarn clean && yarn generate && NODE_OPTIONS=--max-old-space-size=4096 yarn ts-node ./node_modules/.bin/webpack --mode=development",
@@ -67,7 +67,7 @@
     "analyze": "ANALYZE_BUNDLE=true NODE_ENV=production NODE_OPTIONS=--max-old-space-size=8192 yarn ts-node ./node_modules/.bin/webpack --mode=production",
     "prettier-all": "prettier --write '**/*.{js,jsx,ts,tsx,json}'",
     "ts-node": "ts-node -O '{\"module\":\"commonjs\"}'",
-    "generate": "yarn generate-graphql && yarn build-plugin-sdk && yarn build-console-plugin-shared",
+    "generate": "yarn generate-graphql & yarn build-plugin-sdk && yarn build-console-plugin-shared",
     "generate-graphql": "graphql-codegen --config graphql-codegen.yml",
     "generate-plugin-sdk-docs": "yarn --cwd packages/console-dynamic-plugin-sdk generate-doc",
     "build-plugin-sdk": "yarn --cwd packages/console-dynamic-plugin-sdk build",
@@ -153,8 +153,8 @@
     "@patternfly/react-table": "4.113.0",
     "@patternfly/react-tokens": "4.94.6",
     "@patternfly/react-topology": "4.93.6",
-    "@patternfly/react-virtualized-extension": "4.88.115",
     "@patternfly/react-user-feedback": "1.0.2",
+    "@patternfly/react-virtualized-extension": "4.88.115",
     "@prometheus-io/codemirror-promql": "^0.37.0",
     "@rjsf/core": "^2.5.1",
     "abort-controller": "3.0.0",
@@ -366,5 +366,11 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,gql,graphql}": "eslint --color --fix"
-  }
+  },
+  "dependenciesMeta": {
+    "cypress": {
+      "built": true
+    }
+  },
+  "packageManager": "yarn@4.12.0"
 }
