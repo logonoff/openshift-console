@@ -4,7 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 	"path"
+	"path/filepath"
 	"strings"
 
 	"github.com/openshift/console/pkg/serverutils"
@@ -48,11 +50,38 @@ func DevfileHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Get devfile content and parse it using a library call in the future
+	if data.Devfile.DevfileContent == "" {
+		errMsg := "Devfile content is empty"
+		klog.Error(errMsg)
+		serverutils.SendResponse(w, http.StatusBadRequest, serverutils.ApiError{Err: errMsg})
+		return
+	}
+
+	// Write devfile content to a temp directory so the parser has a writable
+	// absPath for resolving parent/plugin registry resources. Without this,
+	// the parser defaults to the process working directory which is read-only
+	// in production container images.
 	devfileContentBytes := []byte(data.Devfile.DevfileContent)
+	tmpDir, err := os.MkdirTemp("", "console-devfile-*")
+	if err != nil {
+		errMsg := fmt.Sprintf("Failed to create temp directory for devfile parsing: %v", err)
+		klog.Error(errMsg)
+		serverutils.SendResponse(w, http.StatusInternalServerError, serverutils.ApiError{Err: errMsg})
+		return
+	}
+	defer os.RemoveAll(tmpDir)
+
+	tmpDevfilePath := filepath.Join(tmpDir, "devfile.yaml")
+	if err = os.WriteFile(tmpDevfilePath, devfileContentBytes, 0600); err != nil {
+		errMsg := fmt.Sprintf("Failed to write temp file for devfile parsing: %v", err)
+		klog.Error(errMsg)
+		serverutils.SendResponse(w, http.StatusInternalServerError, serverutils.ApiError{Err: errMsg})
+		return
+	}
+
 	//reduce the http request and response timeouts on the devfile library parser to 10s
 	httpTimeout := 10
-	devfileObj, _, err = devfile.ParseDevfileAndValidate(parser.ParserArgs{Data: devfileContentBytes, HTTPTimeout: &httpTimeout})
+	devfileObj, _, err = devfile.ParseDevfileAndValidate(parser.ParserArgs{Path: tmpDevfilePath, HTTPTimeout: &httpTimeout})
 	if err != nil {
 		errMsg := "Failed to parse devfile:"
 		if strings.Contains(err.Error(), "schemaVersion not present in devfile") {
