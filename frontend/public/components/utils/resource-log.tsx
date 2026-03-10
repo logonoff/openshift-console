@@ -498,7 +498,7 @@ export const ResourceLog: FC<ResourceLogProps> = ({
   resourceStatus,
 }) => {
   const { t } = useTranslation('public');
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const [showFullLog, setShowFullLog] = useUserPreference<boolean>(
     SHOW_FULL_LOG_USERSETTINGS_KEY,
     false,

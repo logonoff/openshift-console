@@ -3394,10 +3394,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@patternfly/patternfly@npm:~6.4.0":
-  version: 6.4.0
-  resolution: "@patternfly/patternfly@npm:6.4.0"
-  checksum: 10c0/255c22e04a7649c9373790dbc66f97e2f01a121a843d3bc27627596f35296cc7f2228447d5866f63f17bccd36bae24ec68c45e1572778285dea617086d309737
+"@patternfly/patternfly@file:../../patternfly/patternfly/dist::locator=openshift-console%40workspace%3A.":
+  version: 0.0.0-development
+  resolution: "@patternfly/patternfly@file:../../patternfly/patternfly/dist#../../patternfly/patternfly/dist::hash=2ddbd0&locator=openshift-console%40workspace%3A."
+  checksum: 10c0/ae26effbc20cce2f3899011fabe4981c3b21246058df390302c3993e9fe7ecd0cefeff3bd5a3504716fe24ee49d216f1ddb7950bf9091891699284d26545b501
   languageName: node
   linkType: hard
 
@@ -17803,7 +17803,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": "npm:^1.15.1"
     "@openshift/dynamic-plugin-sdk": "npm:^8.0.0"
     "@openshift/dynamic-plugin-sdk-webpack": "npm:^5.1.0"
-    "@patternfly/patternfly": "npm:~6.4.0"
+    "@patternfly/patternfly": "file:../../patternfly/patternfly/dist"
     "@patternfly/quickstarts": "npm:~6.4.0"
     "@patternfly/react-catalog-view-extension": "npm:~6.3.0"
     "@patternfly/react-charts": "npm:~8.4.0"

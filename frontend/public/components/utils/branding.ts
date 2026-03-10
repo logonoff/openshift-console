@@ -66,7 +66,7 @@ export const getBrandingDetails = () => {
 export const useCustomLogoURL = (type: CUSTOM_LOGO): { logoUrl: string; loading: Boolean } => {
   const [logoUrl, setLogoUrl] = useState('');
   const [loading, setLoading] = useState(false);
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     // return when requested custom logo type is not configured

@@ -40,7 +40,7 @@ const HelmURLInstallForm: FC<FormikProps<HelmURLInstallFormData> & HelmURLInstal
   onBack,
 }) => {
   const { t } = useTranslation();
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const { chartReadme, formData, formSchema } = values;
 
   const helmReadmeModalLauncher = useHelmReadmeModalLauncher({

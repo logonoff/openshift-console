@@ -86,7 +86,7 @@ const FeedbackModalLocalized: FC<FeedbackModalLocalizedProps> = ({
   reportBugLink,
 }) => {
   const feedbackLocales = useFeedbackLocal(reportBugLink);
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   return (
     <FeedbackModal
       onShareFeedback="https://console.redhat.com/self-managed-feedback-form?source=openshift"

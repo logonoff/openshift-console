@@ -16,12 +16,14 @@ export const Navigation = memo<NavigationProps>(
     const { t } = useTranslation();
     return (
       <PageSidebar isSidebarOpen={isNavOpen}>
-        <PageSidebarBody>
-          <Nav aria-label={t('console-app~Nav')} onSelect={onNavSelect}>
-            <NavHeader onPerspectiveSelected={onPerspectiveSelected} />
-            <PerspectiveNav />
-          </Nav>
-        </PageSidebarBody>
+        <div className="pf-v6-c-page__sidebar-main">
+          <PageSidebarBody>
+            <Nav aria-label={t('console-app~Nav')} onSelect={onNavSelect}>
+              <NavHeader onPerspectiveSelected={onPerspectiveSelected} />
+              <PerspectiveNav />
+            </Nav>
+          </PageSidebarBody>
+        </div>
       </PageSidebar>
     );
   },

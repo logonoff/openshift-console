@@ -22,7 +22,7 @@ loader.config({ monaco });
  */
 export const BasicCodeEditor: FC<BasicCodeEditorProps> = (props) => {
   const { t } = useTranslation('console-shared');
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <ErrorBoundaryInline>

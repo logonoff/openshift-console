@@ -748,6 +748,24 @@
   {
     "type": "console.user-preference/item",
     "properties": {
+      "id": "console.theme/glass",
+      "label": "%console-app~Glass theme%",
+      "groupId": "general",
+      "description": "%console-app~Want to feel nostalgic for frutiger aero in your OpenShift cluster? Enable the glass theme.%",
+      "field": {
+        "type": "checkbox",
+        "userSettingsKey": "console.theme/glass",
+        "label": "%console-app~Use Glass theme%",
+        "trueValue": true,
+        "falseValue": false,
+        "defaultValue": false
+      },
+      "insertAfter": "console.theme"
+    }
+  },
+  {
+    "type": "console.user-preference/item",
+    "properties": {
       "id": "console.preferredPerspective",
       "label": "%console-app~Perspective%",
       "groupId": "general",
@@ -756,7 +774,7 @@
         "type": "custom",
         "component": { "$codeRef": "PreferredPerspectiveSelect" }
       },
-      "insertAfter": "console.theme"
+      "insertAfter": "console.theme/glass"
     },
     "flags": {
       "required": ["FLAG_PERSPECTIVES_AVAILABLE"]

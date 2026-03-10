@@ -211,7 +211,7 @@ const NodeLogs: FC<NodeLogsProps> = ({ obj: node }) => {
     true,
   );
   const { t } = useTranslation();
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   const isJournal = path === 'journal';
 

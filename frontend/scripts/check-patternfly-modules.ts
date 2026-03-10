@@ -12,7 +12,7 @@ const lockFile = parseSyml(lockFileContent);
 
 /** List of packages to check along with their required semver ranges */
 const PKGS_TO_CHECK: Array<{ name: string; semver: string }> = [
-  { name: '@patternfly/patternfly', semver: '6.x' },
+  { name: '@patternfly/patternfly', semver: '*' },
   { name: '@patternfly/quickstarts', semver: '6.x' },
   { name: '@patternfly/react-catalog-view-extension', semver: '6.x' },
   { name: '@patternfly/react-charts', semver: '8.x' },

@@ -58,7 +58,7 @@ const TourStepComponent: FC<TourStepComponentProps> = ({
   onClose,
 }) => {
   const { t } = useTranslation();
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const header = <StepHeader>{heading}</StepHeader>;
   const footer = (
     <StepFooter

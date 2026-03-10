@@ -73,7 +73,7 @@ const HelmInstallUpgradeForm: FC<
   providerName,
 }) => {
   const { t } = useTranslation();
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const { chartName, chartVersion, chartReadme, formData, formSchema, editorType } = values;
   const { type: helmAction, title, subTitle } = helmActionConfig;
   const helmReadmeModalLauncher = useHelmReadmeModalLauncher({
