@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useRef, useEffect, useMemo } from 'react';
-import type { DataViewTh } from '@patternfly/react-data-view';
 import { useDataViewPagination } from '@patternfly/react-data-view';
+import type { DataViewTh } from '@patternfly/react-data-view/dist/esm/DataViewTable/DataViewTable';
 import type { ThProps } from '@patternfly/react-table';
 import { SortByDirection } from '@patternfly/react-table';
 import * as _ from 'lodash';

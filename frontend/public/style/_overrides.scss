@@ -5,7 +5,7 @@
 $masthead-logo-max-height: 60px;
 
 :where(.pf-v6-theme-glass) .pf-v6-c-page, :where(.pf-v6-theme-glass) .pf-v6-c-login, :where(.pf-v6-theme-glass) body {
-  background-image: url('https://pf-pr-8207.surge.sh/02b1affd.png');
+  background-image: url('https://github.com/mcoker/patternfly/blob/glass-hack-3.5.26/src/patternfly/assets/images/compass--wallpaper-light.jpg?raw=true');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -13,7 +13,7 @@ $masthead-logo-max-height: 60px;
 }
 
 :where(.pf-v6-theme-glass):where(.pf-v6-theme-dark) .pf-v6-c-page, :where(.pf-v6-theme-glass):where(.pf-v6-theme-dark) .pf-v6-c-login, :where(.pf-v6-theme-glass):where(.pf-v6-theme-dark) body {
-  background-image: url('https://pf-pr-8207.surge.sh/4b72ee8c.png');
+  background-image: url('https://github.com/mcoker/patternfly/blob/glass-hack-3.5.26/src/patternfly/assets/images/compass--wallpaper-dark.jpg?raw=true');
 }
 
 .co-catalog-tile {

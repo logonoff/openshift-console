@@ -1,6 +1,6 @@
 import type { ReactNode, ComponentType, SetStateAction, Dispatch } from 'react';
 import type { QuickStart } from '@patternfly/quickstarts';
-import type { DataViewTh } from '@patternfly/react-data-view';
+import type { DataViewTh } from '@patternfly/react-data-view/dist/esm/DataViewTable/DataViewTable';
 import type { SortByDirection, ThProps } from '@patternfly/react-table';
 import type { Map as ImmutableMap } from 'immutable';
 import type {
