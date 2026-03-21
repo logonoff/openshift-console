@@ -19,7 +19,7 @@
     "build": "yarn clean && yarn generate && NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 yarn ts-node ./node_modules/.bin/webpack --mode=production",
     "check-cycles": "CHECK_CYCLES=true yarn dev-once",
     "coverage": "jest --coverage .",
-    "eslint": "node ./node_modules/.bin/eslint --max-warnings 0 --ext .js,.jsx,.ts,.tsx,.json,.gql,.graphql --color",
+    "eslint": "node ./node_modules/.bin/eslint --max-warnings 0 --ext .js,.jsx,.ts,.tsx,.json --color",
     "lint": "NODE_OPTIONS=--max-old-space-size=4096 yarn eslint .",
     "gherkin-lint": "./node_modules/.bin/gherkin-lint -c ./packages/dev-console/integration-tests/.gherkin-lintrc ./packages/*/integration-tests/features",
     "test": "LANG=en_US.UTF-8 jest",
@@ -57,8 +57,7 @@
     "analyze": "ANALYZE_BUNDLE=true NODE_ENV=production NODE_OPTIONS=--max-old-space-size=8192 yarn ts-node ./node_modules/.bin/webpack --mode=production",
     "prettier-all": "prettier --write '**/*.{js,jsx,ts,tsx,json}'",
     "ts-node": "ts-node -O '{\"module\":\"commonjs\"}'",
-    "generate": "yarn generate-graphql & yarn build-plugin-sdk",
-    "generate-graphql": "graphql-codegen --config graphql-codegen.yml",
+    "generate": "yarn build-plugin-sdk",
     "generate-plugin-sdk-docs": "yarn --cwd packages/console-dynamic-plugin-sdk generate-doc",
     "build-plugin-sdk": "yarn --cwd packages/console-dynamic-plugin-sdk build",
     "i18n-to-po": "node ./i18n-scripts/i18n-to-po.js",
@@ -75,9 +74,7 @@
       "jsx",
       "ts",
       "tsx",
-      "json",
-      "gql",
-      "graphql"
+      "json"
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
@@ -89,7 +86,6 @@
     "testEnvironment": "jsdom",
     "transform": {
       "get-local-plugins\\.js$": "./scripts/jest-transform-local-plugins.js",
-      "^.+\\.(gql|graphql)$": "./scripts/jest-transform-graphql.js",
       "^.+\\.(ts|tsx|js|jsx|mjs)$": [
         "@swc/jest",
         {
@@ -171,10 +167,6 @@
     "@xterm/addon-fit": "0.10.0",
     "@xterm/xterm": "^5.5.0",
     "ajv": "^6.12.3",
-    "apollo-cache-inmemory": "^1.6.5",
-    "apollo-client": "^2.6.8",
-    "apollo-link-http": "^1.0.20",
-    "apollo-link-ws": "^1.0.20",
     "chardet": "^2.1.0",
     "dagre": "^0.8.5",
     "file-saver": "1.3.x",
@@ -182,7 +174,6 @@
     "fuzzysearch": "1.0.x",
     "gherkin-lint": "^4.2.4",
     "git-url-parse": "^11.4.0",
-    "graphql": "^14.0.0",
     "i18next": "^25.8.18",
     "i18next-browser-languagedetector": "^8.2.1",
     "i18next-conv": "16.0.0",
@@ -219,18 +210,14 @@
     "reselect": "^5.1.1",
     "sanitize-html": "^2.3.2",
     "semver": "6.x",
-    "subscriptions-transport-ws": "^0.9.16",
     "typesafe-actions": "^5.1.0",
     "victory": "^37.3.6",
+    "yaml-ast-parser": "^0.0.43",
     "yup": "^1.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@cypress/webpack-preprocessor": "^7.0.2",
-    "@graphql-codegen/cli": "^1.15.1",
-    "@graphql-codegen/typescript": "^1.15.1",
-    "@graphql-codegen/typescript-graphql-files-modules": "^1.15.1",
-    "@graphql-codegen/typescript-operations": "^1.15.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
     "@swc/core": "^1.15.18",
     "@swc/jest": "^0.2.39",
@@ -269,7 +256,6 @@
     "find-up": "4.x",
     "fork-ts-checker-webpack-plugin": "9.1.0",
     "glob": "7.x",
-    "graphql-tag": "^2.10.3",
     "html-webpack-plugin": "5.6.5",
     "html-webpack-skip-assets-plugin": "^1.0.4",
     "husky": "^8.0.3",
@@ -321,7 +307,7 @@
     "postcss": "^8.2.13"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,gql,graphql}": "eslint --color --fix"
+    "*.{js,jsx,ts,tsx,json}": "eslint --color --fix"
   },
   "dependenciesMeta": {
     "cypress": {

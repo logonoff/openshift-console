@@ -1,5 +1,3 @@
-var fs = require('fs');
-
 module.exports = {
   root: true,
   env: {
@@ -26,7 +24,7 @@ module.exports = {
     extraFileExtensions: ['.json'],
     tsconfigRootDir: './',
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint', 'graphql', 'eslint-plugin-tsdoc'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'eslint-plugin-tsdoc'],
   rules: {
     camelcase: [
       'error',
@@ -102,13 +100,6 @@ module.exports = {
     'react/display-name': 0,
     'react/no-unescaped-entities': 0,
     'require-atomic-updates': 0,
-    'graphql/template-strings': [
-      'error',
-      {
-        env: 'literal',
-        schemaString: fs.readFileSync('../pkg/graphql/schema.graphql', 'utf-8'),
-      },
-    ],
     'tsdoc/syntax': 'warn',
   },
   settings: {
