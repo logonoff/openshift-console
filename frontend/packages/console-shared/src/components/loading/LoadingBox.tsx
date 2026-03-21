@@ -1,4 +1,5 @@
 import type { FC, ReactNode } from 'react';
+import { useEffect } from 'react';
 import { ConsoleEmptyState } from '../empty-state';
 import { Loading } from './Loading';
 
@@ -18,6 +19,18 @@ interface LoadingBoxProps {
 }
 
 export const LoadingBox: FC<LoadingBoxProps> = ({ blame = 'LoadingBox', children }) => {
+  useEffect(() => {
+    if (!IS_BLAME_ENABLED) {
+      return undefined;
+    }
+    const markName = `LoadingBox:${blame}`;
+    performance.mark(`${markName}:start`);
+    return () => {
+      performance.mark(`${markName}:end`);
+      performance.measure(markName, `${markName}:start`, `${markName}:end`);
+    };
+  }, [blame]);
+
   return (
     <ConsoleEmptyState
       data-test="loading-box"

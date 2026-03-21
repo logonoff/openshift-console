@@ -101,7 +101,14 @@ const DashboardsPage_: FC<DashboardsPageProps> = ({ kindsInFlight, k8sModelsLoad
   ) : (
     <>
       <PageTitleContext.Provider value={titleProviderValues}>
-        <PageHeading title={title} badge={badge} />
+        <PageHeading
+          title={title}
+          badge={badge}
+          helpText={Math.round(
+            JSON.parse(JSON.stringify(performance.getEntriesByType('measure'), null, 2))[3]
+              .startTime,
+          )}
+        />
         <HorizontalNav pages={allPages} noStatusBox />
       </PageTitleContext.Provider>
     </>
