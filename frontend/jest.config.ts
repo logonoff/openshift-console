@@ -12,6 +12,8 @@ export default defineConfig({
   testEnvironment: 'jsdom',
   transform: {
     '__mocks__/get-local-plugins\\.ts$': '<rootDir>/scripts/jest-transform-local-plugins.js',
+    'node_modules[/\\\\](react-router|cookie-es|@remix-run[/\\\\]route-pattern)[/\\\\].+\\.(js|mjs)$':
+      './scripts/jest-transform-esm-dependencies.js',
     '^.+\\.(ts|tsx|js|mjs)$': [
       '@swc/jest',
       {
@@ -34,7 +36,7 @@ export default defineConfig({
     ],
   },
   transformIgnorePatterns: [
-    '<rootDir>/node_modules/(?!(@patternfly(-\\S+)?|d3(-\\S+)?|delaunator|robust-predicates|internmap|lodash-es|istextorbinary|@console|@novnc|@spice-project|@popperjs|i18next(-\\S+)?|@babel/runtime|jsonpath-plus|nanoid|@rjsf|@x0k|git-url-parse|git-up|parse-url|protocols|sanitize-html|linkify-react|fuzzysearch)/.*)',
+    '<rootDir>/node_modules/(?!(@patternfly(-\\S+)?|d3(-\\S+)?|delaunator|robust-predicates|internmap|lodash-es|istextorbinary|@console|@novnc|@spice-project|@popperjs|i18next(-\\S+)?|@babel/runtime|jsonpath-plus|nanoid|@rjsf|@x0k|git-url-parse|react-router|cookie-es|@remix-run/route-pattern|git-up|parse-url|protocols|sanitize-html|linkify-react|fuzzysearch)/.*)',
   ],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/public/dist', '<rootDir>/e2e'],
   modulePathIgnorePatterns: ['<rootDir>/public/dist', '<rootDir>/e2e'],
@@ -45,7 +47,6 @@ export default defineConfig({
   },
   setupFiles: [
     './__mocks__/fetch.ts',
-    './__mocks__/helmet.ts',
     './__mocks__/localStorage.ts',
     './__mocks__/matchMedia.ts',
     './__mocks__/mutationObserver.ts',
