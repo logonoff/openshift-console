@@ -100,7 +100,7 @@ describe('getSubscriptionDataViewRows', () => {
         name: subscription.metadata.name,
         namespace: subscription.metadata.namespace,
       }),
-      expect.anything(),
+      undefined,
     );
 
     expect(mockResourceLink).toHaveBeenCalledWith(
@@ -108,7 +108,7 @@ describe('getSubscriptionDataViewRows', () => {
         kind: 'Namespace',
         name: subscription.metadata.namespace,
       }),
-      expect.anything(),
+      undefined,
     );
   });
 
@@ -293,7 +293,7 @@ describe('SubscriptionDetails', () => {
         title: obj.status.installedCSV,
         name: obj.status.installedCSV,
       }),
-      expect.anything(),
+      undefined,
     );
   });
 
@@ -311,7 +311,7 @@ describe('SubscriptionDetails', () => {
       expect.objectContaining({
         name: testSubscription.spec.source,
       }),
-      expect.anything(),
+      undefined,
     );
   });
 });
