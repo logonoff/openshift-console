@@ -8,10 +8,28 @@ import type { AccessReviewResourceAttributes, K8sResourceCommon } from './consol
 export type ActionProvider = Extension<
   'console.action/provider',
   {
-    /** The context ID helps to narrow the scope of contributed actions to a particular area of the application. Ex - topology, helm */
-    contextId: string | 'resource';
+    /** The context ID helps to narrow the scope of contributed actions to a particular area of
+     * the application.
+     *
+     * A resource detail page or list row menu uses the resource's group, version and kind
+     * reference as its context ID, formatted `group~version~Kind`, with `core` standing in for
+     * the core group. For example `apps~v1~Deployment` or `core~v1~Pod`. Registering against
+     * one of these adds actions to that resource's menu alongside the actions Console itself
+     * contributes; `console.action/resource-provider` does the same thing from a model instead
+     * of a string.
+     *
+     * The remaining context IDs name an area of the UI. Those currently in use are:
+     * - `topology-actions`
+     * - `topology-context-actions`
+     * - `helm-actions`
+     * - `operator-actions`
+     * - `operand-actions`
+     * - `event-source-actions`
+     */
+    contextId: string;
     /** A react hook which returns actions for the given scope.
-     * If contextId = `resource` then the scope will always be a K8s resource object
+     * The scope is whatever the menu passed for this context ID, which for a resource menu is
+     * the K8s resource object.
      * */
     provider: CodeRef<ExtensionHook<Action[]>>;
   }
@@ -73,8 +91,15 @@ export type ActionGroup = Extension<
 export type ActionFilter = Extension<
   'console.action/filter',
   {
-    /** The context ID helps to narrow the scope of contributed actions to a particular area of the application. Ex - topology, helm */
-    contextId: string | 'resource';
+    /** The context ID of the menu whose actions should be filtered, using the same values as
+     * `console.action/provider`. A filter registered against a resource context ID such as
+     * `apps~v1~Deployment` sees every action in that menu, including the ones Console itself
+     * contributes, so a plugin can hide a built-in action by returning false for its `id`.
+     *
+     * When more than one filter is registered for a context ID, an action is kept if any of
+     * them returns true.
+     */
+    contextId: string;
     /** A function which will filter actions based on some conditions.
      * scope: The scope in which actions should be provided for.
      * In a `ConsoleDataView` bulk menu, filters matching the resource model are evaluated

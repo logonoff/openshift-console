@@ -20,6 +20,13 @@ compatibility table in [Console dynamic plugins README](./README.md).
   beside a contributed tab label ([CONSOLE-5527], [#17355])
 - Changed `HorizontalNav` to order contributed default tabs before other tabs, with remaining tabs
   still ordered alphabetically ([CONSOLE-5527], [#17355])
+- Documented that a resource menu's `contextId` is the resource's `group~version~Kind` reference, so
+  `console.action/provider` and `console.action/filter` can target a resource's actions, and listed
+  the non-resource context IDs currently in use ([CONSOLE-5143])
+- Removed the unimplemented `'resource'` sentinel from the `contextId` type of
+  `console.action/provider` and `console.action/filter`. The declared type was
+  `string | 'resource'`, which is just `string`, and no code branched on the sentinel
+  ([CONSOLE-5143])
 
 ## 5.1.0-prerelease.1 - 2026-10-16
 
@@ -360,6 +367,7 @@ compatibility table in [Console dynamic plugins README](./README.md).
 [CONSOLE-5415]: https://issues.redhat.com/browse/CONSOLE-5415
 [CONSOLE-5424]: https://issues.redhat.com/browse/CONSOLE-5424
 [CONSOLE-5438]: https://issues.redhat.com/browse/CONSOLE-5438
+[CONSOLE-5143]: https://issues.redhat.com/browse/CONSOLE-5143
 [CONSOLE-5560]: https://issues.redhat.com/browse/CONSOLE-5560
 [CONSOLE-5527]: https://issues.redhat.com/browse/CONSOLE-5527
 [OCPBUGS-19048]: https://issues.redhat.com/browse/OCPBUGS-19048
