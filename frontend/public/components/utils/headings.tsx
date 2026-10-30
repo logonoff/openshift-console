@@ -1,6 +1,6 @@
 import type { FC, ReactNode, ComponentType } from 'react';
 import { useCallback } from 'react';
-import { ActionListItem, Button, Title } from '@patternfly/react-core';
+import { Title } from '@patternfly/react-core';
 import { css } from '@patternfly/react-styles';
 import * as _ from 'lodash';
 import { useTranslation } from 'react-i18next';
@@ -24,30 +24,9 @@ import type {
   K8sResourceKind,
   K8sResourceKindReference,
 } from '../../module/k8s';
-import { referenceForExtensionModel } from '../../module/k8s';
+import { referenceForExtensionModel, referenceForModel } from '../../module/k8s';
 import { ManagedByOperatorLink } from './managed-by';
 import { ResourceIcon } from './resource-icon';
-
-const ActionButtons: FC<ActionButtonsProps> = ({ actionButtons }) => (
-  <>
-    {_.map(actionButtons, (actionButton, i) => {
-      if (!_.isEmpty(actionButton)) {
-        return (
-          <ActionListItem>
-            <Button
-              variant="primary"
-              onClick={actionButton.callback}
-              key={i}
-              data-test={actionButton.label}
-            >
-              {actionButton.label}
-            </Button>
-          </ActionListItem>
-        );
-      }
-    })}
-  </>
-);
 
 /**
  * A `PageHeading` which connects to a model and displays the resource name, status, and actions.
@@ -58,7 +37,6 @@ export const ConnectedPageHeading = connectToModel(
     badge,
     breadcrumbs,
     breadcrumbsFor,
-    buttonActions,
     className,
     customActionMenu,
     customData,
@@ -82,11 +60,16 @@ export const ConnectedPageHeading = connectToModel(
     const data = _.get(obj, 'data');
     const hasData = !_.isEmpty(data);
 
+    // `kind` is whatever the caller passed, which is a bare kind such as "Secret" for many
+    // details pages. Extension models always resolve to a group~version~Kind reference, so key
+    // off the connected model and fall back only while API discovery is in flight.
+    const modelReference = kindObj ? referenceForModel(kindObj) : kind;
+
     const resourceProviderGuard = useCallback(
       (e): e is ResourceActionProvider =>
         isResourceActionProvider(e) &&
-        referenceForExtensionModel(e.properties.model as ExtensionK8sGroupModel) === kind,
-      [kind],
+        referenceForExtensionModel(e.properties.model as ExtensionK8sGroupModel) === modelReference,
+      [modelReference],
     );
 
     const [resourceProviderExtensions, resourceProviderExtensionsResolved] =
@@ -95,9 +78,8 @@ export const ConnectedPageHeading = connectToModel(
     const hasExtensionActions =
       resourceProviderExtensionsResolved && resourceProviderExtensions?.length > 0;
 
-    const hasButtonActions = !_.isEmpty(buttonActions);
     const showActions =
-      (hasButtonActions || customActionMenu || hasExtensionActions) &&
+      (customActionMenu || hasExtensionActions) &&
       hasData &&
       !_.get(data, 'metadata.deletionTimestamp');
 
@@ -112,16 +94,12 @@ export const ConnectedPageHeading = connectToModel(
     const actions =
       hasExtensionActions && !_.isFunction(customActionMenu) ? (
         <LazyActionMenu
-          context={{ [kind]: data }}
+          context={{ [modelReference]: data }}
           variant={ActionMenuVariant.DROPDOWN}
           label={t('Actions')}
         />
       ) : (
         <>
-          {hasButtonActions && hasData && (
-            <ActionButtons actionButtons={buttonActions.map((a) => a(kindObj, data))} />
-          )}
-
           {hasData &&
             (_.isFunction(customActionMenu)
               ? customActionMenu(kindObj, data, extraResources)
@@ -208,13 +186,8 @@ export const SidebarSectionHeading: FC<SidebarSectionHeadingProps> = ({
   </Title>
 );
 
-type ActionButtonsProps = {
-  actionButtons: any[];
-};
-
 export type ConnectedPageHeadingProps = Omit<PageHeadingProps, 'primaryAction'> & {
   breadcrumbsFor?: (obj: K8sResourceKind) => { name: string; path: string }[];
-  buttonActions?: any[];
   /** Renders a custom action menu if the `obj` prop is passed with `data` */
   customActionMenu?:
     | ReactNode
