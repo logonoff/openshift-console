@@ -11,8 +11,6 @@ import {
   useResolvedExtensions,
 } from '@console/dynamic-plugin-sdk';
 import type { WatchK8sResultsObject } from '@console/dynamic-plugin-sdk/src/extensions/console-types';
-import type { Action } from '@console/dynamic-plugin-sdk/src/lib-core';
-import { ActionsMenu } from '@console/internal/components/utils/actions-menu';
 import { LazyActionMenu } from '@console/shared/src/components/actions/LazyActionMenu';
 import { ActionMenuVariant } from '@console/shared/src/components/actions/types';
 import type { PageHeadingProps } from '@console/shared/src/components/heading/PageHeading';
@@ -73,7 +71,6 @@ export const ConnectedPageHeading = connectToModel(
     kind,
     kindObj,
     linkProps,
-    menuActions,
     obj,
     OverrideTitle,
     title,
@@ -99,9 +96,8 @@ export const ConnectedPageHeading = connectToModel(
       resourceProviderExtensionsResolved && resourceProviderExtensions?.length > 0;
 
     const hasButtonActions = !_.isEmpty(buttonActions);
-    const hasMenuActions = _.isFunction(menuActions) || !_.isEmpty(menuActions);
     const showActions =
-      (hasButtonActions || hasMenuActions || customActionMenu || hasExtensionActions) &&
+      (hasButtonActions || customActionMenu || hasExtensionActions) &&
       hasData &&
       !_.get(data, 'metadata.deletionTimestamp');
 
@@ -124,18 +120,6 @@ export const ConnectedPageHeading = connectToModel(
         <>
           {hasButtonActions && hasData && (
             <ActionButtons actionButtons={buttonActions.map((a) => a(kindObj, data))} />
-          )}
-
-          {hasMenuActions && hasData && (
-            <ActionListItem>
-              <ActionsMenu
-                actions={
-                  _.isFunction(menuActions)
-                    ? menuActions(kindObj, data, extraResources, customData)
-                    : menuActions.map((a) => a(kindObj, data, extraResources, customData))
-                }
-              />
-            </ActionListItem>
           )}
 
           {hasData &&
@@ -228,13 +212,6 @@ type ActionButtonsProps = {
   actionButtons: any[];
 };
 
-export type KebabOptionsCreator = (
-  kindObj: K8sKind,
-  data: K8sResourceKind,
-  extraResources?: { [prop: string]: K8sResourceKind | K8sResourceKind[] },
-  customData?: any,
-) => Action[];
-
 export type ConnectedPageHeadingProps = Omit<PageHeadingProps, 'primaryAction'> & {
   breadcrumbsFor?: (obj: K8sResourceKind) => { name: string; path: string }[];
   buttonActions?: any[];
@@ -250,7 +227,6 @@ export type ConnectedPageHeadingProps = Omit<PageHeadingProps, 'primaryAction'> 
   getResourceStatus?: (resource: K8sResourceKind) => string;
   kind?: K8sResourceKindReference;
   kindObj?: K8sKind;
-  menuActions?: Function[] | KebabOptionsCreator; // FIXME should be "KebabAction[] |" refactor pipeline-actions.tsx, etc.
   obj?: WatchK8sResultsObject<K8sResourceKind>;
   /** A component to override the title of the page */
   OverrideTitle?: ComponentType<{ obj?: K8sResourceKind }>;
