@@ -125,7 +125,6 @@ export const DetailsPage = withFallback<DetailsPageProps>(({ pages = [], ...prop
         obj={objData}
         title={props.title || props.name}
         titleFunc={props.titleFunc}
-        buttonActions={props.buttonActions}
         customActionMenu={props.customActionMenu}
         kind={props.customKind || props.kind}
         icon={props.icon}
@@ -162,7 +161,6 @@ export type DetailsPageProps = {
   obj?: WatchK8sResultsObject<K8sResourceKind>;
   title?: string | ReactNode;
   titleFunc?: (obj: K8sResourceKind) => string | ReactNode;
-  buttonActions?: any[];
   createRedirect?: boolean;
   customActionMenu?: ConnectedPageHeadingProps['customActionMenu'];
   icon?: ConnectedPageHeadingProps['icon'];
