@@ -68,6 +68,11 @@ export const startAPIDiscovery = () => (dispatch) => {
               }
               return _.noop;
             },
+            false,
+            // Only the watch events carry the ADDED/DELETED type this callback keys off, so a
+            // re-list cannot recover a CRD change. Keep this socket streaming while hidden:
+            // stale models break routing to resources whose CRDs were installed in the meantime.
+            true,
           ),
         );
       } else {

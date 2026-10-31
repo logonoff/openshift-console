@@ -1,6 +1,12 @@
 import * as _ from 'lodash';
 import type { ActionType as Action } from 'typesafe-actions';
 import { action } from 'typesafe-actions';
+import {
+  RESUME_JITTER_MS,
+  RESUME_STAGGER_MS,
+  isDocumentVisible,
+  subscribeToDocumentVisibility,
+} from '@console/shared/src/utils/document-visibility';
 import { startVisibilityAwareInterval } from '@console/shared/src/utils/visibility-aware-interval';
 import type { DiscoveryResources, K8sModel } from '../../../api/common-types';
 import type { FilterValue, K8sResourceKind } from '../../../extensions/console-types';
@@ -58,11 +64,81 @@ const WS: { [id: string]: WSFactory } = {};
 const POLLs: { [id: string]: number } = {};
 const POLL_STOPPERS: { [id: string]: () => void } = {};
 const REF_COUNTS: { [id: string]: number } = {};
+/** Discards the socket and restarts the list from a fresh resourceVersion, keyed by watch id. */
+const RESYNCERS: { [id: string]: () => void } = {};
+const RESUME_TIMERS: { [id: string]: ReturnType<typeof setTimeout> } = {};
+let visibilityUnsubscribe: (() => void) | null = null;
 
 const paginationLimit = 250;
 const OBJECT_POLL_INTERVAL = 30 * 1000;
 
+const cancelResume = (id: string) => {
+  if (RESUME_TIMERS[id] !== undefined) {
+    clearTimeout(RESUME_TIMERS[id]);
+    delete RESUME_TIMERS[id];
+  }
+};
+
+/**
+ * While the document stays hidden, list sockets buffer instead of dispatching, so redux and React
+ * do no work. On the way back, a socket whose buffer survived intact just flushes; one that dropped
+ * messages has an incomplete delta sequence and is replaced by a fresh list plus a new socket.
+ */
+const handleVisibilityChange = (visible: boolean) => {
+  const ids = Object.keys(RESYNCERS);
+  ids.forEach(cancelResume);
+
+  if (!visible) {
+    ids.forEach((id) => WS[id]?.pause());
+    return;
+  }
+
+  const resyncIds: string[] = [];
+  ids.forEach((id) => {
+    const ws = WS[id];
+    if (!ws?.isPaused()) {
+      return;
+    }
+    if (ws.hasDroppedMessages()) {
+      resyncIds.push(id);
+      return;
+    }
+    ws.unpause();
+  });
+
+  // Every re-list is a paginated quorum read, so spread them rather than firing N at once.
+  resyncIds.forEach((id, index) => {
+    RESUME_TIMERS[id] = setTimeout(
+      () => {
+        delete RESUME_TIMERS[id];
+        RESYNCERS[id]?.();
+      },
+      index * RESUME_STAGGER_MS + Math.random() * RESUME_JITTER_MS,
+    );
+  });
+};
+
+const registerResyncer = (id: string, resync: () => void) => {
+  RESYNCERS[id] = resync;
+  if (!visibilityUnsubscribe) {
+    visibilityUnsubscribe = subscribeToDocumentVisibility(handleVisibilityChange);
+  }
+};
+
+const unregisterResyncer = (id: string) => {
+  delete RESYNCERS[id];
+  cancelResume(id);
+  if (visibilityUnsubscribe && !Object.keys(RESYNCERS).length) {
+    visibilityUnsubscribe();
+    visibilityUnsubscribe = null;
+  }
+};
+
 export const stopK8sWatch = (id: string) => (dispatch) => {
+  if (!(id in REF_COUNTS)) {
+    return _.noop;
+  }
+
   REF_COUNTS[id] -= 1;
   if (REF_COUNTS[id] > 0) {
     return _.noop;
@@ -78,6 +154,7 @@ export const stopK8sWatch = (id: string) => (dispatch) => {
   delete POLLs[id];
   POLL_STOPPERS[id]?.();
   delete POLL_STOPPERS[id];
+  unregisterResyncer(id);
   delete REF_COUNTS[id];
   return dispatch(stopWatchK8s(id));
 };
@@ -89,6 +166,7 @@ export const watchK8sList =
     k8skind: K8sModel,
     extraAction?,
     partialMetadata = false,
+    keepWatchingWhileHidden = false,
   ) =>
   (dispatch, getState) => {
     // Only one watch per unique list ID
@@ -147,6 +225,7 @@ export const watchK8sList =
      *   2. the WS can not establish a connection within $TIMEOUT
      */
     const pollAndWatch = async () => {
+      clearTimeout(POLLs[id]);
       delete POLLs[id];
 
       try {
@@ -180,6 +259,12 @@ export const watchK8sList =
           { ...query, resourceVersion },
           { subprotocols, timeout: 60 * 1000 },
         );
+
+        // The socket may be built while hidden: the list page was opened in a background tab, or
+        // the previous socket was recycled by the apiserver and re-polled on its 15s timer.
+        if (!keepWatchingWhileHidden && !isDocumentVisible()) {
+          WS[id].pause();
+        }
       } catch (e) {
         if (!REF_COUNTS[id]) {
           console.log(
@@ -229,6 +314,27 @@ export const watchK8sList =
           [updateListFromWS, extraAction].forEach((f) => f && dispatch(f(id, events))),
         );
     };
+
+    if (!keepWatchingWhileHidden) {
+      registerResyncer(id, () => {
+        if (!REF_COUNTS[id]) {
+          return;
+        }
+        const ws = WS[id];
+        if (ws) {
+          // Drop the registry entry first: a bare destroy() reports no timeout, so the ondestroy
+          // handler returns without clearing it and pollAndWatch would refuse to open a socket.
+          delete WS[id];
+          ws.destroy();
+        }
+        if (POLLs[id] !== undefined) {
+          clearTimeout(POLLs[id]);
+          delete POLLs[id];
+        }
+        pollAndWatch();
+      });
+    }
+
     return pollAndWatch();
   };
 

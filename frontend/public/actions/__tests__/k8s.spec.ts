@@ -65,6 +65,9 @@ describe('startAPIDiscovery', () => {
       {},
       CustomResourceDefinitionModel,
       expect.any(Function),
+      false,
+      // The CRD watch keeps streaming while the tab is hidden; a re-list cannot replace it.
+      true,
     );
     expect(console.log).toHaveBeenCalledWith('API discovery method: Watching');
   });

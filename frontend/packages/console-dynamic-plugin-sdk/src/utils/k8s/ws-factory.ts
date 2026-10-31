@@ -26,6 +26,12 @@ export type WSOptions = {
   reconnect?: boolean;
   jsonParse?: boolean;
   bufferMax?: number;
+  /**
+   * Maximum number of messages retained while paused. Once exceeded the buffer is discarded and
+   * `hasDroppedMessages()` reports true, so the subscriber can resynchronize instead of replaying
+   * an incomplete sequence. Defaults to `bufferMax`.
+   */
+  pausedBufferMax?: number;
   bufferFlushInterval?: number;
   timeout?: number;
 };
@@ -78,6 +84,10 @@ export class WSFactory {
 
   private bufferMax: number;
 
+  private pausedBufferMax: number;
+
+  private droppedMessages: boolean;
+
   private ws: WebSocket;
 
   /**
@@ -88,7 +98,9 @@ export class WSFactory {
     this.id = id;
     this.options = options;
     this.bufferMax = options.bufferMax || 0;
+    this.pausedBufferMax = options.pausedBufferMax || this.bufferMax;
     this.paused = false;
+    this.droppedMessages = false;
     this.handlers = {
       open: [],
       close: [],
@@ -123,7 +135,8 @@ export class WSFactory {
       if (this.options.timeout && delay > this.options.timeout) {
         clearTimeout(this.connectionAttempt);
         this.connectionAttempt = null;
-        this.destroy();
+        const timedOut = true;
+        this.destroy(timedOut);
         return;
       }
 
@@ -140,6 +153,11 @@ export class WSFactory {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     this.state = 'init';
+    if (this.messageBuffer?.length) {
+      // A reconnect replays the original path, so its resourceVersion no longer lines up with the
+      // buffered deltas. They cannot be applied and are not recoverable from the new stream.
+      this.droppedMessages = true;
+    }
     this.messageBuffer = [];
     const url = createURL(this.options.host, this.options.path);
     try {
@@ -214,9 +232,27 @@ export class WSFactory {
 
     // Only buffer "message" events, so "error" and "close" etc can pass thru.
     if (this.bufferMax && type === 'message') {
+      if (this.paused) {
+        if (this.droppedMessages) {
+          return;
+        }
+
+        this.messageBuffer.push(event);
+
+        if (this.messageBuffer.length > this.pausedBufferMax) {
+          // Retaining more would cost memory and a long flush on resume for a sequence the
+          // subscriber has to discard anyway, so drop it now and let them resynchronize.
+          this.droppedMessages = true;
+          this.messageBuffer = [];
+        }
+
+        return;
+      }
+
       this.messageBuffer.push(event);
 
       if (this.messageBuffer.length > this.bufferMax) {
+        this.droppedMessages = true;
         this.messageBuffer.shift();
       }
 
@@ -275,10 +311,12 @@ export class WSFactory {
   }
 
   /**
-   *  Pausing prevents any buffer flushing until unpaused.
+   * Pausing prevents any buffer flushing until unpaused. Up to `pausedBufferMax` messages are
+   * retained; beyond that the buffer is discarded and `hasDroppedMessages()` reports true.
    */
   pause() {
     this.paused = true;
+    this.droppedMessages = false;
   }
 
   unpause() {
@@ -288,6 +326,15 @@ export class WSFactory {
 
   isPaused() {
     return this.paused;
+  }
+
+  /**
+   * Whether any message was discarded since the last `pause()`, either because the retention limit
+   * was exceeded or because a reconnect invalidated the buffer. The remaining messages are an
+   * incomplete delta sequence, so the subscriber must re-read the resource rather than apply them.
+   */
+  hasDroppedMessages() {
+    return this.droppedMessages;
   }
 
   getState() {

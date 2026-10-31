@@ -23,8 +23,13 @@ compatibility table in [Console dynamic plugins README](./README.md).
 - Added optional `pollWhenHidden` property to `PrometheusPollProps`, so `usePrometheusPoll` can keep
   polling while the browser tab is hidden ([CONSOLE-XXXX], [#XXXXX])
 - Changed `usePrometheusPoll`, `useURLPoll` and `QueryBrowser` to stop their refresh timers once the
-  browser tab has been hidden for 10 seconds, and to refresh once when it becomes visible again.
-  Kubernetes watch WebSockets are unaffected ([CONSOLE-XXXX], [#XXXXX])
+  browser tab has been hidden for 10 seconds, and to refresh once when it becomes visible again
+  ([CONSOLE-XXXX], [#XXXXX])
+- Changed list watches behind `useK8sWatchResource` and `useK8sWatchResources` to hold their
+  WebSocket events while the browser tab is hidden and apply them in one batch when it becomes
+  visible. A list that received more than 200 events while hidden, or whose socket reconnected, is
+  re-read from the API server instead. Single-object watches are unaffected, and `WatchK8sResource`
+  gains no new property ([CONSOLE-XXXX], [#XXXXX])
 
 ## 5.1.0-prerelease.1 - 2026-10-16
 

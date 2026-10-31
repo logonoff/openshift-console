@@ -2931,7 +2931,7 @@ An array with the first item as the list of k8s model and second item as inFligh
 
 ### Summary 
 
-Hook that retrieves the Kubernetes resource along with their respective status for loaded and error.
+Hook that retrieves the Kubernetes resource along with their respective status for loaded and error.<br/><br/>While the browser tab is hidden, a list watch holds its WebSocket events instead of applying them, and applies them in one batch when the tab becomes visible. A list that received more than 200 events while hidden, or whose socket reconnected, is re-read from the API server instead. Set the `console.disableVisibilityThrottling` local storage key to `true` to opt a browser out.
 
 
 ### Example
@@ -2971,7 +2971,7 @@ An array with first item as resource(s), second item as loaded status and third 
 
 ### Summary 
 
-Hook that retrieves the Kubernetes resources along with their respective status for loaded and error.
+Hook that retrieves the Kubernetes resources along with their respective status for loaded and error.<br/><br/>While the browser tab is hidden, a list watch holds its WebSocket events instead of applying them, and applies them in one batch when the tab becomes visible. A list that received more than 200 events while hidden, or whose socket reconnected, is re-read from the API server instead. Set the `console.disableVisibilityThrottling` local storage key to `true` to opt a browser out.
 
 
 ### Example
