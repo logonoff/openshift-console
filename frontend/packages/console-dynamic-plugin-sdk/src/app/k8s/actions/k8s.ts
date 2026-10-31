@@ -35,8 +35,12 @@ type K8sEvent = { type: 'ADDED' | 'DELETED' | 'MODIFIED'; object: K8sResourceKin
 
 const updateListFromWS = (id: string, k8sObjects: K8sEvent[]) =>
   action(ActionType.UpdateListFromWS, { id, k8sObjects });
-const loaded = (id: string, k8sObjects: K8sResourceKind | K8sResourceKind[]) =>
-  action(ActionType.Loaded, { id, k8sObjects });
+const loaded = (
+  id: string,
+  k8sObjects: K8sResourceKind | K8sResourceKind[],
+  /** Set while further pages are still being fetched, so absent objects are not treated as gone. */
+  partial = false,
+) => action(ActionType.Loaded, { id, k8sObjects, partial });
 
 const bulkAddToList = (id: string, k8sObjects: K8sResourceKind[]) =>
   action(ActionType.BulkAddToList, { id, k8sObjects });
@@ -178,7 +182,10 @@ export const watchK8sList =
     dispatch(startWatchK8sList(id, query));
     REF_COUNTS[id] = 1;
 
-    const incrementallyLoad = async (continueToken = ''): Promise<string> => {
+    const incrementallyLoad = async (
+      continueToken = '',
+      loadedSoFar: K8sResourceKind[] = [],
+    ): Promise<string> => {
       // the list may not still be around...
       if (!REF_COUNTS[id]) {
         // let .then handle the cleanup
@@ -206,14 +213,26 @@ export const watchK8sList =
         return null;
       }
 
+      const pageItems = response.items ?? [];
+      const allItems = loadedSoFar.concat(pageItems);
+
       if (!continueToken) {
-        [loaded, extraAction].forEach((f) => f && dispatch(f(id, response.items)));
+        dispatch(loaded(id, pageItems, !!response.metadata.continue));
+        if (extraAction) {
+          dispatch(extraAction(id, pageItems));
+        }
       } else {
-        dispatch(bulkAddToList(id, response.items));
+        dispatch(bulkAddToList(id, pageItems));
       }
 
       if (response.metadata.continue) {
-        return incrementallyLoad(response.metadata.continue);
+        return incrementallyLoad(response.metadata.continue, allItems);
+      }
+
+      if (loadedSoFar.length) {
+        // Only now is the full set known, so this is the first point at which an object missing
+        // from the response can be treated as gone.
+        dispatch(loaded(id, allItems));
       }
       return response.metadata.resourceVersion;
     };

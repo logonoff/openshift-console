@@ -561,3 +561,58 @@ describe('watchK8sObject page visibility', () => {
     expect(k8sGetMock).not.toHaveBeenCalled();
   });
 });
+
+describe('incrementallyLoad pagination', () => {
+  let getState: jest.Mock;
+  let model: K8sModel;
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    getState = jest.fn().mockReturnValue({ sdkCore: {} });
+    model = _.cloneDeep({ ...PodModel, verbs: ['list', 'get'] });
+  });
+
+  const paginate = (pages: number) => {
+    let page = 0;
+    k8sListMock.mockImplementation(() => {
+      page += 1;
+      return {
+        apiVersion: 'v1',
+        kind: 'PodList',
+        items: [{ ...testResourceInstance, metadata: { name: `item-${page}`, namespace: 'ns' } }],
+        metadata: { resourceVersion: `${page}`, continue: page < pages ? 'next' : undefined },
+      };
+    });
+  };
+
+  it('marks every page but the last as partial so nothing is pruned mid-load', async () => {
+    paginate(3);
+    const dispatch = jest.fn();
+
+    await sdkK8sActions.watchK8sList('paginated-partial', {}, model)(dispatch, getState);
+
+    const loadedCalls = dispatch.mock.calls
+      .map(([a]) => a)
+      .filter((a) => a.type === sdkK8sActions.ActionType.Loaded);
+
+    // One for the first page, one for the complete set.
+    expect(loadedCalls).toHaveLength(2);
+    expect(loadedCalls[0].payload.partial).toBe(true);
+    expect(loadedCalls[1].payload.partial).toBe(false);
+    expect(loadedCalls[1].payload.k8sObjects).toHaveLength(3);
+  });
+
+  it('does not mark a single-page load as partial and does not re-dispatch it', async () => {
+    paginate(1);
+    const dispatch = jest.fn();
+
+    await sdkK8sActions.watchK8sList('paginated-single', {}, model)(dispatch, getState);
+
+    const loadedCalls = dispatch.mock.calls
+      .map(([a]) => a)
+      .filter((a) => a.type === sdkK8sActions.ActionType.Loaded);
+
+    expect(loadedCalls).toHaveLength(1);
+    expect(loadedCalls[0].payload.partial).toBe(false);
+  });
+});

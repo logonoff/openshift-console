@@ -58,7 +58,7 @@ const updateList = (list: Record<string, any>, nextObj) => {
   return { ...list, [qualifiedName]: nextObj };
 };
 
-const loadList = (oldList: Record<string, any>, resources) => {
+const loadList = (oldList: Record<string, any>, resources, partial = false) => {
   const newList = { ...oldList };
   const existingKeys = new Set(Object.keys(newList));
 
@@ -70,6 +70,11 @@ const loadList = (oldList: Record<string, any>, resources) => {
       newList[qualifiedName] = r;
     }
   });
+
+  // A partial response says nothing about the objects it omits, so none of them can be pruned.
+  if (partial) {
+    return newList;
+  }
 
   existingKeys.forEach((k) => {
     const r = newList[k];
@@ -227,7 +232,11 @@ const sdkK8sReducers = (state: K8sState, action: K8sAction): K8sState => {
         return state;
       }
       console.info(`loaded ${action.payload.id}`);
-      newList = loadList(getK8sDataById(state, action.payload.id), action.payload.k8sObjects);
+      newList = loadList(
+        getK8sDataById(state, action.payload.id),
+        action.payload.k8sObjects,
+        action.payload.partial,
+      );
       return {
         ...state,
         [action.payload.id]: {
