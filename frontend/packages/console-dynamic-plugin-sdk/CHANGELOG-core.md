@@ -30,6 +30,14 @@ compatibility table in [Console dynamic plugins README](./README.md).
   visible. A list that received more than 200 events while hidden, or whose socket reconnected, is
   re-read from the API server instead. Single-object watches are unaffected, and `WatchK8sResource`
   gains no new property ([CONSOLE-XXXX], [#XXXXX])
+- Changed list watches behind `useK8sWatchResource` and `useK8sWatchResources` to close their
+  WebSocket once the browser tab has been hidden for 5 minutes, so an idle tab stops holding API
+  server watches open, and to re-read the list and open a new socket when it becomes visible. The
+  loaded data is retained while the socket is closed, so lists keep rendering and show no spinner
+  ([CONSOLE-XXXX], [#XXXXX])
+- Fixed a paginated list load pruning objects beyond its first page, which made a list briefly
+  collapse to 250 items and log a "gone with no deletion timestamp" warning for each object it
+  dropped whenever a watch restarted ([CONSOLE-XXXX], [#XXXXX])
 
 ## 5.1.0-prerelease.1 - 2026-10-16
 

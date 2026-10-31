@@ -71,10 +71,21 @@ const REF_COUNTS: { [id: string]: number } = {};
 /** Discards the socket and restarts the list from a fresh resourceVersion, keyed by watch id. */
 const RESYNCERS: { [id: string]: () => void } = {};
 const RESUME_TIMERS: { [id: string]: ReturnType<typeof setTimeout> } = {};
+/** Watches whose socket was closed because the document stayed hidden. */
+const CLOSED_WHILE_HIDDEN = new Set<string>();
 let visibilityUnsubscribe: (() => void) | null = null;
+let closeTimer: ReturnType<typeof setTimeout> | null = null;
 
 const paginationLimit = 250;
 const OBJECT_POLL_INTERVAL = 30 * 1000;
+
+/**
+ * How long the document stays hidden before list sockets are closed. A console pod proxies every
+ * watch as two goroutines and two connections, so an idle tab holding its sockets open is a cost
+ * paid cluster-wide. Reopening means a paginated re-list, so this is deliberately far longer than
+ * the grace period used for polling: a tab switch must not churn connections.
+ */
+const WATCH_HIDDEN_CLOSE_DELAY_MS = 5 * 60 * 1000;
 
 const cancelResume = (id: string) => {
   if (RESUME_TIMERS[id] !== undefined) {
@@ -83,22 +94,56 @@ const cancelResume = (id: string) => {
   }
 };
 
+const cancelPendingClose = () => {
+  if (closeTimer !== null) {
+    clearTimeout(closeTimer);
+    closeTimer = null;
+  }
+};
+
+/**
+ * Drops the socket without touching the reference count or the loaded data, so the list keeps
+ * rendering what it last saw and is restored by a re-list rather than a remount.
+ */
+const closeWatchesWhileHidden = () => {
+  closeTimer = null;
+  Object.keys(RESYNCERS).forEach((id) => {
+    const ws = WS[id];
+    if (!ws) {
+      return;
+    }
+    // Clear the entry first: destroy() with no argument reports no timeout, so the ondestroy
+    // handler returns without clearing it and pollAndWatch would refuse to open a socket.
+    delete WS[id];
+    ws.destroy();
+    CLOSED_WHILE_HIDDEN.add(id);
+  });
+};
+
 /**
  * While the document stays hidden, list sockets buffer instead of dispatching, so redux and React
- * do no work. On the way back, a socket whose buffer survived intact just flushes; one that dropped
- * messages has an incomplete delta sequence and is replaced by a fresh list plus a new socket.
+ * do no work, and after `WATCH_HIDDEN_CLOSE_DELAY_MS` they are closed so the cluster stops serving
+ * them. On the way back, a socket whose buffer survived intact just flushes; one that was closed,
+ * or that dropped messages and so holds an incomplete delta sequence, is replaced by a fresh list
+ * plus a new socket.
  */
 const handleVisibilityChange = (visible: boolean) => {
   const ids = Object.keys(RESYNCERS);
   ids.forEach(cancelResume);
+  cancelPendingClose();
 
   if (!visible) {
     ids.forEach((id) => WS[id]?.pause());
+    closeTimer = setTimeout(closeWatchesWhileHidden, WATCH_HIDDEN_CLOSE_DELAY_MS);
     return;
   }
 
   const resyncIds: string[] = [];
   ids.forEach((id) => {
+    if (CLOSED_WHILE_HIDDEN.delete(id)) {
+      resyncIds.push(id);
+      return;
+    }
     const ws = WS[id];
     if (!ws?.isPaused()) {
       return;
@@ -127,14 +172,20 @@ const registerResyncer = (id: string, resync: () => void) => {
   if (!visibilityUnsubscribe) {
     visibilityUnsubscribe = subscribeToDocumentVisibility(handleVisibilityChange);
   }
+  // A watch started in a tab that is already hidden gets no visibility transition of its own.
+  if (!isDocumentVisible() && closeTimer === null) {
+    closeTimer = setTimeout(closeWatchesWhileHidden, WATCH_HIDDEN_CLOSE_DELAY_MS);
+  }
 };
 
 const unregisterResyncer = (id: string) => {
   delete RESYNCERS[id];
   cancelResume(id);
+  CLOSED_WHILE_HIDDEN.delete(id);
   if (visibilityUnsubscribe && !Object.keys(RESYNCERS).length) {
     visibilityUnsubscribe();
     visibilityUnsubscribe = null;
+    cancelPendingClose();
   }
 };
 

@@ -5,6 +5,7 @@ import {
 } from '@console/shared/src/test-utils/document-visibility-test-utils';
 import {
   POLL_HIDDEN_GRACE_PERIOD_MS,
+  RESUME_JITTER_MS,
   RESUME_STAGGER_MS,
 } from '@console/shared/src/utils/document-visibility';
 import type { K8sModel } from '../../../../api/common-types';
@@ -614,5 +615,163 @@ describe('incrementallyLoad pagination', () => {
 
     expect(loadedCalls).toHaveLength(1);
     expect(loadedCalls[0].payload.partial).toBe(false);
+  });
+});
+
+describe('watchK8sList socket close while hidden', () => {
+  const CLOSE_DELAY = 5 * 60 * 1000;
+  let getState: jest.Mock;
+  let model: K8sModel;
+  let sockets: FakeSocket[];
+  let idCounter: number;
+
+  const startWatch = async (dispatch: jest.Mock) => {
+    const id = `close-watch-${(idCounter += 1)}`;
+    await sdkK8sActions.watchK8sList(id, {}, model)(dispatch, getState);
+    return id;
+  };
+
+  const settleHidden = () => {
+    setDocumentVisibility('hidden');
+    jest.advanceTimersByTime(POLL_HIDDEN_GRACE_PERIOD_MS);
+  };
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.useFakeTimers();
+    jest.spyOn(console, 'warn').mockImplementation(() => {});
+    jest.spyOn(console, 'log').mockImplementation(() => {});
+    jest.spyOn(Math, 'random').mockReturnValue(0);
+    idCounter = 0;
+    sockets = [];
+    getState = jest.fn().mockReturnValue({ sdkCore: {} });
+    model = _.cloneDeep({ ...PodModel, verbs: ['list', 'get', 'watch'] });
+    k8sListMock.mockResolvedValue({
+      items: [testResourceInstance],
+      metadata: { resourceVersion: '1' },
+    });
+    k8sWatchMock.mockImplementation(() => {
+      const socket = createFakeSocket();
+      sockets.push(socket);
+      return socket;
+    });
+  });
+
+  afterEach(() => {
+    restoreDocumentVisibility();
+    jest.useRealTimers();
+    jest.restoreAllMocks();
+  });
+
+  it('keeps the socket open for a hide shorter than the close delay', async () => {
+    const dispatch = jest.fn();
+    const id = await startWatch(dispatch);
+
+    settleHidden();
+    jest.advanceTimersByTime(CLOSE_DELAY - 1);
+
+    expect(sockets[0].destroyed).toBe(false);
+
+    sdkK8sActions.stopK8sWatch(id)(dispatch);
+  });
+
+  it('closes the socket once the tab stays hidden past the close delay', async () => {
+    const dispatch = jest.fn();
+    const id = await startWatch(dispatch);
+
+    settleHidden();
+    jest.advanceTimersByTime(CLOSE_DELAY);
+
+    expect(sockets[0].destroyed).toBe(true);
+
+    sdkK8sActions.stopK8sWatch(id)(dispatch);
+  });
+
+  it('never drops redux state or the reference count when it closes', async () => {
+    const dispatch = jest.fn();
+    const id = await startWatch(dispatch);
+    dispatch.mockClear();
+
+    settleHidden();
+    jest.advanceTimersByTime(CLOSE_DELAY);
+
+    const stopCalls = dispatch.mock.calls.filter(
+      ([a]) => a?.type === sdkK8sActions.ActionType.StopWatchK8s,
+    );
+    expect(stopCalls).toHaveLength(0);
+
+    sdkK8sActions.stopK8sWatch(id)(dispatch);
+  });
+
+  it('re-lists and opens a new socket when the tab becomes visible again', async () => {
+    const dispatch = jest.fn();
+    const id = await startWatch(dispatch);
+
+    settleHidden();
+    jest.advanceTimersByTime(CLOSE_DELAY);
+    k8sListMock.mockClear();
+
+    setDocumentVisibility('visible');
+    jest.advanceTimersByTime(RESUME_STAGGER_MS + RESUME_JITTER_MS);
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(k8sListMock).toHaveBeenCalledTimes(1);
+    expect(sockets).toHaveLength(2);
+
+    sdkK8sActions.stopK8sWatch(id)(dispatch);
+  });
+
+  it('cancels a pending close when the tab comes back before the delay', async () => {
+    const dispatch = jest.fn();
+    const id = await startWatch(dispatch);
+
+    settleHidden();
+    jest.advanceTimersByTime(CLOSE_DELAY - 1);
+    setDocumentVisibility('visible');
+    jest.advanceTimersByTime(CLOSE_DELAY * 2);
+
+    expect(sockets[0].destroyed).toBe(false);
+    expect(sockets).toHaveLength(1);
+
+    sdkK8sActions.stopK8sWatch(id)(dispatch);
+  });
+
+  it('does not re-list a watch that was stopped while hidden', async () => {
+    const dispatch = jest.fn();
+    const id = await startWatch(dispatch);
+
+    settleHidden();
+    jest.advanceTimersByTime(CLOSE_DELAY);
+    sdkK8sActions.stopK8sWatch(id)(dispatch);
+    k8sListMock.mockClear();
+
+    setDocumentVisibility('visible');
+    jest.advanceTimersByTime(RESUME_STAGGER_MS + RESUME_JITTER_MS);
+    await Promise.resolve();
+
+    expect(k8sListMock).not.toHaveBeenCalled();
+  });
+
+  it('staggers the re-list when several watches were closed together', async () => {
+    const dispatch = jest.fn();
+    const first = await startWatch(dispatch);
+    const second = await startWatch(dispatch);
+
+    settleHidden();
+    jest.advanceTimersByTime(CLOSE_DELAY);
+    k8sListMock.mockClear();
+
+    setDocumentVisibility('visible');
+    jest.advanceTimersByTime(0);
+    await Promise.resolve();
+    expect(k8sListMock).toHaveBeenCalledTimes(1);
+
+    jest.advanceTimersByTime(RESUME_STAGGER_MS);
+    await Promise.resolve();
+    expect(k8sListMock).toHaveBeenCalledTimes(2);
+
+    sdkK8sActions.stopK8sWatch(first)(dispatch);
+    sdkK8sActions.stopK8sWatch(second)(dispatch);
   });
 });

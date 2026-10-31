@@ -13,7 +13,12 @@ export const setDocumentVisibility = (visibilityState: 'visible' | 'hidden'): vo
   document.dispatchEvent(new Event('visibilitychange'));
 };
 
+/**
+ * Removes the overrides and notifies listeners, so a store that latched onto a hidden document
+ * does not carry that state into the next test.
+ */
 export const restoreDocumentVisibility = (): void => {
   Reflect.deleteProperty(document, 'visibilityState');
   Reflect.deleteProperty(document, 'hidden');
+  document.dispatchEvent(new Event('visibilitychange'));
 };
