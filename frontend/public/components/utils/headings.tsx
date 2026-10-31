@@ -39,11 +39,11 @@ export const ConnectedPageHeading = connectToModel(
     breadcrumbsFor,
     className,
     customActionMenu,
-    customData,
     getResourceStatus = (resource: K8sResourceKind): string =>
       _.get(resource, ['status', 'phase'], null),
     helpAlert,
     helpText,
+    hideActions,
     hideFavoriteButton,
     icon,
     kind,
@@ -60,9 +60,9 @@ export const ConnectedPageHeading = connectToModel(
     const data = _.get(obj, 'data');
     const hasData = !_.isEmpty(data);
 
-    // `kind` is whatever the caller passed, which is a bare kind such as "Secret" for many
-    // details pages. Extension models always resolve to a group~version~Kind reference, so key
-    // off the connected model and fall back only while API discovery is in flight.
+    // Callers may pass either a bare kind or a group~version~Kind reference, while extension
+    // models always resolve to a reference, so match on the connected model and fall back to the
+    // raw value only while API discovery is in flight.
     const modelReference = kindObj ? referenceForModel(kindObj) : kind;
 
     const resourceProviderGuard = useCallback(
@@ -79,6 +79,7 @@ export const ConnectedPageHeading = connectToModel(
       resourceProviderExtensionsResolved && resourceProviderExtensions?.length > 0;
 
     const showActions =
+      !hideActions &&
       (customActionMenu || hasExtensionActions) &&
       hasData &&
       !_.get(data, 'metadata.deletionTimestamp');
@@ -196,8 +197,10 @@ export type ConnectedPageHeadingProps = Omit<PageHeadingProps, 'primaryAction'> 
         obj: K8sResourceKind,
         extraResources?: { [prop: string]: K8sResourceKind | K8sResourceKind[] },
       ) => ReactNode);
-  customData?: any;
   getResourceStatus?: (resource: K8sResourceKind) => string;
+  /** Suppresses the resource action menu, for headings that name a resource but are not its
+   * details page. */
+  hideActions?: boolean;
   kind?: K8sResourceKindReference;
   kindObj?: K8sKind;
   obj?: WatchK8sResultsObject<K8sResourceKind>;

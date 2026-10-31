@@ -27,8 +27,10 @@ resource as their only argument and return `[Action[], loaded, error]`. A provid
 actions a resource gets and in what order.
 
 **Action hooks** (`hooks/`) are the reusable building blocks providers compose. They are plain
-exported hooks, not extensions. Most take `(kind, resource, filterActions)` and return the requested
-actions keyed by creator name, so a provider can place each one individually:
+exported hooks, not extensions. Most return a flat `Action[]`; `useCommonActions`,
+`useDeploymentActions` and `useReplicationControllerActions` take `(kind, resource, filterActions)`
+and return the requested actions keyed by creator name, so a provider can place each one
+individually:
 
 ```ts
 const [commonActions, isReady] = useCommonActions(kindObj, resource, [
@@ -40,8 +42,9 @@ const [commonActions, isReady] = useCommonActions(kindObj, resource, [
 Pass `filterActions` as a `const` array. The returned object is typed from it, so requesting
 `ModifyCount` and reading `.Delete` is a compile error.
 
-**Action factories** (`creators/`) are plain functions for actions that need no React state. Use one
-when a hook would add nothing.
+**Action factories** (`creators/`) build one feature's actions for the handful of resources that get
+them. `getHealthChecksAction` is a plain function; `useHPAActions` is a hook because it has to watch
+HorizontalPodAutoscalers. Write a plain function unless the action needs React state.
 
 ### Why the action hooks are not extensions
 
