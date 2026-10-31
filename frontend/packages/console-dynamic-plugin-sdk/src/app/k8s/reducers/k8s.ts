@@ -238,8 +238,12 @@ const sdkK8sReducers = (state: K8sState, action: K8sAction): K8sState => {
         },
       };
 
-    case ActionType.UpdateListFromWS:
-      newList = getK8sDataById(state, action.payload.id);
+    case ActionType.UpdateListFromWS: {
+      const currentList = getK8sDataById(state, action.payload.id);
+      if (!currentList) {
+        return state;
+      }
+      newList = currentList;
       for (const { type, object } of action.payload.k8sObjects) {
         switch (type) {
           case 'DELETED':
@@ -253,6 +257,11 @@ const sdkK8sReducers = (state: K8sState, action: K8sAction): K8sState => {
             console.warn(`unknown websocket action: ${type}`);
         }
       }
+      // updateList returns the same reference when an event carries no change, and the whole batch
+      // may do so. Keeping the identity lets subscribers skip the render.
+      if (newList === currentList) {
+        return state;
+      }
       return {
         ...state,
         [action.payload.id]: {
@@ -260,6 +269,7 @@ const sdkK8sReducers = (state: K8sState, action: K8sAction): K8sState => {
           data: newList,
         },
       };
+    }
 
     case ActionType.BulkAddToList:
       if (!getK8sDataById(state, action.payload.id)) {

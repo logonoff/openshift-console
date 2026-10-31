@@ -67,6 +67,12 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
   // csp-violation-tracker.ts for why CSP tracking works even though Console's
   // CSP header is report-only.
   page: async ({ page, baseURL }, use, testInfo) => {
+    // Playwright marks a page hidden whenever another page in the same context is brought forward,
+    // which would otherwise pause this page's polling and watch sockets mid-test.
+    await page.addInitScript(() => {
+      window.localStorage.setItem('console.disableVisibilityThrottling', 'true');
+    });
+
     const { violations: cspViolations, waitForPendingReports } = await trackCSPViolations(
       page,
       baseURL,
