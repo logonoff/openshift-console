@@ -3133,6 +3133,7 @@ Sets up a poll to Prometheus for a single query.
 | `timespan` | (optional) for QUERY_RANGE enpoint |
 | `namespace` | (optional) a search param to append |
 | `timeout` | (optional) a search param to append |
+| `pollWhenHidden` | (optional) keep polling while the browser tab is hidden. By default polling stops once the tab has been hidden for 10 seconds, and the query refreshes once when the tab becomes visible again. |
 
 
 

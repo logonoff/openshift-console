@@ -1,6 +1,9 @@
 /* eslint-disable react-hooks-js/exhaustive-deps */
 import { useCallback, useState } from 'react';
-import type { UseURLPoll } from '@console/dynamic-plugin-sdk/src/api/internal-types';
+import type {
+  UseURLPoll,
+  URLPollOptions,
+} from '@console/dynamic-plugin-sdk/src/api/internal-types';
 import { usePoll } from '@console/shared/src/hooks/usePoll';
 import { useSafeFetch } from './safe-fetch-hook';
 
@@ -8,9 +11,15 @@ export const URL_POLL_DEFAULT_DELAY = 15000; // 15 seconds
 
 export const useURLPoll: UseURLPoll = <R>(
   url: string,
-  delay = URL_POLL_DEFAULT_DELAY,
+  delayOrOptions: number | null | URLPollOptions = URL_POLL_DEFAULT_DELAY,
   ...dependencies: any[]
-) => {
+): [R, any, boolean] => {
+  const options: URLPollOptions =
+    typeof delayOrOptions === 'object'
+      ? (delayOrOptions ?? { delay: null })
+      : { delay: delayOrOptions };
+  // `null` means "fetch once", so it must survive rather than fall back to the default.
+  const delay = options.delay === undefined ? URL_POLL_DEFAULT_DELAY : options.delay;
   const [error, setError] = useState();
   const [response, setResponse] = useState<R>();
   const [loading, setLoading] = useState(true);
@@ -34,7 +43,7 @@ export const useURLPoll: UseURLPoll = <R>(
     setLoading(false);
   }, [url]);
 
-  usePoll(tick, delay, ...dependencies);
+  usePoll(tick, { delay, pollWhenHidden: options.pollWhenHidden }, ...dependencies);
 
   return [response, error, loading];
 };

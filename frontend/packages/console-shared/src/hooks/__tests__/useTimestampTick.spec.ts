@@ -1,4 +1,9 @@
 import { renderHook, act } from '@testing-library/react';
+import {
+  restoreDocumentVisibility,
+  setDocumentVisibility,
+} from '../../test-utils/document-visibility-test-utils';
+import { POLL_HIDDEN_GRACE_PERIOD_MS } from '../../utils/document-visibility';
 import { useTimestampTick } from '../useTimestampTick';
 
 describe('useTimestampTick', () => {
@@ -6,6 +11,7 @@ describe('useTimestampTick', () => {
     jest.useFakeTimers();
   });
   afterEach(() => {
+    restoreDocumentVisibility();
     jest.useRealTimers();
   });
 
@@ -59,5 +65,39 @@ describe('useTimestampTick', () => {
     unmount1();
     unmount2();
     setIntervalSpy.mockRestore();
+  });
+
+  it('should stop ticking while the tab is hidden', () => {
+    const { result } = renderHook(() => useTimestampTick());
+
+    act(() => {
+      setDocumentVisibility('hidden');
+      jest.advanceTimersByTime(POLL_HIDDEN_GRACE_PERIOD_MS);
+    });
+    const hiddenValue = result.current;
+
+    act(() => {
+      jest.advanceTimersByTime(10000 * 10);
+    });
+
+    expect(result.current).toBe(hiddenValue);
+  });
+
+  it('should advance as soon as the tab becomes visible again', () => {
+    const { result } = renderHook(() => useTimestampTick());
+
+    act(() => {
+      setDocumentVisibility('hidden');
+      jest.advanceTimersByTime(POLL_HIDDEN_GRACE_PERIOD_MS);
+    });
+    const hiddenValue = result.current;
+
+    act(() => {
+      jest.advanceTimersByTime(10000 * 10);
+      setDocumentVisibility('visible');
+      jest.advanceTimersByTime(0);
+    });
+
+    expect(result.current).toBeGreaterThan(hiddenValue);
   });
 });

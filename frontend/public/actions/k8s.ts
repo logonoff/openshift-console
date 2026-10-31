@@ -7,6 +7,10 @@ import {
   receivedResources,
 } from '@console/dynamic-plugin-sdk/src/app/k8s/actions/k8s';
 import { checkAccess } from '@console/internal/components/utils/rbac';
+import {
+  isDocumentVisible,
+  subscribeToDocumentVisibility,
+} from '@console/shared/src/utils/document-visibility';
 import { makeReduxID } from '../components/utils/k8s-watcher';
 import { CustomResourceDefinitionModel } from '../models';
 import type { CustomResourceDefinitionKind, K8sResourceKind } from '../module/k8s';
@@ -74,6 +78,17 @@ export const startAPIDiscovery = () => (dispatch) => {
         if (POLLs[apiDiscovery]) {
           clearTimeout(POLLs[apiDiscovery]);
           delete POLLs[apiDiscovery];
+        }
+        if (!isDocumentVisible()) {
+          // Resume without waiting out the interval: stale models break routing to resources
+          // whose CRDs were installed while the tab was hidden.
+          const unsubscribe = subscribeToDocumentVisibility((visible) => {
+            if (visible) {
+              unsubscribe();
+              dispatch(startAPIDiscovery());
+            }
+          });
+          return;
         }
         POLLs[apiDiscovery] = setTimeout(
           () => dispatch(startAPIDiscovery()),

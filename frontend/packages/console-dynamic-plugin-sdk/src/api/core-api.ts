@@ -815,6 +815,7 @@ export const DocumentTitle: FC<DocumentTitleProps> =
  * @param {number} [timespan] - (optional) for QUERY_RANGE enpoint
  * @param {string} [namespace] - (optional) a search param to append
  * @param {string} [timeout] - (optional) a search param to append
+ * @param {boolean} [pollWhenHidden] - (optional) keep polling while the browser tab is hidden. By default polling stops once the tab has been hidden for 10 seconds, and the query refreshes once when the tab becomes visible again.
  * @returns A tuple containing the query response, a boolean flag indicating whether the response has completed, and any errors encountered during the request or post-processing of the request
  */
 export const usePrometheusPoll: UsePrometheusPoll = (options) => {

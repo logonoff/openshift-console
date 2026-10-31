@@ -166,6 +166,11 @@ export type PrometheusPollProps = {
   timespan?: number;
   /** An object used to facilitate fetching from different data sources. */
   customDataSource?: CustomDataSource;
+  /**
+   * Keep polling while the browser tab is hidden. Defaults to false, which stops polling once the
+   * tab has been hidden for 10 seconds and refreshes once when it becomes visible again.
+   */
+  pollWhenHidden?: boolean;
 };
 
 export type UsePrometheusPoll = (

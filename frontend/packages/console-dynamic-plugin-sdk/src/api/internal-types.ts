@@ -279,10 +279,19 @@ export type QuickStartsLoaderProps = {
   children: (quickStarts: QuickStart[], loaded: boolean) => ReactNode;
 };
 
-export type UseURLPoll = <R>(
-  url: string,
-  delay?: number,
-  ...dependencies: any[]
-) => [R, any, boolean];
+export type URLPollOptions = {
+  /** Interval in ms. Defaults to 15000. A falsy value fetches once without repeating. */
+  delay?: number | null;
+  /**
+   * Keep polling while the browser tab is hidden. Defaults to false, which stops polling once the
+   * tab has been hidden for 10 seconds and refreshes once when it becomes visible again.
+   */
+  pollWhenHidden?: boolean;
+};
+
+export type UseURLPoll = {
+  <R>(url: string, delay?: number, ...dependencies: any[]): [R, any, boolean];
+  <R>(url: string, options: URLPollOptions, ...dependencies: any[]): [R, any, boolean];
+};
 
 export type GetCSRFToken = () => string;

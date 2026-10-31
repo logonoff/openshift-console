@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import type { ActionType as Action } from 'typesafe-actions';
 import { action } from 'typesafe-actions';
+import { startVisibilityAwareInterval } from '@console/shared/src/utils/visibility-aware-interval';
 import type { DiscoveryResources, K8sModel } from '../../../api/common-types';
 import type { FilterValue, K8sResourceKind } from '../../../extensions/console-types';
 import { getReferenceForModel } from '../../../utils/k8s/k8s-ref';
@@ -55,9 +56,11 @@ const partialObjectMetadataHeader = {
 
 const WS: { [id: string]: WSFactory } = {};
 const POLLs: { [id: string]: number } = {};
+const POLL_STOPPERS: { [id: string]: () => void } = {};
 const REF_COUNTS: { [id: string]: number } = {};
 
 const paginationLimit = 250;
+const OBJECT_POLL_INTERVAL = 30 * 1000;
 
 export const stopK8sWatch = (id: string) => (dispatch) => {
   REF_COUNTS[id] -= 1;
@@ -73,6 +76,8 @@ export const stopK8sWatch = (id: string) => (dispatch) => {
   const poller = POLLs[id];
   clearInterval(poller);
   delete POLLs[id];
+  POLL_STOPPERS[id]?.();
+  delete POLL_STOPPERS[id];
   delete REF_COUNTS[id];
   return dispatch(stopWatchK8s(id));
 };
@@ -260,8 +265,10 @@ export const watchK8sObject =
           console.log(err);
         });
     };
-    POLLs[id] = window.setInterval(poller, 30 * 1000);
     poller();
+    POLL_STOPPERS[id] = startVisibilityAwareInterval(poller, OBJECT_POLL_INTERVAL, {
+      jitterMs: 0,
+    });
 
     if (!_.get(k8sModel, 'verbs', ['watch']).includes('watch')) {
       console.warn(`${getReferenceForModel(k8sModel)} does not support watching`);

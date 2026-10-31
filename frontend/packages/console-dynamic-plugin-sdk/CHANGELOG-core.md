@@ -20,6 +20,11 @@ compatibility table in [Console dynamic plugins README](./README.md).
   beside a contributed tab label ([CONSOLE-5527], [#17355])
 - Changed `HorizontalNav` to order contributed default tabs before other tabs, with remaining tabs
   still ordered alphabetically ([CONSOLE-5527], [#17355])
+- Added optional `pollWhenHidden` property to `PrometheusPollProps`, so `usePrometheusPoll` can keep
+  polling while the browser tab is hidden ([CONSOLE-XXXX], [#XXXXX])
+- Changed `usePrometheusPoll`, `useURLPoll` and `QueryBrowser` to stop their refresh timers once the
+  browser tab has been hidden for 10 seconds, and to refresh once when it becomes visible again.
+  Kubernetes watch WebSockets are unaffected ([CONSOLE-XXXX], [#XXXXX])
 
 ## 5.1.0-prerelease.1 - 2026-10-16
 

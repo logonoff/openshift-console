@@ -3,6 +3,11 @@ import type { ActionType as Action } from 'typesafe-actions';
 import { action } from 'typesafe-actions';
 import type { Fetch, RequestMap } from '@console/dynamic-plugin-sdk/src/api/internal-types';
 import { coFetchJSON } from '@console/shared/src/utils/console-fetch';
+import {
+  isDocumentVisible,
+  subscribeToDocumentVisibility,
+  RESUME_STAGGER_MS,
+} from '@console/shared/src/utils/document-visibility';
 import { getPrometheusURL, PrometheusEndpoint } from '../components/graphs/helpers';
 import type { PrometheusResponse } from '../components/graphs/types';
 import {
@@ -64,6 +69,24 @@ export const getPrometheusQueryResponse = (
   return [entry?.data, entry?.loadError];
 };
 
+/**
+ * Chains parked while the tab is hidden, keyed by `${type}@${key}`. Each value re-enters
+ * `fetchPeriodically` and cancels the long recheck timeout.
+ */
+const PARKED = new Map<string, () => void>();
+
+/** How often a parked chain rechecks visibility, in case the visible event is ever missed. */
+const HIDDEN_RECHECK_DELAY = 300000;
+
+subscribeToDocumentVisibility((visible) => {
+  if (!visible) {
+    return;
+  }
+  const resumers = [...PARKED.values()];
+  PARKED.clear();
+  resumers.forEach((resume, index) => setTimeout(resume, index * RESUME_STAGGER_MS));
+});
+
 const fetchPeriodically: FetchPeriodically = async (
   dispatch,
   type,
@@ -76,6 +99,23 @@ const fetchPeriodically: FetchPeriodically = async (
   if (!isWatchActive(getState().dashboards, type, key)) {
     return;
   }
+
+  // Parking before `updateWatchInFlight` keeps `isWatchActive` false for this chain, so the
+  // resume below is the only thing that can re-enter it. Keep this branch above that dispatch.
+  const parkKey = `${type}@${key}`;
+  if (!isDocumentVisible()) {
+    const resume = () =>
+      fetchPeriodically(dispatch, type, key, getURL, getState, fetch, responseTimeEma);
+    const timeout = setTimeout(resume, HIDDEN_RECHECK_DELAY);
+    PARKED.set(parkKey, () => {
+      clearTimeout(timeout);
+      resume();
+    });
+    dispatch(updateWatchTimeout(type, key, timeout));
+    return;
+  }
+  PARKED.delete(parkKey);
+
   let nextEma = responseTimeEma;
   try {
     dispatch(updateWatchInFlight(type, key, true));

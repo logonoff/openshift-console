@@ -2,6 +2,10 @@ import * as _ from 'lodash';
 import { plural } from 'pluralize';
 import type { Dispatch } from 'redux';
 import { coFetchJSON } from '@console/shared/src/utils/console-fetch';
+import {
+  isDocumentVisible,
+  subscribeToDocumentVisibility,
+} from '@console/shared/src/utils/document-visibility';
 import type { DiscoveryResources, K8sModel } from '../../../api/common-types';
 import { k8sBasePath } from '../../../utils/k8s/k8s';
 import { kindToAbbr } from '../../../utils/k8s/k8s-get-resource';
@@ -135,6 +139,17 @@ const startAPIDiscovery = () => (dispatch) => {
   if (POLLs[apiDiscovery]) {
     clearTimeout(POLLs[apiDiscovery]);
     delete POLLs[apiDiscovery];
+  }
+  if (!isDocumentVisible()) {
+    // Resume without waiting out the interval: stale models break routing to resources
+    // whose CRDs were installed while the tab was hidden.
+    const unsubscribe = subscribeToDocumentVisibility((visible) => {
+      if (visible) {
+        unsubscribe();
+        dispatch(startAPIDiscovery());
+      }
+    });
+    return;
   }
   POLLs[apiDiscovery] = setTimeout(
     () => dispatch(startAPIDiscovery()),

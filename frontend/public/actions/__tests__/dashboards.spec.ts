@@ -1,3 +1,11 @@
+import {
+  restoreDocumentVisibility,
+  setDocumentVisibility,
+} from '@console/shared/src/test-utils/document-visibility-test-utils';
+import {
+  POLL_HIDDEN_GRACE_PERIOD_MS,
+  subscribeToDocumentVisibility,
+} from '@console/shared/src/utils/document-visibility';
 import { MIN_POLL_DELAY } from '../../components/utils/adaptive-polling';
 import { RESULTS_TYPE } from '../../reducers/dashboard-results';
 import { defaults } from '../../reducers/dashboards';
@@ -173,6 +181,97 @@ describe('dashboards-actions', () => {
 
       const lastSetTimeout = setTimeoutSpy.mock.calls[setTimeoutSpy.mock.calls.length - 1];
       expect(lastSetTimeout[1]).toBe(MIN_POLL_DELAY);
+    });
+  });
+
+  describe('page visibility', () => {
+    const flushPromises = () => new Promise(process.nextTick);
+
+    const settleHidden = () => {
+      setDocumentVisibility('hidden');
+      jest.advanceTimersByTime(POLL_HIDDEN_GRACE_PERIOD_MS);
+    };
+
+    const setupWatchURL = (fetchMock: jest.Mock) => {
+      const activeState = withActiveWatch(RESULTS_TYPE.URL, 'testURL', 1);
+      const getState = jest
+        .fn()
+        .mockReturnValueOnce({ dashboards: defaults })
+        .mockReturnValue({ dashboards: activeState });
+      const dispatch = jest.fn();
+
+      watchURL('testURL', fetchMock)(dispatch, getState);
+      return { dispatch, getState };
+    };
+
+    beforeEach(() => {
+      // flushPromises relies on nextTick, so it must stay real.
+      jest.useFakeTimers({ doNotFake: ['nextTick'] });
+    });
+
+    afterEach(() => {
+      restoreDocumentVisibility();
+      jest.useRealTimers();
+    });
+
+    it('does not fetch or mark in-flight while the tab is hidden', async () => {
+      // A chain must never be both parked and in-flight, or nothing can re-enter it.
+      const blocker = subscribeToDocumentVisibility(() => {});
+      settleHidden();
+
+      const fetchMock = jest.fn();
+      const { dispatch } = setupWatchURL(fetchMock);
+      await flushPromises();
+
+      expect(fetchMock).not.toHaveBeenCalled();
+      const inFlightCalls = dispatch.mock.calls.filter(
+        ([a]) => a.type === ActionType.UpdateWatchInFlight,
+      );
+      expect(inFlightCalls).toHaveLength(0);
+
+      blocker();
+    });
+
+    it('still pairs a watch timeout so stopWatch can clear it', async () => {
+      const blocker = subscribeToDocumentVisibility(() => {});
+      settleHidden();
+
+      const { dispatch } = setupWatchURL(jest.fn());
+      await flushPromises();
+
+      const timeoutCalls = dispatch.mock.calls.filter(
+        ([a]) => a.type === ActionType.UpdateWatchTimeout,
+      );
+      expect(timeoutCalls).toHaveLength(1);
+      expect(timeoutCalls[0][0].payload.timeout).toBeDefined();
+
+      blocker();
+    });
+
+    it('re-enters the chain once when the tab becomes visible', async () => {
+      const blocker = subscribeToDocumentVisibility(() => {});
+      settleHidden();
+
+      const fetchMock = jest.fn().mockResolvedValue({ data: 'test' });
+      setupWatchURL(fetchMock);
+      await flushPromises();
+      expect(fetchMock).not.toHaveBeenCalled();
+
+      setDocumentVisibility('visible');
+      jest.advanceTimersByTime(0);
+      await flushPromises();
+
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+
+      blocker();
+    });
+
+    it('fetches normally while the tab is visible', async () => {
+      const fetchMock = jest.fn().mockResolvedValue({ data: 'test' });
+      setupWatchURL(fetchMock);
+      await flushPromises();
+
+      expect(fetchMock).toHaveBeenCalledTimes(1);
     });
   });
 });

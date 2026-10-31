@@ -16,12 +16,13 @@ export const usePrometheusPoll: UsePrometheusPoll = ({
   timeout,
   timespan = DEFAULT_PROMETHEUS_TIMESPAN,
   customDataSource,
+  pollWhenHidden,
 }) => {
   const prometheusURLProps = { endpoint, endTime, namespace, query, samples, timeout, timespan };
 
   return useURLPoll<PrometheusResponse>(
     getPrometheusURL(prometheusURLProps, customDataSource?.basePath),
-    delay,
+    { delay, pollWhenHidden },
     query,
     timespan,
   );
