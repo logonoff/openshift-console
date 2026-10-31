@@ -8,7 +8,12 @@ import { useK8sModel } from '@console/dynamic-plugin-sdk/src/utils/k8s/hooks/use
 import { renderWithProviders } from '@console/shared/src/test-utils/unit-test-utils';
 import { PodModel } from '../../models';
 import type { K8sResourceKind } from '../../module/k8s';
-import { DefaultList } from '../default-resource';
+import { DefaultList, DefaultDetailsPage } from '../default-resource';
+import { DetailsPage } from '../factory/details';
+
+jest.mock('../factory/details', () => ({
+  DetailsPage: jest.fn(() => null),
+}));
 
 jest.mock('@console/dynamic-plugin-sdk/src/api/useResolvedExtensions', () => ({
   useResolvedExtensions: jest.fn(),
@@ -85,6 +90,66 @@ const renderList = (
     { userSettingsStore },
   );
 };
+
+/**
+ * DefaultDetailsPage reaches its menu through DetailsPage, so render only the customActionMenu
+ * it builds. That callback is the whole of the branch under test.
+ */
+const renderDetailsActionMenu = (
+  kind: string,
+  extensions: LoadedAndResolvedExtension<ResourceActionProvider>[],
+  { modelResolved = true } = {},
+) => {
+  (useK8sModel as jest.Mock).mockReturnValue([modelResolved ? PodModel : undefined, false]);
+
+  const resolved = new WeakMap<Function, [unknown[], boolean, unknown[]]>();
+  (useResolvedExtensions as jest.Mock).mockImplementation(
+    (predicate: (extension: unknown) => boolean) => {
+      if (!resolved.has(predicate)) {
+        resolved.set(predicate, [extensions.filter(predicate), true, []]);
+      }
+      return resolved.get(predicate);
+    },
+  );
+
+  let customActionMenu;
+  (DetailsPage as unknown as jest.Mock).mockImplementation((props) => {
+    customActionMenu = props.customActionMenu;
+    return null;
+  });
+
+  renderWithProviders(
+    <OverlayProvider>
+      <DefaultDetailsPage kind={kind} />
+    </OverlayProvider>,
+  );
+
+  return renderWithProviders(<>{customActionMenu(PodModel, pod)}</>);
+};
+
+describe('DefaultDetailsPage action menu', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should resolve extension actions when the kind is a bare kind string', () => {
+    renderDetailsActionMenu('Pod', [podActionProvider]);
+
+    expect(screen.getByText('extension actions for core~v1~Pod')).toBeVisible();
+  });
+
+  it('should fall back to common actions when no provider is registered for the model', () => {
+    renderDetailsActionMenu('Pod', []);
+
+    expect(screen.getByText('common actions only')).toBeVisible();
+  });
+
+  it('should fall back to common actions while the model is still being discovered', () => {
+    renderDetailsActionMenu('Pod', [podActionProvider], { modelResolved: false });
+
+    expect(screen.getByText('common actions only')).toBeVisible();
+  });
+});
 
 describe('DefaultList action menu', () => {
   afterEach(() => {

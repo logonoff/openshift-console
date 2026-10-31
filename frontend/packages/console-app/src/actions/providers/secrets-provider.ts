@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { Action } from '@console/dynamic-plugin-sdk';
+import type { Action } from '@console/dynamic-plugin-sdk/src/extensions/actions';
 import { useAddSecretToWorkloadModalLauncher } from '@console/internal/components/modals/add-secret-to-workload';
 import { resourceObjPath } from '@console/internal/components/utils/resource-link';
 import type { SecretKind } from '@console/internal/module/k8s';

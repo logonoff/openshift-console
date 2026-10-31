@@ -15,8 +15,13 @@ export type ActionProvider = Extension<
      * reference as its context ID, formatted `group~version~Kind`, with `core` standing in for
      * the core group. For example `apps~v1~Deployment` or `core~v1~Pod`. Registering against
      * one of these adds actions to that resource's menu alongside the actions Console itself
-     * contributes; `console.action/resource-provider` does the same thing from a model instead
-     * of a string.
+     * contributes.
+     *
+     * Prefer `console.action/resource-provider` for a resource, which takes the model instead of
+     * a reference string. Console's default list and details pages, which serve any resource
+     * without a dedicated page, build their menu from extensions only once a
+     * `console.action/resource-provider` is registered for the model; until then they render a
+     * built-in menu that no `console.action/provider` or `console.action/filter` can reach.
      *
      * The remaining context IDs name an area of the UI. Those currently in use are:
      * - `topology-actions`

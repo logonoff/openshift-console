@@ -135,7 +135,6 @@ export const DetailsPage = withFallback<DetailsPageProps>(({ pages = [], ...prop
         }
         resourceKeys={resourceKeys}
         getResourceStatus={props.getResourceStatus}
-        customData={props.customData}
         badge={props.badge || getBadgeFromType(kindObj?.badge)}
         OverrideTitle={props.OverrideTitle}
         helpText={props.helpText}
