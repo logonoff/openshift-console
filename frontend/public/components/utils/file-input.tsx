@@ -15,8 +15,9 @@ import {
   FormGroup,
 } from '@patternfly/react-core';
 import styles from '@patternfly/react-styles/css/components/FileUpload/file-upload';
-import { isBinary } from 'istextorbinary';
+import { Base64 } from 'js-base64';
 import { useTranslation } from 'react-i18next';
+import { isBinary } from './text-or-binary';
 import { units } from './units';
 
 /** Maximal file size, in bytes, that user can upload */
@@ -59,7 +60,7 @@ export const DroppableFileInput: FC<DroppableFileInputProps> = ({
   const [inputFileIsBinary, setInputFileIsBinary] = useState<boolean>(
     isBinary(
       filename,
-      isBase64Input ? Buffer.from(inputFileData, 'base64') : Buffer.from(inputFileData),
+      isBase64Input ? Base64.toUint8Array(inputFileData) : new TextEncoder().encode(inputFileData),
     ),
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -76,10 +77,13 @@ export const DroppableFileInput: FC<DroppableFileInputProps> = ({
 
       const reader = new FileReader();
       reader.onload = () => {
-        const buffer = Buffer.from(reader.result as ArrayBuffer);
-        const fileIsBinary = isBinary(file.name, buffer);
+        const bytes = new Uint8Array(reader.result as ArrayBuffer);
+        const fileIsBinary = isBinary(file.name, bytes);
         setInputFileIsBinary(fileIsBinary);
-        onChange(buffer.toString(fileIsBinary ? 'base64' : 'utf-8'), fileIsBinary);
+        onChange(
+          fileIsBinary ? Base64.fromUint8Array(bytes) : new TextDecoder().decode(bytes),
+          fileIsBinary,
+        );
         setIsLoading(false);
       };
       reader.onerror = () => {

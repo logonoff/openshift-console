@@ -2,11 +2,11 @@ import type { FC } from 'react';
 import { useState, useCallback } from 'react';
 import type { DropEvent, DropzoneErrorCode, MultipleFileUploadProps } from '@patternfly/react-core';
 import { MultipleFileUpload } from '@patternfly/react-core';
-import { isText } from 'istextorbinary';
 import { useTranslation } from 'react-i18next';
 import type { ResourceYAMLEditorProps } from '@console/dynamic-plugin-sdk';
 import type { EditYAMLProps } from './edit-yaml';
 import { EditYAML } from './edit-yaml';
+import { isText } from './utils/text-or-binary';
 import { units } from './utils/units';
 
 // Maximal file size, in bytes, that user can upload
@@ -86,10 +86,10 @@ export const DroppableEditYAML: FC<DroppableEditYAMLProps & EditYAMLProps> = ({
         const reader = new FileReader();
         reader.onload = (ev) => {
           const arrayBuffer = ev.target.result as ArrayBuffer;
-          const buffer = Buffer.from(new Uint8Array(arrayBuffer));
+          const bytes = new Uint8Array(arrayBuffer);
 
-          if (isText(null, buffer)) {
-            fileAcc.push(buffer.toString().trim());
+          if (isText(null, bytes)) {
+            fileAcc.push(new TextDecoder().decode(bytes).trim());
 
             if (!lastFile) {
               fileAcc.push('---');

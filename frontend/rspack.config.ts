@@ -20,7 +20,6 @@ import { ReactRefreshRspackPlugin } from '@rspack/plugin-react-refresh';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as _ from 'lodash';
 import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
-import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 import * as semver from 'semver';
 import { TsCheckerRspackPlugin } from 'ts-checker-rspack-plugin';
 import {
@@ -161,6 +160,24 @@ const config: Configuration = {
       prettier: false,
       'prettier/parser-yaml': false,
       '@patternfly/react-styles/css/': false, // vendor.scss already imports all PatternFly styles via SCSS
+      // The following aliases replace Node.js built-in modules that some
+      // bundled packages require but that are not natively supported in the
+      // browser. See CONSOLE-4360.
+      //
+      // `parse-path` (a `git-url-parse` dependency) requires the `querystring`
+      // built-in module. Alias it to a small browser-compatible implementation.
+      querystring: path.resolve(import.meta.dirname, 'browser-shims/querystring'),
+      // The `gitlab` browser build imports `randomstring`, which requires the
+      // Node.js `crypto` built-in module. It is only used to generate random
+      // upload filenames. Alias the whole package to a Web Crypto based
+      // implementation.
+      randomstring: path.resolve(import.meta.dirname, 'browser-shims/randomstring'),
+      // `normalize-url` and `ky-universal` (dependencies of the
+      // `git-url-parse` and `gitlab` packages) require the `url` built-in
+      // module, but only to fall back to it when the global `URL` is not
+      // available, which never happens in browsers. Resolve `url` to an empty
+      // module; the fallback code paths are never executed.
+      url: false,
     },
   },
   node: {
@@ -337,9 +354,6 @@ const config: Configuration = {
     }),
     new experiments.VirtualModulesPlugin({
       'get-local-plugins': getLocalPluginsModuleData(pluginPackages, 'esm').code,
-    }),
-    new NodePolyfillPlugin({
-      additionalAliases: ['process'],
     }),
     new CopyRspackPlugin({
       patterns: [

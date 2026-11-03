@@ -15,7 +15,6 @@ import {
   ModalVariant,
   ButtonVariant,
 } from '@patternfly/react-core';
-import { isBinary } from 'istextorbinary';
 import { Base64 } from 'js-base64';
 import * as _ from 'lodash';
 import { useTranslation } from 'react-i18next';
@@ -29,6 +28,7 @@ import type { K8sResourceKind } from '../../../module/k8s';
 import { k8sCreate, k8sUpdate, referenceFor } from '../../../module/k8s';
 import { ButtonBar } from '../../utils/button-bar';
 import { resourceObjPath } from '../../utils/resource-link';
+import { isBinary } from '../../utils/text-or-binary';
 import { SecretSubForm } from './SecretSubForm';
 import type { SecretFormType } from './types';
 import {
@@ -61,7 +61,7 @@ export const SecretFormWrapper: FC<BaseEditSecretProps> = (props) => {
   const [error, setError] = useState();
   const [stringData, setStringData] = useState(
     Object.entries(props.obj?.data ?? {}).reduce<Record<string, string>>((acc, [key, value]) => {
-      if (isBinary(null, Buffer.from(value, 'base64'))) {
+      if (isBinary(null, Base64.toUint8Array(value))) {
         return acc;
       }
       acc[key] = value ? Base64.decode(value) : '';
@@ -72,7 +72,7 @@ export const SecretFormWrapper: FC<BaseEditSecretProps> = (props) => {
   const binaryData = useMemo(
     () =>
       Object.entries(props.obj?.data ?? {}).reduce<Record<string, string>>((acc, [key, value]) => {
-        if (isBinary(null, Buffer.from(value, 'base64'))) {
+        if (isBinary(null, Base64.toUint8Array(value))) {
           acc[key] = value;
         }
         return acc;

@@ -9,13 +9,13 @@ import {
 } from '@patternfly/react-core';
 import { RhUiViewIcon, RhUiViewOffIcon } from '@patternfly/react-icons';
 import { saveAs } from 'file-saver';
-import * as ITOB from 'istextorbinary';
 import { Base64 } from 'js-base64';
 import { useTranslation } from 'react-i18next';
 import { DASH } from '@console/shared/src/constants/ui';
 import { CopyToClipboard } from './utils/copy-to-clipboard';
 import { SectionHeading } from './utils/headings';
 import { EmptyBox } from './utils/status-box';
+import { isBinary } from './utils/text-or-binary';
 
 const MaskedData: FC<{}> = () => {
   const { t } = useTranslation('public');
@@ -145,8 +145,8 @@ export const SecretData: FC<SecretDataProps> = ({ data }) => {
     () =>
       data
         ? Object.keys(data).some((k) => {
-            const isBinary = ITOB.isBinary(k, Buffer.from(data[k], 'base64'));
-            return !isBinary && data[k];
+            const binary = isBinary(k, Base64.toUint8Array(data[k]));
+            return !binary && data[k];
           })
         : false,
     [data],
@@ -158,14 +158,14 @@ export const SecretData: FC<SecretDataProps> = ({ data }) => {
         ? Object.keys(data)
             .sort()
             .map((k) => {
-              const isBinary = ITOB.isBinary(k, Buffer.from(data[k], 'base64'));
+              const binary = isBinary(k, Base64.toUint8Array(data[k]));
               return (
                 <DescriptionListGroup key={k}>
                   <DescriptionListTerm i18n-not-translated="true" data-test="secret-data-term">
                     {k}
                   </DescriptionListTerm>
                   <DescriptionListDescription>
-                    {isBinary ? (
+                    {binary ? (
                       <DownloadBinaryButton label={k} value={data[k]} />
                     ) : (
                       <SecretValue value={data[k]} reveal={reveal} id={k} />
